@@ -1,9 +1,9 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
     <PropertyGroup>
-        <LangVersion>{{ language_version }}</LangVersion>
-        <TargetFramework>{{ target_app_framework }}</TargetFramework>
-        <RootNamespace>{{namespace_prefix}}.{{project_name}}</RootNamespace>
+        <LangVersion>default</LangVersion>
+        <TargetFramework>netstandard2.1</TargetFramework>
+        <RootNamespace>ArtiCluster.Shared.Tests</RootNamespace>
         <Nullable>enable</Nullable>
         <IsPackable>false</IsPackable>
     </PropertyGroup>

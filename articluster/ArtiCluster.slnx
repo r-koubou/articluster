@@ -1,1 +1,7 @@
-<Solution />
+<Solution>
+  <Folder Name="/Shared/">
+    <Project Path="Shared/Shared.IO.Abstractions/Shared.IO.Abstractions.csproj" />
+    <Project Path="Shared/Shared.Tests/Shared.Tests.csproj" />
+    <Project Path="Shared/Shared/Shared.csproj" />
+  </Folder>
+</Solution>
