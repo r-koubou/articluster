@@ -1,0 +1,12 @@
+# macOS, Windows cache files
+.DS_Store
+Thumbs.db
+
+# Temporary directories
+.[Oo]ut/
+.[Tt]emp/
+.[Ww]ork/
+
+# Temporary / Backup files
+*.bak
+*.org
