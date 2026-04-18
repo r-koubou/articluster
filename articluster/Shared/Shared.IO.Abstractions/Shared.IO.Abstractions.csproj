@@ -6,7 +6,7 @@
         <Nullable>enable</Nullable>
         <Copyright>R-Koubou</Copyright>
         <Company>R-Koubou</Company>
-        <Product>Shared.IO.Abstractions</Product>
+        <Product>ArtiCluster.Shared.IO.Abstractions</Product>
         <AssemblyName>ArtiCluster.Shared.IO.Abstractions</AssemblyName>
         <RootNamespace>ArtiCluster.Shared.IO.Abstractions</RootNamespace>
     </PropertyGroup>

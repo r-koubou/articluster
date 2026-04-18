@@ -1,7 +1,7 @@
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace ArtiCluster.Shared.IO.Abstractions.Contents;
+namespace ArtiCluster.Shared.IO.Abstractions;
 
 public interface IContentReader<T>
 {
