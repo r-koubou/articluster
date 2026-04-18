@@ -22,6 +22,7 @@
 
     <ItemGroup>
       <ProjectReference Include="..\Shared.IO.Local\Shared.IO.Local.csproj" />
+      <ProjectReference Include="..\Shared.IO.Stream\Shared.IO.Stream.csproj" />
     </ItemGroup>
 
 </Project>

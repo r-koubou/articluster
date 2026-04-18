@@ -3,7 +3,7 @@ using System.Threading;
 
 using NUnit.Framework;
 
-namespace ArtiCluster.Shared.IO.Local.Tests;
+namespace ArtiCluster.Shared.IO.Local.Tests.Local;
 
 [TestFixture]
 public class LocalFileWriterReaderTest
