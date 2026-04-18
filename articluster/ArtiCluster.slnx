@@ -2,6 +2,10 @@
   <Folder Name="/Shared/">
     <Project Path="Shared/Shared.Tests/Shared.Tests.csproj" />
     <Project Path="Shared/Shared/Shared.csproj" />
+  </Folder>
+  <Folder Name="/Shared/IO/">
+    <Project Path="Shared/Shared.IO.Local.Tests/Shared.IO.Local.Tests.csproj" />
+    <Project Path="Shared/Shared.IO.Local/Shared.IO.Local.csproj" />
     <Project Path="Shared\Shared.IO.Abstractions\Shared.IO.Abstractions.csproj" />
   </Folder>
 </Solution>
