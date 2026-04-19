@@ -18,4 +18,10 @@ public sealed class LocalBinaryContentWriter( string filePath ) : IBinaryContent
     {
         await File.WriteAllBytesAsync( FilePath, content, cancellationToken );
     }
+
+    public async Task WriteContentAsync( byte[] value, int offset, int count, CancellationToken cancellationToken = default )
+    {
+        await using var fileStream = File.Open( FilePath, FileMode.OpenOrCreate, FileAccess.Write );
+        await fileStream.WriteAsync( value, offset, count, cancellationToken );
+    }
 }

@@ -42,7 +42,7 @@ public sealed class BinaryStreamContentReader(
         return memoryStream.ToArray();
     }
 
-    private static async Task<byte[]> ReadFixedBytesAsync( System.IO.Stream source, ReadLength length, CancellationToken cancellationToken = default )
+    private static async Task<byte[]> ReadFixedBytesAsync( Stream source, ReadLength length, CancellationToken cancellationToken = default )
     {
         var offset = 0;
         var restBytes = length.Value;
