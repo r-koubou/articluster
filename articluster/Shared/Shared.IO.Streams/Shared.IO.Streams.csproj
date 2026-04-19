@@ -11,4 +11,8 @@
         <RootNamespace>ArtiCluster.Shared.IO.Stream</RootNamespace>
     </PropertyGroup>
 
+    <ItemGroup>
+      <ProjectReference Include="..\Shared.IO.Abstractions\Shared.IO.Abstractions.csproj" />
+    </ItemGroup>
+
 </Project>
