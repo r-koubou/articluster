@@ -2,7 +2,7 @@ using System.IO;
 using System.Threading;
 using System.Threading.Tasks;
 
-using ArtiCluster.Shared.IO.Stream;
+using ArtiCluster.Shared.IO.Streams;
 
 using NUnit.Framework;
 

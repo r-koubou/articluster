@@ -1,6 +1,6 @@
 using ArtiCluster.Commons.ValueObjects;
 
-namespace ArtiCluster.Shared.IO.Stream.ValueObjects;
+namespace ArtiCluster.Shared.IO.Streams.Values;
 
 public sealed record ReadLength : IntValueObject
 {

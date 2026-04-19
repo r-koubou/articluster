@@ -6,9 +6,9 @@
         <Nullable>enable</Nullable>
         <Copyright>R-Koubou</Copyright>
         <Company>R-Koubou</Company>
-        <Product>ArtiCluster.Shared.IO.Stream</Product>
-        <AssemblyName>ArtiCluster.Shared.IO.Stream</AssemblyName>
-        <RootNamespace>ArtiCluster.Shared.IO.Stream</RootNamespace>
+        <Product>ArtiCluster.Shared.IO.Streams</Product>
+        <AssemblyName>ArtiCluster.Shared.IO.Streams</AssemblyName>
+        <RootNamespace>ArtiCluster.Shared.IO.Streams</RootNamespace>
     </PropertyGroup>
 
     <ItemGroup>

@@ -3,18 +3,18 @@ using System.Threading;
 using System.Threading.Tasks;
 
 using ArtiCluster.Shared.IO.Abstractions;
-using ArtiCluster.Shared.IO.Stream.ValueObjects;
+using ArtiCluster.Shared.IO.Streams.Values;
 
-namespace ArtiCluster.Shared.IO.Stream;
+namespace ArtiCluster.Shared.IO.Streams;
 
 public sealed class BinaryStreamContentReader(
-    System.IO.Stream stream,
+    Stream stream,
     ReadLength? length = null,
     bool leaveOpen = false
 ) : IBinaryContentReader
 {
     // ReSharper disable MemberCanBePrivate.Global
-    private System.IO.Stream Stream { get; } = stream;
+    private Stream Stream { get; } = stream;
     public ReadLength Length { get; } = length ?? ReadLength.ToEnd;
     public bool LeaveOpen { get; } = leaveOpen;
     // ReSharper restore MemberCanBePrivate.Global

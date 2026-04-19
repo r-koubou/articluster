@@ -1,21 +1,22 @@
+using System.IO;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
 using ArtiCluster.Shared.IO.Abstractions;
-using ArtiCluster.Shared.IO.Stream.ValueObjects;
+using ArtiCluster.Shared.IO.Streams.Values;
 
-namespace ArtiCluster.Shared.IO.Stream;
+namespace ArtiCluster.Shared.IO.Streams;
 
 public sealed class TextStreamContentReader(
-    System.IO.Stream stream,
+    Stream stream,
     ReadLength? length = null,
     Encoding? textEncoding = null,
     bool leaveOpen = false
 ) : ITextContentReader
 {
     // ReSharper disable MemberCanBePrivate.Global
-    private System.IO.Stream Stream { get; } = stream;
+    private Stream Stream { get; } = stream;
     private Encoding TextEncoding { get; } = textEncoding ?? Encoding.UTF8;
     public ReadLength Length { get; } = length ?? ReadLength.ToEnd;
     public bool LeaveOpen { get; } = leaveOpen;
