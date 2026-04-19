@@ -12,6 +12,7 @@
     </PropertyGroup>
 
     <ItemGroup>
+      <ProjectReference Include="..\..\Commons\Commons.csproj" />
       <ProjectReference Include="..\Shared.IO.Abstractions\Shared.IO.Abstractions.csproj" />
     </ItemGroup>
 

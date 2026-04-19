@@ -3,12 +3,13 @@ using System.Threading;
 using System.Threading.Tasks;
 
 using ArtiCluster.Shared.IO.Abstractions;
+using ArtiCluster.Shared.IO.Stream.ValueObjects;
 
 namespace ArtiCluster.Shared.IO.Stream;
 
 public sealed class TextStreamContentReader(
     System.IO.Stream stream,
-    int length = -1,
+    ReadLength? length = null,
     Encoding? textEncoding = null,
     bool leaveOpen = false
 ) : ITextContentReader
@@ -16,7 +17,7 @@ public sealed class TextStreamContentReader(
     // ReSharper disable MemberCanBePrivate.Global
     private System.IO.Stream Stream { get; } = stream;
     private Encoding TextEncoding { get; } = textEncoding ?? Encoding.UTF8;
-    public int Length { get; } = length;
+    public ReadLength Length { get; } = length ?? ReadLength.ToEnd;
     public bool LeaveOpen { get; } = leaveOpen;
     // ReSharper restore MemberCanBePrivate.Global
 
