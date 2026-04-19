@@ -11,5 +11,10 @@ public sealed record Articulation(
     ManufacturerName ManufacturerName,
     ProductName ProductName,
     PatchName PatchName,
-    IReadOnlyCollection<Assignment> ArticulationMaps
-);
+    IReadOnlyCollection<Assignment> ArticulationMaps,
+    IReadOnlyDictionary<string, string>? Extra = null
+)
+{
+    public IReadOnlyDictionary<string, string> Extra { get; init; }
+        = Extra ?? new Dictionary<string, string>();
+}

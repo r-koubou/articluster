@@ -9,13 +9,9 @@ public sealed record Assignment(
     IReadOnlyCollection<MidiNoteNumber> MidiNoteNumbers,
     IReadOnlyCollection<MidiVelocity> MidiVelocities,
     IReadOnlyCollection<MidiCcNumber> MidiCcNumbers,
-    IReadOnlyCollection<MidiCcValue> MidiCcValues )
+    IReadOnlyCollection<MidiCcValue> MidiCcValues,
+    IReadOnlyDictionary<string, string>? Extra = null )
 {
-    public Assignment() :
-        this(
-            new List<MidiNoteNumber>(),
-            new List<MidiVelocity>(),
-            new List<MidiCcNumber>(),
-            new List<MidiCcValue>()
-        ) {}
+    public IReadOnlyDictionary<string, string>? Extra { get; init; }
+        = Extra ?? new Dictionary<string, string>();
 }
