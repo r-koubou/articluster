@@ -12,6 +12,8 @@ public class LocalBinaryContentWriter( string filePath ) : IBinaryContentWriter
     public string FilePath { get; } = filePath;
     // ReSharper restore MemberCanBePrivate.Global
 
+    public void Dispose() {}
+
     public async Task WriteContentAsync( byte[] content, CancellationToken cancellationToken = default )
     {
         await File.WriteAllBytesAsync( FilePath, content, cancellationToken );

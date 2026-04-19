@@ -14,6 +14,8 @@ public sealed class LocalTextContentWriter( string filePath, Encoding fileEncodi
     public Encoding FileEncoding { get; } = fileEncoding;
     // ReSharper restore MemberCanBePrivate.Global
 
+    public void Dispose() {}
+
     public LocalTextContentWriter( string filePath ) : this( filePath, Encoding.UTF8 ) {}
 
     public async Task WriteContentAsync( string content, CancellationToken cancellationToken = default )

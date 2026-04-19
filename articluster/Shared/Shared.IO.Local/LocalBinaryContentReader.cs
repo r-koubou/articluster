@@ -12,6 +12,8 @@ public class LocalBinaryContentReader( string filePath ) : IBinaryContentReader
     public string FilePath { get; } = filePath;
     // ReSharper restore MemberCanBePrivate.Global
 
+    public void Dispose() {}
+
     public async Task<byte[]> ReadContentAsync( CancellationToken cancellationToken = default )
     {
         return await File.ReadAllBytesAsync( FilePath, cancellationToken );

@@ -14,6 +14,8 @@ public class LocalTextContentReader( string filePath, Encoding fileEncoding ) : 
     public Encoding FileEncoding { get; } = fileEncoding;
     // ReSharper restore MemberCanBePrivate.Global
 
+    public void Dispose() {}
+
     public LocalTextContentReader( string filePath ) : this( filePath, Encoding.UTF8 ) {}
 
     public async Task<string> ReadContentAsync( CancellationToken cancellationToken = default )

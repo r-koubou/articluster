@@ -1,9 +1,10 @@
+using System;
 using System.Threading;
 using System.Threading.Tasks;
 
 namespace ArtiCluster.Shared.IO.Abstractions;
 
-public interface IContentReader<T>
+public interface IContentReader<T> : IDisposable
 {
     T ReadContent()
         => ReadContentAsync().GetAwaiter().GetResult();
