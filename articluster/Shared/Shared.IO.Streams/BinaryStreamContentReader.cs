@@ -1,21 +1,18 @@
+using System;
 using System.IO;
 using System.Threading;
 using System.Threading.Tasks;
 
+using ArtiCluster.Commons.Extensions;
 using ArtiCluster.Shared.IO.Abstractions;
-using ArtiCluster.Shared.IO.Streams.Values;
+using ArtiCluster.Shared.IO.Abstractions.Values;
 
 namespace ArtiCluster.Shared.IO.Streams;
 
-public sealed class BinaryStreamContentReader(
-    Stream stream,
-    ReadLength? length = null,
-    bool leaveOpen = false
-) : IBinaryContentReader
+public sealed class BinaryStreamContentReader( Stream stream, bool leaveOpen = false ) : IBinaryContentReader
 {
     // ReSharper disable MemberCanBePrivate.Global
     private Stream Stream { get; } = stream;
-    public ReadLength Length { get; } = length ?? ReadLength.ToEnd;
     public bool LeaveOpen { get; } = leaveOpen;
     // ReSharper restore MemberCanBePrivate.Global
 
@@ -31,36 +28,15 @@ public sealed class BinaryStreamContentReader(
 
     public async Task<byte[]> ReadContentAsync( CancellationToken cancellationToken = default )
     {
-        if( Length != ReadLength.ToEnd )
-        {
-            return await ReadFixedBytesAsync( Stream, Length, cancellationToken );
-        }
-
-        var memoryStream = new MemoryStream();
+        using var memoryStream = new MemoryStream();
         await Stream.CopyToAsync( memoryStream, cancellationToken );
 
         return memoryStream.ToArray();
     }
 
-    private static async Task<byte[]> ReadFixedBytesAsync( Stream source, ReadLength length, CancellationToken cancellationToken = default )
+    public async Task<Count> ReadContentAsync( Memory<byte> buffer, Count count, CancellationToken cancellationToken = default )
     {
-        var offset = 0;
-        var restBytes = length.Value;
-        var buffer = new byte[ length.Value ];
-
-        while( restBytes > 0 )
-        {
-            var readBytes = await source.ReadAsync( buffer, offset, restBytes, cancellationToken );
-
-            if( readBytes < 0 )
-            {
-                break;
-            }
-
-            offset    += readBytes;
-            restBytes -= readBytes;
-        }
-
-        return buffer;
+        var readBytes = await Stream.ReadAtLeastAsync( buffer, count.Value, cancellationToken: cancellationToken );
+        return new Count( readBytes );
     }
 }

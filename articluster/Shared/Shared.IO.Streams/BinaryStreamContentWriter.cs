@@ -26,11 +26,11 @@ public sealed class BinaryStreamContentWriter( Stream stream, bool leaveOpen = f
 
     public async Task WriteContentAsync( byte[] content, CancellationToken cancellationToken = default )
     {
-        await Stream.WriteAsync( content, cancellationToken );
+        await WriteContentAsync( content.AsMemory(), cancellationToken );
     }
 
-    public async Task WriteContentAsync( byte[] value, int offset, int count, CancellationToken cancellationToken = default )
+    public async Task WriteContentAsync( ReadOnlyMemory<byte> content, CancellationToken cancellationToken = default )
     {
-        await Stream.WriteAsync( value.AsMemory( offset, count ), cancellationToken );
+        await Stream.WriteAsync( content, cancellationToken );
     }
 }

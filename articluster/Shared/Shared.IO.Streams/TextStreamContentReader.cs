@@ -4,13 +4,11 @@ using System.Threading;
 using System.Threading.Tasks;
 
 using ArtiCluster.Shared.IO.Abstractions;
-using ArtiCluster.Shared.IO.Streams.Values;
 
 namespace ArtiCluster.Shared.IO.Streams;
 
 public sealed class TextStreamContentReader(
     Stream stream,
-    ReadLength? length = null,
     Encoding? textEncoding = null,
     bool leaveOpen = false
 ) : ITextContentReader
@@ -18,7 +16,6 @@ public sealed class TextStreamContentReader(
     // ReSharper disable MemberCanBePrivate.Global
     private Stream Stream { get; } = stream;
     private Encoding TextEncoding { get; } = textEncoding ?? Encoding.UTF8;
-    public ReadLength Length { get; } = length ?? ReadLength.ToEnd;
     public bool LeaveOpen { get; } = leaveOpen;
     // ReSharper restore MemberCanBePrivate.Global
 
@@ -34,7 +31,7 @@ public sealed class TextStreamContentReader(
 
     public async Task<string> ReadContentAsync( CancellationToken cancellationToken = default )
     {
-        using var binaryReader = new BinaryStreamContentReader( Stream, length: Length, leaveOpen: LeaveOpen );
+        using var binaryReader = new BinaryStreamContentReader( Stream, leaveOpen: LeaveOpen );
         var bytes = await binaryReader.ReadContentAsync( cancellationToken );
 
         return TextEncoding.GetString( bytes );

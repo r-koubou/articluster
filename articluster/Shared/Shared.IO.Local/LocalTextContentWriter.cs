@@ -7,11 +7,11 @@ using ArtiCluster.Shared.IO.Abstractions;
 
 namespace ArtiCluster.Shared.IO.Local;
 
-public sealed class LocalTextContentWriter( string filePath, Encoding fileEncoding ) : ITextContentWriter
+public sealed class LocalTextContentWriter( string filePath, Encoding textEncoding ) : ITextContentWriter
 {
     // ReSharper disable MemberCanBePrivate.Global
     public string FilePath { get; } = filePath;
-    public Encoding FileEncoding { get; } = fileEncoding;
+    public Encoding TextEncoding { get; } = textEncoding;
     // ReSharper restore MemberCanBePrivate.Global
 
     public void Dispose() {}
@@ -20,6 +20,6 @@ public sealed class LocalTextContentWriter( string filePath, Encoding fileEncodi
 
     public async Task WriteContentAsync( string content, CancellationToken cancellationToken = default )
     {
-        await File.WriteAllTextAsync( FilePath, content, FileEncoding, cancellationToken );
+        await File.WriteAllTextAsync( FilePath, content, TextEncoding, cancellationToken );
     }
 }

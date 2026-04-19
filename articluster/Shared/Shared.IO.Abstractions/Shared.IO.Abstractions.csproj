@@ -11,4 +11,8 @@
         <RootNamespace>ArtiCluster.Shared.IO.Abstractions</RootNamespace>
     </PropertyGroup>
 
+    <ItemGroup>
+      <ProjectReference Include="..\..\Commons\Commons.csproj" />
+    </ItemGroup>
+
 </Project>

@@ -1,3 +1,4 @@
+using System;
 using System.IO;
 using System.Threading;
 using System.Threading.Tasks;
@@ -19,9 +20,10 @@ public sealed class LocalBinaryContentWriter( string filePath ) : IBinaryContent
         await File.WriteAllBytesAsync( FilePath, content, cancellationToken );
     }
 
-    public async Task WriteContentAsync( byte[] value, int offset, int count, CancellationToken cancellationToken = default )
+
+    public async Task WriteContentAsync( ReadOnlyMemory<byte> content, CancellationToken cancellationToken = default )
     {
         await using var fileStream = File.Open( FilePath, FileMode.OpenOrCreate, FileAccess.Write );
-        await fileStream.WriteAsync( value, offset, count, cancellationToken );
+        await fileStream.WriteAsync( content, cancellationToken );
     }
 }
