@@ -7,7 +7,7 @@ using ArtiCluster.Shared.IO.Abstractions;
 
 namespace ArtiCluster.Shared.IO.Local;
 
-public class LocalTextContentReader( string filePath, Encoding fileEncoding ) : ITextContentReader
+public sealed class LocalTextContentReader( string filePath, Encoding fileEncoding ) : ITextContentReader
 {
     // ReSharper disable MemberCanBePrivate.Global
     public string FilePath { get; } = filePath;

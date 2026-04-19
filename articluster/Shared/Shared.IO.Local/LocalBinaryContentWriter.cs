@@ -6,7 +6,7 @@ using ArtiCluster.Shared.IO.Abstractions;
 
 namespace ArtiCluster.Shared.IO.Local;
 
-public class LocalBinaryContentWriter( string filePath ) : IBinaryContentWriter
+public sealed class LocalBinaryContentWriter( string filePath ) : IBinaryContentWriter
 {
     // ReSharper disable MemberCanBePrivate.Global
     public string FilePath { get; } = filePath;
