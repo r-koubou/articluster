@@ -9,7 +9,7 @@ using ArtiCluster.Shared.IO.Abstractions.Values;
 
 namespace ArtiCluster.Shared.IO.Streams;
 
-public sealed class BinaryStreamContentReader( Stream stream, bool leaveOpen = false ) : IBinaryContentReader
+public sealed class BinaryStreamContentReader( Stream stream, bool leaveOpen = false ) : IBinaryStreamContentReader
 {
     // ReSharper disable MemberCanBePrivate.Global
     private Stream Stream { get; } = stream;
