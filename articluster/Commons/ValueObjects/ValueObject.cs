@@ -1,4 +1,4 @@
-namespace ArtiCluster.Shared.ValueObjects;
+namespace ArtiCluster.Commons.ValueObjects;
 
 public abstract record ValueObject<TValue>( TValue Value ) : IValueObject<TValue> where TValue : notnull
 {

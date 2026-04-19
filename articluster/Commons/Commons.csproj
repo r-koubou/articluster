@@ -6,13 +6,9 @@
         <Nullable>enable</Nullable>
         <Copyright>R-Koubou</Copyright>
         <Company>R-Koubou</Company>
-        <Product>Shared</Product>
-        <AssemblyName>ArtiCluster.Shared</AssemblyName>
-        <RootNamespace>ArtiCluster.Shared</RootNamespace>
+        <Product>ArtiCluster.Commons</Product>
+        <AssemblyName>ArtiCluster.Commons</AssemblyName>
+        <RootNamespace>ArtiCluster.Commons</RootNamespace>
     </PropertyGroup>
-
-    <ItemGroup>
-      <ProjectReference Include="..\..\Commons\Commons.csproj" />
-    </ItemGroup>
 
 </Project>

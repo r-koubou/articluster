@@ -1,6 +1,6 @@
 using System;
 
-namespace ArtiCluster.Shared.ValueObjects;
+namespace ArtiCluster.Commons.ValueObjects;
 
 public class ValueOutOfRangeException : Exception
 {

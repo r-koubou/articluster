@@ -1,6 +1,6 @@
 using System;
 
-namespace ArtiCluster.Shared;
+namespace ArtiCluster.Commons;
 
 [Serializable]
 public sealed class Unit : IEquatable<Unit>

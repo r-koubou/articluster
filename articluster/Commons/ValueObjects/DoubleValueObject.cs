@@ -1,6 +1,6 @@
 using System;
 
-namespace ArtiCluster.Shared.ValueObjects;
+namespace ArtiCluster.Commons.ValueObjects;
 
 // ReSharper disable once UnusedType.Global
 public abstract record DoubleValueObject( double Value ) : ValueObject<double>( Value )

@@ -1,6 +1,6 @@
 using System;
 
-namespace ArtiCluster.Shared.ValueObjects;
+namespace ArtiCluster.Commons.ValueObjects;
 
 public abstract record ComparableValueObject<TValue>( TValue Value )
     : ValueObject<TValue>( Value ), IComparable<ComparableValueObject<TValue>>

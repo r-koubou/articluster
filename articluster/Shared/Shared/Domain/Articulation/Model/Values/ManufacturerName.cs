@@ -1,4 +1,4 @@
-using ArtiCluster.Shared.ValueObjects;
+using ArtiCluster.Commons.ValueObjects;
 
 namespace ArtiCluster.Shared.Domain.Articulation.Model.Values;
 

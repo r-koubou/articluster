@@ -1,4 +1,4 @@
-namespace ArtiCluster.Shared.ValueObjects;
+namespace ArtiCluster.Commons.ValueObjects;
 
 public abstract record StringValueObject( string Value ) : ValueObject<string>( Value )
 {

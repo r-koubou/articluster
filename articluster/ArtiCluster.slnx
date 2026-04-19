@@ -1,4 +1,7 @@
 <Solution>
+  <Folder Name="/Commons/">
+    <Project Path="Commons/Commons.csproj" />
+  </Folder>
   <Folder Name="/Shared/">
     <Project Path="Shared/Shared.Tests/Shared.Tests.csproj" />
     <Project Path="Shared/Shared/Shared.csproj" />

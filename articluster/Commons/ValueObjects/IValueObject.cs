@@ -1,4 +1,4 @@
-namespace ArtiCluster.Shared.ValueObjects;
+namespace ArtiCluster.Commons.ValueObjects;
 
 public interface IValueObject<TValue> where TValue : notnull
 {

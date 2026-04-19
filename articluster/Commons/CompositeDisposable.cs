@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace ArtiCluster.Shared;
+namespace ArtiCluster.Commons;
 
 public sealed class CompositeDisposable : IDisposable
 {

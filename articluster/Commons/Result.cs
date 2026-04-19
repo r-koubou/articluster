@@ -1,6 +1,6 @@
 using System;
 
-namespace ArtiCluster.Shared;
+namespace ArtiCluster.Commons;
 
 public abstract class Result<TValue, TReason>
 {

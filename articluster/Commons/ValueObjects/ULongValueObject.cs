@@ -1,4 +1,4 @@
-namespace ArtiCluster.Shared.ValueObjects;
+namespace ArtiCluster.Commons.ValueObjects;
 
 // ReSharper disable once UnusedType.Global
 public abstract record ULongValueObject( ulong Value ) : ValueObject<ulong>( Value );
