@@ -1,3 +1,4 @@
+using System;
 using System.IO;
 using System.Text;
 using System.Threading;
@@ -7,7 +8,11 @@ using ArtiCluster.Shared.IO.Abstractions;
 
 namespace ArtiCluster.Shared.IO.Streams;
 
-public sealed class TextStreamContentWriter( Stream stream, Encoding? encoding = null, bool leaveOpen = false ) : ITextContentWriter
+public sealed class TextStreamContentWriter(
+    Stream stream,
+    Encoding? encoding = null,
+    bool leaveOpen = false
+) : ITextContentWriter, IDisposable
 {
     // ReSharper disable MemberCanBePrivate.Global
     private Stream Stream { get; } = stream;
@@ -25,9 +30,11 @@ public sealed class TextStreamContentWriter( Stream stream, Encoding? encoding =
         Stream.Dispose();
     }
 
-    public async Task WriteContentAsync( string content, CancellationToken cancellationToken )
+    public async Task WriteAsync( string content, CancellationToken cancellationToken )
     {
+        var memory = content.AsMemory();
+
         await using var writer = new StreamWriter( Stream, encoding: TextEncoding, bufferSize: -1, leaveOpen: true );
-        await writer.WriteAsync( content );
+        await writer.WriteAsync( memory, cancellationToken );
     }
 }

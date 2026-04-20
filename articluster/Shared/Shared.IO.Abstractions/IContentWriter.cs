@@ -1,13 +1,9 @@
-using System;
 using System.Threading;
 using System.Threading.Tasks;
 
 namespace ArtiCluster.Shared.IO.Abstractions;
 
-public interface IContentWriter<in T> : IDisposable
+public interface IContentWriter<in T>
 {
-    void WriteContent( T content )
-        => WriteContentAsync( content ).GetAwaiter().GetResult();
-
-    Task WriteContentAsync( T content, CancellationToken cancellationToken = default );
+    Task WriteAsync( T content, CancellationToken cancellationToken = default );
 }

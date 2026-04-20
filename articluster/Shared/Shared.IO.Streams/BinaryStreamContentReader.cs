@@ -9,7 +9,7 @@ using ArtiCluster.Shared.IO.Abstractions.Values;
 
 namespace ArtiCluster.Shared.IO.Streams;
 
-public sealed class BinaryStreamContentReader( Stream stream, bool leaveOpen = false ) : IBinaryStreamContentReader
+public sealed class BinaryStreamContentReader( Stream stream, bool leaveOpen = false ) : IBinaryStreamContentReader, IDisposable
 {
     // ReSharper disable MemberCanBePrivate.Global
     private Stream Stream { get; } = stream;
@@ -26,17 +26,23 @@ public sealed class BinaryStreamContentReader( Stream stream, bool leaveOpen = f
         Stream.Dispose();
     }
 
-    public async Task<byte[]> ReadContentAsync( CancellationToken cancellationToken = default )
+    public async Task<ReadOnlyMemory<byte>> ReadAllAsync( CancellationToken cancellationToken = default )
     {
         using var memoryStream = new MemoryStream();
         await Stream.CopyToAsync( memoryStream, cancellationToken );
 
-        return memoryStream.ToArray();
+        return new ReadOnlyMemory<byte>( memoryStream.ToArray() );
     }
 
-    public async Task<Count> ReadContentAsync( Memory<byte> buffer, Count count, CancellationToken cancellationToken = default )
+    public async Task<Count> ReadAsync( Memory<byte> buffer, Count count, CancellationToken cancellationToken = default )
     {
-        var readBytes = await Stream.ReadAtLeastAsync( buffer, count.Value, cancellationToken: cancellationToken );
+        var readBytes = await Stream.ReadAtLeastAsync(
+            buffer,
+            count.Value,
+            throwOnEndOfStream: false,
+            cancellationToken: cancellationToken
+        );
+
         return new Count( readBytes );
     }
 }

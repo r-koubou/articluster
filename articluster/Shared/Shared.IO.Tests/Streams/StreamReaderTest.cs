@@ -16,38 +16,38 @@ public class StreamReaderTest
     [Test]
     public async Task ReadTextContentTestAsync()
     {
-        var reader = new TextStreamContentReader( File.OpenRead( Path.Combine( Constants.TestDataDirectoryRoot, "reader-text.txt" ) ) );
-        var content = await reader.ReadContentAsync( CancellationToken.None );
+        using var reader = new TextStreamContentReader( File.OpenRead( Path.Combine( Constants.TestDataDirectoryRoot, "reader-text.txt" ) ) );
+        var content = await reader.ReadAllAsync( CancellationToken.None );
 
-        Assert.AreEqual( "Hello", content );
+        Assert.That( content, Is.EqualTo( "Hello" ) );
     }
 
     [Test]
     public async Task ReadPartialTextContentTestAsync()
     {
-        var reader = new TextStreamContentReader( File.OpenRead( Path.Combine( Constants.TestDataDirectoryRoot, "reader-text.txt" ) ) );
-        var content = await reader.ReadContentAsync( new Count( 3 ), CancellationToken.None );
+        using var reader = new TextStreamContentReader( File.OpenRead( Path.Combine( Constants.TestDataDirectoryRoot, "reader-text.txt" ) ) );
+        var content = await reader.ReadAsync( new Count( 3 ), CancellationToken.None );
 
-        Assert.AreEqual( "Hel", content );
+        Assert.That( content, Is.EqualTo( "Hel" ) );
     }
 
     [Test]
     public async Task ReadBinaryContentTestAsync()
     {
-        var reader = new BinaryStreamContentReader( File.OpenRead( Path.Combine( Constants.TestDataDirectoryRoot, "reader-binary.bin" ) ) );
-        var content = await reader.ReadContentAsync( CancellationToken.None );
+        using var reader = new BinaryStreamContentReader( File.OpenRead( Path.Combine( Constants.TestDataDirectoryRoot, "reader-binary.bin" ) ) );
+        var content = await reader.ReadAllAsync( CancellationToken.None );
 
-        Assert.AreEqual( new byte[] { 0x01, 0x02, 0x03 }, content );
+        Assert.That( content.ToArray(), Is.EqualTo( new byte[] { 0x01, 0x02, 0x03 } ) );
     }
 
     [Test]
     public async Task ReadPartialBinaryContentTestAsync()
     {
         var buffer = new Memory<byte>( new byte[ 2 ] );
-        var reader = new BinaryStreamContentReader( File.OpenRead( Path.Combine( Constants.TestDataDirectoryRoot, "reader-binary.bin" ) ) );
-        var readBytes = await reader.ReadContentAsync( buffer, new Count( 2 ), CancellationToken.None );
+        using var reader = new BinaryStreamContentReader( File.OpenRead( Path.Combine( Constants.TestDataDirectoryRoot, "reader-binary.bin" ) ) );
+        var readBytes = await reader.ReadAsync( buffer, new Count( 2 ), CancellationToken.None );
 
-        Assert.AreEqual( new Count( 2 ), readBytes );
-        Assert.AreEqual( new byte[] { 0x01, 0x02 }, buffer.ToArray() );
+        Assert.That( readBytes, Is.EqualTo( new Count( 2 ) ) );
+        Assert.That( buffer[ ..readBytes.Value ].ToArray(), Is.EqualTo( new byte[] { 0x01, 0x02 } ) );
     }
 }

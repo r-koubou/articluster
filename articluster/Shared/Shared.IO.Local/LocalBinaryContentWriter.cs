@@ -7,23 +7,20 @@ using ArtiCluster.Shared.IO.Abstractions;
 
 namespace ArtiCluster.Shared.IO.Local;
 
-public sealed class LocalBinaryContentWriter( string filePath ) : IBinaryContentWriter
+public sealed class LocalBinaryContentWriter( string filePath ) : IBinaryContentWriter, IDisposable
 {
     // ReSharper disable MemberCanBePrivate.Global
+    private readonly Stream fileStream = File.Open( filePath, FileMode.Create, FileAccess.Write );
     public string FilePath { get; } = filePath;
     // ReSharper restore MemberCanBePrivate.Global
 
-    public void Dispose() {}
-
-    public async Task WriteContentAsync( byte[] content, CancellationToken cancellationToken = default )
+    public void Dispose()
     {
-        await File.WriteAllBytesAsync( FilePath, content, cancellationToken );
+        fileStream.Dispose();
     }
 
-
-    public async Task WriteContentAsync( ReadOnlyMemory<byte> content, CancellationToken cancellationToken = default )
+    public async Task WriteAsync( ReadOnlyMemory<byte> content, CancellationToken cancellationToken = default )
     {
-        await using var fileStream = File.Open( FilePath, FileMode.OpenOrCreate, FileAccess.Write );
         await fileStream.WriteAsync( content, cancellationToken );
     }
 }

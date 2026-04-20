@@ -15,7 +15,7 @@ public sealed class TextStreamContentReader(
     Stream stream,
     Encoding? textEncoding = null,
     bool leaveOpen = false
-) : ITextStreamContentReader
+) : ITextStreamContentReader, IDisposable
 {
     // ReSharper disable MemberCanBePrivate.Global
     private Stream Stream { get; } = stream;
@@ -33,24 +33,29 @@ public sealed class TextStreamContentReader(
         Stream.Dispose();
     }
 
-    public async Task<string> ReadContentAsync( CancellationToken cancellationToken = default )
+    public async Task<string> ReadAllAsync( CancellationToken cancellationToken = default )
     {
-        using var binaryReader = new BinaryStreamContentReader( Stream, leaveOpen: LeaveOpen );
-        var bytes = await binaryReader.ReadContentAsync( cancellationToken );
+        using var binaryReader = new BinaryStreamContentReader( Stream, leaveOpen: true );
+        var buffer = await binaryReader.ReadAllAsync( cancellationToken );
 
-        return TextEncoding.GetString( bytes );
+        return TextEncoding.GetString( buffer.ToArray() );
     }
 
-    public async Task<string> ReadContentAsync( Count count, CancellationToken cancellationToken = default )
+    public async Task<string> ReadAsync( Count count, CancellationToken cancellationToken = default )
     {
         var buffer = ArrayPool<byte>.Shared.Rent( count.Value );
 
         try
         {
             var memory = new Memory<byte>( buffer, 0, count.Value );
-            _ = await Stream.ReadAtLeastAsync( memory, count.Value, cancellationToken: cancellationToken );
+            var readByteCount = await Stream.ReadAtLeastAsync(
+                memory,
+                count.Value,
+                throwOnEndOfStream: false,
+                cancellationToken: cancellationToken
+            );
 
-            return TextEncoding.GetString( buffer, 0, count.Value );
+            return TextEncoding.GetString( buffer, 0, readByteCount );
         }
         finally
         {

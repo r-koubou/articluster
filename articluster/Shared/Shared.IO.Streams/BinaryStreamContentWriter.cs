@@ -7,7 +7,7 @@ using ArtiCluster.Shared.IO.Abstractions;
 
 namespace ArtiCluster.Shared.IO.Streams;
 
-public sealed class BinaryStreamContentWriter( Stream stream, bool leaveOpen = false ) : IBinaryContentWriter
+public sealed class BinaryStreamContentWriter( Stream stream, bool leaveOpen = false ) : IBinaryContentWriter, IDisposable
 {
     // ReSharper disable MemberCanBePrivate.Global
     private Stream Stream { get; } = stream;
@@ -24,12 +24,7 @@ public sealed class BinaryStreamContentWriter( Stream stream, bool leaveOpen = f
         Stream.Dispose();
     }
 
-    public async Task WriteContentAsync( byte[] content, CancellationToken cancellationToken = default )
-    {
-        await WriteContentAsync( content.AsMemory(), cancellationToken );
-    }
-
-    public async Task WriteContentAsync( ReadOnlyMemory<byte> content, CancellationToken cancellationToken = default )
+    public async Task WriteAsync( ReadOnlyMemory<byte> content, CancellationToken cancellationToken = default )
     {
         await Stream.WriteAsync( content, cancellationToken );
     }

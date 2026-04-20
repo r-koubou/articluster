@@ -6,10 +6,7 @@ using ArtiCluster.Shared.IO.Abstractions.Values;
 
 namespace ArtiCluster.Shared.IO.Abstractions;
 
-public interface IBinaryContentReader : IContentReader<byte[]>
+public interface IBinaryContentReader : IContentReader<ReadOnlyMemory<byte>>
 {
-    Count ReadContent( Memory<byte> buffer, Count count )
-        => ReadContentAsync( buffer, count ).GetAwaiter().GetResult();
-
-    Task<Count> ReadContentAsync( Memory<byte> buffer, Count count, CancellationToken cancellationToken = default );
+    Task<Count> ReadAsync( Memory<byte> buffer, Count count, CancellationToken cancellationToken = default );
 }
