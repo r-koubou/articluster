@@ -1,0 +1,69 @@
+name: run-dotnet-unit-test
+
+on:
+  pull_request:
+    branches:
+      - main
+      - develop
+  push:
+    branches:
+      - main
+      - develop
+      - release/**
+      - hotfix/**
+      - feature/**
+      - refactor/**
+      - fix/**
+
+#--------------------------------------------------------------
+# Run Unit Tests in solution
+#--------------------------------------------------------------
+jobs:
+  run-dotnet-unit-test:
+    name: Run .NET Unit Test
+    runs-on: ubuntu-latest
+    env:
+      DOTNET_SDK_VERSION: ${{ vars.DOTNET_SDK_VERSION }}
+      DOTNET_CLI_TELEMETRY_OPTOUT: 1
+      DOTNET_SKIP_FIRST_TIME_EXPERIENCE: 1
+      DOTNET_UNIT_TEST_WORKING_DIRECTORY: ${{ vars.DOTNET_UNIT_TEST_WORKING_DIRECTORY }}
+
+    steps:
+      #----------------------------------------------------------
+      # Checkout repository
+      #----------------------------------------------------------
+      - name: Checkout
+        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+
+      #----------------------------------------------------------
+      # Show setup Environment Variables
+      #----------------------------------------------------------
+      - name: Show Environment Variables
+        run: |
+          {
+            echo "## Environment Variables"
+            echo ""
+            echo ""
+            echo "|name|value|"
+            echo "|----|-----|"
+            echo "|ref|${{ github.ref }}|"
+            echo "|commit|${{ github.sha }}|"
+            echo "|DOTNET_SDK_VERSION|${{ env.DOTNET_SDK_VERSION }}|"
+            echo "|DOTNET_UNIT_TEST_WORKING_DIRECTORY|${{ env.DOTNET_UNIT_TEST_WORKING_DIRECTORY }}|"
+            echo ""
+          } >> $GITHUB_STEP_SUMMARY
+
+      #----------------------------------------------------------
+      # Setup .NET SDK
+      #----------------------------------------------------------
+      - name: Install .NET SDK
+        uses: actions/setup-dotnet@c2fa09f4bde5ebb9d1777cf28262a3eb3db3ced7 # v5.2.0
+        with:
+          dotnet-version: ${{ env.DOTNET_SDK_VERSION }}
+
+      #----------------------------------------------------------
+      # Run Unit Tests
+      #----------------------------------------------------------
+      - name: Run Unit Tests
+        working-directory: ${{ env.DOTNET_UNIT_TEST_WORKING_DIRECTORY }}
+        run: dotnet test

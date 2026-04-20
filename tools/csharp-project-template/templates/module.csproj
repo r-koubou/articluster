@@ -6,8 +6,8 @@
         <Nullable>enable</Nullable>
         <Copyright>{{author}}</Copyright>
         <Company>{{author}}</Company>
-        <Product>{{project_name}}</Product>
-        <AssemblyName>{{project_name}}</AssemblyName>
+        <Product>{{namespace_prefix}}.{{project_name}}</Product>
+        <AssemblyName>{{namespace_prefix}}.{{project_name}}</AssemblyName>
         <RootNamespace>{{namespace_prefix}}.{{project_name}}</RootNamespace>
     </PropertyGroup>
 
