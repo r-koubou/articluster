@@ -19,7 +19,7 @@ public sealed class Unit : IEquatable<Unit>
         => 1;
 
     public static bool operator ==( Unit? left, Unit? right )
-        => true;
+        => ReferenceEquals( left, right ) || left != null && right != null && left.Equals( right );
 
     public static bool operator !=( Unit? left, Unit? right )
         => !( left == right );

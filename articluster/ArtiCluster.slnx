@@ -7,8 +7,8 @@
   </Folder>
   <Folder Name="/Shared/IO/">
     <Project Path="Shared/Shared.IO.Local/Shared.IO.Local.csproj" />
-    <Project Path="Shared\Shared.IO.Abstractions\Shared.IO.Abstractions.csproj" />
-    <Project Path="Shared\Shared.IO.Streams\Shared.IO.Streams.csproj" />
-    <Project Path="Shared\Shared.IO.Tests\Shared.IO.Tests.csproj" />
+    <Project Path="Shared/Shared.IO.Abstractions/Shared.IO.Abstractions.csproj" />
+    <Project Path="Shared/Shared.IO.Streams/Shared.IO.Streams.csproj" />
+    <Project Path="Shared/Shared.IO.Tests/Shared.IO.Tests.csproj" />
   </Folder>
 </Solution>
