@@ -1,11 +1,13 @@
 using System.Collections.Generic;
 
+using ArtiCluster.Shared.Domain.Articulation.Model.Values;
 using ArtiCluster.Shared.Domain.MidiMessages.Model;
 
 namespace ArtiCluster.Shared.Domain.Articulation.Model;
 
 public sealed record Assignment
 {
+    public AssignmentName Name { get; init; }
     public IReadOnlyCollection<MidiNoteOffMessage> MidiNoteOff { get; init; }
     public IReadOnlyCollection<MidiNoteOffMessage> MidiNoteOn { get; init; }
     public IReadOnlyCollection<MidiNoteOffMessage> MidiCc { get; init; }
@@ -13,12 +15,14 @@ public sealed record Assignment
     public IReadOnlyDictionary<string, string> Extra { get; init; }
 
     public Assignment(
+        string name,
         IReadOnlyCollection<MidiNoteOffMessage>? noteOn = null,
         IReadOnlyCollection<MidiNoteOffMessage>? noteOff = null,
         IReadOnlyCollection<MidiNoteOffMessage>? cc = null,
         IReadOnlyCollection<MidiNoteOffMessage>? programChange = null,
         IReadOnlyDictionary<string, string>? extra = null )
     {
+        Name              = new AssignmentName( name );
         MidiNoteOn        = noteOn ?? [ ];
         MidiNoteOff       = noteOff ?? [ ];
         MidiCc            = cc ?? [ ];

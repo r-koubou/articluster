@@ -10,6 +10,8 @@
     <Project Path="Features/UniversalDefinition/UseCase/UniversalDefinition.UseCase.csproj" />
   </Folder>
   <Folder Name="/Features/UniversalDefinition/Infrastructures/">
+    <Project Path="Features/UniversalDefinition/Infrastructures/Infrastructures.Json.Tests/UniversalDefinition.Infrastructures.Json.Tests.csproj" />
+    <Project Path="Features/UniversalDefinition/Infrastructures/Infrastructures.Json/UniversalDefinition.Infrastructures.Json.csproj" />
     <Project Path="Features/UniversalDefinition/Infrastructures/Infrastructures.Yaml.Tests/UniversalDefinition.Infrastructures.Yaml.Tests.csproj" />
     <Project Path="Features/UniversalDefinition/Infrastructures/Infrastructures.Yaml/UniversalDefinition.Infrastructures.Yaml.csproj" />
   </Folder>

@@ -9,7 +9,7 @@ using YamlDotNet.Serialization;
 
 namespace ArtiCluster.Features.UniversalDefinition.Infrastructures.Yaml.Model;
 
-public class ArticulationModel
+public class RootModel
 {
     public Guid Id { get; set; } = Guid.NewGuid();
 

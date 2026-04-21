@@ -5,5 +5,5 @@ public sealed record MidiNoteNumber : MidiMessageByte
     public static readonly MidiNoteNumber Null = new();
 
     private MidiNoteNumber() : base( -1 ) {}
-    public MidiNoteNumber( int Value ) : base( Value, minValue: 0, maxValue: 127 ) {}
+    public MidiNoteNumber( int value ) : base( value, minValue: 0, maxValue: 127 ) {}
 }

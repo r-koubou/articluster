@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 
 using ArtiCluster.Features.UniversalDefinition.Infrastructures.Yaml.Model;
+using ArtiCluster.Features.UniversalDefinition.Infrastructures.Yaml.Model.MidiMessages;
 
 using NUnit.Framework;
 
@@ -15,24 +16,26 @@ public class Sandbox
     [Test]
     public void Test()
     {
-        var model = new ArticulationModel
+        var model = new RootModel
         {
             Id               = Guid.NewGuid(),
             Author           = "John Doe",
             ManufacturerName = "Acme Corp",
             ProductName      = "Super Synth",
             PatchName        = "Epic Lead",
-            Description      = "This is a multi-line description of the articulation."
+            Description      = """
+                               This is a multi-line
+                               description of the articulation.
+                               """
         };
 
         model.Assignments.Add( new AssignmentModel
             {
-                MidiMessage = new MidiMessageModel
-                {
-                    Status = 0x90,
-                    Data1  = 60,
-                    Data2  = 127
-                },
+                Name = "Sustain",
+                NoteOff =
+                [
+                    new MidiNoteOffMessageModel( channel: 0, noteNumber: 60, velocity: 127 ),
+                ],
                 Extra = new Dictionary<string, string>
                 {
                     { "Key1", "LocalValue1" },
@@ -42,12 +45,17 @@ public class Sandbox
         );
         model.Assignments.Add( new AssignmentModel
             {
-                MidiMessage = new MidiMessageModel
-                {
-                    Status = 0x80,
-                    Data1  = 60,
-                    Data2  = 127
-                }
+                Name = "Staccato",
+                NoteOn =
+                [
+                    new MidiNoteOnMessageModel( channel: 0, noteNumber: 60, velocity: 127 ),
+                ],
+                ControlChange = [
+                    new MidiControlChangeMessageModel( channel: 0, controlNumber: 64, controlValue: 127 ),
+                ],
+                ProgramChange = [
+                    new MidiProgramChangeMessageModel( channel: 0, programNumber: 41 ),
+                ]
             }
         );
 
@@ -57,7 +65,10 @@ public class Sandbox
             { "GlobalKey2", "GlobalValue2" }
         };
 
-        var builder = new SerializerBuilder().Build();
+        var builder =
+            new SerializerBuilder()
+               .ConfigureDefaultValuesHandling( DefaultValuesHandling.OmitEmptyCollections )
+               .Build();
 
         builder.Serialize( Console.Out, model );
 

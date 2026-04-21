@@ -1,6 +1,6 @@
 using System;
 
-namespace ArtiCluster.Features.UniversalDefinition.Infrastructures.Yaml.Model;
+namespace ArtiCluster.Features.UniversalDefinition.Infrastructures.Yaml.Model.MidiMessages;
 
 [Flags]
 public enum MidiMessageType
