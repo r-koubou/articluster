@@ -18,11 +18,11 @@ public sealed record MidiStatusByte : IntValueObject
 
     public MidiStatusByte( int value ) : base( value )
     {
-        ValueOutOfRangeException.ThrowIf( this, MinValue, MaxValue );
+        ValueOutOfRangeException.ThrowIf( Value, MinValue, MaxValue );
     }
 
     public MidiStatusByte( int value, MidiChannel channel ) : base( value | channel.Value )
     {
-        ValueOutOfRangeException.ThrowIf( this, MinValue, MaxValue );
+        ValueOutOfRangeException.ThrowIf( Value, MinValue, MaxValue );
     }
 }

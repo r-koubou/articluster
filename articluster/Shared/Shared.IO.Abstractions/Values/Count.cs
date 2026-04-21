@@ -6,6 +6,6 @@ public sealed record Count : IntValueObject
 {
     public Count( int value ) : base( value )
     {
-        ValueOutOfRangeException.ThrowIf( this, 0, int.MaxValue );
+        ValueOutOfRangeException.ThrowIf( value, 0, int.MaxValue );
     }
 }

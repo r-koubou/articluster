@@ -15,6 +15,6 @@ public sealed record MidiChannel : IntValueObject
 
     public MidiChannel( int Value ) : base( Value )
     {
-        ValueOutOfRangeException.ThrowIf( this, MinValue, MaxValue );
+        ValueOutOfRangeException.ThrowIf( Value, MinValue, MaxValue );
     }
 }

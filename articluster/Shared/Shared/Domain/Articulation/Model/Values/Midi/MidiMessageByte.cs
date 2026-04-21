@@ -15,6 +15,6 @@ public sealed record MidiMessageByte : IntValueObject
 
     public MidiMessageByte( int Value ) : base( Value )
     {
-        ValueOutOfRangeException.ThrowIf( this, MinValue, MaxValue );
+        ValueOutOfRangeException.ThrowIf( Value, MinValue, MaxValue );
     }
 }

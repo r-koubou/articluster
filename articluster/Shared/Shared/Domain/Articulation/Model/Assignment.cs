@@ -10,9 +10,9 @@ public sealed record Assignment
     public IReadOnlyDictionary<string, string> Extra { get; init; }
 
     public Assignment(
-        MidiMessage? noteOn,
-        MidiMessage? noteOff,
-        MidiMessage? cc,
+        MidiMessage? noteOn = null,
+        MidiMessage? noteOff = null,
+        MidiMessage? cc = null,
         IReadOnlyDictionary<string, string>? extra = null )
     {
         MidiNoteOn  = noteOn ?? MidiMessage.Null;
