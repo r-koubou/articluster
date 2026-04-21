@@ -7,7 +7,7 @@ public sealed record Assignment
     public MidiMessage MidiNoteOn { get; init; }
     public MidiMessage MidiNoteOff { get; init; }
     public MidiMessage MidiCc { get; init; }
-    public IReadOnlyDictionary<string, string>? Extra { get; init; }
+    public IReadOnlyDictionary<string, string> Extra { get; init; }
 
     public Assignment(
         MidiMessage? noteOn,
