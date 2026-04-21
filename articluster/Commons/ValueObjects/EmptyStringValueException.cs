@@ -4,9 +4,8 @@ namespace ArtiCluster.Commons.ValueObjects;
 
 public class EmptyStringValueException : Exception
 {
-    private EmptyStringValueException() {}
-
-    public EmptyStringValueException( string message )
+    // ReSharper disable once ConvertToPrimaryConstructor
+    private EmptyStringValueException( string message )
         : base( message ) {}
 
     public static void ThrowIfEmpty( StringValueObject value )

@@ -1,0 +1,21 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <LangVersion>default</LangVersion>
+        <TargetFramework>netstandard2.1</TargetFramework>
+        <Nullable>enable</Nullable>
+        <Copyright>R-Koubou</Copyright>
+        <Company>R-Koubou</Company>
+        <Product>ArtiCluster.Features.UniversalDefinition.Infrastructures.Json</Product>
+        <AssemblyName>ArtiCluster.Features.UniversalDefinition.Infrastructures.Json</AssemblyName>
+        <RootNamespace>ArtiCluster.Features.UniversalDefinition.Infrastructures.Json</RootNamespace>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <ProjectReference Include="..\..\..\..\Commons\Commons.csproj" />
+        <ProjectReference Include="..\..\..\..\Shared\Shared.IO.Local\Shared.IO.Local.csproj" />
+        <ProjectReference Include="..\..\..\..\Shared\Shared.IO.Streams\Shared.IO.Streams.csproj" />
+        <ProjectReference Include="..\..\..\..\Shared\Shared\Shared.csproj" />
+    </ItemGroup>
+
+</Project>
