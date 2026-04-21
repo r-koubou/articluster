@@ -9,7 +9,7 @@ namespace ArtiCluster.Features.UniversalDefinition.Infrastructures.Yaml.Model.Mi
     {
         [YamlIgnore]
         public int Status
-            => 0x90 | ( Channel & 0xF );
+            => 0x80 | ( Channel & 0xF );
 
         [YamlMember( Alias = "Channel" )]
         public int Channel { get; set; }
