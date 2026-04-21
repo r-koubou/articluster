@@ -12,6 +12,7 @@ public sealed record Articulation
     public ManufacturerName ManufacturerName { get; init; }
     public ProductName ProductName { get; init; }
     public PatchName PatchName { get; init; }
+    public Description Description { get; init; }
     public IReadOnlyCollection<Assignment> ArticulationMaps { get; init; }
     public IReadOnlyDictionary<string, string> Extra { get; init; }
 
@@ -21,6 +22,7 @@ public sealed record Articulation
         ManufacturerName ManufacturerName,
         ProductName ProductName,
         PatchName PatchName,
+        Description? Description,
         IReadOnlyCollection<Assignment> ArticulationMaps,
         IReadOnlyDictionary<string, string>? Extra = null )
     {
@@ -30,6 +32,7 @@ public sealed record Articulation
         this.ProductName      = ProductName;
         this.PatchName        = PatchName;
         this.ArticulationMaps = ArticulationMaps;
+        this.Description      = Description ?? Description.Empty;
         this.Extra            = Extra ?? new Dictionary<string, string>();
     }
 }
