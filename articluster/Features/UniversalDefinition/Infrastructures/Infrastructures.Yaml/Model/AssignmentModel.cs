@@ -7,9 +7,9 @@ namespace ArtiCluster.Features.UniversalDefinition.Infrastructures.Yaml.Model;
 public class AssignmentModel
 {
     public string Name { get; set; } = string.Empty;
-    public List<IMidiMessageModel> NoteOn { get; set; } = [ ];
-    public List<IMidiMessageModel> NoteOff { get; set; } = [ ];
-    public List<IMidiMessageModel> ControlChange { get; set; } = [ ];
-    public List<IMidiMessageModel> ProgramChange { get; set; } = [ ];
+    public List<MidiNoteOnMessageModel> NoteOn { get; set; } = [ ];
+    public List<MidiNoteOffMessageModel> NoteOff { get; set; } = [ ];
+    public List<MidiControlChangeMessageModel> ControlChange { get; set; } = [ ];
+    public List<MidiProgramChangeMessageModel> ProgramChange { get; set; } = [ ];
     public Dictionary<string, string> Extra { get; set; } = new();
 }
