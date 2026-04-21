@@ -5,16 +5,31 @@ using ArtiCluster.Shared.Domain.Articulation.Model.Values;
 
 namespace ArtiCluster.Shared.Domain.Articulation.Model;
 
-public sealed record Articulation(
-    Guid Id,
-    Author Author,
-    ManufacturerName ManufacturerName,
-    ProductName ProductName,
-    PatchName PatchName,
-    IReadOnlyCollection<Assignment> ArticulationMaps,
-    IReadOnlyDictionary<string, string>? Extra = null
-)
+public sealed record Articulation
 {
+    public Guid Id { get; init; }
+    public Author Author { get; init; }
+    public ManufacturerName ManufacturerName { get; init; }
+    public ProductName ProductName { get; init; }
+    public PatchName PatchName { get; init; }
+    public IReadOnlyCollection<Assignment> ArticulationMaps { get; init; }
     public IReadOnlyDictionary<string, string> Extra { get; init; }
-        = Extra ?? new Dictionary<string, string>();
+
+    public Articulation(
+        Guid Id,
+        Author Author,
+        ManufacturerName ManufacturerName,
+        ProductName ProductName,
+        PatchName PatchName,
+        IReadOnlyCollection<Assignment> ArticulationMaps,
+        IReadOnlyDictionary<string, string>? Extra = null )
+    {
+        this.Id               = Id;
+        this.Author           = Author;
+        this.ManufacturerName = ManufacturerName;
+        this.ProductName      = ProductName;
+        this.PatchName        = PatchName;
+        this.ArticulationMaps = ArticulationMaps;
+        this.Extra            = Extra ?? new Dictionary<string, string>();
+    }
 }

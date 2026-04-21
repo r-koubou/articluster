@@ -6,11 +6,11 @@ public class ValueOutOfRangeException : Exception
 {
     public ValueOutOfRangeException( string message ) : base( message ) {}
 
-    public ValueOutOfRangeException( object actual, string message )
+    private ValueOutOfRangeException( object actual, string message )
         : base( $"{message} (={actual})" ) {}
 
     // ReSharper disable once MemberCanBePrivate.Global
-    public static void ThrowIf<T>( IValueObject<T> value, T min, T max ) where T : IComparable<T>
+    public static void ThrowIf<T>( ValueObject<T> value, T min, T max ) where T : IComparable<T>
     {
         if( value.Value.CompareTo( min ) < 0 )
         {

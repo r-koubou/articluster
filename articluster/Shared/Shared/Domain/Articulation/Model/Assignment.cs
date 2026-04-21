@@ -1,17 +1,23 @@
 using System.Collections.Generic;
 
-using ArtiCluster.Shared.Domain.Articulation.Model.Values.Midi;
-
 namespace ArtiCluster.Shared.Domain.Articulation.Model;
 
-// ReSharper disable NotAccessedPositionalProperty.Global
-public sealed record Assignment(
-    IReadOnlyCollection<MidiNoteNumber> MidiNoteNumbers,
-    IReadOnlyCollection<MidiVelocity> MidiVelocities,
-    IReadOnlyCollection<MidiCcNumber> MidiCcNumbers,
-    IReadOnlyCollection<MidiCcValue> MidiCcValues,
-    IReadOnlyDictionary<string, string>? Extra = null )
+public sealed record Assignment
 {
+    public MidiMessage MidiNoteOn { get; init; }
+    public MidiMessage MidiNoteOff { get; init; }
+    public MidiMessage MidiCc { get; init; }
     public IReadOnlyDictionary<string, string>? Extra { get; init; }
-        = Extra ?? new Dictionary<string, string>();
+
+    public Assignment(
+        MidiMessage? noteOn,
+        MidiMessage? noteOff,
+        MidiMessage? cc,
+        IReadOnlyDictionary<string, string>? extra = null )
+    {
+        MidiNoteOn  = noteOn ?? MidiMessage.Null;
+        MidiNoteOff = noteOff ?? MidiMessage.Null;
+        MidiCc      = cc ?? MidiMessage.Null;
+        Extra       = extra ?? new Dictionary<string, string>();
+    }
 }
