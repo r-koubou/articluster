@@ -2,6 +2,17 @@
   <Folder Name="/Commons/">
     <Project Path="Commons/Commons.csproj" />
   </Folder>
+  <Folder Name="/Features/" />
+  <Folder Name="/Features/UniversalDefinition/">
+    <Project Path="Features/UniversalDefinition/Facades/UniversalDefinition.Facades.csproj" />
+    <Project Path="Features/UniversalDefinition/Gateways/UniversalDefinition.Gateways.csproj" />
+    <Project Path="Features/UniversalDefinition/Interactors/UniversalDefinition.Interactors.csproj" />
+    <Project Path="Features/UniversalDefinition/UseCase/UniversalDefinition.UseCase.csproj" />
+  </Folder>
+  <Folder Name="/Features/UniversalDefinition/Infrastructures/">
+    <Project Path="Features/UniversalDefinition/Infrastructures/Infrastructures.Yaml.Tests/UniversalDefinition.Infrastructures.Yaml.Tests.csproj" />
+    <Project Path="Features/UniversalDefinition/Infrastructures/Infrastructures.Yaml/UniversalDefinition.Infrastructures.Yaml.csproj" />
+  </Folder>
   <Folder Name="/Shared/">
     <Project Path="Shared/Shared/Shared.csproj" />
   </Folder>
