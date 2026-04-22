@@ -24,6 +24,55 @@ public abstract class Result<TValue, TReason>
             _                                => throw new InvalidOperationException()
         };
 
+    public Result<TOut, TReason> Map<TOut>( Func<TValue, TOut> func )
+    {
+        return this switch
+        {
+            SuccessResult<TValue, TReason> s
+                => Result<TOut, TReason>.Success( func( s.Value ), s.Reason ),
+
+            FailureResult<TValue, TReason> f
+                => Result<TOut, TReason>.Failure( f.Reason, f.Error ),
+
+            _ => throw new InvalidOperationException()
+        };
+    }
+
+    public Result<TOut, TReason> Bind<TOut>(
+        Func<TValue, Result<TOut, TReason>> func )
+    {
+        return this switch
+        {
+            SuccessResult<TValue, TReason> s
+                => func( s.Value ),
+
+            FailureResult<TValue, TReason> f
+                => Result<TOut, TReason>.Failure( f.Reason, f.Error ),
+
+            _ => throw new InvalidOperationException()
+        };
+    }
+
+    public Result<TValue, TReason> OnSuccess( Action<TValue> func )
+    {
+        if( this is SuccessResult<TValue, TReason> s )
+        {
+            func( s.Value );
+        }
+
+        return this;
+    }
+
+    public Result<TValue, TReason> OnFailure( Action<TReason, Exception?> func )
+    {
+        if( this is FailureResult<TValue, TReason> f )
+        {
+            func( f.Reason, f.Error );
+        }
+
+        return this;
+    }
+
     public TResult Match<TResult>(
         Func<TValue, TResult> success,
         Func<TReason, Exception?, TResult> failure )
