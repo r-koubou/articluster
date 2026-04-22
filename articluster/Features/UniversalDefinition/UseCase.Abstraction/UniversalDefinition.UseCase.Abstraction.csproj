@@ -11,4 +11,9 @@
         <RootNamespace>ArtiCluster.UniversalDefinition.UseCase.Abstraction</RootNamespace>
     </PropertyGroup>
 
+    <ItemGroup>
+      <ProjectReference Include="..\..\..\Shared\Shared\Shared.csproj" />
+      <ProjectReference Include="..\Gateways\UniversalDefinition.Gateways.csproj" />
+    </ItemGroup>
+
 </Project>
