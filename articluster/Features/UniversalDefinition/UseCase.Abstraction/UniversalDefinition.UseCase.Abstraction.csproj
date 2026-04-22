@@ -6,9 +6,9 @@
         <Nullable>enable</Nullable>
         <Copyright>R-Koubou</Copyright>
         <Company>R-Koubou</Company>
-        <Product>ArtiCluster.Features.UniversalDefinition.Interactors</Product>
-        <AssemblyName>ArtiCluster.Features.UniversalDefinition.Interactors</AssemblyName>
-        <RootNamespace>ArtiCluster.Features.UniversalDefinition.Interactors</RootNamespace>
+        <Product>ArtiCluster.UniversalDefinition.UseCase.Abstraction</Product>
+        <AssemblyName>ArtiCluster.UniversalDefinition.UseCase.Abstraction</AssemblyName>
+        <RootNamespace>ArtiCluster.UniversalDefinition.UseCase.Abstraction</RootNamespace>
     </PropertyGroup>
 
 </Project>

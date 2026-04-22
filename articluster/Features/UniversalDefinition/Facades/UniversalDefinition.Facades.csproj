@@ -15,7 +15,6 @@
       <ProjectReference Include="..\..\..\Commons\Commons.csproj" />
       <ProjectReference Include="..\..\..\Shared\Shared\Shared.csproj" />
       <ProjectReference Include="..\Gateways\UniversalDefinition.Gateways.csproj" />
-      <ProjectReference Include="..\Interactors\UniversalDefinition.Interactors.csproj" />
       <ProjectReference Include="..\UseCase\UniversalDefinition.UseCase.csproj" />
     </ItemGroup>
 
