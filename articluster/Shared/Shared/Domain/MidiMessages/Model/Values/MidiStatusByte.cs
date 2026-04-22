@@ -1,18 +1,34 @@
+using ArtiCluster.Commons.ValueObjects;
+
 namespace ArtiCluster.Shared.Domain.MidiMessages.Model.Values;
 
-public sealed record MidiStatusByte : MidiMessageByte
+public sealed record MidiStatusByte : IntValueObject
 {
     public static readonly MidiStatusByte Null = new();
 
-    public MidiChannel Channel { get; init; }
+    // ReSharper disable MemberCanBePrivate.Global
+    public bool IsChannelVoiceMessage
+        => Value is >= 0x80 and < 0xF0;
 
-    private MidiStatusByte() : base( -1 )
-    {
-        Channel = MidiChannel.Null;
-    }
+    public bool IsSystemMessage
+        => Value >= 0xF0;
+    // ReSharper restore MemberCanBePrivate.Global
 
-    public MidiStatusByte( int value ) : base( value, minValue: 0x00, maxValue: 0xFF )
+    private MidiStatusByte() : base( -1 ) {}
+
+    public MidiStatusByte( int value ) : base( value, minValue: 0x00, maxValue: 0xFF ) {}
+
+    public bool TryGetChannel( out MidiChannel channel )
     {
-        Channel = new MidiChannel( value & 0x0F );
+        channel = null!;
+
+        if( !IsChannelVoiceMessage )
+        {
+            return false;
+        }
+
+        channel = new MidiChannel( Value & 0x0F );
+
+        return true;
     }
 }

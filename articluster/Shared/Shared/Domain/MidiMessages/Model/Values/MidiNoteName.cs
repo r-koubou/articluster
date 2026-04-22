@@ -146,6 +146,7 @@ public sealed record MidiNoteName : StringValueObject
     // ReSharper restore InconsistentNaming
     #endregion ~Note names
 
+    #region Note name mapping
     private static readonly IReadOnlyList<string> NoteNameList = new List<string>
     {
         C_M2,
@@ -304,12 +305,12 @@ public sealed record MidiNoteName : StringValueObject
         return TryParse( midiNoteName, out var _ );
     }
 
-    public static MidiNoteName FromMidiNoteNumber( MidiNoteNumber midiNoteNumber )
+    public static MidiNoteName FromMidiNoteNumber( MidiDataByte midiNoteNumber )
     {
         return new MidiNoteName( NoteNameList[ midiNoteNumber.Value ] );
     }
 
-    public MidiNoteNumber ToMidiNoteNumber()
+    public MidiDataByte ToMidiNoteNumber()
     {
         var number =
             NoteNameList
@@ -321,6 +322,7 @@ public sealed record MidiNoteName : StringValueObject
                 )
                .Where( obj => obj.name == Value );
 
-        return new MidiNoteNumber( number.First().index );
+        return new MidiDataByte( number.First().index );
     }
+    #endregion ~Note name mapping
 }

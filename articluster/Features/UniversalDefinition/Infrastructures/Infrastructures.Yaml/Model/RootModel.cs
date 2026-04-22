@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 
+using YamlDotNet.Core;
 using YamlDotNet.Serialization;
 
 // ReSharper disable UnusedAutoPropertyAccessor.Global
@@ -9,7 +10,7 @@ using YamlDotNet.Serialization;
 
 namespace ArtiCluster.Features.UniversalDefinition.Infrastructures.Yaml.Model;
 
-public class RootModel
+internal class RootModel
 {
     public Guid Id { get; set; } = Guid.NewGuid();
 
@@ -21,7 +22,7 @@ public class RootModel
 
     public string PatchName { get; set; } = string.Empty;
 
-    [YamlMember( ScalarStyle = YamlDotNet.Core.ScalarStyle.Literal )]
+    [YamlMember( ScalarStyle = ScalarStyle.Literal )]
     public string Description { get; set; } = string.Empty;
 
     public List<AssignmentModel> Assignments { get; set; } = new();

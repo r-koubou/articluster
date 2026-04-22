@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 
 using ArtiCluster.Features.UniversalDefinition.Infrastructures.Yaml.Model;
-using ArtiCluster.Features.UniversalDefinition.Infrastructures.Yaml.Model.MidiMessages;
+using ArtiCluster.Shared.Domain.MidiMessages.Model;
 using ArtiCluster.Shared.Domain.MidiMessages.Model.Values;
 
 using NUnit.Framework;
@@ -35,21 +35,16 @@ public class DomainModelMapperTest
                 new AssignmentModel
                 {
                     Name = "Sustain",
-                    NoteOn =
+                    MidiMessages =
                     [
-                        new MidiNoteOnMessageModel( channel: 1, noteNumber: 60, velocity: 110 )
-                    ],
-                    NoteOff =
-                    [
-                        new MidiNoteOffMessageModel( channel: 2, noteNumber: 61, velocity: 111 )
-                    ],
-                    ControlChange =
-                    [
-                        new MidiControlChangeMessageModel( channel: 3, controlNumber: 64, controlValue: 112 )
-                    ],
-                    ProgramChange =
-                    [
-                        new MidiProgramChangeMessageModel( channel: 4, programNumber: 42 )
+                        // Note On
+                        new MidiMessageModel( 0x90, 40, 100 ),
+                        // Note Off
+                        new MidiMessageModel( 0x80, 40, 110 ),
+                        // Control Change
+                        new MidiMessageModel( 0xB0, 1, 127 ),
+                        // Program Change
+                        new MidiMessageModel( 0xC0, 49  ),
                     ],
                     Extra = new Dictionary<string, string>
                     {
@@ -81,18 +76,27 @@ public class DomainModelMapperTest
             {
                 Assert.That( assignment.Name.Value, Is.EqualTo( "Sustain" ) );
                 Assert.That( assignment.Extra, Is.EqualTo( source.Assignments[ 0 ].Extra ) );
-                Assert.That( assignment.MidiNoteOn.Single().Channel.Value, Is.EqualTo( 1 ) );
-                Assert.That( assignment.MidiNoteOn.Single().DataByte1.Value, Is.EqualTo( 60 ) );
-                Assert.That( assignment.MidiNoteOn.Single().DataByte2.Value, Is.EqualTo( 110 ) );
-                Assert.That( assignment.MidiNoteOff.Single().Channel.Value, Is.EqualTo( 2 ) );
-                Assert.That( assignment.MidiNoteOff.Single().DataByte1.Value, Is.EqualTo( 61 ) );
-                Assert.That( assignment.MidiNoteOff.Single().DataByte2.Value, Is.EqualTo( 111 ) );
-                Assert.That( assignment.MidiControlChange.Single().Channel.Value, Is.EqualTo( 3 ) );
-                Assert.That( assignment.MidiControlChange.Single().DataByte1.Value, Is.EqualTo( 64 ) );
-                Assert.That( assignment.MidiControlChange.Single().DataByte2.Value, Is.EqualTo( 112 ) );
-                Assert.That( assignment.MidiProgramChange.Single().Channel.Value, Is.EqualTo( 4 ) );
-                Assert.That( assignment.MidiProgramChange.Single().DataByte1.Value, Is.EqualTo( 42 ) );
-                Assert.That( assignment.MidiProgramChange.Single().DataByte2, Is.EqualTo( NullMidiDataByte.Instance ) );
+
+                var midiMessages = new List<MidiMessage>( actual.Assignments.Single().MidiMessages );
+
+                Assert.That( midiMessages.Count, Is.EqualTo( 4 ) );
+
+                // Note On
+                Assert.That( midiMessages[ 0 ].Status.Value, Is.EqualTo( 0x90 ) );
+                Assert.That( midiMessages[ 0 ].Data1.Value, Is.EqualTo( 40 ) );
+                Assert.That( midiMessages[ 0 ].Data2.Value, Is.EqualTo( 100 ) );
+                // Note Off
+                Assert.That( midiMessages[ 1 ].Status.Value, Is.EqualTo( 0x80 ) );
+                Assert.That( midiMessages[ 1 ].Data1.Value, Is.EqualTo( 40 ) );
+                Assert.That( midiMessages[ 1 ].Data2.Value, Is.EqualTo( 110 ) );
+                // Control Change
+                Assert.That( midiMessages[ 2 ].Status.Value, Is.EqualTo( 0xB0 ) );
+                Assert.That( midiMessages[ 2 ].Data1.Value, Is.EqualTo( 1 ) );
+                Assert.That( midiMessages[ 2 ].Data2.Value, Is.EqualTo( 127 ) );
+                // Program Change
+                Assert.That( midiMessages[ 3 ].Status.Value, Is.EqualTo( 0xC0 ) );
+                Assert.That( midiMessages[ 3 ].Data1.Value, Is.EqualTo( 49 ) );
+                Assert.That( midiMessages[ 3 ].Data2.Value, Is.EqualTo( MidiDataByte.None.Value ) );
             }
         );
     }

@@ -13,26 +13,27 @@ public sealed record Articulation
     public ProductName ProductName { get; init; }
     public PatchName PatchName { get; init; }
     public Description Description { get; init; }
+
     public IReadOnlyCollection<Assignment> Assignments { get; init; }
     public IReadOnlyDictionary<string, string> Extra { get; init; }
 
     public Articulation(
         Guid id,
-        Author author,
-        ManufacturerName manufacturerName,
-        ProductName productName,
-        PatchName patchName,
-        Description? description,
+        string author,
+        string manufacturerName,
+        string productName,
+        string patchName,
+        string? description,
         IReadOnlyCollection<Assignment> assignments,
         IReadOnlyDictionary<string, string>? extra = null )
     {
         Id               = id;
-        Author           = author;
-        ManufacturerName = manufacturerName;
-        ProductName      = productName;
-        PatchName        = patchName;
+        Author           = new Author( author );
+        ManufacturerName = new ManufacturerName( manufacturerName );
+        ProductName      = new ProductName( productName );
+        PatchName        = new PatchName( patchName );
+        Description      = description == null ? Description.Empty : new Description( description );
         Assignments      = assignments;
-        Description      = description ?? Description.Empty;
-        Extra            = extra ?? new Dictionary<string, string>();
+        Extra            = extra == null ? new Dictionary<string, string>() : new Dictionary<string, string>( extra );
     }
 }
