@@ -15,7 +15,7 @@ namespace ArtiCluster.Features.UniversalDefinition.Infrastructures.Yaml;
 
 public sealed class YamlImporter : IDefinitionImporter
 {
-    public async Task<Result<Articulation, ImporterReason>> ImportAsync(
+    public async Task<Result<Articulation, ImportReason>> ImportAsync(
         ITextContentReader reader,
         CancellationToken cancellationToken = default )
     {
@@ -27,19 +27,19 @@ public sealed class YamlImporter : IDefinitionImporter
             var root = deserializer.Deserialize<RootModel>( yamlText );
             var domain = DomainModelMapper.Map( root );
 
-            return Result<Articulation, ImporterReason>.Success( domain, ImporterReason.Ok );
+            return Result<Articulation, ImportReason>.Success( domain, ImportReason.Ok );
         }
         catch( YamlException e )
         {
-            return Result<Articulation, ImporterReason>.Failure( ImporterReason.DeserializationError, e );
+            return Result<Articulation, ImportReason>.Failure( ImportReason.DeserializationError, e );
         }
         catch( IOException e )
         {
-            return Result<Articulation, ImporterReason>.Failure( ImporterReason.IoError, e );
+            return Result<Articulation, ImportReason>.Failure( ImportReason.IoError, e );
         }
         catch( Exception e )
         {
-            return Result<Articulation, ImporterReason>.Failure( ImporterReason.OtherError, e );
+            return Result<Articulation, ImportReason>.Failure( ImportReason.OtherError, e );
         }
     }
 }

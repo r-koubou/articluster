@@ -32,6 +32,6 @@ public class YamlImportTest
         var result = await importer.ImportAsync( reader, CancellationToken.None );
 
         Assert.That( result.IsFailure, Is.True, "Import should fail" );
-        Assert.That( result.Reason, Is.EqualTo( ImporterReason.DeserializationError ), "Invalid yaml spec" );
+        Assert.That( result.Reason, Is.EqualTo( ImportReason.DeserializationError ), "Invalid yaml spec" );
     }
 }

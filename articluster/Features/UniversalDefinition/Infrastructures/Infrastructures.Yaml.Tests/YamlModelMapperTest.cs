@@ -4,7 +4,6 @@ using System.Linq;
 
 using ArtiCluster.Features.UniversalDefinition.Infrastructures.Yaml.Model;
 using ArtiCluster.Shared.Domain.Articulation.Model;
-using ArtiCluster.Shared.Domain.Articulation.Model.Values;
 using ArtiCluster.Shared.Domain.MidiMessages.Model;
 
 using NUnit.Framework;

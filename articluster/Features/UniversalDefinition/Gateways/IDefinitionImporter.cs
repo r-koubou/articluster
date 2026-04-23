@@ -7,7 +7,7 @@ using ArtiCluster.Shared.IO.Abstractions;
 
 namespace ArtiCluster.Features.UniversalDefinition.Gateways;
 
-public enum ImporterReason
+public enum ImportReason
 {
     Ok,
     DeserializationError,
@@ -17,7 +17,7 @@ public enum ImporterReason
 
 public interface IDefinitionImporter
 {
-    Task<Result<Articulation, ImporterReason>> ImportAsync(
+    Task<Result<Articulation, ImportReason>> ImportAsync(
         ITextContentReader reader,
         CancellationToken cancellationToken = default
     );

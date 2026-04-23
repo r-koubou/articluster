@@ -6,12 +6,13 @@
         <Nullable>enable</Nullable>
         <Copyright>R-Koubou</Copyright>
         <Company>R-Koubou</Company>
-        <Product>ArtiCluster.UniversalDefinition.UseCase.Abstraction</Product>
-        <AssemblyName>ArtiCluster.UniversalDefinition.UseCase.Abstraction</AssemblyName>
-        <RootNamespace>ArtiCluster.UniversalDefinition.UseCase.Abstraction</RootNamespace>
+        <Product>ArtiCluster.Features.UniversalDefinition.UseCase</Product>
+        <AssemblyName>ArtiCluster.Features.UniversalDefinition.UseCases</AssemblyName>
+        <RootNamespace>ArtiCluster.Features.UniversalDefinition.UseCases</RootNamespace>
     </PropertyGroup>
 
     <ItemGroup>
+      <ProjectReference Include="..\..\..\Commons\Commons.csproj" />
       <ProjectReference Include="..\..\..\Shared\Shared\Shared.csproj" />
       <ProjectReference Include="..\Gateways\UniversalDefinition.Gateways.csproj" />
     </ItemGroup>

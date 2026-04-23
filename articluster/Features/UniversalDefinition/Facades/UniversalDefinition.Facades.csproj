@@ -15,7 +15,8 @@
       <ProjectReference Include="..\..\..\Commons\Commons.csproj" />
       <ProjectReference Include="..\..\..\Shared\Shared\Shared.csproj" />
       <ProjectReference Include="..\Gateways\UniversalDefinition.Gateways.csproj" />
-      <ProjectReference Include="..\UseCase\UniversalDefinition.UseCase.csproj" />
+      <ProjectReference Include="..\Infrastructures\Infrastructures.Yaml\UniversalDefinition.Infrastructures.Yaml.csproj" />
+      <ProjectReference Include="..\UseCase\UniversalDefinition.UseCases.csproj" />
     </ItemGroup>
 
 </Project>
