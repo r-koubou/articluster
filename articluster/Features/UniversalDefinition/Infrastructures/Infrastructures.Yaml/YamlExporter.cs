@@ -12,7 +12,7 @@ using YamlDotNet.Core;
 
 namespace ArtiCluster.Features.UniversalDefinition.Infrastructures.Yaml;
 
-internal sealed class YamlExporter : IDefinitionExporter
+public sealed class YamlExporter : IDefinitionExporter
 {
     public async Task<Result<Unit, ExportReason>> ExportAsync(
         ITextContentWriter writer,

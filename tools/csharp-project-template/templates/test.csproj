@@ -4,6 +4,7 @@
         <LangVersion>{{ language_version }}</LangVersion>
         <TargetFramework>{{ target_app_framework }}</TargetFramework>
         <RootNamespace>{{namespace_prefix}}.{{project_name}}</RootNamespace>
+        <AssemblyName>{{namespace_prefix}}.{{project_name}}</AssemblyName>
         <Nullable>enable</Nullable>
         <IsPackable>false</IsPackable>
     </PropertyGroup>

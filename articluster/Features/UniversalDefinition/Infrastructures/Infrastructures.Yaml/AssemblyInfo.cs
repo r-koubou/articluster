@@ -1,5 +1,5 @@
 using System.Runtime.CompilerServices;
 
-[assembly: InternalsVisibleTo( "UniversalDefinition.Infrastructures.Yaml.Tests" )]
+[assembly: InternalsVisibleTo( "ArtiCluster.Features.UniversalDefinition.Infrastructures.Yaml.Tests" )]
 
 

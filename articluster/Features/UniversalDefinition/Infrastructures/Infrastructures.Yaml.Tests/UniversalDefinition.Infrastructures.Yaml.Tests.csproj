@@ -4,6 +4,7 @@
         <LangVersion>default</LangVersion>
         <TargetFramework>net10.0</TargetFramework>
         <RootNamespace>ArtiCluster.Features.UniversalDefinition.Infrastructures.Yaml.Tests</RootNamespace>
+        <AssemblyName>ArtiCluster.Features.UniversalDefinition.Infrastructures.Yaml.Tests</AssemblyName>
         <Nullable>enable</Nullable>
         <IsPackable>false</IsPackable>
     </PropertyGroup>

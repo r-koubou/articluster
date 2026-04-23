@@ -13,7 +13,7 @@ using YamlDotNet.Core;
 
 namespace ArtiCluster.Features.UniversalDefinition.Infrastructures.Yaml;
 
-internal sealed class YamlImporter : IDefinitionImporter
+public sealed class YamlImporter : IDefinitionImporter
 {
     public async Task<Result<Articulation, ImporterReason>> ImportAsync(
         ITextContentReader reader,
