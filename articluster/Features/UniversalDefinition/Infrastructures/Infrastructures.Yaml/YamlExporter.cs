@@ -28,7 +28,7 @@ public sealed class YamlExporter : IDefinitionExporter
 
             await writer.WriteAsync( yamlText, cancellationToken );
 
-            return Result<Unit, ExportReason>.Success( Unit.Default, ExportReason.Ok );
+            return Result<Unit, ExportReason>.Success( Unit.Default );
         }
         catch( YamlException e )
         {

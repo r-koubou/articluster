@@ -9,7 +9,6 @@ namespace ArtiCluster.Features.UniversalDefinition.Gateways;
 
 public enum ImportReason
 {
-    Ok,
     DeserializationError,
     IoError,
     OtherError

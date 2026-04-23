@@ -27,7 +27,7 @@ public sealed class YamlImporter : IDefinitionImporter
             var root = deserializer.Deserialize<RootModel>( yamlText );
             var domain = DomainModelMapper.Map( root );
 
-            return Result<Articulation, ImportReason>.Success( domain, ImportReason.Ok );
+            return Result<Articulation, ImportReason>.Success( domain );
         }
         catch( YamlException e )
         {
