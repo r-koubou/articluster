@@ -8,4 +8,8 @@ internal static class SerializationConstants
         = new SerializerBuilder()
          .ConfigureDefaultValuesHandling( DefaultValuesHandling.OmitEmptyCollections | DefaultValuesHandling.OmitDefaults )
          .WithTypeConverter( new YamlHexIntConverter() ).Build();
+
+    public static readonly IDeserializer DefaultDeserializer
+        = new DeserializerBuilder()
+         .WithTypeConverter( new YamlHexIntConverter() ).Build();
 }

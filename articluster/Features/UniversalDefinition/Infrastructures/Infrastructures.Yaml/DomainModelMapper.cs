@@ -8,9 +8,9 @@ using ArtiCluster.Shared.Domain.MidiMessages.Model;
 
 namespace ArtiCluster.Features.UniversalDefinition.Infrastructures.Yaml;
 
-internal sealed class DomainModelMapper
+internal static class DomainModelMapper
 {
-    public Articulation Map( RootModel source )
+    public static Articulation Map( RootModel source )
     {
         if( source == null )
         {

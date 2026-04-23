@@ -1,0 +1,30 @@
+Id: 8a671748-2125-4422-8a5e-a67369089b38
+Author: John Doe
+ManufacturerName: Acme Corp
+ProductName: Super Synth
+PatchName: Epic Lead
+Description: |-
+  This is a multi-line
+  description of the articulation.
+Assignments:
+  - Name: Sustain
+    MidiMessages:
+      - Status: 0x90
+        Data1: 0x28
+        Data2: 0x64
+    Extra:
+      Key1: LocalValue1
+      Key2: LocalValue2
+  - Name: Staccato
+    MidiMessages:
+      - Status: 0x90
+        Data1: 0x28
+        Data2: 0x64
+      - Status: 0xB0
+        Data1: 0x01
+        Data2: 0x7F
+      - Status: 0xC0
+        Data1: 0x31
+Extra:
+  GlobalKey1: GlobalValue1
+  GlobalKey2: GlobalValue2

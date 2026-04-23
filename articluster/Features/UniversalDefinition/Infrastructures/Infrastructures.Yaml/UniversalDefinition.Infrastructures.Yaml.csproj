@@ -17,9 +17,9 @@
 
     <ItemGroup>
       <ProjectReference Include="..\..\..\..\Commons\Commons.csproj" />
-      <ProjectReference Include="..\..\..\..\Shared\Shared.IO.Local\Shared.IO.Local.csproj" />
       <ProjectReference Include="..\..\..\..\Shared\Shared.IO.Streams\Shared.IO.Streams.csproj" />
       <ProjectReference Include="..\..\..\..\Shared\Shared\Shared.csproj" />
+      <ProjectReference Include="..\..\Gateways\UniversalDefinition.Gateways.csproj" />
     </ItemGroup>
 
 </Project>

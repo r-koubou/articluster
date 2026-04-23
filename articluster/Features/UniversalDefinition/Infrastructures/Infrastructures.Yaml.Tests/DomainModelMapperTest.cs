@@ -54,8 +54,7 @@ public class DomainModelMapperTest
             ]
         };
 
-        var mapper = new DomainModelMapper();
-        var actual = mapper.Map( source );
+        var actual = DomainModelMapper.Map( source );
 
         Assert.Multiple( () =>
             {
@@ -127,9 +126,7 @@ public class DomainModelMapperTest
             }
         };
 
-        var mapper = new DomainModelMapper();
-
-        var actual = mapper.Map( source );
+        var actual = DomainModelMapper.Map( source );
 
         source.Extra[ "GlobalKey" ]                 = "Updated";
         source.Assignments[ 0 ].Extra[ "LocalKey" ] = "Updated";
