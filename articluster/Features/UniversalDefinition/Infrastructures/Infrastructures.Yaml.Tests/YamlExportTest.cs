@@ -16,7 +16,7 @@ namespace ArtiCluster.Features.UniversalDefinition.Infrastructures.Yaml.Tests;
 public class YamlExportTest
 {
     [Test]
-    public async Task LoadFromFileOkTestAsync()
+    public async Task ExportTestAsync()
     {
         var destPath = Path.GetTempFileName();
 
