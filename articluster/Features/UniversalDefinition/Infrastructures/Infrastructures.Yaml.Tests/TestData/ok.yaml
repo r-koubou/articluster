@@ -1,30 +1,24 @@
-Id: 8a671748-2125-4422-8a5e-a67369089b38
-Author: John Doe
-ManufacturerName: Acme Corp
-ProductName: Super Synth
-PatchName: Epic Lead
-Description: |-
-  This is a multi-line
-  description of the articulation.
+Id: 34023d3f-30b0-4646-90e8-5d2978d09d43
+Author: r-koubou
+ManufacturerName: r-koubou
+ProductName: My Guitar
+PatchName: My Guitar 1
+Description: This is my guitar articulation.
 Assignments:
-  - Name: Sustain
-    MidiMessages:
-      - Status: 0x90
-        Data1: 0x28
-        Data2: 0x64
-    Extra:
-      Key1: LocalValue1
-      Key2: LocalValue2
-  - Name: Staccato
-    MidiMessages:
-      - Status: 0x90
-        Data1: 0x28
-        Data2: 0x64
-      - Status: 0xB0
-        Data1: 0x01
-        Data2: 0x7F
-      - Status: 0xC0
-        Data1: 0x31
+  -   Name: Sustain
+      MidiMessages:
+        -   Status: 144
+            Data1: 64
+            Data2: 100
+      Extra:
+        StudioOne.Color: '#FF0000'
+  -   Name: Bridge Mute
+      MidiMessages:
+        -   Status: 144
+            Data1: 66
+            Data2: 100
+      Extra:
+        StudioOne.Color: '#00FF00'
 Extra:
-  GlobalKey1: GlobalValue1
-  GlobalKey2: GlobalValue2
+  Gloval.Key1: Value1
+  Gloval.Key2: Value2
