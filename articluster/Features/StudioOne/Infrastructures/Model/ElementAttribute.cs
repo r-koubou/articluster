@@ -14,19 +14,19 @@ public class AttributeElement
     public string Name { get; set; } = string.Empty;
 
     [XmlAttribute( AttributeName = "id" )]
-    public string Id { get; set; } = default!;
+    public string Id { get; set; }
 
     [XmlAttribute( AttributeName = "color" )]
-    public string Color { get; set; } = default!; // AABBGGRR
+    public string? Color { get; set; } // AABBGGRR
 
     [XmlAttribute( AttributeName = "pitch" )]
     public string? Pitch { get; set; }
 
     [XmlAttribute( AttributeName = "momentary" )]
-    public string Momentary { get; set; } = default!;
+    public string Momentary { get; set; }
 
     [XmlAttribute( AttributeName = "activation" )]
-    public string Activation { get; set; } = default!;
+    public string Activation { get; set; }
 
     [XmlElement( ElementName = "Attributes" )]
     public List<AttributeElement> Children { get; } = new();
@@ -36,7 +36,7 @@ public class AttributeElement
     public AttributeElement(
         string name,
         int id,
-        string color,
+        string? color,
         int pitch,
         int momentary,
         string activation )
