@@ -21,4 +21,8 @@
         <PackageReference Include="Microsoft.NET.Test.Sdk" Version="18.4.0" />
     </ItemGroup>
 
+    <ItemGroup>
+      <ProjectReference Include="..\Infrastructures\StudioOne.Infrastructures.csproj" />
+    </ItemGroup>
+
 </Project>
