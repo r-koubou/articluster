@@ -11,7 +11,7 @@
   - <a id="definitions/Articulation/properties/Description"></a>**`Description`** *(string, required)*
   - <a id="definitions/Articulation/properties/Assignments"></a>**`Assignments`** *(array, required)*
     - <a id="definitions/Articulation/properties/Assignments/items"></a>**Items**: Refer to *[#/definitions/Assignment](#definitions/Assignment)*.
-  - <a id="definitions/Articulation/properties/Extra"></a>**`Extra`** *(required)*: Refer to *[#/definitions/Extra](#definitions/Extra)*.
+  - <a id="definitions/Articulation/properties/Extra"></a>**`Extra`**: Refer to *[#/definitions/Extra](#definitions/Extra)*.
 
   Examples:
   ```yaml
@@ -28,14 +28,14 @@
           Data1: 64
           Data2: 100
       Extra:
-          StudioOne.Color: '#FF0000'
+          Extra.Custom.Key: Custom Value
   -   Name: Bridge Mute
       MidiMessages:
       -   Status: 144
           Data1: 66
           Data2: 100
       Extra:
-          StudioOne.Color: '#00FF00'
+          Extra.Custom.Key: Custom Value
   ```
 
 - <a id="definitions/Assignment"></a>**`Assignment`** *(object)*: An assignment within the articulation. Cannot contain additional properties.
@@ -52,7 +52,7 @@
       Data1: 64
       Data2: 100
   Extra:
-      StudioOne.Color: '#FF0000'
+      Extra.Custom.Key: Custom Value
   ```
 
 - <a id="definitions/MidiMessage"></a>**`MidiMessage`** *(object)*: A MIDI message within the assignment. Cannot contain additional properties.
@@ -71,6 +71,6 @@
 
   Examples:
   ```yaml
-  Custom-Key: Custom Value
+  Extra.Custom.Key: Custom Value
   ```
 
