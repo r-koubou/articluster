@@ -16,7 +16,7 @@ public sealed record MidiMessage
     }
 
     public override string ToString()
-        => $"Midi Message: status={Status.Value:X2} ({StatusType}), data1={Data1.Value:X2}, data2={Data2.Value:X2)}";
+        => $"Midi Message: status={Status.Value:X2}, ({StatusType}), data1={Data1.Value:X2}, data2={Data2.Value:X2)}";
 
     #region Status Byte Utilities
     // ReSharper disable MemberCanBePrivate.Global
