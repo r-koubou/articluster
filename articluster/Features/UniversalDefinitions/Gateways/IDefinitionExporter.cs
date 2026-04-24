@@ -2,7 +2,7 @@ using System.Threading;
 using System.Threading.Tasks;
 
 using ArtiCluster.Commons;
-using ArtiCluster.Shared.Domain.Articulation.Model;
+using ArtiCluster.Shared.Domain.UniversalDefinitions.Model;
 using ArtiCluster.Shared.IO.Abstractions;
 
 namespace ArtiCluster.Features.UniversalDefinitions.Gateways;

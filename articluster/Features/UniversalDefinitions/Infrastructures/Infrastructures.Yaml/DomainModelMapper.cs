@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 
 using ArtiCluster.Features.UniversalDefinitions.Infrastructures.Yaml.Model;
-using ArtiCluster.Shared.Domain.Articulation.Model;
 using ArtiCluster.Shared.Domain.MidiMessages.Model;
+using ArtiCluster.Shared.Domain.UniversalDefinitions.Model;
 
 namespace ArtiCluster.Features.UniversalDefinitions.Infrastructures.Yaml;
 

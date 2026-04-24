@@ -1,9 +1,9 @@
 using System.Collections.Generic;
 
-using ArtiCluster.Shared.Domain.Articulation.Model.Values;
 using ArtiCluster.Shared.Domain.MidiMessages.Model;
+using ArtiCluster.Shared.Domain.UniversalDefinitions.Model.Values;
 
-namespace ArtiCluster.Shared.Domain.Articulation.Model;
+namespace ArtiCluster.Shared.Domain.UniversalDefinitions.Model;
 
 public sealed record Articulation
 {

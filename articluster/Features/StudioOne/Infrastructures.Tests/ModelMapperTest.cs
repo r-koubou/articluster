@@ -9,9 +9,9 @@ using ArtiCluster.Commons;
 using ArtiCluster.Commons.IO;
 using ArtiCluster.Features.StudioOne.Gateways;
 using ArtiCluster.Features.StudioOne.Infrastructures.Model;
-using ArtiCluster.Shared.Domain.Articulation.Model;
 using ArtiCluster.Shared.Domain.MidiMessages.Model;
 using ArtiCluster.Shared.Domain.MidiMessages.Model.Values;
+using ArtiCluster.Shared.Domain.UniversalDefinitions.Model;
 
 using NUnit.Framework;
 

@@ -1,6 +1,6 @@
 using ArtiCluster.Commons.ValueObjects;
 
-namespace ArtiCluster.Shared.Domain.Articulation.Model.Values;
+namespace ArtiCluster.Shared.Domain.UniversalDefinitions.Model.Values;
 
 public sealed record ArgbColor( int Value ) : IntValueObject( Value )
 {

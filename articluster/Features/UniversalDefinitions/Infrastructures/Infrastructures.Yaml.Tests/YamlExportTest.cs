@@ -4,8 +4,8 @@ using System.IO;
 using System.Threading;
 using System.Threading.Tasks;
 
-using ArtiCluster.Shared.Domain.Articulation.Model;
 using ArtiCluster.Shared.Domain.MidiMessages.Model;
+using ArtiCluster.Shared.Domain.UniversalDefinitions.Model;
 using ArtiCluster.Shared.IO.Streams;
 
 using NUnit.Framework;
