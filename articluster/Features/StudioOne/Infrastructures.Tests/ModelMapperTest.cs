@@ -97,44 +97,32 @@ public interface IStudioOneModelMapper
     Result<StudioOneRootElement, ExportReason> Map( IReadOnlyCollection<UniversalDefinition> combinedSources );
 }
 
-internal static class DefinitionValidator
-{
-    public static Result<Unit, ExportReason> ValidateCombined( IReadOnlyCollection<UniversalDefinition> combinedSources )
-    {
-        if( combinedSources.Count == 0 )
-        {
-            return Result<Unit, ExportReason>.Success( Unit.Default );
-        }
-
-        var first = combinedSources.First();
-
-        var ok = combinedSources
-                .Skip( 1 )
-                .All( x =>
-                          x.ManufacturerName == first.ManufacturerName &&
-                          x.ProductName == first.ProductName
-                 );
-
-        return ok
-            ? Result<Unit, ExportReason>.Success( Unit.Default )
-            : Result<Unit, ExportReason>.Failure( ExportReason.MixedPatchDefinitionsError );
-    }
-}
-
 public sealed class StudioOneModelMapper : IStudioOneModelMapper
 {
     public Result<StudioOneRootElement, ExportReason> Map( IReadOnlyCollection<UniversalDefinition> combinedSources )
     {
-        var validationResult = DefinitionValidator.ValidateCombined( combinedSources );
-
-        if( !validationResult.IsSuccess )
+        if( combinedSources.Count == 0 )
         {
-            return Result<StudioOneRootElement, ExportReason>.Failure( validationResult.Reason );
+            return Result<StudioOneRootElement, ExportReason>.Success( new StudioOneRootElement() );
         }
+        
+        var validationResult = UniversalDefinition.IsCombinedWithSameManufacturerAndProduct( combinedSources );
 
+        if( !validationResult )
+        {
+            return Result<StudioOneRootElement, ExportReason>.Failure( ExportReason.MixedPatchDefinitionsError );
+        }
+        
+        var first = combinedSources.First();
+        var groupedByPatches =
+            UniversalDefinition.GroupByPatchName(
+                combinedSources,
+                first.ManufacturerName,
+                first.ProductName
+            );
+        
         var assignId = 0;
-        var groupedByPatches = GroupByPatchName( combinedSources );
-
+        
         // Create with folder element if several patches exist
         if( groupedByPatches.Count >= 2 )
         {
@@ -148,7 +136,6 @@ public sealed class StudioOneModelMapper : IStudioOneModelMapper
          <Attributes name="Sustain" id="1" pitch="40" momentary="0" activation="note40.100|off40.110|cc1.127|pc49" />
        </Music.KeySwitchList>
 #endif
-        var first = combinedSources.First();
         var rootElement = new StudioOneRootElement
         {
             Name = $"{first.ProductName.Value} {first.PatchName.Value}"
@@ -208,14 +195,6 @@ public sealed class StudioOneModelMapper : IStudioOneModelMapper
         }
 
         return Result<StudioOneRootElement, ExportReason>.Success( rootElement );
-    }
-
-    private static List<List<UniversalDefinition>> GroupByPatchName( IReadOnlyCollection<UniversalDefinition> sources )
-    {
-        return sources
-              .GroupBy( x => x.PatchName.Value )
-              .Select( g => g.ToList() )
-              .ToList();
     }
 
     private static List<AttributeElement> MapElementAttributes( IReadOnlyCollection<UniversalDefinition> sources, ref int assignId )
