@@ -3,14 +3,14 @@
     <Project Path="Commons/Commons.csproj" />
   </Folder>
   <Folder Name="/Features/" />
-  <Folder Name="/Features/UniversalDefinition/">
-    <Project Path="Features/UniversalDefinition/Facades/UniversalDefinition.Facades.csproj" />
-    <Project Path="Features/UniversalDefinition/Gateways/UniversalDefinition.Gateways.csproj" />
-    <Project Path="Features/UniversalDefinition/UseCase/UniversalDefinition.UseCases.csproj" />
+  <Folder Name="/Features/UniversalDefinitions/">
+    <Project Path="Features/UniversalDefinitions/Facades/UniversalDefinitions.Facades.csproj" />
+    <Project Path="Features/UniversalDefinitions/Gateways/UniversalDefinitions.Gateways.csproj" />
+    <Project Path="Features/UniversalDefinitions/UseCase/UniversalDefinitions.UseCases.csproj" />
   </Folder>
-  <Folder Name="/Features/UniversalDefinition/Infrastructures/">
-    <Project Path="Features/UniversalDefinition/Infrastructures/Infrastructures.Yaml.Tests/UniversalDefinition.Infrastructures.Yaml.Tests.csproj" />
-    <Project Path="Features/UniversalDefinition/Infrastructures/Infrastructures.Yaml/UniversalDefinition.Infrastructures.Yaml.csproj" />
+  <Folder Name="/Features/UniversalDefinitions/Infrastructures/">
+    <Project Path="Features/UniversalDefinitions/Infrastructures/Infrastructures.Yaml.Tests/UniversalDefinitions.Infrastructures.Yaml.Tests.csproj" />
+    <Project Path="Features/UniversalDefinitions/Infrastructures/Infrastructures.Yaml/UniversalDefinitions.Infrastructures.Yaml.csproj" />
   </Folder>
   <Folder Name="/Shared/">
     <Project Path="Shared/Shared/Shared.csproj" />

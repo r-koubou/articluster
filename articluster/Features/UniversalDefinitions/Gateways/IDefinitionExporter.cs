@@ -1,0 +1,24 @@
+using System.Threading;
+using System.Threading.Tasks;
+
+using ArtiCluster.Commons;
+using ArtiCluster.Shared.Domain.Articulation.Model;
+using ArtiCluster.Shared.IO.Abstractions;
+
+namespace ArtiCluster.Features.UniversalDefinitions.Gateways;
+
+public enum ExportReason
+{
+    SerializationError,
+    IoError,
+    OtherError
+}
+
+public interface IDefinitionExporter
+{
+    Task<Result<Unit, ExportReason>> ExportAsync(
+        ITextContentWriter writer,
+        UniversalDefinition source,
+        CancellationToken cancellationToken = default
+    );
+}
