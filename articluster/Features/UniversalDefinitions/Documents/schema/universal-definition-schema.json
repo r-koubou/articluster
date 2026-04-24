@@ -1,9 +1,9 @@
 {
   "$schema": "http://json-schema.org/draft-06/schema#",
-  "$ref": "#/definitions/Articulation",
+  "$ref": "#/definitions/UniversalDefinition",
   "definitions": {
-    "Articulation": {
-      "title": "Articulation",
+    "UniversalDefinition": {
+      "title": "UniversalDefinition",
       "type": "object",
       "description": "The root of articulation",
       "additionalProperties": false,
@@ -27,10 +27,10 @@
         "Description": {
           "type": "string"
         },
-        "Assignments": {
+        "Articluations": {
           "type": "array",
           "items": {
-            "$ref": "#/definitions/Assignment"
+            "$ref": "#/definitions/Articluation"
           }
         },
         "Extra": {
@@ -44,7 +44,7 @@
         "ProductName",
         "PatchName",
         "Description",
-        "Assignments"
+        "Articluations"
       ],
       "examples": [
         {
@@ -54,7 +54,7 @@
           "ProductName": "My Guitar",
           "PatchName": "My Guitar 1",
           "Description": "This is my guitar articulation.",
-          "Assignments": [
+          "Articluations": [
             {
               "Name": "Sustain",
               "MidiMessages": [
@@ -85,10 +85,10 @@
         }
       ]
     },
-    "Assignment": {
-      "title": "Assignment",
+    "Articluation": {
+      "title": "Articluation",
       "type": "object",
-      "description": "An assignment within the articulation",
+      "description": "Defines an articulation with its name and associated MIDI messages",
       "additionalProperties": false,
       "properties": {
         "Name": {
@@ -127,7 +127,7 @@
     "MidiMessage": {
       "title": "MidiMessage",
       "type": "object",
-      "description": "A MIDI message within the assignment",
+      "description": "A MIDI message within the articulation, consisting of a status byte and two data bytes",
       "additionalProperties": false,
       "properties": {
         "Status": {
