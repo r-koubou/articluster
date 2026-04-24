@@ -1,22 +1,19 @@
 import argparse
+import json
 import os
 import os.path
 import sys
 
-from ruamel.yaml import YAML
 from jinja2 import Template
 
 THIS_SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
 
-CONFIG_FILE = os.path.join(THIS_SCRIPT_DIR, "config.yaml")
+CONFIG_FILE = os.path.join(THIS_SCRIPT_DIR, "config.json")
 DEFAULT_OUTPUT_DIR = "out"
-
-yaml = YAML()
-
 
 def load_config() -> dict:
     with open(CONFIG_FILE, "r", encoding="utf-8") as file:
-        return yaml.load(file)
+        return json.load(file)
 
 
 def load_template(path: str) -> Template:

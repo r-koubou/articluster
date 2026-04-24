@@ -4,8 +4,8 @@ namespace ArtiCluster.Commons;
 
 public abstract class Result<TValue, TReason>
 {
-    public static Result<TValue, TReason> Success( TValue value, TReason reason )
-        => new SuccessResult<TValue, TReason>( value, reason );
+    public static Result<TValue, TReason> Success( TValue value )
+        => new SuccessResult<TValue, TReason>( value );
 
     public static Result<TValue, TReason> Failure( TReason reason, Exception? error = null )
         => new FailureResult<TValue, TReason>( reason, error );
@@ -19,10 +19,59 @@ public abstract class Result<TValue, TReason>
     public TReason Reason
         => this switch
         {
-            SuccessResult<TValue, TReason> s => s.Reason,
             FailureResult<TValue, TReason> f => f.Reason,
-            _                                => throw new InvalidOperationException()
+            SuccessResult<TValue, TReason>   => throw new InvalidOperationException( "Success has no reason." ),
+            _                                => throw new InvalidOperationException( "Unknown reason." )
         };
+
+    public Result<TOut, TReason> Map<TOut>( Func<TValue, TOut> func )
+    {
+        return this switch
+        {
+            SuccessResult<TValue, TReason> s
+                => Result<TOut, TReason>.Success( func( s.Value ) ),
+
+            FailureResult<TValue, TReason> f
+                => Result<TOut, TReason>.Failure( f.Reason, f.Error ),
+
+            _ => throw new InvalidOperationException()
+        };
+    }
+
+    public Result<TOut, TReason> Bind<TOut>(
+        Func<TValue, Result<TOut, TReason>> func )
+    {
+        return this switch
+        {
+            SuccessResult<TValue, TReason> s
+                => func( s.Value ),
+
+            FailureResult<TValue, TReason> f
+                => Result<TOut, TReason>.Failure( f.Reason, f.Error ),
+
+            _ => throw new InvalidOperationException()
+        };
+    }
+
+    public Result<TValue, TReason> OnSuccess( Action<TValue> func )
+    {
+        if( this is SuccessResult<TValue, TReason> s )
+        {
+            func( s.Value );
+        }
+
+        return this;
+    }
+
+    public Result<TValue, TReason> OnFailure( Action<TReason, Exception?> func )
+    {
+        if( this is FailureResult<TValue, TReason> f )
+        {
+            func( f.Reason, f.Error );
+        }
+
+        return this;
+    }
 
     public TResult Match<TResult>(
         Func<TValue, TResult> success,
@@ -88,12 +137,10 @@ public sealed class ResultException<TReason>(
 }
 
 internal sealed class SuccessResult<TValue, TReason>(
-    TValue value,
-    TReason reason
+    TValue value
 ) : Result<TValue, TReason>
 {
     public TValue Value { get; } = value;
-    public new TReason Reason { get; } = reason;
 
     public override string ToString()
         => $"Success: {Value}";
