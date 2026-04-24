@@ -8,5 +8,5 @@ public sealed record MidiStatusByte : IntValueObject
 
     private MidiStatusByte() : base( -1 ) {}
 
-    public MidiStatusByte( int value ) : base( value, minValue: 0x00, maxValue: 0xFF ) {}
+    public MidiStatusByte( int value ) : base( value, minValue: 0x80, maxValue: 0xFF ) {}
 }

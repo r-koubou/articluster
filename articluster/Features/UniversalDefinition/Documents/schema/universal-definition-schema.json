@@ -44,8 +44,7 @@
         "ProductName",
         "PatchName",
         "Description",
-        "Assignments",
-        "Extra"
+        "Assignments"
       ],
       "examples": [
         {
@@ -66,7 +65,7 @@
                 }
               ],
               "Extra": {
-                "StudioOne.Color": "#FF0000"
+                "Extra.Custom.Key": "Custom Value"
               }
             },
             {
@@ -79,7 +78,7 @@
                 }
               ],
               "Extra": {
-                "StudioOne.Color": "#00FF00"
+                "Extra.Custom.Key": "Custom Value"
               }
             }
           ]
@@ -120,7 +119,7 @@
             }
           ],
           "Extra": {
-            "StudioOne.Color": "#FF0000"
+            "Extra.Custom.Key": "Custom Value"
           }
         }
       ]
@@ -158,7 +157,7 @@
       "description": "Additional custom properties for the articulation and assignments",
       "additionalProperties": true,
       "examples": [
-        { "Custom-Key": "Custom Value" }
+        { "Extra.Custom.Key": "Custom Value" }
       ]
     }
   }

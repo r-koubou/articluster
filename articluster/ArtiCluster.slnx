@@ -6,7 +6,7 @@
   <Folder Name="/Features/UniversalDefinition/">
     <Project Path="Features/UniversalDefinition/Facades/UniversalDefinition.Facades.csproj" />
     <Project Path="Features/UniversalDefinition/Gateways/UniversalDefinition.Gateways.csproj" />
-    <Project Path="Features\UniversalDefinition\UseCase\UniversalDefinition.UseCases.csproj" />
+    <Project Path="Features/UniversalDefinition/UseCase/UniversalDefinition.UseCases.csproj" />
   </Folder>
   <Folder Name="/Features/UniversalDefinition/Infrastructures/">
     <Project Path="Features/UniversalDefinition/Infrastructures/Infrastructures.Yaml.Tests/UniversalDefinition.Infrastructures.Yaml.Tests.csproj" />

@@ -1,5 +1,6 @@
+using System;
 using System.Collections.Generic;
-using System.Linq;
+using System.Collections.ObjectModel;
 
 using ArtiCluster.Commons.ValueObjects;
 
@@ -147,138 +148,141 @@ public sealed record MidiNoteName : StringValueObject
     #endregion ~Note names
 
     #region Note name mapping
-    private static readonly IReadOnlyList<string> NoteNameList = new List<string>
-    {
-        C_M2,
-        C_Sharp_M2,
-        D_M2,
-        D_Sharp_M2,
-        E_M2,
-        F_M2,
-        F_Sharp_M2,
-        G_M2,
-        G_Sharp_M2,
-        A_M2,
-        A_Sharp_M2,
-        B_M2,
-        C_M1,
-        C_Sharp_M1,
-        D_M1,
-        D_Sharp_M1,
-        E_M1,
-        F_M1,
-        F_Sharp_M1,
-        G_M1,
-        G_Sharp_M1,
-        A_M1,
-        A_Sharp_M1,
-        B_M1,
-        C_0,
-        C_Sharp_0,
-        D_0,
-        D_Sharp_0,
-        E_0,
-        F_0,
-        F_Sharp_0,
-        G_0,
-        G_Sharp_0,
-        A_0,
-        A_Sharp_0,
-        B_0,
-        C_1,
-        C_Sharp_1,
-        D_1,
-        D_Sharp_1,
-        E_1,
-        F_1,
-        F_Sharp_1,
-        G_1,
-        G_Sharp_1,
-        A_1,
-        A_Sharp_1,
-        B_1,
-        C_2,
-        C_Sharp_2,
-        D_2,
-        D_Sharp_2,
-        E_2,
-        F_2,
-        F_Sharp_2,
-        G_2,
-        G_Sharp_2,
-        A_2,
-        A_Sharp_2,
-        B_2,
-        C_3,
-        C_Sharp_3,
-        D_3,
-        D_Sharp_3,
-        E_3,
-        F_3,
-        F_Sharp_3,
-        G_3,
-        G_Sharp_3,
-        A_3,
-        A_Sharp_3,
-        B_3,
-        C_4,
-        C_Sharp_4,
-        D_4,
-        D_Sharp_4,
-        E_4,
-        F_4,
-        F_Sharp_4,
-        G_4,
-        G_Sharp_4,
-        A_4,
-        A_Sharp_4,
-        B_4,
-        C_5,
-        C_Sharp_5,
-        D_5,
-        D_Sharp_5,
-        E_5,
-        F_5,
-        F_Sharp_5,
-        G_5,
-        G_Sharp_5,
-        A_5,
-        A_Sharp_5,
-        B_5,
-        C_6,
-        C_Sharp_6,
-        D_6,
-        D_Sharp_6,
-        E_6,
-        F_6,
-        F_Sharp_6,
-        G_6,
-        G_Sharp_6,
-        A_6,
-        A_Sharp_6,
-        B_6,
-        C_7,
-        C_Sharp_7,
-        D_7,
-        D_Sharp_7,
-        E_7,
-        F_7,
-        F_Sharp_7,
-        G_7,
-        G_Sharp_7,
-        A_7,
-        A_Sharp_7,
-        B_7,
-        C_8,
-        C_Sharp_8,
-        D_8,
-        D_Sharp_8,
-        E_8,
-        F_8,
-        F_Sharp_8,
-        G_8
-    };
+    private static readonly ReadOnlyCollection<string> NoteNameList =
+        new( new List<string>
+            {
+                C_M2,
+                C_Sharp_M2,
+                D_M2,
+                D_Sharp_M2,
+                E_M2,
+                F_M2,
+                F_Sharp_M2,
+                G_M2,
+                G_Sharp_M2,
+                A_M2,
+                A_Sharp_M2,
+                B_M2,
+                C_M1,
+                C_Sharp_M1,
+                D_M1,
+                D_Sharp_M1,
+                E_M1,
+                F_M1,
+                F_Sharp_M1,
+                G_M1,
+                G_Sharp_M1,
+                A_M1,
+                A_Sharp_M1,
+                B_M1,
+                C_0,
+                C_Sharp_0,
+                D_0,
+                D_Sharp_0,
+                E_0,
+                F_0,
+                F_Sharp_0,
+                G_0,
+                G_Sharp_0,
+                A_0,
+                A_Sharp_0,
+                B_0,
+                C_1,
+                C_Sharp_1,
+                D_1,
+                D_Sharp_1,
+                E_1,
+                F_1,
+                F_Sharp_1,
+                G_1,
+                G_Sharp_1,
+                A_1,
+                A_Sharp_1,
+                B_1,
+                C_2,
+                C_Sharp_2,
+                D_2,
+                D_Sharp_2,
+                E_2,
+                F_2,
+                F_Sharp_2,
+                G_2,
+                G_Sharp_2,
+                A_2,
+                A_Sharp_2,
+                B_2,
+                C_3,
+                C_Sharp_3,
+                D_3,
+                D_Sharp_3,
+                E_3,
+                F_3,
+                F_Sharp_3,
+                G_3,
+                G_Sharp_3,
+                A_3,
+                A_Sharp_3,
+                B_3,
+                C_4,
+                C_Sharp_4,
+                D_4,
+                D_Sharp_4,
+                E_4,
+                F_4,
+                F_Sharp_4,
+                G_4,
+                G_Sharp_4,
+                A_4,
+                A_Sharp_4,
+                B_4,
+                C_5,
+                C_Sharp_5,
+                D_5,
+                D_Sharp_5,
+                E_5,
+                F_5,
+                F_Sharp_5,
+                G_5,
+                G_Sharp_5,
+                A_5,
+                A_Sharp_5,
+                B_5,
+                C_6,
+                C_Sharp_6,
+                D_6,
+                D_Sharp_6,
+                E_6,
+                F_6,
+                F_Sharp_6,
+                G_6,
+                G_Sharp_6,
+                A_6,
+                A_Sharp_6,
+                B_6,
+                C_7,
+                C_Sharp_7,
+                D_7,
+                D_Sharp_7,
+                E_7,
+                F_7,
+                F_Sharp_7,
+                G_7,
+                G_Sharp_7,
+                A_7,
+                A_Sharp_7,
+                B_7,
+                C_8,
+                C_Sharp_8,
+                D_8,
+                D_Sharp_8,
+                E_8,
+                F_8,
+                F_Sharp_8,
+                G_8
+            }
+        );
 
+    // ReSharper disable once MemberCanBePrivate.Global
     public static bool TryParse( string value, out MidiNoteName result )
     {
         result = null!;
@@ -293,6 +297,11 @@ public sealed record MidiNoteName : StringValueObject
         if( !int.TryParse( value, out var number ) )
         {
             return false;
+        }
+
+        if( number < 0 || number >= NoteNameList.Count )
+        {
+            throw new InvalidOperationException( $"The MIDI note number must be between 0 and {NoteNameList.Count - 1}. (number={number})" );
         }
 
         result = new MidiNoteName( NoteNameList[ number ] );
@@ -312,17 +321,14 @@ public sealed record MidiNoteName : StringValueObject
 
     public MidiDataByte ToMidiNoteNumber()
     {
-        var number =
-            NoteNameList
-               .Select( ( n, i ) => new
-                    {
-                        name  = n,
-                        index = i
-                    }
-                )
-               .Where( obj => obj.name == Value );
+        var index = NoteNameList.IndexOf( Value );
 
-        return new MidiDataByte( number.First().index );
+        if( index < 0 || !NoteNameList.Contains( Value ) )
+        {
+            throw new InvalidOperationException( $"Invalid MIDI note name: {Value}" );
+        }
+
+        return new MidiDataByte( index );
     }
     #endregion ~Note name mapping
 }
