@@ -12,10 +12,10 @@ public sealed class ExportInputPort
 {
     public IDefinitionExporter Exporter { get; init; }
     public ITextContentWriter ContentWriter { get; init; }
-    public Articulation Source { get; init; }
+    public UniversalDefinition Source { get; init; }
 
     // ReSharper disable once ConvertToPrimaryConstructor
-    public ExportInputPort( Articulation source, IDefinitionExporter exporter, ITextContentWriter contentWriter )
+    public ExportInputPort( UniversalDefinition source, IDefinitionExporter exporter, ITextContentWriter contentWriter )
     {
         Exporter      = exporter;
         ContentWriter = contentWriter;

@@ -9,9 +9,9 @@ namespace ArtiCluster.Features.UniversalDefinitions.Infrastructures.Yaml;
 
 internal static class YamlModelMapper
 {
-    public static RootModel Map( Articulation source )
+    public static UniversalDefinitionModel Map( UniversalDefinition source )
     {
-        return new RootModel
+        return new UniversalDefinitionModel
         {
             Id               = source.Id,
             Author           = source.Author.Value,
@@ -19,15 +19,15 @@ internal static class YamlModelMapper
             ProductName      = source.ProductName.Value,
             PatchName        = source.PatchName.Value,
             Description      = source.Description.Value,
-            Assignments      = MapAssignment( source.Assignments ),
+            Articulations      = MapAssignment( source.Articulations ),
             Extra            = new Dictionary<string, string>( source.Extra )
         };
     }
 
-    private static List<AssignmentModel> MapAssignment( IEnumerable<Assignment> source )
+    private static List<ArticulationModel> MapAssignment( IEnumerable<Articulation> source )
     {
         return source
-              .Select( assignment => new AssignmentModel
+              .Select( assignment => new ArticulationModel
                    {
                        Name = assignment.Name.Value,
                        MidiMessages = assignment.MidiMessages.Select( x => new MidiMessageModel

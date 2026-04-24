@@ -4,7 +4,7 @@ ManufacturerName: r-koubou
 ProductName: My Guitar
 PatchName: My Guitar 1
 Description: This is my guitar articulation.
-Assignments:
+Articulations:
   -   Name: Sustain
       MidiMessages:
         -   Status: 144

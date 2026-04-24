@@ -17,7 +17,7 @@ public class DomainModelMapperTest
     public void MapsRootModelToArticulationTest()
     {
         var id = Guid.NewGuid();
-        var source = new RootModel
+        var source = new UniversalDefinitionModel
         {
             Id               = id,
             Author           = "John Doe",
@@ -30,9 +30,9 @@ public class DomainModelMapperTest
                 { "GlobalKey1", "GlobalValue1" },
                 { "GlobalKey2", "GlobalValue2" }
             },
-            Assignments =
+            Articulations =
             [
-                new AssignmentModel
+                new ArticulationModel
                 {
                     Name = "Sustain",
                     MidiMessages =
@@ -65,18 +65,18 @@ public class DomainModelMapperTest
                 Assert.That( actual.PatchName.Value, Is.EqualTo( source.PatchName ) );
                 Assert.That( actual.Description.Value, Is.EqualTo( source.Description ) );
                 Assert.That( actual.Extra, Is.EqualTo( source.Extra ) );
-                Assert.That( actual.Assignments, Has.Count.EqualTo( 1 ) );
+                Assert.That( actual.Articulations, Has.Count.EqualTo( 1 ) );
             }
         );
 
-        var assignment = actual.Assignments.Single();
+        var assignment = actual.Articulations.Single();
 
         Assert.Multiple( () =>
             {
                 Assert.That( assignment.Name.Value, Is.EqualTo( "Sustain" ) );
-                Assert.That( assignment.Extra, Is.EqualTo( source.Assignments[ 0 ].Extra ) );
+                Assert.That( assignment.Extra, Is.EqualTo( source.Articulations[ 0 ].Extra ) );
 
-                var midiMessages = new List<MidiMessage>( actual.Assignments.Single().MidiMessages );
+                var midiMessages = new List<MidiMessage>( actual.Articulations.Single().MidiMessages );
 
                 Assert.That( midiMessages.Count, Is.EqualTo( 4 ) );
 
@@ -103,15 +103,15 @@ public class DomainModelMapperTest
     [Test]
     public void ClonesMutableCollectionsTest()
     {
-        var source = new RootModel
+        var source = new UniversalDefinitionModel
         {
             Author           = "John Doe",
             ManufacturerName = "Acme Corp",
             ProductName      = "Super Synth",
             PatchName        = "Epic Lead",
-            Assignments =
+            Articulations =
             [
-                new AssignmentModel
+                new ArticulationModel
                 {
                     Name = "Sustain",
                     Extra = new Dictionary<string, string>
@@ -129,12 +129,12 @@ public class DomainModelMapperTest
         var actual = DomainModelMapper.Map( source );
 
         source.Extra[ "GlobalKey" ]                 = "Updated";
-        source.Assignments[ 0 ].Extra[ "LocalKey" ] = "Updated";
+        source.Articulations[ 0 ].Extra[ "LocalKey" ] = "Updated";
 
         Assert.Multiple( () =>
             {
                 Assert.That( actual.Extra[ "GlobalKey" ], Is.EqualTo( "GlobalValue" ) );
-                Assert.That( actual.Assignments.Single().Extra[ "LocalKey" ], Is.EqualTo( "LocalValue" ) );
+                Assert.That( actual.Articulations.Single().Extra[ "LocalKey" ], Is.EqualTo( "LocalValue" ) );
             }
         );
     }

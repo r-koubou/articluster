@@ -12,7 +12,7 @@ namespace ArtiCluster.Features.UniversalDefinitions.Facades;
 
 public sealed class UniversalDefinitionFacade : IUniversalDefinitionFacade
 {
-    public async Task<Result<Articulation, ImportReason>> ImportAsync( ITextContentReader reader, CancellationToken cancellationToken = default )
+    public async Task<Result<UniversalDefinition, ImportReason>> ImportAsync( ITextContentReader reader, CancellationToken cancellationToken = default )
     {
         var importer = new YamlImporter();
         var useCase = new ImportUseCase();
@@ -21,7 +21,7 @@ public sealed class UniversalDefinitionFacade : IUniversalDefinitionFacade
         return await useCase.ExecuteAsync( input, cancellationToken );
     }
 
-    public async Task<Result<Unit, ExportReason>> ExportAsync( ITextContentWriter writer, Articulation source, CancellationToken cancellationToken = default )
+    public async Task<Result<Unit, ExportReason>> ExportAsync( ITextContentWriter writer, UniversalDefinition source, CancellationToken cancellationToken = default )
     {
         var exporter = new YamlExporter();
         var useCase = new ExportUseCase();

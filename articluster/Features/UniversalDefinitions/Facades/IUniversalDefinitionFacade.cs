@@ -10,6 +10,6 @@ namespace ArtiCluster.Features.UniversalDefinitions.Facades;
 
 public interface IUniversalDefinitionFacade
 {
-    public Task<Result<Articulation, ImportReason>> ImportAsync( ITextContentReader reader, CancellationToken cancellationToken = default );
-    public Task<Result<Unit, ExportReason>> ExportAsync( ITextContentWriter writer, Articulation source, CancellationToken cancellationToken = default );
+    public Task<Result<UniversalDefinition, ImportReason>> ImportAsync( ITextContentReader reader, CancellationToken cancellationToken = default );
+    public Task<Result<Unit, ExportReason>> ExportAsync( ITextContentWriter writer, UniversalDefinition source, CancellationToken cancellationToken = default );
 }

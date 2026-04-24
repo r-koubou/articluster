@@ -24,7 +24,7 @@ public sealed class ImportInputPort
 public sealed class ImportUseCase
 {
     // ReSharper disable once MemberCanBeMadeStatic.Global
-    public async Task<Result<Articulation, ImportReason>> ExecuteAsync( ImportInputPort input, CancellationToken cancellationToken = default )
+    public async Task<Result<UniversalDefinition, ImportReason>> ExecuteAsync( ImportInputPort input, CancellationToken cancellationToken = default )
     {
         return await input.Importer.ImportAsync( input.ContentReader, cancellationToken );
     }

@@ -16,7 +16,7 @@ public sealed class YamlExporter : IDefinitionExporter
 {
     public async Task<Result<Unit, ExportReason>> ExportAsync(
         ITextContentWriter writer,
-        Articulation source,
+        UniversalDefinition source,
         CancellationToken cancellationToken = default )
     {
         try

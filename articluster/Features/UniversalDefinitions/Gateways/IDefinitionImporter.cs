@@ -16,7 +16,7 @@ public enum ImportReason
 
 public interface IDefinitionImporter
 {
-    Task<Result<Articulation, ImportReason>> ImportAsync(
+    Task<Result<UniversalDefinition, ImportReason>> ImportAsync(
         ITextContentReader reader,
         CancellationToken cancellationToken = default
     );

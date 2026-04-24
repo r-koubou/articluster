@@ -15,7 +15,7 @@ namespace ArtiCluster.Features.UniversalDefinitions.Infrastructures.Yaml;
 
 public sealed class YamlImporter : IDefinitionImporter
 {
-    public async Task<Result<Articulation, ImportReason>> ImportAsync(
+    public async Task<Result<UniversalDefinition, ImportReason>> ImportAsync(
         ITextContentReader reader,
         CancellationToken cancellationToken = default )
     {
@@ -24,22 +24,22 @@ public sealed class YamlImporter : IDefinitionImporter
             var yamlText = await reader.ReadAllAsync( cancellationToken );
             var deserializer = SerializationConstants.DefaultDeserializer;
 
-            var root = deserializer.Deserialize<RootModel>( yamlText );
+            var root = deserializer.Deserialize<UniversalDefinitionModel>( yamlText );
             var domain = DomainModelMapper.Map( root );
 
-            return Result<Articulation, ImportReason>.Success( domain );
+            return Result<UniversalDefinition, ImportReason>.Success( domain );
         }
         catch( YamlException e )
         {
-            return Result<Articulation, ImportReason>.Failure( ImportReason.DeserializationError, e );
+            return Result<UniversalDefinition, ImportReason>.Failure( ImportReason.DeserializationError, e );
         }
         catch( IOException e )
         {
-            return Result<Articulation, ImportReason>.Failure( ImportReason.IoError, e );
+            return Result<UniversalDefinition, ImportReason>.Failure( ImportReason.IoError, e );
         }
         catch( Exception e )
         {
-            return Result<Articulation, ImportReason>.Failure( ImportReason.OtherError, e );
+            return Result<UniversalDefinition, ImportReason>.Failure( ImportReason.OtherError, e );
         }
     }
 }

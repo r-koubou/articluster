@@ -17,7 +17,7 @@ public class YamlModelMapperTest
     public void MapsRootModelToArticulationTest()
     {
         var id = Guid.NewGuid();
-        var source = new Articulation(
+        var source = new UniversalDefinition(
             id: id,
             author: "John Doe",
             manufacturerName: "Acme Corp",
@@ -29,9 +29,9 @@ public class YamlModelMapperTest
                 { "GlobalKey1", "GlobalValue1" },
                 { "GlobalKey2", "GlobalValue2" }
             },
-            assignments:
+            articulations:
             [
-                new Assignment(
+                new Articulation(
                     name: "Sustain",
                     midiMessages:
                     [
@@ -63,18 +63,18 @@ public class YamlModelMapperTest
         Assert.That( actual.PatchName, Is.EqualTo( source.PatchName.Value ) );
         Assert.That( actual.Description, Is.EqualTo( source.Description.Value ) );
         Assert.That( actual.Extra, Is.EqualTo( source.Extra ) );
-        Assert.That( actual.Assignments, Has.Count.EqualTo( 1 ) );
+        Assert.That( actual.Articulations, Has.Count.EqualTo( 1 ) );
     }
     );
 
-var assignment = actual.Assignments.Single();
+var assignment = actual.Articulations.Single();
 
 Assert.Multiple( () =>
     {
         Assert.That( assignment.Name, Is.EqualTo( "Sustain" ) );
-        Assert.That( assignment.Extra, Is.EqualTo( source.Assignments.Single().Extra ) );
+        Assert.That( assignment.Extra, Is.EqualTo( source.Articulations.Single().Extra ) );
 
-        var midiMessages = new List<MidiMessageModel>( actual.Assignments.Single().MidiMessages );
+        var midiMessages = new List<MidiMessageModel>( actual.Articulations.Single().MidiMessages );
 
         Assert.That( midiMessages.Count, Is.EqualTo( 4 ) );
 

@@ -10,7 +10,7 @@ using YamlDotNet.Serialization;
 
 namespace ArtiCluster.Features.UniversalDefinitions.Infrastructures.Yaml.Model;
 
-internal class RootModel
+internal class UniversalDefinitionModel
 {
     public Guid Id { get; set; } = Guid.NewGuid();
 
@@ -25,7 +25,7 @@ internal class RootModel
     [YamlMember( ScalarStyle = ScalarStyle.Literal )]
     public string Description { get; set; } = string.Empty;
 
-    public List<AssignmentModel> Assignments { get; set; } = new();
+    public List<ArticulationModel> Articulations { get; set; } = new();
 
     public Dictionary<string, string> Extra { get; set; } = new();
 }

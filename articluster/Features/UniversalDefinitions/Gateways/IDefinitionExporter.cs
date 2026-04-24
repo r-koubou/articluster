@@ -18,7 +18,7 @@ public interface IDefinitionExporter
 {
     Task<Result<Unit, ExportReason>> ExportAsync(
         ITextContentWriter writer,
-        Articulation source,
+        UniversalDefinition source,
         CancellationToken cancellationToken = default
     );
 }

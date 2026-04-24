@@ -21,7 +21,7 @@ public class YamlExportTest
         var destPath = Path.GetTempFileName();
 
         var id = Guid.NewGuid();
-        var source = new Articulation(
+        var source = new UniversalDefinition(
             id: id,
             author: "John Doe",
             manufacturerName: "Acme Corp",
@@ -33,9 +33,9 @@ public class YamlExportTest
                 { "GlobalKey1", "GlobalValue1" },
                 { "GlobalKey2", "GlobalValue2" }
             },
-            assignments:
+            articulations:
             [
-                new Assignment(
+                new Articulation(
                     name: "Sustain",
                     midiMessages:
                     [

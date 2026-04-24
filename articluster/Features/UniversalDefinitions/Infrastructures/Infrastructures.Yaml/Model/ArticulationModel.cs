@@ -2,7 +2,7 @@ using System.Collections.Generic;
 
 namespace ArtiCluster.Features.UniversalDefinitions.Infrastructures.Yaml.Model;
 
-internal class AssignmentModel
+internal class ArticulationModel
 {
     public string Name { get; set; } = string.Empty;
     public List<MidiMessageModel> MidiMessages { get; set; } = [ ];
