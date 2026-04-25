@@ -19,16 +19,16 @@ using NUnit.Framework;
 namespace ArtiCluster.Features.StudioOne.Infrastructures.Tests;
 
 [TestFixture]
-public class ModelMapperTest
+public class SerializationTest
 {
     [Test]
-    public void MapsRootModelToArticulationTest()
+    public void SerializeTest()
     {
         var id1 = Guid.NewGuid();
         var id2 = Guid.NewGuid();
 
         var source1 = CreateMock( id1, patchName: "Epic Lead" );
-        var source2 = CreateMock( id2, manufacturerName:"Roland", patchName: "E.Bass" );
+        var source2 = CreateMock( id2, patchName: "E.Bass" );
 
         var productSet = new UniversalDefinitionProductSet(
             manufacturerName: source1.ManufacturerName,
@@ -36,9 +36,9 @@ public class ModelMapperTest
             items: [ source1, source2 ]
         );
 
-        var actual = new StudioOneModelMapper().Map( productSet );
+        var mapResult = new StudioOneModelMapper().Map( productSet );
 
-        Assert.That( actual.IsSuccess, Is.True, "Mapping should succeed" );
+        Assert.That( mapResult.IsSuccess, Is.True, "Mapping should succeed" );
 
         var serializer = new XmlSerializer( typeof( StudioOneRootElement ) );
         // no xmlns adding
@@ -53,11 +53,11 @@ public class ModelMapperTest
         };
 
         using var xmlWriter = XmlWriter.Create( stringWriter, xmlWriterSettings );
-        serializer.Serialize( xmlWriter, actual.Unwrap(), xmlNamespaces );
+        serializer.Serialize( xmlWriter, mapResult.Unwrap(), xmlNamespaces );
+
+        Assert.That( mapResult.IsSuccess, Is.True, "Mapping should succeed" );
 
         TestContext.Out.WriteLine( stringWriter.ToString() );
-
-        Assert.Multiple( () => {} );
     }
 
     private static UniversalDefinition CreateMock(
