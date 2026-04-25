@@ -11,6 +11,7 @@ using ArtiCluster.Features.StudioOne.Gateways;
 using ArtiCluster.Features.StudioOne.Infrastructures.Model;
 using ArtiCluster.Shared.Domain.MidiMessages.Model;
 using ArtiCluster.Shared.Domain.MidiMessages.Model.Values;
+using ArtiCluster.Shared.Domain.UniversalDefinitions;
 using ArtiCluster.Shared.Domain.UniversalDefinitions.Model;
 
 using NUnit.Framework;
@@ -26,10 +27,16 @@ public class ModelMapperTest
         var id1 = Guid.NewGuid();
         var id2 = Guid.NewGuid();
 
-        var source1 = CreateMock( id1 );
-        var source2 = CreateMock( id2, "E.Bass" );
+        var source1 = CreateMock( id1, patchName: "Epic Lead" );
+        var source2 = CreateMock( id2, manufacturerName:"Roland", patchName: "E.Bass" );
 
-        var actual = new StudioOneModelMapper().Map( [ source1, source2 ] );
+        var productSet = new UniversalDefinitionProductSet(
+            manufacturerName: source1.ManufacturerName,
+            productName: source1.ProductName,
+            items: [ source1, source2 ]
+        );
+
+        var actual = new StudioOneModelMapper().Map( productSet );
 
         Assert.That( actual.IsSuccess, Is.True, "Mapping should succeed" );
 
@@ -53,13 +60,17 @@ public class ModelMapperTest
         Assert.Multiple( () => {} );
     }
 
-    private static UniversalDefinition CreateMock( Guid id, string patchName = "Epic Lead" )
+    private static UniversalDefinition CreateMock(
+        Guid id,
+        string manufacturerName = "Acme Corp",
+        string productName = "Super Synth",
+        string patchName = "Epic Lead" )
     {
-        return new UniversalDefinition(
+        return UniversalDefinition.Create(
             id: id,
             author: "John Doe",
-            manufacturerName: "Acme Corp",
-            productName: "Super Synth",
+            manufacturerName: manufacturerName,
+            productName: productName,
             patchName: patchName,
             description: "multi-line\ndescription",
             extra: new Dictionary<string, string>
@@ -69,18 +80,18 @@ public class ModelMapperTest
             },
             articulations:
             [
-                new Articulation(
+                Articulation.Create(
                     name: "Sustain",
                     midiMessages:
                     [
                         // Note On
-                        new MidiMessage( 0x90, 40, 100 ),
+                        MidiMessage.Create( 0x90, 40, 100 ),
                         // Note Off
-                        new MidiMessage( 0x80, 40, 110 ),
+                        MidiMessage.Create( 0x80, 40, 110 ),
                         // Control Change
-                        new MidiMessage( 0xB0, 1, 127 ),
+                        MidiMessage.Create( 0xB0, 1, 127 ),
                         // Program Change
-                        new MidiMessage( 0xC0, 49 ),
+                        MidiMessage.Create( 0xC0, 49 ),
                     ],
                     extra: new Dictionary<string, string>
                     {
@@ -94,82 +105,71 @@ public class ModelMapperTest
 
 public interface IStudioOneModelMapper
 {
-    Result<StudioOneRootElement, ExportReason> Map( IReadOnlyCollection<UniversalDefinition> combinedSources );
+    Result<StudioOneRootElement, ExportReason> Map( UniversalDefinitionProductSet source );
 }
 
 public sealed class StudioOneModelMapper : IStudioOneModelMapper
 {
-    public Result<StudioOneRootElement, ExportReason> Map( IReadOnlyCollection<UniversalDefinition> combinedSources )
+    public Result<StudioOneRootElement, ExportReason> Map( UniversalDefinitionProductSet source )
     {
-        if( combinedSources.Count == 0 )
+        if( source.IsEmpty )
         {
-            return Result<StudioOneRootElement, ExportReason>.Success( new StudioOneRootElement() );
-        }
-        
-        var validationResult = UniversalDefinition.IsCombinedWithSameManufacturerAndProduct( combinedSources );
-
-        if( !validationResult )
-        {
-            return Result<StudioOneRootElement, ExportReason>.Failure( ExportReason.MixedPatchDefinitionsError );
-        }
-        
-        var first = combinedSources.First();
-        var groupedByPatches =
-            UniversalDefinition.GroupByPatchName(
-                combinedSources,
-                first.ManufacturerName,
-                first.ProductName
+            return Result<StudioOneRootElement, ExportReason>.Success(
+                new StudioOneRootElement
+                {
+                    Name = $"{source.ProductName.Value}"
+                }
             );
-        
+        }
+
         var assignId = 0;
-        
+
         // Create with folder element if several patches exist
-        if( groupedByPatches.Count >= 2 )
+        if( source.Count >= 2 )
         {
-            return MapWithFolders( groupedByPatches, assignId );
+            return MapWithFolders( source, assignId );
         }
 
 #if false
-    <?xml version="1.0" encoding="utf-8"?>
-       <Music.KeySwitchList name="Super Synth">
-         <Attributes name="Sustain" id="0" pitch="40" momentary="0" activation="note40.100|off40.110|cc1.127|pc49" />
-         <Attributes name="Sustain" id="1" pitch="40" momentary="0" activation="note40.100|off40.110|cc1.127|pc49" />
+    <?xml version = "1.0" encoding = "utf-8"?>
+       <Music.KeySwitchList name = "Super Synth">
+         <Attributes name = "Sustain" id = "0" pitch = "40" momentary = "0" activation = "note40.100|off40.110|cc1.127|pc49" />
+         <Attributes name = "Sustain" id = "1" pitch = "40" momentary = "0" activation = "note40.100|off40.110|cc1.127|pc49" />
        </Music.KeySwitchList>
 #endif
+        var definition = source.Items.Single();
         var rootElement = new StudioOneRootElement
         {
-            Name = $"{first.ProductName.Value} {first.PatchName.Value}"
+            Name = $"{source.ProductName.Value} {definition.PatchName.Value}"
         };
 
-        var attributeElements = MapElementAttributes( combinedSources, ref assignId );
+        var attributeElements = MapElementAttributes( source.Items, ref assignId );
         rootElement.AttributeElements.AddRange( attributeElements );
 
         return Result<StudioOneRootElement, ExportReason>.Success( rootElement );
     }
 
-    private static Result<StudioOneRootElement, ExportReason> MapWithFolders( List<List<UniversalDefinition>> groupedByPatches, int assignId )
+    private static Result<StudioOneRootElement, ExportReason> MapWithFolders( UniversalDefinitionProductSet source, int assignId )
     {
 #if false
-    <?xml version="1.0" encoding="utf-8"?>
-       <Music.KeySwitchList name="Super Synth">
-         <Attributes folder="1" name="Epic Lead">
-           <Attributes name="Sustain" id="0" pitch="40" momentary="0" activation="note40.100|off40.110|cc1.127|pc49" />
+    <?xml version = "1.0" encoding = "utf-8"?>
+       <Music.KeySwitchList name = "Super Synth">
+         <Attributes folder = "1" name = "Epic Lead">
+           <Attributes name = "Sustain" id = "0" pitch = "40" momentary = "0" activation = "note40.100|off40.110|cc1.127|pc49" />
          </Attributes>
-         <Attributes folder="1" name="E.Bass">
-           <Attributes name="Sustain" id="1" pitch="40" momentary="0" activation="note40.100|off40.110|cc1.127|pc49" />
+         <Attributes folder = "1" name = "E.Bass">
+           <Attributes name = "Sustain" id = "1" pitch = "40" momentary = "0" activation = "note40.100|off40.110|cc1.127|pc49" />
          </Attributes>
        </Music.KeySwitchList>
- #endif
-        var first = groupedByPatches[ 0 ].First();
-
+#endif
         var rootElement = new StudioOneRootElement
         {
-            Name = $"{first.ProductName.Value}"
+            Name = $"{source.ProductName.Value}"
         };
 
-        foreach( var patches in groupedByPatches )
+        foreach( var definition in source.Items )
         {
-            if( patches.Count == 0 )
+            if( definition.Articulations.Count == 0 )
             {
                 continue;
             }
@@ -177,18 +177,15 @@ public sealed class StudioOneModelMapper : IStudioOneModelMapper
             var folder = new AttributeElement
             {
                 Folder = "1",
-                Name   = patches.First().PatchName.Value
+                Name   = definition.PatchName.Value
             };
 
             // ReSharper disable once ForeachCanBePartlyConvertedToQueryUsingAnotherGetEnumerator
-            foreach( var definition in patches )
+            foreach( var articulation in definition.Articulations )
             {
-                foreach( var articulation in definition.Articulations )
-                {
-                    var attributeElement = MapElementAttribute( articulation, assignId );
-                    folder.Children.Add( attributeElement );
-                    assignId++;
-                }
+                var attributeElement = MapElementAttribute( articulation, assignId );
+                folder.Children.Add( attributeElement );
+                assignId++;
             }
 
             rootElement.AttributeElements.Add( folder );

@@ -14,7 +14,7 @@ public class AttributeElement
     public string Name { get; set; } = string.Empty;
 
     [XmlAttribute( AttributeName = "id" )]
-    public string Id { get; set; }
+    public string Id { get; set; }  = string.Empty;
 
     [XmlAttribute( AttributeName = "color" )]
     public string? Color { get; set; } // AABBGGRR
@@ -23,10 +23,10 @@ public class AttributeElement
     public string? Pitch { get; set; }
 
     [XmlAttribute( AttributeName = "momentary" )]
-    public string Momentary { get; set; }
+    public string Momentary { get; set; } = string.Empty;
 
     [XmlAttribute( AttributeName = "activation" )]
-    public string Activation { get; set; }
+    public string Activation { get; set; }  = string.Empty;
 
     [XmlElement( ElementName = "Attributes" )]
     public List<AttributeElement> Children { get; } = new();
