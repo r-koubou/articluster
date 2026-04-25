@@ -3,8 +3,8 @@
     <PropertyGroup>
         <LangVersion>default</LangVersion>
         <TargetFramework>net10.0</TargetFramework>
-        <RootNamespace>ArtiCluster.Features.StudioOne.Infrastructures.Tests</RootNamespace>
-        <AssemblyName>ArtiCluster.Features.StudioOne.Infrastructures.Tests</AssemblyName>
+        <RootNamespace>ArtiCluster.Features.StudioOne.KeySwitchDefinitions.Infrastructures.Tests</RootNamespace>
+        <AssemblyName>ArtiCluster.Features.StudioOne.KeySwitchDefinitions.Infrastructures.Tests</AssemblyName>
         <Nullable>enable</Nullable>
         <IsPackable>false</IsPackable>
     </PropertyGroup>
@@ -22,7 +22,7 @@
     </ItemGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\Infrastructures\StudioOne.Infrastructures.csproj" />
+      <ProjectReference Include="..\Infrastructures\StudioOne.KeySwitchDefinitions.Infrastructures.csproj" />
     </ItemGroup>
 
 </Project>

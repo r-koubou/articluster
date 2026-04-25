@@ -1,4 +1,4 @@
-namespace ArtiCluster.Features.StudioOne.Infrastructures.Model;
+namespace ArtiCluster.Features.StudioOne.KeySwitchDefinitions.Infrastructures.Model;
 
 public static class ExtraDataKeys
 {

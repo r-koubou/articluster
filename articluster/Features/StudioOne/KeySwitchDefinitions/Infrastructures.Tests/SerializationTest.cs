@@ -5,14 +5,14 @@ using System.Xml;
 using System.Xml.Serialization;
 
 using ArtiCluster.Commons.IO;
-using ArtiCluster.Features.StudioOne.Infrastructures.Model;
+using ArtiCluster.Features.StudioOne.KeySwitchDefinitions.Infrastructures.Model;
 using ArtiCluster.Shared.Domain.MidiMessages.Model;
 using ArtiCluster.Shared.Domain.UniversalDefinitions;
 using ArtiCluster.Shared.Domain.UniversalDefinitions.Model;
 
 using NUnit.Framework;
 
-namespace ArtiCluster.Features.StudioOne.Infrastructures.Tests;
+namespace ArtiCluster.Features.StudioOne.KeySwitchDefinitions.Infrastructures.Tests;
 
 [TestFixture]
 public class SerializationTest

@@ -5,7 +5,7 @@ using ArtiCluster.Commons;
 using ArtiCluster.Shared.Domain.UniversalDefinitions;
 using ArtiCluster.Shared.IO.Abstractions;
 
-namespace ArtiCluster.Features.StudioOne.Gateways;
+namespace ArtiCluster.Features.StudioOne.KeySwitchDefinitions.Gateways;
 
 public enum ExportReason
 {

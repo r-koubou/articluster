@@ -2,12 +2,12 @@ using System.Threading;
 using System.Threading.Tasks;
 
 using ArtiCluster.Commons;
-using ArtiCluster.Features.StudioOne.Gateways;
-using ArtiCluster.Features.StudioOne.Infrastructures;
+using ArtiCluster.Features.StudioOne.KeySwitchDefinitions.Gateways;
+using ArtiCluster.Features.StudioOne.KeySwitchDefinitions.Infrastructures;
 using ArtiCluster.Shared.Domain.UniversalDefinitions;
 using ArtiCluster.Shared.IO.Abstractions;
 
-namespace ArtiCluster.Features.StudioOne.Facades;
+namespace ArtiCluster.Features.StudioOne.KeySwitchDefinitions.Facades;
 
 public sealed class UniversalDefinitionFacade : IStudioOneDefinitionFacade
 {

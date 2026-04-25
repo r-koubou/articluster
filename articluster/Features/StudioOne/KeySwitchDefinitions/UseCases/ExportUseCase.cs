@@ -2,11 +2,11 @@ using System.Threading;
 using System.Threading.Tasks;
 
 using ArtiCluster.Commons;
-using ArtiCluster.Features.StudioOne.Gateways;
+using ArtiCluster.Features.StudioOne.KeySwitchDefinitions.Gateways;
 using ArtiCluster.Shared.Domain.UniversalDefinitions;
 using ArtiCluster.Shared.IO.Abstractions;
 
-namespace ArtiCluster.Features.StudioOne.UseCases;
+namespace ArtiCluster.Features.StudioOne.KeySwitchDefinitions.UseCases;
 
 public sealed class ExportInputPort
 {

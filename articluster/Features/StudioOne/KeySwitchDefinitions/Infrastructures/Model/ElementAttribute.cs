@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using System.Xml.Serialization;
 
-namespace ArtiCluster.Features.StudioOne.Infrastructures.Model;
+namespace ArtiCluster.Features.StudioOne.KeySwitchDefinitions.Infrastructures.Model;
 
 public class AttributeElement
 {

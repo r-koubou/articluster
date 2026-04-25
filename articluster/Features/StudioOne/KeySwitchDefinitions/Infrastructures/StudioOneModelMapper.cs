@@ -3,13 +3,13 @@ using System.Linq;
 using System.Text;
 
 using ArtiCluster.Commons;
-using ArtiCluster.Features.StudioOne.Gateways;
-using ArtiCluster.Features.StudioOne.Infrastructures.Model;
+using ArtiCluster.Features.StudioOne.KeySwitchDefinitions.Gateways;
+using ArtiCluster.Features.StudioOne.KeySwitchDefinitions.Infrastructures.Model;
 using ArtiCluster.Shared.Domain.MidiMessages.Model.Values;
 using ArtiCluster.Shared.Domain.UniversalDefinitions;
 using ArtiCluster.Shared.Domain.UniversalDefinitions.Model;
 
-namespace ArtiCluster.Features.StudioOne.Infrastructures;
+namespace ArtiCluster.Features.StudioOne.KeySwitchDefinitions.Infrastructures;
 
 public sealed class StudioOneModelMapper : IStudioOneModelMapper
 {

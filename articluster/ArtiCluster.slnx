@@ -3,12 +3,12 @@
     <Project Path="Commons/Commons.csproj" />
   </Folder>
   <Folder Name="/Features/" />
-  <Folder Name="/Features/StudioOne/">
-    <Project Path="Features/StudioOne/Facades/StudioOne.Facades.csproj" />
-    <Project Path="Features/StudioOne/Gateways/StudioOne.Gateways.csproj" />
-    <Project Path="Features/StudioOne/Infrastructures/StudioOne.Infrastructures.csproj" />
-    <Project Path="Features/StudioOne/Infrastructures.Tests/StudioOne.Infrastructures.Tests.csproj" />
-    <Project Path="Features/StudioOne/UseCases/StudioOne.UseCases.csproj" />
+  <Folder Name="/Features/StudioOne/KeySwitchDefinitions/">
+    <Project Path="Features/StudioOne/KeySwitchDefinitions/Facades/StudioOne.KeySwitchDefinitions.Facades.csproj" />
+    <Project Path="Features/StudioOne/KeySwitchDefinitions/Gateways/StudioOne.KeySwitchDefinitions.Gateways.csproj" />
+    <Project Path="Features/StudioOne/KeySwitchDefinitions/Infrastructures/StudioOne.KeySwitchDefinitions.Infrastructures.csproj" />
+    <Project Path="Features/StudioOne/KeySwitchDefinitions/Infrastructures.Tests/StudioOne.KeySwitchDefinitions.Infrastructures.Tests.csproj" />
+    <Project Path="Features/StudioOne/KeySwitchDefinitions/UseCases/StudioOne.KeySwitchDefinitions.UseCases.csproj" />
   </Folder>
   <Folder Name="/Features/UniversalDefinitions/">
     <Project Path="Features/UniversalDefinitions/Facades/UniversalDefinitions.Facades.csproj" />
