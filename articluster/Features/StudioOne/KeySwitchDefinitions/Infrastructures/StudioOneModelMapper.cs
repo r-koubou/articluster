@@ -147,15 +147,8 @@ public sealed class StudioOneModelMapper : IStudioOneModelMapper
 
     private static string MapActivation( Articulation articulation )
     {
-        var activations = new List<string>();
+        var activations = MapActivationSequence( articulation );
         var sb = new StringBuilder( 128 );
-
-        activations.AddRange( MapActivationNote( articulation ) );
-        activations.AddRange( MapActivationControlChange( articulation ) );
-        activations.AddRange( MapActivationProgramChange( articulation ) );
-
-        activations = activations.Distinct().ToList();
-
         var count = activations.Count;
 
         for( var i = 0; i < count; i++ )
@@ -172,64 +165,30 @@ public sealed class StudioOneModelMapper : IStudioOneModelMapper
         return sb.ToString();
     }
 
-    private static List<string> MapActivationNote( Articulation articulation )
+    private static List<string> MapActivationSequence( Articulation articulation )
     {
         var result = new List<string>();
 
-        var midiNoteOns = articulation.MidiMessages.Where( message => message.StatusType == MidiStatusType.NoteOn ).ToList();
-        var midiNoteOffs = articulation.MidiMessages.Where( message => message.StatusType == MidiStatusType.NoteOff ).ToList();
-
-        // ReSharper disable once ForeachCanBeConvertedToQueryUsingAnotherGetEnumerator
-        foreach( var x in midiNoteOns )
+        // ReSharper disable once LoopCanBeConvertedToQuery
+        foreach( var message in articulation.MidiMessages )
         {
-            var byte1 = x.Data1.Value;
-            var byte2 = x.Data2.Value;
-            result.Add( $"note{byte1}.{byte2}" );
-        }
+            var type = message.StatusType;
+            var data1 = message.Data1.Value;
+            var data2 = message.Data2.Value;
 
-        // ReSharper disable once ForeachCanBeConvertedToQueryUsingAnotherGetEnumerator
-        foreach( var x in midiNoteOffs )
-        {
-            var byte1 = x.Data1.Value;
-            var byte2 = x.Data2.Value;
-            result.Add( $"off{byte1}.{byte2}" );
-        }
-
-        return result;
-    }
-
-    private static List<string> MapActivationControlChange( Articulation articulation )
-    {
-        var result = new List<string>();
-        var controlChanges = articulation.MidiMessages.Where( message => message.StatusType == MidiStatusType.ControlChange ).ToList();
-
-        // ReSharper disable once ForeachCanBeConvertedToQueryUsingAnotherGetEnumerator
-        foreach( var x in controlChanges )
-        {
-            var ccNo = x.Status.Value;
-            var byte1 = x.Data1.Value;
-            var byte2 = x.Data2.Value;
-
-            result.Add(
-                ccNo is 0 or 32
-                    ? $"bc{byte1}.{byte2}"
-                    : $"cc{byte1}.{byte2}"
+            result.Add( type switch
+                {
+                    MidiStatusType.NoteOn => $"note{data1}.{data2}",
+                    MidiStatusType.NoteOff => $"off{data1}.{data2}",
+                    MidiStatusType.ControlChange => message.Status.Value switch
+                    {
+                        0 or 32 => $"bc{data1}.{data2}",
+                        _ => $"cc{data1}.{data2}"
+                    },
+                    MidiStatusType.ProgramChange => $"pc{data1}",
+                    _ => ""
+                }
             );
-        }
-
-        return result;
-    }
-
-    private static List<string> MapActivationProgramChange( Articulation articulation )
-    {
-        var result = new List<string>();
-        var programChanges = articulation.MidiMessages.Where( message => message.StatusType == MidiStatusType.ProgramChange ).ToList();
-
-        // ReSharper disable once ForeachCanBeConvertedToQueryUsingAnotherGetEnumerator
-        foreach( var x in programChanges )
-        {
-            var byte1 = x.Data1.Value;
-            result.Add( $"pc{byte1}" );
         }
 
         return result;
