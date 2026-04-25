@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -24,10 +25,21 @@ public sealed record UniversalDefinitionManufacturerSet
         ManufacturerName manufacturerName,
         IEnumerable<UniversalDefinition> items )
     {
+        if( items == null! )
+        {
+            throw new ArgumentNullException( nameof( items ) );
+        }
+
+        var itemList = items.ToList();
+
+        if( itemList.Any( x => x.ManufacturerName != manufacturerName ) )
+        {
+            throw new ArgumentException( "All items must match the specified manufacturerName.", nameof( items ) );
+        }
+
         ManufacturerName = manufacturerName;
-        Items = items
-               .Where( x => x.ManufacturerName == ManufacturerName )
-               .ToList();
+        Items            = itemList;
+
     }
 
     public static UniversalDefinitionManufacturerSet Create(

@@ -77,7 +77,7 @@ public sealed class StudioOneModelMapper : IStudioOneModelMapper
                 continue;
             }
 
-            var folder = new AttributeElement
+            var folder = new ElementAttribute
             {
                 Folder = "1",
                 Name   = definition.PatchName.Value
@@ -97,9 +97,9 @@ public sealed class StudioOneModelMapper : IStudioOneModelMapper
         return Result<StudioOneRootElement, ExportReason>.Success( rootElement );
     }
 
-    private static List<AttributeElement> MapElementAttributes( IReadOnlyCollection<UniversalDefinition> sources, ref int assignId )
+    private static List<ElementAttribute> MapElementAttributes( IReadOnlyCollection<UniversalDefinition> sources, ref int assignId )
     {
-        var result = new List<AttributeElement>();
+        var result = new List<ElementAttribute>();
 
         foreach( var definition in sources )
         {
@@ -115,10 +115,10 @@ public sealed class StudioOneModelMapper : IStudioOneModelMapper
         return result;
     }
 
-    private static AttributeElement MapElementAttribute( Articulation articulation, int assignId )
+    private static ElementAttribute MapElementAttribute( Articulation articulation, int assignId )
     {
         var name = articulation.Name.Value;
-        var pitch = AttributeElement.NoPitch;
+        var pitch = ElementAttribute.NoPitch;
         var activation = MapActivation( articulation );
 
         var midiNoteOns = articulation.MidiMessages.Where( message => message.StatusType == MidiStatusType.NoteOn ).ToList();
@@ -142,7 +142,7 @@ public sealed class StudioOneModelMapper : IStudioOneModelMapper
             momentary = momentaryValue == "0" ? 0 : 1;
         }
 
-        return new AttributeElement( name, assignId, color, pitch, momentary, activation );
+        return new ElementAttribute( name, assignId, color, pitch, momentary, activation );
     }
 
     private static string MapActivation( Articulation articulation )

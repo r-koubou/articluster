@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -20,6 +21,11 @@ public sealed record UniversalDefinitionProductCollection
     public UniversalDefinitionProductCollection(
         IEnumerable<UniversalDefinition> items )
     {
+        if( items == null! )
+        {
+            throw new ArgumentNullException( nameof( items ) );
+        }
+
         Items = items
                .GroupBy( x => new
                     {
@@ -27,7 +33,7 @@ public sealed record UniversalDefinitionProductCollection
                         x.ProductName
                     }
                 )
-               .Select( g => new UniversalDefinitionProductSet( g.Key.ManufacturerName, g.Key.ProductName, g.ToList() ) )
+               .Select( g => new UniversalDefinitionProductSet( g.Key.ManufacturerName, g.Key.ProductName, g ) )
                .ToList();
     }
 

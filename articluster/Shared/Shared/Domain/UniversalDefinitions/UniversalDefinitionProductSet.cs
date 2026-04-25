@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -27,11 +28,21 @@ public sealed record UniversalDefinitionProductSet
         ProductName productName,
         IEnumerable<UniversalDefinition> items )
     {
+        if( items == null! )
+        {
+            throw new ArgumentNullException( nameof( items ) );
+        }
+
+        var itemList = items.ToList();
+
+        if( itemList.Any( x => x.ManufacturerName != manufacturerName || x.ProductName != productName ) )
+        {
+            throw new ArgumentException( "All items must match the specified manufacturerName and productName.", nameof( items ) );
+        }
+
         ManufacturerName = manufacturerName;
         ProductName      = productName;
-        Items = items
-               .Where( x => x.ManufacturerName == ManufacturerName && x.ProductName == ProductName )
-               .ToList();
+        Items            = itemList;
     }
 
     public static UniversalDefinitionProductSet Create(

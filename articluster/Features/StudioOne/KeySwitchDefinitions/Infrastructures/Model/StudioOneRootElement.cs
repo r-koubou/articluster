@@ -7,7 +7,7 @@ namespace ArtiCluster.Features.StudioOne.KeySwitchDefinitions.Infrastructures.Mo
 public class StudioOneRootElement
 {
     [XmlElement( ElementName = "Attributes" )]
-    public List<AttributeElement> AttributeElements { get; set; } = [ ];
+    public List<ElementAttribute> AttributeElements { get; set; } = [ ];
 
     [XmlAttribute( AttributeName = "name" )]
     public string Name { get; set; } = string.Empty;

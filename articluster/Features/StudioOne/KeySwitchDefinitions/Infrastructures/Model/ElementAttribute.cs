@@ -3,7 +3,7 @@ using System.Xml.Serialization;
 
 namespace ArtiCluster.Features.StudioOne.KeySwitchDefinitions.Infrastructures.Model;
 
-public class AttributeElement
+public class ElementAttribute
 {
     public const int NoPitch = -1;
 
@@ -29,11 +29,11 @@ public class AttributeElement
     public string Activation { get; set; }  = string.Empty;
 
     [XmlElement( ElementName = "Attributes" )]
-    public List<AttributeElement> Children { get; } = new();
+    public List<ElementAttribute> Children { get; } = new();
 
-    public AttributeElement() {}
+    public ElementAttribute() {}
 
-    public AttributeElement(
+    public ElementAttribute(
         string name,
         int id,
         string? color,
@@ -44,12 +44,12 @@ public class AttributeElement
         Name       = name;
         Id         = id.ToString();
         Color      = color;
-        Pitch      = pitch != NoPitch ? pitch.ToString() : null!;
+        Pitch      = pitch != NoPitch ? pitch.ToString() : null;
         Momentary  = momentary.ToString();
         Activation = activation;
     }
 
-    public AttributeElement(
+    public ElementAttribute(
         string name,
         int id,
         string color,

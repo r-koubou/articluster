@@ -5,6 +5,12 @@ if [ -z "$1" ]; then
   exit 1
 fi
 
+SCRIPT_DIR=$(cd $(dirname "$0"); pwd)
+
+set -euo pipefail
+pushd "$SCRIPT_DIR" > /dev/null
+
+
 ./module.sh Features.$1.Domain --no-test
 ./module.sh Features.$1.Facades --no-test
 ./module.sh Features.$1.Gateways --no-test
@@ -25,10 +31,12 @@ mv out/Features.$1.Infrastructures $feature_dir/Infrastructures
 mv out/Features.$1.Infrastructures.Tests $feature_dir/Infrastructures.Tests
 mv out/Features.$1.UseCases $feature_dir/UseCases
 
-# rename *.scproj : remove Features. from Features.$1.xxx.csproj
+# rename *.csproj : remove Features. from Features.$1.xxx.csproj
 mv $feature_dir/Domain/Features.$1.Domain.csproj $feature_dir/Domain/$1.Domain.csproj
 mv $feature_dir/Facades/Features.$1.Facades.csproj $feature_dir/Facades/$1.Facades.csproj
 mv $feature_dir/Gateways/Features.$1.Gateways.csproj $feature_dir/Gateways/$1.Gateways.csproj
 mv $feature_dir/Infrastructures/Features.$1.Infrastructures.csproj $feature_dir/Infrastructures/$1.Infrastructures.csproj
 mv $feature_dir/Infrastructures.Tests/Features.$1.Infrastructures.Tests.csproj $feature_dir/Infrastructures.Tests/$1.Infrastructures.Tests.csproj
 mv $feature_dir/UseCases/Features.$1.UseCases.csproj $feature_dir/UseCases/$1.UseCases.csproj
+
+popd > /dev/null
