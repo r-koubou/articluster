@@ -123,9 +123,9 @@ public sealed class StudioOneModelMapper : IStudioOneModelMapper
 
         var midiNoteOns = articulation.MidiMessages.Where( message => message.StatusType == MidiStatusType.NoteOn ).ToList();
 
-        if( midiNoteOns.Count != 0 )
+        if( midiNoteOns.Count > 0 )
         {
-            pitch = midiNoteOns.Single().Data1.Value;
+            pitch = midiNoteOns.First().Data1.Value;
         }
 
         string? color = null;
