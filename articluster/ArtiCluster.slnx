@@ -3,7 +3,7 @@
     <Project Path="Commons/Commons.csproj" />
   </Folder>
   <Folder Name="/Features/" />
-  <Folder Name="/Features/StudioOne/KeySwitchDefinitions/">
+  <Folder Name="/Features/StudioOne.KeySwitchDefinitions/">
     <Project Path="Features/StudioOne/KeySwitchDefinitions/Facades/StudioOne.KeySwitchDefinitions.Facades.csproj" />
     <Project Path="Features/StudioOne/KeySwitchDefinitions/Gateways/StudioOne.KeySwitchDefinitions.Gateways.csproj" />
     <Project Path="Features/StudioOne/KeySwitchDefinitions/Infrastructures/StudioOne.KeySwitchDefinitions.Infrastructures.csproj" />
