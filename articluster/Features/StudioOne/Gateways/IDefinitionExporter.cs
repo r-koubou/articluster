@@ -9,8 +9,6 @@ namespace ArtiCluster.Features.StudioOne.Gateways;
 
 public enum ExportReason
 {
-    EmptyDefinitionsError,
-    MixedPatchDefinitionsError,
     SerializationError,
     IoError,
     OtherError
