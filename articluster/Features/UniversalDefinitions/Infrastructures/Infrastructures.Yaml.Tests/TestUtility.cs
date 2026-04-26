@@ -4,7 +4,7 @@ using NUnit.Framework;
 
 namespace ArtiCluster.Features.UniversalDefinitions.Infrastructures.Yaml.Tests;
 
-public static class Constants
+internal static class TestUtility
 {
     // ReSharper disable once MemberCanBePrivate.Global
     public static readonly string TestDataDirectoryRoot = Path.Combine( TestContext.CurrentContext.TestDirectory, "TestData" );
