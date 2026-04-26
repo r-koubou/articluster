@@ -1,0 +1,11 @@
+[project]
+name = "migrate"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.14"
+dependencies = [
+    "pydantic~=2.13.3",
+    "python-dateutil~=2.9.0.post0",
+    "ruamel-yaml~=0.19",
+]
