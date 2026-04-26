@@ -60,9 +60,21 @@ public sealed class UniversalDefinitionFacade : IStudioOneDefinitionFacade
         }
 
         var outputPath = Path.Combine( outputDirectory, $"{source.ProductName.Value}.keyswitch" );
-        await using var writer = new LocalTextContentWriter( outputPath );
 
-        return await ExportAsync( writer, source, cancellationToken );
+        try
+        {
+            await using var writer = new LocalTextContentWriter( outputPath );
+
+            return await ExportAsync( writer, source, cancellationToken );
+        }
+        catch( IOException e )
+        {
+            return Result<Unit, ExportReason>.Failure( ExportReason.IoError, e );
+        }
+        catch( Exception e )
+        {
+            return Result<Unit, ExportReason>.Failure( ExportReason.OtherError, e );
+        }
     }
 
     // ReSharper disable once MemberCanBePrivate.Global
