@@ -11,7 +11,7 @@ namespace ArtiCluster.Shared.IO.Local;
 public sealed class LocalTextContentWriter(
     string filePath,
     Encoding? textEncoding = null
-) : ITextContentWriter, IDisposable
+) : ITextContentWriter, IDisposable, IAsyncDisposable
 {
     // ReSharper disable MemberCanBePrivate.Global
     private readonly StreamWriter streamWriter = new(
@@ -28,10 +28,12 @@ public sealed class LocalTextContentWriter(
 
     public LocalTextContentWriter( string filePath ) : this( filePath, Encoding.UTF8 ) {}
 
-
     public void Dispose()
+        => DisposeAsync().GetAwaiter().GetResult();
+
+    public async ValueTask DisposeAsync()
     {
-        streamWriter.Dispose();
+        await streamWriter.DisposeAsync();
     }
 
     public async Task WriteAsync( string content, CancellationToken cancellationToken = default )

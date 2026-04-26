@@ -12,7 +12,7 @@ public sealed class TextStreamContentWriter(
     Stream stream,
     Encoding? encoding = null,
     bool leaveOpen = false
-) : ITextContentWriter, IDisposable
+) : ITextContentWriter, IDisposable, IAsyncDisposable
 {
     // ReSharper disable MemberCanBePrivate.Global
     private Stream Stream { get; } = stream;
@@ -21,13 +21,16 @@ public sealed class TextStreamContentWriter(
     // ReSharper restore MemberCanBePrivate.Global
 
     public void Dispose()
+        => DisposeAsync().GetAwaiter().GetResult();
+
+    public async ValueTask DisposeAsync()
     {
         if( LeaveOpen )
         {
             return;
         }
 
-        Stream.Dispose();
+        await Stream.DisposeAsync();
     }
 
     public async Task WriteAsync( string content, CancellationToken cancellationToken )

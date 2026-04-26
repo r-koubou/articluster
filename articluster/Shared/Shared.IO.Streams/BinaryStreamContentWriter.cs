@@ -7,7 +7,8 @@ using ArtiCluster.Shared.IO.Abstractions;
 
 namespace ArtiCluster.Shared.IO.Streams;
 
-public sealed class BinaryStreamContentWriter( Stream stream, bool leaveOpen = false ) : IBinaryContentWriter, IDisposable
+public sealed class BinaryStreamContentWriter( Stream stream, bool leaveOpen = false )
+    : IBinaryContentWriter, IDisposable, IAsyncDisposable
 {
     // ReSharper disable MemberCanBePrivate.Global
     private Stream Stream { get; } = stream;
@@ -15,13 +16,16 @@ public sealed class BinaryStreamContentWriter( Stream stream, bool leaveOpen = f
     // ReSharper restore MemberCanBePrivate.Global
 
     public void Dispose()
+        => DisposeAsync().GetAwaiter().GetResult();
+
+    public async ValueTask DisposeAsync()
     {
         if( LeaveOpen )
         {
             return;
         }
 
-        Stream.Dispose();
+        await Stream.DisposeAsync();
     }
 
     public async Task WriteAsync( ReadOnlyMemory<byte> content, CancellationToken cancellationToken = default )

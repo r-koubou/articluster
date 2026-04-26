@@ -15,7 +15,7 @@ public sealed class TextStreamContentReader(
     Stream stream,
     Encoding? textEncoding = null,
     bool leaveOpen = false
-) : ITextStreamContentReader, IDisposable
+) : ITextStreamContentReader, IDisposable, IAsyncDisposable
 {
     // ReSharper disable MemberCanBePrivate.Global
     private Stream Stream { get; } = stream;
@@ -24,13 +24,16 @@ public sealed class TextStreamContentReader(
     // ReSharper restore MemberCanBePrivate.Global
 
     public void Dispose()
+        => DisposeAsync().GetAwaiter().GetResult();
+
+    public async ValueTask DisposeAsync()
     {
         if( LeaveOpen )
         {
             return;
         }
 
-        Stream.Dispose();
+        await Stream.DisposeAsync();
     }
 
     public async Task<string> ReadAllAsync( CancellationToken cancellationToken = default )
