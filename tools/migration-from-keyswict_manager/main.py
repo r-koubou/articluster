@@ -1,6 +1,7 @@
 import sys
 import os
 import os.path
+import re
 import json
 
 import original
@@ -105,11 +106,17 @@ def convert(src: original.Coordinate):
             patch_name=patch,
             articluations=target_articulations,
             extra=global_extra,
-            description=f"{manufacturer} {product}: {patch}",
+            description=f"{manufacturer} {product} - {patch}",
         )
 
         output_dir = os.path.join(OUTPUT_DIR, manufacturer, product)
-        output_path = os.path.join(output_dir, f"{patch}.yaml")
+        output_filename = f"{patch}.yaml"
+
+        # Normalize filename by replacing invalid characters with underscores
+        output_filename = re.sub(r'[\\/*?:"<>|]', "_", output_filename)
+
+        output_path = os.path.join(output_dir, output_filename)
+
         os.makedirs(output_dir, exist_ok=True)
 
         with open(output_path, "w") as f:

@@ -1,5 +1,3 @@
-from ruamel.yaml.scalarstring import LiteralScalarString
-
 # Converted from schema by https://app.quicktype.io/
 
 from typing import Optional, Any, Dict, List, TypeVar, Callable, Type, cast
@@ -149,7 +147,7 @@ class Coordinate:
         result["ManufacturerName"] = from_str(self.manufacturer_name)
         result["ProductName"] =  from_str(self.product_name)
         result["PatchName"] = from_str(self.patch_name)
-        result["Description"] = LiteralScalarString(self.description)
+        result["Description"] = from_str(self.description)
         result["Articluations"] = from_list(lambda x: to_class(Articluation, x), self.articluations)
         if self.extra is not None:
             result["Extra"] = from_union([lambda x: from_dict(lambda x: x, x), from_none], self.extra)
