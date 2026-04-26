@@ -1,6 +1,8 @@
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Text;
+using System.Threading.Tasks;
 using System.Xml;
 using System.Xml.Serialization;
 
@@ -9,6 +11,7 @@ using ArtiCluster.Features.StudioOne.KeySwitchDefinitions.Infrastructures.Model;
 using ArtiCluster.Shared.Domain.MidiMessages.Model;
 using ArtiCluster.Shared.Domain.UniversalDefinitions;
 using ArtiCluster.Shared.Domain.UniversalDefinitions.Model;
+using ArtiCluster.Shared.IO.Local;
 
 using NUnit.Framework;
 
@@ -54,6 +57,43 @@ public class SerializationTest
         Assert.That( mapResult.IsSuccess, Is.True, "Mapping should succeed" );
 
         TestContext.Out.WriteLine( stringWriter.ToString() );
+    }
+
+    [Test]
+    public async Task ExportTest()
+    {
+        var id = Guid.NewGuid();
+        var source = CreateMock( id, patchName: "Epic Lead" );
+
+        var productSet = new UniversalDefinitionProductSet(
+            manufacturerName: source.ManufacturerName,
+            productName: source.ProductName,
+            items: [ source ]
+        );
+
+        var mapResult = new StudioOneModelMapper().Map( productSet );
+
+        Assert.That( mapResult.IsSuccess, Is.True, "Mapping should succeed" );
+
+        var dest = Path.GetTempFileName();
+
+
+        try
+        {
+            await using( var fileWriter = new LocalTextContentWriter( dest ) )
+            {
+                var exporter = new StudioOneExporter();
+
+                var result = await exporter.ExportAsync( fileWriter, productSet );
+                Assert.That( result.IsSuccess, Is.True, "Export should succeed" );
+            }
+
+            await TestContext.Out.WriteAsync( await File.ReadAllTextAsync( dest ) );
+        }
+        finally
+        {
+            File.Delete( dest );
+        }
     }
 
     private static UniversalDefinition CreateMock(

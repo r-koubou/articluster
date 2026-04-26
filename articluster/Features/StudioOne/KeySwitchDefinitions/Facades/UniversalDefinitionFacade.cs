@@ -1,11 +1,15 @@
+using System;
+using System.IO;
 using System.Threading;
 using System.Threading.Tasks;
 
 using ArtiCluster.Commons;
-using ArtiCluster.Features.StudioOne.KeySwitchDefinitions.Gateways;
 using ArtiCluster.Features.StudioOne.KeySwitchDefinitions.Infrastructures;
 using ArtiCluster.Shared.Domain.UniversalDefinitions;
 using ArtiCluster.Shared.IO.Abstractions;
+using ArtiCluster.Shared.IO.Local;
+
+using GatewayReason = ArtiCluster.Features.StudioOne.KeySwitchDefinitions.Gateways.ExportReason;
 
 namespace ArtiCluster.Features.StudioOne.KeySwitchDefinitions.Facades;
 
@@ -20,6 +24,50 @@ public sealed class UniversalDefinitionFacade : IStudioOneDefinitionFacade
         var input = new UseCases.ExportInputPort( source, exporter, writer );
         var useCase = new UseCases.ExportUseCase();
 
-        return await useCase.ExecuteAsync( input, cancellationToken );
+        var result = await useCase.ExecuteAsync( input, cancellationToken );
+
+        if( result.IsSuccess )
+        {
+            return Result<Unit, ExportReason>.Success( Unit.Default );
+        }
+
+        return result.MapError( reason =>
+            {
+                return reason switch
+                {
+                    GatewayReason.SerializationError => ExportReason.SerializationError,
+                    GatewayReason.IoError            => ExportReason.IoError,
+                    _                                => ExportReason.OtherError
+                };
+            }
+        );
+    }
+
+    public async Task<Result<Unit, ExportReason>> ExportAsync( string exportDirectory, UniversalDefinitionProductSet source, CancellationToken cancellationToken = default )
+    {
+        var outputDirectory = BuildExportDirectory( exportDirectory, source );
+
+        if( !Directory.Exists( outputDirectory ) )
+        {
+            try
+            {
+                Directory.CreateDirectory( outputDirectory );
+            }
+            catch( Exception e )
+            {
+                return Result<Unit, ExportReason>.Failure( ExportReason.IoError, e );
+            }
+        }
+
+        var outputPath = Path.Combine( outputDirectory, $"{source.ProductName.Value}.keyswitch" );
+        await using var writer = new LocalTextContentWriter( outputPath );
+
+        return await ExportAsync( writer, source, cancellationToken );
+    }
+
+    // ReSharper disable once MemberCanBePrivate.Global
+    public static string BuildExportDirectory( string baseDirectory, UniversalDefinitionProductSet source )
+    {
+        return Path.Combine( baseDirectory, source.ManufacturerName.Value );
     }
 }

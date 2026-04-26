@@ -22,6 +22,8 @@
     </ItemGroup>
 
     <ItemGroup>
+      <ProjectReference Include="..\..\..\..\Shared\Shared.IO.Local\Shared.IO.Local.csproj" />
+      <ProjectReference Include="..\..\..\..\Shared\Shared.IO.Streams\Shared.IO.Streams.csproj" />
       <ProjectReference Include="..\Infrastructures\StudioOne.KeySwitchDefinitions.Infrastructures.csproj" />
     </ItemGroup>
 
