@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 
 using ArtiCluster.Features.UniversalDefinitions.Infrastructures.Yaml.Model;
-using ArtiCluster.Shared.Domain.Articulation.Model;
 using ArtiCluster.Shared.Domain.MidiMessages.Model;
+using ArtiCluster.Shared.Domain.UniversalDefinitions.Model;
 
 namespace ArtiCluster.Features.UniversalDefinitions.Infrastructures.Yaml;
 
@@ -17,7 +17,7 @@ internal static class DomainModelMapper
             throw new ArgumentNullException( nameof( source ) );
         }
 
-        return new UniversalDefinition(
+        return UniversalDefinition.Create(
             id: source.Id,
             author: source.Author,
             manufacturerName: source.ManufacturerName,
@@ -32,9 +32,9 @@ internal static class DomainModelMapper
     private static List<Articulation> MapAssignments( IEnumerable<ArticulationModel> source )
     {
         return source
-              .Select( model => new Articulation(
+              .Select( model => Articulation.Create(
                            name: model.Name,
-                           midiMessages: model.MidiMessages.Select( x => new MidiMessage( x.Status, x.Data1, x.Data2 ) ).ToList(),
+                           midiMessages: model.MidiMessages.Select( x => MidiMessage.Create( x.Status, x.Data1, x.Data2 ) ).ToList(),
                            extra: new Dictionary<string, string>( model.Extra )
                        )
                )

@@ -7,7 +7,7 @@ using ArtiCluster.Shared.IO.Abstractions;
 
 namespace ArtiCluster.Shared.IO.Local;
 
-public sealed class LocalBinaryContentWriter( string filePath ) : IBinaryContentWriter, IDisposable
+public sealed class LocalBinaryContentWriter( string filePath ) : IBinaryContentWriter, IDisposable, IAsyncDisposable
 {
     // ReSharper disable MemberCanBePrivate.Global
     private readonly Stream fileStream = File.Open( filePath, FileMode.Create, FileAccess.Write );
@@ -15,8 +15,11 @@ public sealed class LocalBinaryContentWriter( string filePath ) : IBinaryContent
     // ReSharper restore MemberCanBePrivate.Global
 
     public void Dispose()
+        => DisposeAsync().GetAwaiter().GetResult();
+
+    public async ValueTask DisposeAsync()
     {
-        fileStream.Dispose();
+        await fileStream.DisposeAsync();
     }
 
     public async Task WriteAsync( ReadOnlyMemory<byte> content, CancellationToken cancellationToken = default )

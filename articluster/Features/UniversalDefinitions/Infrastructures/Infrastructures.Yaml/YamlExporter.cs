@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 using ArtiCluster.Commons;
 using ArtiCluster.Features.UniversalDefinitions.Gateways;
-using ArtiCluster.Shared.Domain.Articulation.Model;
+using ArtiCluster.Shared.Domain.UniversalDefinitions.Model;
 using ArtiCluster.Shared.IO.Abstractions;
 
 using YamlDotNet.Core;

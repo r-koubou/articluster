@@ -9,7 +9,7 @@ using ArtiCluster.Shared.IO.Abstractions.Values;
 
 namespace ArtiCluster.Shared.IO.Local;
 
-public sealed class LocalBinaryContentReader( string filePath ) : IBinaryContentReader, IDisposable
+public sealed class LocalBinaryContentReader( string filePath ) : IBinaryContentReader, IDisposable, IAsyncDisposable
 {
     // ReSharper disable MemberCanBePrivate.Global
     private readonly Stream fileStream = File.Open( filePath, FileMode.Open, FileAccess.Read, FileShare.Read );
@@ -17,8 +17,11 @@ public sealed class LocalBinaryContentReader( string filePath ) : IBinaryContent
     // ReSharper restore MemberCanBePrivate.Global
 
     public void Dispose()
+        => DisposeAsync().GetAwaiter().GetResult();
+
+    public async ValueTask DisposeAsync()
     {
-        fileStream.Dispose();
+        await fileStream.DisposeAsync();
     }
 
     public async Task<ReadOnlyMemory<byte>> ReadAllAsync( CancellationToken cancellationToken = default )

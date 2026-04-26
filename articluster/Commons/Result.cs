@@ -24,15 +24,29 @@ public abstract class Result<TValue, TReason>
             _                                => throw new InvalidOperationException( "Unknown reason." )
         };
 
-    public Result<TOut, TReason> Map<TOut>( Func<TValue, TOut> func )
+    public Result<TOut, TReason> Map<TOut>( Func<TValue, TOut> success )
     {
         return this switch
         {
             SuccessResult<TValue, TReason> s
-                => Result<TOut, TReason>.Success( func( s.Value ) ),
+                => Result<TOut, TReason>.Success( success( s.Value ) ),
 
             FailureResult<TValue, TReason> f
                 => Result<TOut, TReason>.Failure( f.Reason, f.Error ),
+
+            _ => throw new InvalidOperationException()
+        };
+    }
+
+    public Result<TValue, TOutReason> MapError<TOutReason>( Func<TReason, TOutReason> failure )
+    {
+        return this switch
+        {
+            SuccessResult<TValue, TReason> s
+                => Result<TValue, TOutReason>.Success( s.Value ),
+
+            FailureResult<TValue, TReason> f
+                => Result<TValue, TOutReason>.Failure( failure( f.Reason ), f.Error ),
 
             _ => throw new InvalidOperationException()
         };

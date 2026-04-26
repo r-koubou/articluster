@@ -8,11 +8,20 @@ public sealed record MidiMessage
     public MidiDataByte Data1 { get; init; }
     public MidiDataByte Data2 { get; init; }
 
-    public MidiMessage( int statusByte, int? dataByte1 = null, int? dataByte2 = null )
+    public MidiMessage( MidiStatusByte statusByte, MidiDataByte? dataByte1 = null, MidiDataByte? dataByte2 = null )
     {
-        Status = new MidiStatusByte( statusByte );
-        Data1  = dataByte1 != null ? new MidiDataByte( dataByte1.Value ) : MidiDataByte.None;
-        Data2  = dataByte2 != null ? new MidiDataByte( dataByte2.Value ) : MidiDataByte.None;
+        Status = statusByte;
+        Data1  = dataByte1 ?? MidiDataByte.None;
+        Data2  = dataByte2 ?? MidiDataByte.None;
+    }
+
+    public static MidiMessage Create( int statusByte, int? dataByte1 = null, int? dataByte2 = null )
+    {
+        return new MidiMessage(
+            new MidiStatusByte( statusByte ),
+            dataByte1 != null ? new MidiDataByte( dataByte1.Value ) : null,
+            dataByte2 != null ? new MidiDataByte( dataByte2.Value ) : null
+        );
     }
 
     public override string ToString()

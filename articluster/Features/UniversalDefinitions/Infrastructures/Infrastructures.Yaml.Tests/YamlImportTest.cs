@@ -15,7 +15,7 @@ public class YamlImportTest
     [Test]
     public async Task LoadOkTestAsync()
     {
-        using var stream = File.OpenRead( Constants.MakeTestDataPath( "ok.yaml" ) );
+        using var stream = File.OpenRead( TestUtility.MakeTestDataPath( "ok.yaml" ) );
         using var reader = new TextStreamContentReader( stream );
         var importer = new YamlImporter();
         var result = await importer.ImportAsync( reader, CancellationToken.None );
@@ -26,7 +26,7 @@ public class YamlImportTest
     [Test]
     public async Task DeserializationFailureTestAsync()
     {
-        using var stream = File.OpenRead( Constants.MakeTestDataPath( "invalid.yaml" ) );
+        using var stream = File.OpenRead( TestUtility.MakeTestDataPath( "invalid.yaml" ) );
         using var reader = new TextStreamContentReader( stream );
         var importer = new YamlImporter();
         var result = await importer.ImportAsync( reader, CancellationToken.None );

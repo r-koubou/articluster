@@ -4,8 +4,8 @@ using System.IO;
 using System.Threading;
 using System.Threading.Tasks;
 
-using ArtiCluster.Shared.Domain.Articulation.Model;
 using ArtiCluster.Shared.Domain.MidiMessages.Model;
+using ArtiCluster.Shared.Domain.UniversalDefinitions.Model;
 using ArtiCluster.Shared.IO.Streams;
 
 using NUnit.Framework;
@@ -21,7 +21,7 @@ public class YamlExportTest
         var destPath = Path.GetTempFileName();
 
         var id = Guid.NewGuid();
-        var source = new UniversalDefinition(
+        var source = UniversalDefinition.Create(
             id: id,
             author: "John Doe",
             manufacturerName: "Acme Corp",
@@ -35,18 +35,18 @@ public class YamlExportTest
             },
             articulations:
             [
-                new Articulation(
+                Articulation.Create(
                     name: "Sustain",
                     midiMessages:
                     [
                         // Note On
-                        new MidiMessage( 0x90, 40, 100 ),
+                        MidiMessage.Create( 0x90, 40, 100 ),
                         // Note Off
-                        new MidiMessage( 0x80, 40, 110 ),
+                        MidiMessage.Create( 0x80, 40, 110 ),
                         // Control Change
-                        new MidiMessage( 0xB0, 1, 127 ),
+                        MidiMessage.Create( 0xB0, 1, 127 ),
                         // Program Change
-                        new MidiMessage( 0xC0, 49 ),
+                        MidiMessage.Create( 0xC0, 49 ),
                     ],
                     extra: new Dictionary<string, string>
                     {
