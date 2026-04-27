@@ -24,7 +24,7 @@ def convert(src: original.Coordinate):
         manufacturer = ks.developer_name
         product = ks.product_name
         patch = ks.instrument_name
-        target_articulations: list[target.Articluation] = []
+        target_articulations: list[target.Articulation] = []
         global_extra = ks.extra_data
 
         print(f"🏃 Converting {manufacturer} {product}: {patch}")
@@ -90,7 +90,7 @@ def convert(src: original.Coordinate):
                         )
 
                 target_articulations.append(
-                    target.Articluation(
+                    target.Articulation(
                         name=name,
                         midi_messages=midi_messages,
                         extra=local_extra,
