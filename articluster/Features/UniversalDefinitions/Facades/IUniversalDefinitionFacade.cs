@@ -2,11 +2,24 @@ using System.Threading;
 using System.Threading.Tasks;
 
 using ArtiCluster.Commons;
-using ArtiCluster.Features.UniversalDefinitions.Gateways;
 using ArtiCluster.Shared.Domain.UniversalDefinitions.Model;
 using ArtiCluster.Shared.IO.Abstractions;
 
 namespace ArtiCluster.Features.UniversalDefinitions.Facades;
+
+public enum ImportReason
+{
+    DeserializationError,
+    IoError,
+    OtherError
+}
+
+public enum ExportReason
+{
+    SerializationError,
+    IoError,
+    OtherError
+}
 
 public interface IUniversalDefinitionFacade
 {
