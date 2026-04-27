@@ -135,17 +135,13 @@ jobs:
     #----------------------------------------------------------
     # Setup the application version
     #----------------------------------------------------------
-    - name: "Setup the application version ('AssemblyVersion' tag in csproj)"
+    - name: "Setup the application version (If inputs.version is empty)"
       if: ${{ inputs.version == '' }}
       run: |
-          VERSION=$(grep '<AssemblyVersion>' ${{ env.CSPROJ_PATH }} | sed -E 's/.*<AssemblyVersion>([^<]+)<\/AssemblyVersion>.*/\1/')
-          if [ "$VERSION" == "" ]; then
-            VERSION="0.0.0"
-            echo "::warning::Could not find AssemblyVersion tag in csproj file. Defaulting to ${VERSION}"
-          fi
-          echo "BUILD_VERSION=${VERSION}" >> $GITHUB_ENV
+          echo "::info::The version value will be '0.0.0'"
+          echo "BUILD_VERSION=0.0.0" >> $GITHUB_ENV
 
-    - name: "Setup the application version (inputs.version)"
+    - name: "Setup the application version (Use inputs.version)"
       if: ${{ inputs.version != '' }}
       run: |
         echo "::info::The version value will be overridden to '${{ inputs.version }}'"

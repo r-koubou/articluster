@@ -1,17 +1,11 @@
 name: Build articluster-cli (Release)
 
 on:
-  pull_request:
-    branches:
-      - main
-  push:
-    tags:
-      - 'v*'
-
   workflow_dispatch:
     inputs:
       version:
         required: true
+        default: ''
 
 jobs:
   build-articluster-cli-release:
