@@ -1,3 +1,4 @@
+using System;
 using System.IO;
 using System.Threading;
 using System.Threading.Tasks;
@@ -23,22 +24,33 @@ public sealed class StudioOneConvertingService( string outputBaseDirectory ) : I
             var outputDirectory = MakeStudioOneOutputDirectory( outputBaseDirectory, x );
             var outputPath = MakeStudioOneOutputPath( outputDirectory, x );
 
-            Directory.CreateDirectory( outputDirectory );
-
-            await using var writer = new LocalTextContentWriter( outputPath );
-            var studioOneFacade = new StudioOneDefinitionFacade();
-            var exportResult = await studioOneFacade.ExportAsync( writer, x, cancellationToken );
-
-            if( exportResult.IsFailure )
+            try
             {
-                return Result<Unit, ConvertReason>.Failure(
-                    exportResult.Reason switch
-                    {
-                        ExportReason.SerializationError => ConvertReason.SerializationError,
-                        ExportReason.IoError            => ConvertReason.IoError,
-                        _                               => ConvertReason.OtherError
-                    }
-                );
+                Directory.CreateDirectory( outputDirectory );
+
+                await using var writer = new LocalTextContentWriter( outputPath );
+                var studioOneFacade = new StudioOneDefinitionFacade();
+                var exportResult = await studioOneFacade.ExportAsync( writer, x, cancellationToken );
+
+                if( exportResult.IsFailure )
+                {
+                    return Result<Unit, ConvertReason>.Failure(
+                        exportResult.Reason switch
+                        {
+                            ExportReason.SerializationError => ConvertReason.SerializationError,
+                            ExportReason.IoError            => ConvertReason.IoError,
+                            _                               => ConvertReason.OtherError
+                        }
+                    );
+                }
+            }
+            catch( IOException e )
+            {
+                return Result<Unit, ConvertReason>.Failure( ConvertReason.IoError, e );
+            }
+            catch( Exception e )
+            {
+                return Result<Unit, ConvertReason>.Failure( ConvertReason.OtherError, e );
             }
         }
 

@@ -104,7 +104,7 @@ def convert(src: original.Coordinate):
             manufacturer_name=manufacturer,
             product_name=product,
             patch_name=patch,
-            articluations=target_articulations,
+            articulations=target_articulations,
             extra=global_extra,
             description=f"{manufacturer} {product} - {patch}",
         )

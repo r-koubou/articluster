@@ -20,7 +20,7 @@ internal sealed class CreateDefinitionCommandExecutor : ICommandExecutor
         {
             outputCreatedPathArgument
         };
-        command.SetAction( parseResult =>
+        command.SetAction( async parseResult =>
             {
                 var outputPath = parseResult.GetValue( outputCreatedPathArgument );
 
@@ -29,23 +29,22 @@ internal sealed class CreateDefinitionCommandExecutor : ICommandExecutor
                     throw new InvalidOperationException( "Output path is required." );
                 }
 
-                Task.Run( async () => await ExecuteAsync( outputPath ) ).Wait();
+                return await ExecuteAsync( outputPath );
             }
         );
 
         return command;
     }
 
-    private static async Task ExecuteAsync( string outputPath, CancellationToken cancellationToken = default )
+    private static async Task<int> ExecuteAsync( string outputPath, CancellationToken cancellationToken = default )
     {
         var outputDirectory = Path.GetDirectoryName( outputPath );
 
         if( outputDirectory == null )
         {
             await Console.Error.WriteLineAsync( "Cannot determine output directory from the provided path." );
-            Environment.Exit( 1 );
 
-            return;
+            return 1;
         }
 
         Directory.CreateDirectory( outputDirectory );
@@ -73,8 +72,17 @@ internal sealed class CreateDefinitionCommandExecutor : ICommandExecutor
         var facade = new UniversalDefinitionFacade();
         await using var writer = new LocalTextContentWriter( outputPath );
 
-        await facade.ExportAsync( writer, definition, cancellationToken );
+        var result = await facade.ExportAsync( writer, definition, cancellationToken );
+        
+        if( result.IsFailure )
+        {
+            await Console.Error.WriteLineAsync( $"Failed to create Universal Definition file: {result.Reason}" );
+
+            return 1;
+        }
 
         Console.WriteLine( $"Created Universal Definition file at: {outputPath}" );
+        
+        return 0;
     }
 }

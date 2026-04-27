@@ -9,8 +9,8 @@
   - <a id="definitions/UniversalDefinition/properties/ProductName"></a>**`ProductName`** *(string, required)*
   - <a id="definitions/UniversalDefinition/properties/PatchName"></a>**`PatchName`** *(string, required)*
   - <a id="definitions/UniversalDefinition/properties/Description"></a>**`Description`** *(string, required)*
-  - <a id="definitions/UniversalDefinition/properties/Articluations"></a>**`Articluations`** *(array, required)*
-    - <a id="definitions/UniversalDefinition/properties/Articluations/items"></a>**Items**: Refer to *[#/definitions/Articluation](#definitions/Articluation)*.
+  - <a id="definitions/UniversalDefinition/properties/Articulations"></a>**`Articulations`** *(array, required)*
+    - <a id="definitions/UniversalDefinition/properties/Articulations/items"></a>**Items**: Refer to *[#/definitions/Articulation](#definitions/Articulation)*.
   - <a id="definitions/UniversalDefinition/properties/Extra"></a>**`Extra`**: Refer to *[#/definitions/Extra](#definitions/Extra)*.
 
   Examples:
@@ -21,7 +21,7 @@
   ProductName: My Guitar
   PatchName: My Guitar 1
   Description: This is my guitar articulation.
-  Articluations:
+  Articulations:
   -   Name: Sustain
       MidiMessages:
       -   Status: 144
@@ -38,11 +38,11 @@
           Extra.Custom.Key: Custom Value
   ```
 
-- <a id="definitions/Articluation"></a>**`Articluation`** *(object)*: Defines an articulation with its name and associated MIDI messages. Cannot contain additional properties.
-  - <a id="definitions/Articluation/properties/Name"></a>**`Name`** *(string, required)*
-  - <a id="definitions/Articluation/properties/MidiMessages"></a>**`MidiMessages`** *(array, required)*
-    - <a id="definitions/Articluation/properties/MidiMessages/items"></a>**Items**: Refer to *[#/definitions/MidiMessage](#definitions/MidiMessage)*.
-  - <a id="definitions/Articluation/properties/Extra"></a>**`Extra`**: Refer to *[#/definitions/Extra](#definitions/Extra)*.
+- <a id="definitions/Articulation"></a>**`Articulation`** *(object)*: Defines an articulation with its name and associated MIDI messages. Cannot contain additional properties.
+  - <a id="definitions/Articulation/properties/Name"></a>**`Name`** *(string, required)*
+  - <a id="definitions/Articulation/properties/MidiMessages"></a>**`MidiMessages`** *(array, required)*
+    - <a id="definitions/Articulation/properties/MidiMessages/items"></a>**Items**: Refer to *[#/definitions/MidiMessage](#definitions/MidiMessage)*.
+  - <a id="definitions/Articulation/properties/Extra"></a>**`Extra`**: Refer to *[#/definitions/Extra](#definitions/Extra)*.
 
   Examples:
   ```yaml

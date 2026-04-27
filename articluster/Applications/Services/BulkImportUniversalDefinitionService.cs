@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Threading;
@@ -16,32 +17,49 @@ public sealed class BulkImportUniversalDefinitionService : IBulkImportUniversalD
 {
     public async Task<Result<UniversalDefinitionProductCollection, BulkImportReason>> ImportAsync( string definitionsDirectory, CancellationToken cancellationToken = default )
     {
-        var facade = new UniversalDefinitionFacade();
-        var definitionFiles = Directory.GetFiles( definitionsDirectory, "*.yaml", SearchOption.AllDirectories );
-        var definitions = new List<UniversalDefinition>();
-
-        foreach( var file in definitionFiles )
+        try
         {
-            using var reader = new LocalTextContentReader( file );
-            var importResult = await facade.ImportAsync( reader, cancellationToken );
+            var facade = new UniversalDefinitionFacade();
+            var definitionFiles = Directory.GetFiles( definitionsDirectory, "*.yaml", SearchOption.AllDirectories );
+            var definitions = new List<UniversalDefinition>();
 
-            if( importResult.IsFailure )
+            foreach( var file in definitionFiles )
             {
-                var reason = importResult.Reason switch
-                {
-                    ImportReason.DeserializationError => BulkImportReason.DeserializationError,
-                    ImportReason.IoError              => BulkImportReason.IoError,
-                    _                                 => BulkImportReason.OtherError
-                };
+                using var reader = new LocalTextContentReader( file );
+                var importResult = await facade.ImportAsync( reader, cancellationToken );
 
-                return Result<UniversalDefinitionProductCollection, BulkImportReason>.Failure( reason );
+                if( importResult.IsFailure )
+                {
+                    var reason = importResult.Reason switch
+                    {
+                        ImportReason.DeserializationError => BulkImportReason.DeserializationError,
+                        ImportReason.IoError              => BulkImportReason.IoError,
+                        _                                 => BulkImportReason.OtherError
+                    };
+
+                    return Result<UniversalDefinitionProductCollection, BulkImportReason>.Failure( reason );
+                }
+
+                definitions.Add( importResult.Unwrap() );
             }
 
-            definitions.Add( importResult.Unwrap() );
+            return Result<UniversalDefinitionProductCollection, BulkImportReason>.Success(
+                new UniversalDefinitionProductCollection( definitions )
+            );
         }
-
-        return Result<UniversalDefinitionProductCollection, BulkImportReason>.Success(
-            new UniversalDefinitionProductCollection( definitions )
-        );
+        catch( IOException e )
+        {
+            return Result<UniversalDefinitionProductCollection, BulkImportReason>.Failure(
+                BulkImportReason.IoError,
+                e
+            );
+        }
+        catch( Exception e )
+        {
+            return Result<UniversalDefinitionProductCollection, BulkImportReason>.Failure(
+                BulkImportReason.OtherError,
+                e
+            );
+        }
     }
 }

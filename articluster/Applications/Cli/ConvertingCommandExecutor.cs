@@ -21,7 +21,7 @@ internal sealed class ConvertingCommandExecutor : ICommandExecutor
             inputDirectoryArgument,
             outputDirectoryArgument
         };
-        command.SetAction( parseResult =>
+        command.SetAction( async parseResult =>
             {
                 var inputDirectory = parseResult.GetValue( inputDirectoryArgument );
                 var outputDirectory = parseResult.GetValue( outputDirectoryArgument );
@@ -33,18 +33,16 @@ internal sealed class ConvertingCommandExecutor : ICommandExecutor
 
                 if( Directory.Exists( outputDirectory ) )
                 {
-                    Console.Error.WriteLineAsync( "Output directory already exists." );
-                    Environment.Exit( 1 );
+                    await Console.Error.WriteLineAsync( "Output directory already exists." );
 
-                    return;
+                    return 1;
                 }
 
                 if( inputDirectory == outputDirectory )
                 {
-                    Console.Error.WriteLine( "Input and Output paths cannot be the same." );
-                    Environment.Exit( 1 );
+                    await Console.Error.WriteLineAsync( "Input and Output paths cannot be the same." );
 
-                    return;
+                    return 1;
                 }
 
                 var convertingServices = new List<IConvertingService>
@@ -52,14 +50,14 @@ internal sealed class ConvertingCommandExecutor : ICommandExecutor
                     new StudioOneConvertingService( outputDirectory )
                 };
 
-                Task.Run( async () => await ExecuteAsync( inputDirectory, convertingServices ) ).Wait();
+                return await ExecuteAsync( inputDirectory, convertingServices );
             }
         );
 
         return command;
     }
 
-    private static async Task ExecuteAsync( string inputDirectory, IReadOnlyCollection<IConvertingService> convertingServices, CancellationToken cancellationToken = default )
+    private static async Task<int> ExecuteAsync( string inputDirectory, IReadOnlyCollection<IConvertingService> convertingServices, CancellationToken cancellationToken = default )
     {
         var importService = new BulkImportUniversalDefinitionService();
         var importResult = await importService.ImportAsync( inputDirectory, cancellationToken );
@@ -67,9 +65,8 @@ internal sealed class ConvertingCommandExecutor : ICommandExecutor
         if( importResult.IsFailure )
         {
             await Console.Error.WriteLineAsync( $"Failed to import Universal Definitions: {importResult.Reason}" );
-            Environment.Exit( 1 );
 
-            return;
+            return 1;
         }
 
         foreach( var service in convertingServices )
@@ -83,13 +80,14 @@ internal sealed class ConvertingCommandExecutor : ICommandExecutor
                 continue;
             }
 
-            await Console.Error.WriteLineAsync( $"Failed to convert Studio One: {convertResult.Reason}" );
-            Environment.Exit( 1 );
+            await Console.Error.WriteLineAsync( $"Failed to convert (target:{service.TargetDawName}, reason:{convertResult.Reason})" );
 
-            return;
+            return 1;
 
         }
 
         await Console.Out.WriteLineAsync( "Successfully converted." );
+
+        return 0;
     }
 }
