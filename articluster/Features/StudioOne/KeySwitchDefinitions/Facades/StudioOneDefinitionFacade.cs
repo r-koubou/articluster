@@ -13,7 +13,7 @@ using GatewayReason = ArtiCluster.Features.StudioOne.KeySwitchDefinitions.Gatewa
 
 namespace ArtiCluster.Features.StudioOne.KeySwitchDefinitions.Facades;
 
-public sealed class UniversalDefinitionFacade : IStudioOneDefinitionFacade
+public sealed class StudioOneDefinitionFacade : IStudioOneDefinitionFacade
 {
     public async Task<Result<Unit, ExportReason>> ExportAsync(
         ITextContentWriter writer,

@@ -27,10 +27,10 @@
         "Description": {
           "type": "string"
         },
-        "Articluations": {
+        "Articulations": {
           "type": "array",
           "items": {
-            "$ref": "#/definitions/Articluation"
+            "$ref": "#/definitions/Articulation"
           }
         },
         "Extra": {
@@ -44,7 +44,7 @@
         "ProductName",
         "PatchName",
         "Description",
-        "Articluations"
+        "Articulations"
       ],
       "examples": [
         {
@@ -54,7 +54,7 @@
           "ProductName": "My Guitar",
           "PatchName": "My Guitar 1",
           "Description": "This is my guitar articulation.",
-          "Articluations": [
+          "Articulations": [
             {
               "Name": "Sustain",
               "MidiMessages": [
@@ -85,8 +85,8 @@
         }
       ]
     },
-    "Articluation": {
-      "title": "Articluation",
+    "Articulation": {
+      "title": "Articulation",
       "type": "object",
       "description": "Defines an articulation with its name and associated MIDI messages",
       "additionalProperties": false,

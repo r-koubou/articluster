@@ -1,0 +1,21 @@
+name: Build articluster-cli (Release)
+
+on:
+  pull_request:
+    branches:
+      - main
+  workflow_dispatch:
+    inputs:
+      version:
+        required: true
+        default: ''
+
+jobs:
+  build-articluster-cli-release:
+    uses: ./.github/workflows/build-csproj.yml
+    secrets: inherit
+    with:
+      configuration: Release
+      prefix: articluster-cli
+      base_dir: "articluster/Applications/Cli"
+      csproject_filename: "Applications.Cli.csproj"

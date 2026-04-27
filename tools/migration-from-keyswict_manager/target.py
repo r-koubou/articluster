@@ -76,7 +76,7 @@ class MIDIMessage:
         return result
 
 
-class Articluation:
+class Articulation:
     """Defines an articulation with its name and associated MIDI messages"""
 
     extra: Optional[Dict[str, Any]]
@@ -89,12 +89,12 @@ class Articluation:
         self.name = name
 
     @staticmethod
-    def from_dict(obj: Any) -> 'Articluation':
+    def from_dict(obj: Any) -> 'Articulation':
         assert isinstance(obj, dict)
         extra = from_union([lambda x: from_dict(lambda x: x, x), from_none], obj.get("Extra"))
         midi_messages = from_list(MIDIMessage.from_dict, obj.get("MidiMessages"))
         name = from_str(obj.get("Name"))
-        return Articluation(extra, midi_messages, name)
+        return Articulation(extra, midi_messages, name)
 
     def to_dict(self) -> dict:
         result: dict = {}
@@ -113,12 +113,12 @@ class Coordinate:
     manufacturer_name: str
     product_name: str
     patch_name: str
-    articluations: List[Articluation]
+    articulations: List[Articulation]
     description: str
     extra: Optional[Dict[str, Any]]
 
-    def __init__(self, articluations: List[Articluation], author: str, description: str, extra: Optional[Dict[str, Any]], id: UUID, manufacturer_name: str, patch_name: str, product_name: str) -> None:
-        self.articluations = articluations
+    def __init__(self, articulations: List[Articulation], author: str, description: str, extra: Optional[Dict[str, Any]], id: UUID, manufacturer_name: str, patch_name: str, product_name: str) -> None:
+        self.articulations = articulations
         self.author = author
         self.description = description
         self.extra = extra
@@ -130,7 +130,7 @@ class Coordinate:
     @staticmethod
     def from_dict(obj: Any) -> 'Coordinate':
         assert isinstance(obj, dict)
-        articluations = from_list(Articluation.from_dict, obj.get("Articluations"))
+        articulations = from_list(Articulation.from_dict, obj.get("Articulations"))
         author = from_str(obj.get("Author"))
         description = from_str(obj.get("Description"))
         extra = from_union([lambda x: from_dict(lambda x: x, x), from_none], obj.get("Extra"))
@@ -138,7 +138,7 @@ class Coordinate:
         manufacturer_name = from_str(obj.get("ManufacturerName"))
         patch_name = from_str(obj.get("PatchName"))
         product_name = from_str(obj.get("ProductName"))
-        return Coordinate(articluations, author, description, extra, id, manufacturer_name, patch_name, product_name)
+        return Coordinate(articulations, author, description, extra, id, manufacturer_name, patch_name, product_name)
 
     def to_dict(self) -> dict:
         result: dict = {}
@@ -148,7 +148,7 @@ class Coordinate:
         result["ProductName"] =  from_str(self.product_name)
         result["PatchName"] = from_str(self.patch_name)
         result["Description"] = from_str(self.description)
-        result["Articluations"] = from_list(lambda x: to_class(Articluation, x), self.articluations)
+        result["Articulations"] = from_list(lambda x: to_class(Articulation, x), self.articulations)
         if self.extra is not None:
             result["Extra"] = from_union([lambda x: from_dict(lambda x: x, x), from_none], self.extra)
         return result

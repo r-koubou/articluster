@@ -39,13 +39,13 @@ def to_dict(self) -> dict:
     result["ProductName"] =  from_str(self.product_name)
     result["PatchName"] = from_str(self.patch_name)
     result["Description"] = LiteralScalarString(self.description)
-    result["Articluations"] = from_list(lambda x: to_class(Articluation, x), self.articluations)
+    result["Articulations"] = from_list(lambda x: to_class(Articulation, x), self.articulations)
     if self.extra is not None:
         result["Extra"] = from_union([lambda x: from_dict(lambda x: x, x), from_none], self.extra)
     return result
 ```
 
-2. Articluation.to_dict
+2. Articulation.to_dict
 
 ```python
 def to_dict(self) -> dict:

@@ -1,0 +1,30 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <OutputType>Exe</OutputType>
+        <LangVersion>default</LangVersion>
+        <TargetFramework>net10.0</TargetFramework>
+        <Nullable>enable</Nullable>
+        <Copyright>R-Koubou</Copyright>
+        <Company>R-Koubou</Company>
+        <Product>ArtiCluster</Product>
+        <AssemblyName>ArtiCluster.Applications.Cli</AssemblyName>
+        <RootNamespace>ArtiCluster.Applications.Cli</RootNamespace>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <PackageReference Include="System.CommandLine" Version="2.0.7" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\..\Commons\Commons.csproj" />
+      <ProjectReference Include="..\..\Features\StudioOne\KeySwitchDefinitions\Facades\StudioOne.KeySwitchDefinitions.Facades.csproj" />
+      <ProjectReference Include="..\..\Features\UniversalDefinitions\Facades\UniversalDefinitions.Facades.csproj" />
+      <ProjectReference Include="..\..\Shared\Shared.IO.Abstractions\Shared.IO.Abstractions.csproj" />
+      <ProjectReference Include="..\..\Shared\Shared.IO.Local\Shared.IO.Local.csproj" />
+      <ProjectReference Include="..\..\Shared\Shared\Shared.csproj" />
+      <ProjectReference Include="..\Services.Abstractions\Applications.Services.Abstractions.csproj" />
+      <ProjectReference Include="..\Services\Applications.Services.csproj" />
+    </ItemGroup>
+
+</Project>
