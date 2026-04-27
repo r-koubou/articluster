@@ -68,12 +68,8 @@ on:
 #--------------------------------------------------------------
 jobs:
   build-csproj:
-    name: build (${{ matrix.build_configuration }})
+    name: build (${{ inputs.configuration }})
     runs-on: ubuntu-latest
-    strategy:
-      fail-fast: false
-      matrix:
-        build_configuration: [Debug, Release]
     env:
       DOTNET_SDK_VERSION: ${{ vars.DOTNET_SDK_VERSION }}
       DOTNET_CLI_TELEMETRY_OPTOUT: 1
@@ -82,7 +78,7 @@ jobs:
       CSPROJ_FILENAME: ${{ inputs.csproject_filename }}
       BASE_DIR: ${{ github.workspace }}/${{ inputs.base_dir }}
       PUBLISH_DIRNAME: publish
-      BUILD_CONFIGURATION: ${{ matrix.build_configuration }}
+      BUILD_CONFIGURATION: ${{ inputs.configuration }}
 
     steps:
     - name: Show workflow inputs
@@ -95,7 +91,7 @@ jobs:
           echo "|ref| ${{ github.ref }}|"
           echo "|Commit SHA| ${{ github.sha }}|"
           echo "|Version|${{ inputs.version }}|"
-          echo "|Channel|${{ inputs.channel }}|"
+          echo "|Configuration|${{ inputs.configuration }}|"
           echo "|Prefix|${{ inputs.prefix }}|"
           echo "|Base Directory|${{ inputs.base_dir }}|"
           echo "|csproj Filename|${{ inputs.csproject_filename }}|"
@@ -103,12 +99,12 @@ jobs:
         } >> $GITHUB_STEP_SUMMARY
 
     #----------------------------------------------------------
-    # Guard - tag build must be release channel
+    # Guard - tag build must be Release Configuration
     #----------------------------------------------------------
-    - name: Guard - tag build must be release channel
-      if: ${{ inputs.channel == 'release' && !startsWith(github.ref, 'refs/tags/v') }}
+    - name: Guard - tag build must be Release Configuration
+      if: ${{ inputs.configuration == 'Release' && !startsWith(github.ref, 'refs/tags/v') }}
       run: |
-        echo "::error::Must use channel=release when building from tag/v*"
+        echo "::error::Must use configuration=Release when building from tag/v*"
         exit 1
 
     #----------------------------------------------------------
@@ -160,7 +156,7 @@ jobs:
     #----------------------------------------------------------
     - name: Setup the artifact name
       run: |
-        echo "ARTIFACT_NAME=${{ env.PREFIX }}-${{ env.BUILD_CONFIGURATION }}-v${{ env.BUILD_VERSION }}-${{ inputs.channel }}" >> $GITHUB_ENV
+        echo "ARTIFACT_NAME=${{ env.PREFIX }}-${{ env.BUILD_CONFIGURATION }}-v${{ env.BUILD_VERSION }}-${{ inputs.configuration }}" >> $GITHUB_ENV
 
     - name: Show the artifact name
       run: |
@@ -239,12 +235,11 @@ jobs:
     - name: Create Version information file
       run: |
         mkdir -p ${{ env.PUBLISH_DIR }}
-        echo "Build channel: ${{ inputs.channel }}" > ${{ env.VERSION_INFO_PATH }}
+        echo "Build Configuration: ${{ env.BUILD_CONFIGURATION }}" >> ${{ env.VERSION_INFO_PATH }}
         echo "Build date: $(date)" >> ${{ env.VERSION_INFO_PATH }}
         echo "Version: ${{ env.BUILD_VERSION }}" >> ${{ env.VERSION_INFO_PATH }}
         echo "Branch: ${{ github.ref_name }}" >> ${{ env.VERSION_INFO_PATH }}
         echo "Commit: ${{ github.sha }}" >> ${{ env.VERSION_INFO_PATH }}
-        echo "Build Configuration: ${{ env.BUILD_CONFIGURATION }}" >> ${{ env.VERSION_INFO_PATH }}
 
     - name: Show Version information file
       run: |

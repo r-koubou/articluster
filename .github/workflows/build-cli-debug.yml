@@ -20,5 +20,5 @@ jobs:
     with:
       configuration: Debug
       prefix: articluster-cli
-      base_dir: "articluster/articluster/Applications/Cli"
+      base_dir: "articluster/Applications/Cli"
       csproject_filename: "Applications.Cli.csproj"

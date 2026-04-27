@@ -1,15 +1,12 @@
-name: Build articluster-cli (Debug)
+name: Build articluster-cli (Release)
 
 on:
   pull_request:
     branches:
-      - develop
+      - main
   push:
-    branches:
-      - develop
-      - feature/**
-      - fix/**
-      - refactor/**
+    tags:
+      - 'v*'
 
   workflow_dispatch:
     inputs:
@@ -23,5 +20,5 @@ jobs:
     with:
       configuration: Release
       prefix: articluster-cli
-      base_dir: "articluster/articluster/Applications/Cli"
+      base_dir: "articluster/Applications/Cli"
       csproject_filename: "Applications.Cli.csproj"
