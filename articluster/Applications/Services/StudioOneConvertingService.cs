@@ -1,0 +1,65 @@
+using System.IO;
+using System.Threading;
+using System.Threading.Tasks;
+
+using ArtiCluster.Applications.Services.Abstractions;
+using ArtiCluster.Commons;
+using ArtiCluster.Features.StudioOne.KeySwitchDefinitions.Facades;
+using ArtiCluster.Shared.Domain.UniversalDefinitions;
+using ArtiCluster.Shared.IO.Local;
+
+namespace ArtiCluster.Applications.Services;
+
+public sealed class StudioOneConvertingService( string outputBaseDirectory ) : IConvertingService
+{
+    public string TargetDawName
+        => "Studio One";
+
+    public async Task<Result<Unit, ConvertReason>> ConvertAsync( UniversalDefinitionProductCollection definitions, CancellationToken cancellationToken = default )
+    {
+        // Export
+        foreach( var x in definitions.Items )
+        {
+            var outputDirectory = MakeStudioOneOutputDirectory( outputBaseDirectory, x );
+            var outputPath = MakeStudioOneOutputPath( outputDirectory, x );
+
+            Directory.CreateDirectory( outputDirectory );
+
+            await using var writer = new LocalTextContentWriter( outputPath );
+            var studioOneFacade = new StudioOneDefinitionFacade();
+            var exportResult = await studioOneFacade.ExportAsync( writer, x, cancellationToken );
+
+            if( exportResult.IsFailure )
+            {
+                return Result<Unit, ConvertReason>.Failure(
+                    exportResult.Reason switch
+                    {
+                        ExportReason.SerializationError => ConvertReason.SerializationError,
+                        ExportReason.IoError            => ConvertReason.IoError,
+                        _                               => ConvertReason.OtherError
+                    }
+                );
+            }
+        }
+
+        return Result<Unit, ConvertReason>.Success( Unit.Default );
+    }
+
+    private static string MakeStudioOneOutputDirectory( string baseDirectory, UniversalDefinitionProductSet definitions )
+    {
+        return Path.Combine(
+            baseDirectory,
+            "StudioOne",
+            definitions.ManufacturerName.Value,
+            definitions.ProductName.Value
+        );
+    }
+
+    private static string MakeStudioOneOutputPath( string baseDirectory, UniversalDefinitionProductSet definitions )
+    {
+        return Path.Combine(
+            baseDirectory,
+            definitions.ProductName.Value + ".keyswitch"
+        );
+    }
+}

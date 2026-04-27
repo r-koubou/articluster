@@ -1,4 +1,12 @@
 <Solution>
+  <Folder Name="/Applications/">
+    <Project Path="Applications/Services/Applications.Services.csproj" />
+    <Project Path="Applications\Services.Abstractions\Applications.Services.Abstractions.csproj" />
+  </Folder>
+  <Folder Name="/Applications/CLI/">
+    <Project Path="Applications\Cli.Tests\Applications.Cli.Tests.csproj" />
+    <Project Path="Applications\Cli\Applications.Cli.csproj" />
+  </Folder>
   <Folder Name="/Commons/">
     <Project Path="Commons/Commons.csproj" />
   </Folder>
