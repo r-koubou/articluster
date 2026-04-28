@@ -19,14 +19,14 @@ uv sync
 
 ### ⚠️ If `universal-definition-schema.json` updated
 
-- [universal-definition-schema.json](../../articluster/Features/UniversalDefinitions/Documents/schema/universal-definition-schema.json) is here.
-    - `=/articluster/Features/UniversalDefinitions/Documents/schema/universal-definition-schema.json`
+- [universal-definition-schema.json is here.](../../docs/specs/universal-definition/universal-definition-schema.json)
+    - =`/docs/specs/universal-definition/universal-definition-schema.json`
 
 - Update the `target.py` with https://app.quicktype.io/
 
 ### Modify order of keys in to_dict method at `target.py`
 
-To preserve the order of keys in the Articluster YAML file, you will need to manually modify the code as follows.
+To preserve the order of keys in the ArtiCluster YAML file, you will need to manually modify the code as follows.
 
 1. Coordinate.to_dict
 
