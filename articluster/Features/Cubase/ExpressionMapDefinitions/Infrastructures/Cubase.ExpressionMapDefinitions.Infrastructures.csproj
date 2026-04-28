@@ -14,7 +14,9 @@
     <ItemGroup>
       <ProjectReference Include="..\..\..\..\Commons\Commons.csproj" />
       <ProjectReference Include="..\..\..\..\Shared\Shared.IO.Abstractions\Shared.IO.Abstractions.csproj" />
+      <ProjectReference Include="..\..\..\..\Shared\Shared.IO.Local\Shared.IO.Local.csproj" />
       <ProjectReference Include="..\..\..\..\Shared\Shared\Shared.csproj" />
+      <ProjectReference Include="..\Gateways\Cubase.ExpressionMapDefinitions.Gateways.csproj" />
     </ItemGroup>
 
 </Project>
