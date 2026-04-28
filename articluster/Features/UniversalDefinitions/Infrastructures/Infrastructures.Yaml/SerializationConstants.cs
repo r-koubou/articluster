@@ -6,7 +6,7 @@ internal static class SerializationConstants
 {
     public static readonly ISerializer DefaultSerializer
         = new SerializerBuilder()
-         .ConfigureDefaultValuesHandling( DefaultValuesHandling.OmitEmptyCollections | DefaultValuesHandling.OmitDefaults )
+         .ConfigureDefaultValuesHandling( DefaultValuesHandling.Preserve )
          .Build();
 
     public static readonly IDeserializer DefaultDeserializer

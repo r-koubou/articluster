@@ -1,9 +1,6 @@
 using System;
 using System.Collections.Generic;
 
-using YamlDotNet.Core;
-using YamlDotNet.Serialization;
-
 // ReSharper disable UnusedAutoPropertyAccessor.Global
 // ReSharper disable AutoPropertyCanBeMadeGetOnly.Global
 // ReSharper disable CollectionNeverQueried.Global
@@ -22,7 +19,6 @@ internal class UniversalDefinitionModel
 
     public string PatchName { get; set; } = string.Empty;
 
-    [YamlMember( ScalarStyle = ScalarStyle.Literal )]
     public string Description { get; set; } = string.Empty;
 
     public List<ArticulationModel> Articulations { get; set; } = new();
