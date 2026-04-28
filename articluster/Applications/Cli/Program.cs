@@ -15,7 +15,7 @@ services.AddTransient<ConvertingCommandExecutor>();
 services.AddTransient<ILocalFileConvertingService, CubaseLocalFileConvertingService>();
 services.AddTransient<ILocalFileConvertingService, StudioOneLocalFileConvertingService>();
 
-var serviceProvider = services.BuildServiceProvider();
+using var serviceProvider = services.BuildServiceProvider();
 
 var root = new RootCommand
 {
