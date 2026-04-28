@@ -67,10 +67,10 @@ public sealed class StudioOneConvertingService( string outputBaseDirectory ) : I
         );
     }
 
-    private static string MakeStudioOneOutputPath( string baseDirectory, UniversalDefinitionProductSet definitions )
+    private static string MakeStudioOneOutputPath( string outputDirectory, UniversalDefinitionProductSet definitions )
     {
         return Path.Combine(
-            baseDirectory,
+            outputDirectory,
             definitions.ProductName.Value + ".keyswitch"
         );
     }
