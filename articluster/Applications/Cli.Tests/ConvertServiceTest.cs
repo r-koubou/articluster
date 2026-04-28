@@ -48,8 +48,8 @@ public class ConvertServiceTest
             "converted"
         );
 
-        var convertService = new CubaseLocalFileConvertingService( outputBaseDir );
-        var convertResult = await convertService.ConvertAsync( definitions );
+        var convertService = new CubaseLocalFileConvertingService();
+        var convertResult = await convertService.ConvertAsync( outputBaseDir, definitions );
 
         Assert.That( convertResult.IsSuccess, Is.True );
     }
@@ -75,8 +75,8 @@ public class ConvertServiceTest
             "converted"
         );
 
-        var convertService = new StudioOneLocalFileConvertingService( outputBaseDir );
-        var convertResult = await convertService.ConvertAsync( definitions );
+        var convertService = new StudioOneLocalFileConvertingService();
+        var convertResult = await convertService.ConvertAsync( outputBaseDir, definitions );
 
         Assert.That( convertResult.IsSuccess, Is.True );
     }

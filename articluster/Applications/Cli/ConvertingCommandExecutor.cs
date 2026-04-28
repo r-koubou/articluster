@@ -12,6 +12,14 @@ namespace ArtiCluster.Applications.Cli;
 
 internal sealed class ConvertingCommandExecutor : ICommandExecutor
 {
+    private readonly IEnumerable<ILocalFileConvertingService> services;
+
+    // ReSharper disable once ConvertToPrimaryConstructor
+    public ConvertingCommandExecutor( IEnumerable<ILocalFileConvertingService> services )
+    {
+        this.services = services;
+    }
+
     public Command CreateCommand()
     {
         var inputDirectoryArgument = new Argument<string>( "input-dir" );
@@ -45,20 +53,14 @@ internal sealed class ConvertingCommandExecutor : ICommandExecutor
                     return 1;
                 }
 
-                var convertingServices = new List<IConvertingService>
-                {
-                    new CubaseLocalFileConvertingService( outputDirectory ),
-                    new StudioOneLocalFileConvertingService( outputDirectory )
-                };
-
-                return await ExecuteAsync( inputDirectory, convertingServices );
+                return await ExecuteAsync( inputDirectory,  outputDirectory, services );
             }
         );
 
         return command;
     }
 
-    private static async Task<int> ExecuteAsync( string inputDirectory, IReadOnlyCollection<IConvertingService> convertingServices, CancellationToken cancellationToken = default )
+    private static async Task<int> ExecuteAsync( string inputDirectory, string outputBaseDirectory, IEnumerable<ILocalFileConvertingService> convertingServices, CancellationToken cancellationToken = default )
     {
         var importService = new BulkImportUniversalDefinitionService();
         var importResult = await importService.ImportAsync( inputDirectory, cancellationToken );
@@ -74,7 +76,7 @@ internal sealed class ConvertingCommandExecutor : ICommandExecutor
         {
             await Console.Out.WriteLineAsync( $"Converting to \"{service.TargetDawName}\" format..." );
 
-            var convertResult = await service.ConvertAsync( importResult.Unwrap(), cancellationToken );
+            var convertResult = await service.ConvertAsync( outputBaseDirectory, importResult.Unwrap(), cancellationToken );
 
             if( !convertResult.IsFailure )
             {

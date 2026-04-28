@@ -11,12 +11,12 @@ using ArtiCluster.Shared.IO.Local;
 
 namespace ArtiCluster.Applications.Services;
 
-public sealed class StudioOneLocalFileConvertingService( string outputBaseDirectory ) : IConvertingService
+public sealed class StudioOneLocalFileConvertingService : ILocalFileConvertingService
 {
     public string TargetDawName
         => "Studio One";
 
-    public async Task<Result<Unit, ConvertReason>> ConvertAsync( UniversalDefinitionProductCollection definitions, CancellationToken cancellationToken = default )
+    public async Task<Result<Unit, ConvertReason>> ConvertAsync( string outputBaseDirectory, UniversalDefinitionProductCollection definitions, CancellationToken cancellationToken = default )
     {
         // Export
         foreach( var x in definitions.Items )

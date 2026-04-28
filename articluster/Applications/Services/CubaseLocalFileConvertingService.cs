@@ -12,18 +12,18 @@ using ArtiCluster.Shared.IO.Local;
 
 namespace ArtiCluster.Applications.Services;
 
-public sealed class CubaseLocalFileConvertingService( string outputBaseDirectory ) : IConvertingService
+public sealed class CubaseLocalFileConvertingService : ILocalFileConvertingService
 {
     public string TargetDawName
         => "Cubase";
 
-    public async Task<Result<Unit, ConvertReason>> ConvertAsync( UniversalDefinitionProductCollection definitions, CancellationToken cancellationToken = default )
+    public async Task<Result<Unit, ConvertReason>> ConvertAsync( string outputBaseDirectory, UniversalDefinitionProductCollection definitions, CancellationToken cancellationToken = default )
     {
         foreach( var productSet in definitions.Items )
         {
             foreach( var definition in productSet.Items )
             {
-                var result = await ConvertImplAsync( definition, cancellationToken );
+                var result = await ConvertImplAsync( outputBaseDirectory, definition, cancellationToken );
 
                 if( result.IsFailure )
                 {
@@ -36,6 +36,7 @@ public sealed class CubaseLocalFileConvertingService( string outputBaseDirectory
     }
 
     private async Task<Result<Unit, ConvertReason>> ConvertImplAsync(
+        string outputBaseDirectory,
         UniversalDefinition definition,
         CancellationToken cancellationToken = default )
     {
