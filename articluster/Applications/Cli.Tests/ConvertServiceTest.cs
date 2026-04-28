@@ -28,15 +28,42 @@ public class ConvertServiceTest
     }
 
     [Test]
-    public async Task ConvertTest()
+    public async Task ConvertCubaseTest()
     {
         var inputBaseDir = Path.Combine(
             TestUtility.TestDataDirectoryRoot,
             "Acme Corp"
         );
 
-        var service = new BulkImportUniversalDefinitionService();
-        var importResult = await service.ImportAsync( inputBaseDir );
+        var importService = new BulkImportUniversalDefinitionService();
+        var importResult = await importService.ImportAsync( inputBaseDir );
+
+        Assert.That( importResult.IsSuccess, Is.True );
+
+        var definitions = importResult.Unwrap();
+        Assert.That( definitions.Count, Is.EqualTo( 1 ) );
+
+        var outputBaseDir = Path.Combine(
+            TestUtility.TestDataDirectoryRoot,
+            "converted"
+        );
+
+        var convertService = new CubaseLocalFileConvertingService( outputBaseDir );
+        var convertResult = await convertService.ConvertAsync( definitions );
+
+        Assert.That( convertResult.IsSuccess, Is.True );
+    }
+
+    [Test]
+    public async Task ConvertStudioOneTest()
+    {
+        var inputBaseDir = Path.Combine(
+            TestUtility.TestDataDirectoryRoot,
+            "Acme Corp"
+        );
+
+        var importService = new BulkImportUniversalDefinitionService();
+        var importResult = await importService.ImportAsync( inputBaseDir );
 
         Assert.That( importResult.IsSuccess, Is.True );
 
@@ -53,5 +80,4 @@ public class ConvertServiceTest
 
         Assert.That( convertResult.IsSuccess, Is.True );
     }
-
 }
