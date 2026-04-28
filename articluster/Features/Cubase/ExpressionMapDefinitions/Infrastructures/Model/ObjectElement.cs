@@ -36,11 +36,10 @@ namespace ArtiCluster.Features.Cubase.ExpressionMapDefinitions.Infrastructures.M
         [SuppressMessage( "ReSharper", "UnusedMember.Global" )]
         public ObjectElement() : this( string.Empty ) {}
 
+        // ReSharper disable once ConvertToPrimaryConstructor
         public ObjectElement( string className )
         {
-            var guid = Guid.NewGuid().ToString();
-            var hex = guid.Split( '-' )[ 0 ];
-            Id        = ( Convert.ToInt32( hex, 16 ) & 0x7FFFFFF ).ToString();
+            Id = ( BitConverter.ToUInt32( Guid.NewGuid().ToByteArray(), 0 ) & 0x7FFFFFFF ).ToString();
             ClassName = className ?? throw new ArgumentNullException( nameof( className ) );
         }
     }

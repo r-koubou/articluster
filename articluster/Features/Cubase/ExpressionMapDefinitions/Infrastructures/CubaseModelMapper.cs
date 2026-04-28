@@ -168,6 +168,12 @@ public sealed class CubaseModelMapper : IModelMapper<RootElement>
             foreach( var slotName in slotNames )
             {
                 var key = slotName.Trim();
+                
+                if( key.Length == 0 )
+                {
+                    continue;
+                }
+
                 AddArticulation( result, key, articulation );
             }
         }

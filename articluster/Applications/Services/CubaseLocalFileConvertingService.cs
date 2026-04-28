@@ -79,7 +79,7 @@ public sealed class CubaseLocalFileConvertingService : ILocalFileConvertingServi
     {
         return Path.Combine(
             baseDirectory,
-            "Cuabase",
+            "Cubase",
             definition.ManufacturerName.Value,
             definition.ProductName.Value
         );
