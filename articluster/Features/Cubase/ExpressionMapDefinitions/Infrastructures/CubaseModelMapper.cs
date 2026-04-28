@@ -4,9 +4,10 @@ using ArtiCluster.Commons;
 using ArtiCluster.Features.Cubase.ExpressionMapDefinitions.Gateways;
 using ArtiCluster.Features.Cubase.ExpressionMapDefinitions.Infrastructures.Model;
 using ArtiCluster.Features.Cubase.ExpressionMapDefinitions.Infrastructures.Model.XmlClasses;
+using ArtiCluster.Shared.Domain.MidiMessages.Model.Values;
 using ArtiCluster.Shared.Domain.UniversalDefinitions.Model;
 
-namespace ArtiCluster.Features.Cubase.ExpressionMapDefinitions.Infrastructures.Tests;
+namespace ArtiCluster.Features.Cubase.ExpressionMapDefinitions.Infrastructures;
 
 public sealed class CubaseModelMapper : IModelMapper<RootElement>
 {
@@ -217,8 +218,8 @@ public sealed class CubaseModelMapper : IModelMapper<RootElement>
         foreach( var message in articulation.MidiMessages )
         {
             var status = message.Status.Value;
-            var data1 = message.Data1.Value;
-            var data2 = message.Data2.Value;
+            int? data1 = message.Data1 == MidiDataByte.None ? null : message.Data1.Value;
+            int? data2 = message.Data2 == MidiDataByte.None ? null : message.Data2.Value;
             listOfPOutputEvent.Obj.Add( POutputEvent.New( status, data1, data2 ) );
         }
     }

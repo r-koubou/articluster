@@ -2,7 +2,7 @@ namespace ArtiCluster.Features.Cubase.ExpressionMapDefinitions.Infrastructures.M
 {
     public static class POutputEvent
     {
-        public static ObjectElement New( int midiStatus, int data1, int data2 )
+        public static ObjectElement New( int midiStatus, int? data1 = null, int? data2 = null )
         {
             /*
             <obj class="POutputEvent" ID="4196276652">
@@ -14,8 +14,16 @@ namespace ArtiCluster.Features.Cubase.ExpressionMapDefinitions.Infrastructures.M
             var obj = new ObjectElement( "POutputEvent" );
 
             obj.Int.Add( new IntElement( "status", midiStatus ) );
-            obj.Int.Add( new IntElement( "data1",  data1 ) );
-            obj.Int.Add( new IntElement( "data2",  data2 ) );
+
+            if( data1 != null )
+            {
+                obj.Int.Add( new IntElement( "data1", data1.Value ) );
+            }
+
+            if( data2 != null )
+            {
+                obj.Int.Add( new IntElement( "data2", data2.Value ) );
+            }
 
             return obj;
         }

@@ -13,7 +13,7 @@ using ArtiCluster.Features.Cubase.ExpressionMapDefinitions.Infrastructures.Model
 using ArtiCluster.Shared.Domain.UniversalDefinitions.Model;
 using ArtiCluster.Shared.IO.Abstractions;
 
-namespace ArtiCluster.Features.Cubase.ExpressionMapDefinitions.Infrastructures.Tests;
+namespace ArtiCluster.Features.Cubase.ExpressionMapDefinitions.Infrastructures;
 
 public sealed class CubaseExporter : IDefinitionExporter
 {
@@ -41,7 +41,7 @@ public sealed class CubaseExporter : IDefinitionExporter
                 Async  = true
             };
 
-            await using var xmlWriter = XmlWriter.Create( stringWriter, xmlWriterSettings );
+            using var xmlWriter = XmlWriter.Create( stringWriter, xmlWriterSettings );
             serializer.Serialize( xmlWriter, mapResult.Unwrap(), xmlNamespaces );
 
             await writer.WriteAsync( stringWriter.ToString(), cancellationToken );
