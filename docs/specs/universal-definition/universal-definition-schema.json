@@ -43,17 +43,16 @@
         "ManufacturerName",
         "ProductName",
         "PatchName",
-        "Description",
         "Articulations"
       ],
       "examples": [
         {
           "Id": "34023d3f-30b0-4646-90e8-5d2978d09d43",
-          "Author": "r-koubou",
-          "ManufacturerName": "r-koubou",
-          "ProductName": "My Guitar",
-          "PatchName": "My Guitar 1",
-          "Description": "This is my guitar articulation.",
+          "Author": "R-Koubou",
+          "ManufacturerName": "Acme Corp",
+          "ProductName": "Super Guitar",
+          "PatchName": "Guitar 1",
+          "Description": "Guitar 1 articulation.",
           "Articulations": [
             {
               "Name": "Sustain",
