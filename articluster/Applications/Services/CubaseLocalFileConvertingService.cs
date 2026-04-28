@@ -78,7 +78,7 @@ public sealed class CubaseLocalFileConvertingService( string outputBaseDirectory
     {
         return Path.Combine(
             baseDirectory,
-            TargetDawName,
+            "Cuabase",
             definition.ManufacturerName.Value,
             definition.ProductName.Value
         );
