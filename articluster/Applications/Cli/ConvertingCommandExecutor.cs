@@ -33,14 +33,14 @@ internal sealed class ConvertingCommandExecutor : ICommandExecutor
 
                 if( Directory.Exists( outputDirectory ) )
                 {
-                    await Console.Error.WriteLineAsync( "Output directory already exists." );
+                    await Console.Error.WriteLineAsync( $"Output directory already exists. ({outputDirectory})" );
 
                     return 1;
                 }
 
                 if( inputDirectory == outputDirectory )
                 {
-                    await Console.Error.WriteLineAsync( "Input and Output paths cannot be the same." );
+                    await Console.Error.WriteLineAsync( $"Input and Output paths cannot be the same. ({outputDirectory})" );
 
                     return 1;
                 }
