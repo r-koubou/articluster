@@ -48,7 +48,7 @@ internal sealed class ConvertingCommandExecutor : ICommandExecutor
                 var convertingServices = new List<IConvertingService>
                 {
                     new CubaseLocalFileConvertingService( outputDirectory ),
-                    new StudioOneConvertingService( outputDirectory )
+                    new StudioOneLocalFileConvertingService( outputDirectory )
                 };
 
                 return await ExecuteAsync( inputDirectory, convertingServices );

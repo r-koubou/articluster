@@ -75,7 +75,7 @@ public class ConvertServiceTest
             "converted"
         );
 
-        var convertService = new StudioOneConvertingService( outputBaseDir );
+        var convertService = new StudioOneLocalFileConvertingService( outputBaseDir );
         var convertResult = await convertService.ConvertAsync( definitions );
 
         Assert.That( convertResult.IsSuccess, Is.True );

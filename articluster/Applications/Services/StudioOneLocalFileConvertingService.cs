@@ -11,7 +11,7 @@ using ArtiCluster.Shared.IO.Local;
 
 namespace ArtiCluster.Applications.Services;
 
-public sealed class StudioOneConvertingService( string outputBaseDirectory ) : IConvertingService
+public sealed class StudioOneLocalFileConvertingService( string outputBaseDirectory ) : IConvertingService
 {
     public string TargetDawName
         => "Studio One";
