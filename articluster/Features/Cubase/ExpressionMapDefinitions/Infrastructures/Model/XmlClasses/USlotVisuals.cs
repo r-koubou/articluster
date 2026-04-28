@@ -1,3 +1,5 @@
+using ArtiCluster.Shared.Domain.UniversalDefinitions.Model;
+
 namespace ArtiCluster.Features.Cubase.ExpressionMapDefinitions.Infrastructures.Model.XmlClasses
 {
     public static class USlotVisuals
@@ -24,6 +26,17 @@ namespace ArtiCluster.Features.Cubase.ExpressionMapDefinitions.Infrastructures.M
 
             return obj;
 
+        }
+
+        public static ObjectElement New( Articulation articulation, int symbol, int articulationType, int group )
+        {
+            return New(
+                articulation.Name.Value,
+                articulation.Name.Value,
+                symbol,
+                articulationType,
+                group
+            );
         }
     }
 }

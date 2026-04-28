@@ -49,18 +49,12 @@ public sealed class CubaseModelMapper : IModelMapper<RootElement>
     {
         var listOfUSlotVisuals = new ListElement();
 
-        foreach( var i in source.Articulations )
+        foreach( var articulation in source.Articulations )
         {
-            var type = ConvertArticulationType( i.Extra.GetValueOrDefault( ExtraDataKeys.ArticulationType, string.Empty ) );
-            var group = ConvertArticulationGroup( i.Extra.GetValueOrDefault( ExtraDataKeys.GroupIndex, string.Empty ) );
+            var type = ConvertArticulationType( articulation.Extra.GetValueOrDefault( ExtraKeys.ArticulationType, string.Empty ) );
+            var group = ConvertArticulationGroup( articulation.Extra.GetValueOrDefault( ExtraKeys.GroupIndex, string.Empty ) );
 
-            var slotVisual = USlotVisuals.New(
-                i.Name.Value,
-                i.Name.Value,
-                0,
-                type,
-                @group
-            );
+            var slotVisual = USlotVisuals.New( articulation, 0, type, group );
             listOfUSlotVisuals.Obj.Add( slotVisual );
         }
 
@@ -93,8 +87,8 @@ public sealed class CubaseModelMapper : IModelMapper<RootElement>
 
             // PSoundSlot.color
             // TODO アーティキュレーション変数にアクセスできないため、 ExtraData の Color を参照できず
-            //pSoundSlot.Int.Add( new IntElement( "color", ConvertColorIndex( ....[ExtraDataKeys.Color] ) ) );
-            pSoundSlot.Int.Add( new IntElement( "color", 1 ) );
+            //pSoundSlot.Int.Add( new IntElement( "color", ConvertColorIndex( ....[ExtraKeys.Color] ) ) );
+            pSoundSlot.Int.Add( new IntElement( "color", ExtraKeys.DefaultColorIndex ) );
 
             // Aggregate
             listOfPSoundSlot.Obj.Add( pSoundSlot );
@@ -120,9 +114,9 @@ public sealed class CubaseModelMapper : IModelMapper<RootElement>
         // PSoundSlot -> PSlotMidiAction -> POutputEvent
         var listOfPOutputEvent = new ListElement();
 
-        foreach( var i in articulations )
+        foreach( var articulation in articulations )
         {
-            ConvertOutputMappings( i, listOfPOutputEvent );
+            ConvertOutputMappings( articulation, listOfPOutputEvent );
         }
 
         return listOfPOutputEvent;
@@ -135,18 +129,10 @@ public sealed class CubaseModelMapper : IModelMapper<RootElement>
 
         foreach( var articulation in articulations )
         {
-            var type = ConvertArticulationType( articulation.Extra.GetValueOrDefault( ExtraDataKeys.ArticulationType, string.Empty ) );
-            var group = ConvertArticulationGroup( articulation.Extra.GetValueOrDefault( ExtraDataKeys.GroupIndex, string.Empty ) );
+            var type = ConvertArticulationType( articulation.Extra.GetValueOrDefault( ExtraKeys.ArticulationType, string.Empty ) );
+            var group = ConvertArticulationGroup( articulation.Extra.GetValueOrDefault( ExtraKeys.GroupIndex, string.Empty ) );
 
-            slotVisualList.Add(
-                USlotVisuals.New(
-                    articulation.Name.Value,
-                    articulation.Name.Value,
-                    0,
-                    type,
-                    @group
-                )
-            );
+            slotVisualList.Add( USlotVisuals.New( articulation, 0, type, group ) );
         }
 
         return slotVisualList;
@@ -169,7 +155,7 @@ public sealed class CubaseModelMapper : IModelMapper<RootElement>
         foreach( var articulation in source.Articulations )
         {
             // use an articulation name as slot name if user does not define a slot name
-            if( !articulation.Extra.TryGetValue( ExtraDataKeys.SlotName, out var extraValue ) )
+            if( !articulation.Extra.TryGetValue( ExtraKeys.SlotName, out var extraValue ) )
             {
                 AddArticulation( result, articulation.Name.Value, articulation );
 
