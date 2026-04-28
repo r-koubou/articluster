@@ -13,8 +13,13 @@ public enum ConvertReason
     OtherError
 }
 
-public interface IConvertingService
+public interface ILocalFileConvertingService
 {
     string TargetDawName { get; }
-    Task<Result<Unit, ConvertReason>> ConvertAsync( UniversalDefinitionProductCollection definitions, CancellationToken cancellationToken = default );
+
+    Task<Result<Unit, ConvertReason>> ConvertAsync(
+        string outputBaseDirectory,
+        UniversalDefinitionProductCollection definitions,
+        CancellationToken cancellationToken = default
+    );
 }

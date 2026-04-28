@@ -11,6 +11,13 @@
     <Project Path="Commons/Commons.csproj" />
   </Folder>
   <Folder Name="/Features/" />
+  <Folder Name="/Features/Cubase.ExpressionMapDefinitions/">
+    <Project Path="Features/Cubase/ExpressionMapDefinitions/Facades/Cubase.ExpressionMapDefinitions.Facades.csproj" />
+    <Project Path="Features/Cubase/ExpressionMapDefinitions/Gateways/Cubase.ExpressionMapDefinitions.Gateways.csproj" />
+    <Project Path="Features/Cubase/ExpressionMapDefinitions/Infrastructures.Tests/Cubase.ExpressionMapDefinitions.Infrastructures.Tests.csproj" />
+    <Project Path="Features/Cubase/ExpressionMapDefinitions/Infrastructures/Cubase.ExpressionMapDefinitions.Infrastructures.csproj" />
+    <Project Path="Features/Cubase/ExpressionMapDefinitions/UseCases/Cubase.ExpressionMapDefinitions.UseCases.csproj" />
+  </Folder>
   <Folder Name="/Features/StudioOne.KeySwitchDefinitions/">
     <Project Path="Features/StudioOne/KeySwitchDefinitions/Facades/StudioOne.KeySwitchDefinitions.Facades.csproj" />
     <Project Path="Features/StudioOne/KeySwitchDefinitions/Gateways/StudioOne.KeySwitchDefinitions.Gateways.csproj" />

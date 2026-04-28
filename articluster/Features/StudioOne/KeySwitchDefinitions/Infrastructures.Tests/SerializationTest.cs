@@ -48,7 +48,8 @@ public class SerializationTest
         var stringWriter = new StringWriterWithEncoding( Encoding.UTF8 );
         var xmlWriterSettings = new XmlWriterSettings
         {
-            Indent = true
+            Indent = true,
+            Async = true
         };
 
         using var xmlWriter = XmlWriter.Create( stringWriter, xmlWriterSettings );
