@@ -11,4 +11,10 @@
         <RootNamespace>ArtiCluster.Features.Cubase.ExpressionMapDefinitions.UseCases</RootNamespace>
     </PropertyGroup>
 
+    <ItemGroup>
+      <ProjectReference Include="..\..\..\..\Commons\Commons.csproj" />
+      <ProjectReference Include="..\..\..\..\Shared\Shared\Shared.csproj" />
+      <ProjectReference Include="..\Gateways\Cubase.ExpressionMapDefinitions.Gateways.csproj" />
+    </ItemGroup>
+
 </Project>
