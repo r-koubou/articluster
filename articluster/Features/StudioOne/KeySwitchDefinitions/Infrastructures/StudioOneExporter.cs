@@ -60,5 +60,9 @@ public sealed class StudioOneExporter : IDefinitionExporter
         {
             return Result<Unit, ExportReason>.Failure( ExportReason.IoError, e );
         }
+        catch( Exception e )
+        {
+            return Result<Unit, ExportReason>.Failure( ExportReason.OtherError, e );
+        }
     }
 }

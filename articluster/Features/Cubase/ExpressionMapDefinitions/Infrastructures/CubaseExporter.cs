@@ -56,5 +56,9 @@ public sealed class CubaseExporter : IDefinitionExporter
         {
             return Result<Unit, ExportReason>.Failure( ExportReason.IoError, e );
         }
+        catch( Exception e )
+        {
+            return Result<Unit, ExportReason>.Failure( ExportReason.OtherError, e );
+        }
     }
 }

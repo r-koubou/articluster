@@ -5,31 +5,33 @@ using System.Threading.Tasks;
 
 using ArtiCluster.Applications.Services.Abstractions;
 using ArtiCluster.Commons;
-using ArtiCluster.Features.StudioOne.KeySwitchDefinitions.Facades;
+using ArtiCluster.Features.Cakewalk.ArticulationMapDefinitions.Facades;
 using ArtiCluster.Shared.Domain.UniversalDefinitions;
 using ArtiCluster.Shared.IO.Local;
 
+using ExportReason = ArtiCluster.Features.Cakewalk.ArticulationMapDefinitions.Facades.ExportReason;
+
 namespace ArtiCluster.Applications.Services;
 
-public sealed class StudioOneLocalFileConvertingService : ILocalFileConvertingService
+public sealed class CakewalkLocalFileConvertingService : ILocalFileConvertingService
 {
     public string TargetDawName
-        => "Studio One";
+        => "Cakewalk";
 
     public async Task<Result<Unit, ConvertReason>> ConvertAsync( string outputBaseDirectory, UniversalDefinitionProductCollection definitions, CancellationToken cancellationToken = default )
     {
         // Export
         foreach( var x in definitions.Items )
         {
-            var outputDirectory = MakeStudioOneOutputDirectory( outputBaseDirectory, x );
-            var outputPath = MakeStudioOneOutputPath( outputDirectory, x );
+            var outputDirectory = MakeOutputDirectory( outputBaseDirectory, x );
+            var outputPath = MakeOutputPath( outputDirectory, x );
 
             try
             {
                 Directory.CreateDirectory( outputDirectory );
 
                 await using var writer = new LocalTextContentWriter( outputPath );
-                var facade = new StudioOneDefinitionFacade();
+                var facade = new CakewalkDefinitionFacade();
                 var exportResult = await facade.ExportAsync( writer, x, cancellationToken );
 
                 if( exportResult.IsFailure )
@@ -57,21 +59,21 @@ public sealed class StudioOneLocalFileConvertingService : ILocalFileConvertingSe
         return Result<Unit, ConvertReason>.Success( Unit.Default );
     }
 
-    private static string MakeStudioOneOutputDirectory( string baseDirectory, UniversalDefinitionProductSet definitions )
+    private static string MakeOutputDirectory( string baseDirectory, UniversalDefinitionProductSet definitions )
     {
         return Path.Combine(
             baseDirectory,
-            "StudioOne",
+            "Cakewalk",
             definitions.ManufacturerName.Value,
             definitions.ProductName.Value
         );
     }
 
-    private static string MakeStudioOneOutputPath( string outputDirectory, UniversalDefinitionProductSet definitions )
+    private static string MakeOutputPath( string outputDirectory, UniversalDefinitionProductSet definitions )
     {
         return Path.Combine(
             outputDirectory,
-            definitions.ProductName.Value + ".keyswitch"
+            definitions.ProductName.Value + ".artmap"
         );
     }
 }

@@ -11,6 +11,13 @@
     <Project Path="Commons/Commons.csproj" />
   </Folder>
   <Folder Name="/Features/" />
+  <Folder Name="/Features/Cakewalk.ArticulationMapDefinitions/">
+    <Project Path="Features/Cakewalk/ArticulationMapDefinitions/Facades/Cakewalk.ArticulationMapDefinitions.Facades.csproj" />
+    <Project Path="Features/Cakewalk/ArticulationMapDefinitions/Gateways/Cakewalk.ArticulationMapDefinitions.Gateways.csproj" />
+    <Project Path="Features/Cakewalk/ArticulationMapDefinitions/Infrastructures.Tests/Cakewalk.ArticulationMapDefinitions.Infrastructures.Tests.csproj" />
+    <Project Path="Features/Cakewalk/ArticulationMapDefinitions/Infrastructures/Cakewalk.ArticulationMapDefinitions.Infrastructures.csproj" />
+    <Project Path="Features/Cakewalk/ArticulationMapDefinitions/UseCases/Cakewalk.ArticulationMapDefinitions.UseCases.csproj" />
+  </Folder>
   <Folder Name="/Features/Cubase.ExpressionMapDefinitions/">
     <Project Path="Features/Cubase/ExpressionMapDefinitions/Facades/Cubase.ExpressionMapDefinitions.Facades.csproj" />
     <Project Path="Features/Cubase/ExpressionMapDefinitions/Gateways/Cubase.ExpressionMapDefinitions.Gateways.csproj" />
