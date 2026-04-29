@@ -29,8 +29,8 @@ public sealed class StudioOneLocalFileConvertingService : ILocalFileConvertingSe
                 Directory.CreateDirectory( outputDirectory );
 
                 await using var writer = new LocalTextContentWriter( outputPath );
-                var studioOneFacade = new StudioOneDefinitionFacade();
-                var exportResult = await studioOneFacade.ExportAsync( writer, x, cancellationToken );
+                var facade = new StudioOneDefinitionFacade();
+                var exportResult = await facade.ExportAsync( writer, x, cancellationToken );
 
                 if( exportResult.IsFailure )
                 {

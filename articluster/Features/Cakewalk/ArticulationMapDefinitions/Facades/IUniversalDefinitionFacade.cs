@@ -14,7 +14,7 @@ public enum ExportReason
     OtherError
 }
 
-public interface IStudioOneDefinitionFacade
+public interface ICakewalkDefinitionFacade
 {
     public Task<Result<Unit, ExportReason>> ExportAsync(
         ITextContentWriter writer,

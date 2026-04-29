@@ -14,7 +14,7 @@ using GatewayReason = ArtiCluster.Features.Cakewalk.ArticulationMapDefinitions.G
 
 namespace ArtiCluster.Features.Cakewalk.ArticulationMapDefinitions.Facades;
 
-public sealed class CakewalkDefinitionFacade : IStudioOneDefinitionFacade
+public sealed class CakewalkDefinitionFacade : ICakewalkDefinitionFacade
 {
     public async Task<Result<Unit, ExportReason>> ExportAsync(
         ITextContentWriter writer,

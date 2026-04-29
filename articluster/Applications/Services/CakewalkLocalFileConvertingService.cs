@@ -31,8 +31,8 @@ public sealed class CakewalkLocalFileConvertingService : ILocalFileConvertingSer
                 Directory.CreateDirectory( outputDirectory );
 
                 await using var writer = new LocalTextContentWriter( outputPath );
-                var studioOneFacade = new CakewalkDefinitionFacade();
-                var exportResult = await studioOneFacade.ExportAsync( writer, x, cancellationToken );
+                var facade = new CakewalkDefinitionFacade();
+                var exportResult = await facade.ExportAsync( writer, x, cancellationToken );
 
                 if( exportResult.IsFailure )
                 {

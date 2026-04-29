@@ -48,8 +48,8 @@ public sealed class CubaseLocalFileConvertingService : ILocalFileConvertingServi
             Directory.CreateDirectory( outputDirectory );
 
             await using var writer = new LocalTextContentWriter( outputPath );
-            var cubaseFacade = new CubaseDefinitionFacade();
-            var exportResult = await cubaseFacade.ExportAsync( writer, definition, cancellationToken );
+            var facade = new CubaseDefinitionFacade();
+            var exportResult = await facade.ExportAsync( writer, definition, cancellationToken );
 
             if( exportResult.IsFailure )
             {
