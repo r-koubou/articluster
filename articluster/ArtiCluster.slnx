@@ -25,6 +25,13 @@
     <Project Path="Features/Cubase/ExpressionMapDefinitions/Infrastructures/Cubase.ExpressionMapDefinitions.Infrastructures.csproj" />
     <Project Path="Features/Cubase/ExpressionMapDefinitions/UseCases/Cubase.ExpressionMapDefinitions.UseCases.csproj" />
   </Folder>
+  <Folder Name="/Features/Logic.ArticulationSetDefinitions/">
+    <Project Path="Features/Logic/ArticulationSetDefinitions/Facades/Logic.ArticulationSetDefinitions.Facades.csproj" />
+    <Project Path="Features/Logic/ArticulationSetDefinitions/Gateways/Logic.ArticulationSetDefinitions.Gateways.csproj" />
+    <Project Path="Features/Logic/ArticulationSetDefinitions/Infrastructures.Tests/Logic.ArticulationSetDefinitions.Infrastructures.Tests.csproj" />
+    <Project Path="Features/Logic/ArticulationSetDefinitions/Infrastructures/Logic.ArticulationSetDefinitions.Infrastructures.csproj" />
+    <Project Path="Features/Logic/ArticulationSetDefinitions/UseCases/Logic.ArticulationSetDefinitions.UseCases.csproj" />
+  </Folder>
   <Folder Name="/Features/StudioOne.KeySwitchDefinitions/">
     <Project Path="Features/StudioOne/KeySwitchDefinitions/Facades/StudioOne.KeySwitchDefinitions.Facades.csproj" />
     <Project Path="Features/StudioOne/KeySwitchDefinitions/Gateways/StudioOne.KeySwitchDefinitions.Gateways.csproj" />
