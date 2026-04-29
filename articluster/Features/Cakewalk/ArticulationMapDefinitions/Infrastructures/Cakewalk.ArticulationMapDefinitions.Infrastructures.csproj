@@ -2,7 +2,7 @@
 
     <PropertyGroup>
         <LangVersion>default</LangVersion>
-        <TargetFramework>netstandard2.1</TargetFramework>
+        <TargetFramework>net10.0</TargetFramework>
         <Nullable>enable</Nullable>
         <Copyright>R-Koubou</Copyright>
         <Company>R-Koubou</Company>
@@ -10,10 +10,6 @@
         <AssemblyName>ArtiCluster.Features.Cakewalk.ArticulationMapDefinitions.Infrastructures</AssemblyName>
         <RootNamespace>ArtiCluster.Features.Cakewalk.ArticulationMapDefinitions.Infrastructures</RootNamespace>
     </PropertyGroup>
-
-    <ItemGroup>
-      <PackageReference Include="System.Text.Json" Version="10.0.7" />
-    </ItemGroup>
 
     <ItemGroup>
       <ProjectReference Include="..\..\..\..\Commons\Commons.csproj" />
