@@ -11,4 +11,15 @@
         <RootNamespace>ArtiCluster.Features.Cakewalk.ArticulationMapDefinitions.Infrastructures</RootNamespace>
     </PropertyGroup>
 
+    <ItemGroup>
+      <PackageReference Include="System.Text.Json" Version="10.0.7" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\..\..\..\Commons\Commons.csproj" />
+      <ProjectReference Include="..\..\..\..\Shared\Shared.IO.Abstractions\Shared.IO.Abstractions.csproj" />
+      <ProjectReference Include="..\..\..\..\Shared\Shared\Shared.csproj" />
+      <ProjectReference Include="..\Gateways\Cakewalk.ArticulationMapDefinitions.Gateways.csproj" />
+    </ItemGroup>
+
 </Project>
