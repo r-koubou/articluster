@@ -1,15 +1,9 @@
 using System;
 using System.IO;
 using System.Text.Json;
-using System.Threading;
 using System.Threading.Tasks;
 
-using ArtiCluster.Commons;
-using ArtiCluster.Features.Cakewalk.ArticulationMapDefinitions.Gateways;
-using ArtiCluster.Features.Cakewalk.ArticulationMapDefinitions.Infrastructures.Model;
 using ArtiCluster.Shared.Domain.UniversalDefinitions;
-using ArtiCluster.Shared.Domain.UniversalDefinitions.Model;
-using ArtiCluster.Shared.IO.Abstractions;
 using ArtiCluster.Shared.IO.Local;
 
 using NUnit.Framework;
@@ -22,14 +16,23 @@ public class SerializationTest
     [Test]
     public void SerializeTest()
     {
-        var id = Guid.NewGuid();
-        var source = TestUtility.CreateMock( id, patchName: "Epic Lead" );
+        var id1 = Guid.NewGuid();
+        var id2 = Guid.NewGuid();
 
-        var mapResult = new CakewalkModelMapper().Map( source );
+        var source1 = TestUtility.CreateMock( id1, patchName: "Epic Lead" );
+        var source2 = TestUtility.CreateMock( id2, patchName: "E.Bass" );
+
+        var productSet = new UniversalDefinitionProductSet(
+            manufacturerName: source1.ManufacturerName,
+            productName: source1.ProductName,
+            items: [ source1, source2 ]
+        );
+
+        var mapResult = new CakewalkModelMapper().Map( productSet );
 
         Assert.That( mapResult.IsSuccess, Is.True, "Mapping should succeed" );
 
-        var jsonText = JsonSerializer.Serialize<CakewalkArticulationMap>( mapResult.Unwrap(), SerializationConstants.SerializerOptions );
+        var jsonText = JsonSerializer.Serialize( mapResult.Unwrap(), SerializationConstants.SerializerOptions );
 
         TestContext.Out.WriteLine( jsonText );
     }
@@ -37,10 +40,19 @@ public class SerializationTest
     [Test]
     public async Task ExportTest()
     {
-        var id = Guid.NewGuid();
-        var source = TestUtility.CreateMock( id, patchName: "Epic Lead" );
+        var id1 = Guid.NewGuid();
+        var id2 = Guid.NewGuid();
 
-        var mapResult = new CakewalkModelMapper().Map( source );
+        var source1 = TestUtility.CreateMock( id1, patchName: "Epic Lead" );
+        var source2 = TestUtility.CreateMock( id2, patchName: "E.Bass" );
+
+        var productSet = new UniversalDefinitionProductSet(
+            manufacturerName: source1.ManufacturerName,
+            productName: source1.ProductName,
+            items: [ source1, source2 ]
+        );
+
+        var mapResult = new CakewalkModelMapper().Map( productSet );
 
         Assert.That( mapResult.IsSuccess, Is.True, "Mapping should succeed" );
 
@@ -53,7 +65,7 @@ public class SerializationTest
             {
                 var exporter = new CakewalkExporter();
 
-                var result = await exporter.ExportAsync( fileWriter, source );
+                var result = await exporter.ExportAsync( fileWriter, productSet );
                 Assert.That( result.IsSuccess, Is.True, $"Export should succeed." );
             }
 
@@ -63,24 +75,5 @@ public class SerializationTest
         {
             File.Delete( dest );
         }
-    }
-}
-
-public class CakewalkModelMapper : IModelMapper<CakewalkArticulationMap>
-{
-    public Result<CakewalkArticulationMap, ExportReason> Map( UniversalDefinitionProductSet source )
-    {
-        throw new NotImplementedException();
-    }
-}
-
-public class CakewalkExporter : IDefinitionExporter
-{
-    public async Task<Result<Unit, ExportReason>> ExportAsync(
-        ITextContentWriter writer,
-        UniversalDefinitionProductSet source,
-        CancellationToken cancellationToken = default )
-    {
-        throw new NotImplementedException();
     }
 }

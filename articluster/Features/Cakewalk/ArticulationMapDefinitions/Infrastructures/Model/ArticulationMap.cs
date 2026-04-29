@@ -5,23 +5,13 @@ namespace ArtiCluster.Features.Cakewalk.ArticulationMapDefinitions.Infrastructur
 
 public class ArticulationMap
 {
-    [JsonPropertyName( "name)" )]
+    [JsonPropertyName( "name" )]
     [JsonRequired]
-    public string Name { get; }
+    public string Name { get; set; } = string.Empty;
 
     [JsonPropertyName( "groups" )]
-    public IList<Group> Groups { get; }
+    public List<Group> Groups { get; set; } = [ ];
 
     [JsonPropertyName( "articulations" )]
-    public IList<Articulation> Articulations { get; }
-
-    public ArticulationMap(
-        string name,
-        IList<Group> groups,
-        IList<Articulation> articulations )
-    {
-        Name          = name;
-        Groups        = groups;
-        Articulations = articulations;
-    }
+    public List<Articulation> Articulations { get; set; } = [ ];
 }
