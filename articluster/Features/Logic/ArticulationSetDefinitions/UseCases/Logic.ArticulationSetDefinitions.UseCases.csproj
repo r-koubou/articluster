@@ -11,4 +11,9 @@
         <RootNamespace>ArtiCluster.Features.Logic.ArticulationSetDefinitions.UseCases</RootNamespace>
     </PropertyGroup>
 
+    <ItemGroup>
+      <ProjectReference Include="..\..\..\..\Shared\Shared\Shared.csproj" />
+      <ProjectReference Include="..\Gateways\Logic.ArticulationSetDefinitions.Gateways.csproj" />
+    </ItemGroup>
+
 </Project>
