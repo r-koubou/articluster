@@ -11,4 +11,15 @@
         <RootNamespace>ArtiCluster.Features.Logic.ArticulationSetDefinitions.Infrastructures</RootNamespace>
     </PropertyGroup>
 
+    <ItemGroup>
+      <PackageReference Include="plist-cil" Version="2.2.0" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\..\..\..\Commons\Commons.csproj" />
+      <ProjectReference Include="..\..\..\..\Shared\Shared.IO.Streams\Shared.IO.Streams.csproj" />
+      <ProjectReference Include="..\..\..\..\Shared\Shared\Shared.csproj" />
+      <ProjectReference Include="..\Gateways\Logic.ArticulationSetDefinitions.Gateways.csproj" />
+    </ItemGroup>
+
 </Project>
