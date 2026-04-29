@@ -11,4 +11,10 @@
         <RootNamespace>ArtiCluster.Features.Cakewalk.ArticulationMapDefinitions.UseCases</RootNamespace>
     </PropertyGroup>
 
+    <ItemGroup>
+      <ProjectReference Include="..\..\..\..\Commons\Commons.csproj" />
+      <ProjectReference Include="..\..\..\..\Shared\Shared\Shared.csproj" />
+      <ProjectReference Include="..\Gateways\Cakewalk.ArticulationMapDefinitions.Gateways.csproj" />
+    </ItemGroup>
+
 </Project>

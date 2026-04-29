@@ -11,4 +11,13 @@
         <RootNamespace>ArtiCluster.Features.Cakewalk.ArticulationMapDefinitions.Facades</RootNamespace>
     </PropertyGroup>
 
+    <ItemGroup>
+      <ProjectReference Include="..\..\..\..\Commons\Commons.csproj" />
+      <ProjectReference Include="..\..\..\..\Shared\Shared.IO.Abstractions\Shared.IO.Abstractions.csproj" />
+      <ProjectReference Include="..\..\..\..\Shared\Shared.IO.Local\Shared.IO.Local.csproj" />
+      <ProjectReference Include="..\..\..\..\Shared\Shared\Shared.csproj" />
+      <ProjectReference Include="..\Infrastructures\Cakewalk.ArticulationMapDefinitions.Infrastructures.csproj" />
+      <ProjectReference Include="..\UseCases\Cakewalk.ArticulationMapDefinitions.UseCases.csproj" />
+    </ItemGroup>
+
 </Project>
