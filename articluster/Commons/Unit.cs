@@ -10,7 +10,7 @@ public sealed class Unit : IEquatable<Unit>
     private Unit() {}
 
     public bool Equals( Unit? other )
-        => other != null;
+        => other == Default;
 
     public override bool Equals( object? obj )
         => ReferenceEquals( this, obj ) || obj is Unit other && Equals( other );
