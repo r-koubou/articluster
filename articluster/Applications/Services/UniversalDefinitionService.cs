@@ -5,7 +5,7 @@ using ArtiCluster.Shared.Domain.UniversalDefinitions.Model;
 
 namespace ArtiCluster.Applications.Services;
 
-public class UniversalDefinitionService
+public static class UniversalDefinitionService
 {
     public static UniversalDefinition CreateTemplate()
         => UniversalDefinition.Create(

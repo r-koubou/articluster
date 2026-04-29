@@ -5,17 +5,17 @@ using System.Threading.Tasks;
 
 using ArtiCluster.Applications.Services.Abstractions;
 using ArtiCluster.Commons;
-using ArtiCluster.Features.Cubase.ExpressionMapDefinitions.Facades;
+using ArtiCluster.Features.Logic.ArticulationSetDefinitions.Facades;
 using ArtiCluster.Shared.Domain.UniversalDefinitions;
 using ArtiCluster.Shared.Domain.UniversalDefinitions.Model;
 using ArtiCluster.Shared.IO.Local;
 
 namespace ArtiCluster.Applications.Services;
 
-public sealed class CubaseLocalFileConvertingService : ILocalFileConvertingService
+public sealed class LogicLocalFileConvertingService : ILocalFileConvertingService
 {
     public string TargetDawName
-        => "Cubase";
+        => "Logic";
 
     public async Task<Result<Unit, ConvertReason>> ConvertAsync( string outputBaseDirectory, UniversalDefinitionProductCollection definitions, CancellationToken cancellationToken = default )
     {
@@ -48,7 +48,7 @@ public sealed class CubaseLocalFileConvertingService : ILocalFileConvertingServi
             Directory.CreateDirectory( outputDirectory );
 
             await using var writer = new LocalTextContentWriter( outputPath );
-            var facade = new CubaseDefinitionFacade();
+            var facade = new LogicDefinitionFacade();
             var exportResult = await facade.ExportAsync( writer, definition, cancellationToken );
 
             if( exportResult.IsFailure )
@@ -75,11 +75,11 @@ public sealed class CubaseLocalFileConvertingService : ILocalFileConvertingServi
         return Result<Unit, ConvertReason>.Success( Unit.Default );
     }
 
-    private string MakeOutputDirectory( string baseDirectory, UniversalDefinition definition )
+    private static string MakeOutputDirectory( string baseDirectory, UniversalDefinition definition )
     {
         return Path.Combine(
             baseDirectory,
-            "Cubase",
+            "Logic",
             definition.ManufacturerName.Value,
             definition.ProductName.Value
         );
@@ -89,7 +89,7 @@ public sealed class CubaseLocalFileConvertingService : ILocalFileConvertingServi
     {
         return Path.Combine(
             outputDirectory,
-            definitions.ProductName.Value + ".expressionmap"
+            definitions.ProductName.Value + ".plist"
         );
     }
 }
