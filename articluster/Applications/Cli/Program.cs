@@ -14,6 +14,7 @@ services.AddTransient<ConvertingCommandExecutor>();
 // Converters
 services.AddTransient<ILocalFileConvertingService, CubaseLocalFileConvertingService>();
 services.AddTransient<ILocalFileConvertingService, StudioOneLocalFileConvertingService>();
+services.AddTransient<ILocalFileConvertingService, CakewalkLocalFileConvertingService>();
 
 using var serviceProvider = services.BuildServiceProvider();
 
