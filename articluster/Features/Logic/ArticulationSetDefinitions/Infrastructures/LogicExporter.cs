@@ -20,14 +20,15 @@ public class LogicExporter : IDefinitionExporter
 {
     public async Task<Result<Unit, ExportReason>> ExportAsync( ITextContentWriter writer, UniversalDefinition source, CancellationToken cancellationToken = default )
     {
-        var root = ConvertRootNsDictionary( source );
-        using var memoryStream = new MemoryStream();
-
-        PropertyListParser.SaveAsXml( root, memoryStream );
-
         try
         {
-            using var textReader = new StreamReader( new MemoryStream( memoryStream.ToArray() ) );
+            var root = ConvertRootNsDictionary( source );
+            using var memoryStream = new MemoryStream();
+
+            PropertyListParser.SaveAsXml( root, memoryStream );
+            memoryStream.Position = 0;
+
+            using var textReader = new StreamReader( memoryStream );
             await writer.WriteAsync( await textReader.ReadToEndAsync( cancellationToken ), cancellationToken );
 
             return Result<Unit, ExportReason>.Success( Unit.Default );
@@ -111,7 +112,7 @@ public class LogicExporter : IDefinitionExporter
 
             midiMessageDictionary.Add( "MB1", data1 );
 
-            // ReSharper disable once SwitchStatementHandlesSomeKnownEnumValuesWithDefault
+            // ToDo 他のStatusTypeも必要に応じて追加する(要Logicで書き出してチェックが必要)
             switch( message.StatusType )
             {
                 case MidiStatusType.NoteOn:

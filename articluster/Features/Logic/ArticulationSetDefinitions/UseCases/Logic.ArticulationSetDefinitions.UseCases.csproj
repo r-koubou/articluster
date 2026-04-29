@@ -12,6 +12,7 @@
     </PropertyGroup>
 
     <ItemGroup>
+      <ProjectReference Include="..\..\..\..\Commons\Commons.csproj" />
       <ProjectReference Include="..\..\..\..\Shared\Shared\Shared.csproj" />
       <ProjectReference Include="..\Gateways\Logic.ArticulationSetDefinitions.Gateways.csproj" />
     </ItemGroup>

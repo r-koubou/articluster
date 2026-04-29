@@ -40,8 +40,8 @@ public sealed class CubaseLocalFileConvertingService : ILocalFileConvertingServi
         UniversalDefinition definition,
         CancellationToken cancellationToken = default )
     {
-        var outputDirectory = MakeCubaseOutputDirectory( outputBaseDirectory, definition );
-        var outputPath = MakeCubaseOutputPath( outputDirectory, definition );
+        var outputDirectory = MakeOutputDirectory( outputBaseDirectory, definition );
+        var outputPath = MakeOutputPath( outputDirectory, definition );
 
         try
         {
@@ -75,7 +75,7 @@ public sealed class CubaseLocalFileConvertingService : ILocalFileConvertingServi
         return Result<Unit, ConvertReason>.Success( Unit.Default );
     }
 
-    private string MakeCubaseOutputDirectory( string baseDirectory, UniversalDefinition definition )
+    private string MakeOutputDirectory( string baseDirectory, UniversalDefinition definition )
     {
         return Path.Combine(
             baseDirectory,
@@ -85,7 +85,7 @@ public sealed class CubaseLocalFileConvertingService : ILocalFileConvertingServi
         );
     }
 
-    private static string MakeCubaseOutputPath( string outputDirectory, UniversalDefinition definitions )
+    private static string MakeOutputPath( string outputDirectory, UniversalDefinition definitions )
     {
         return Path.Combine(
             outputDirectory,

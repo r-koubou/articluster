@@ -28,7 +28,19 @@ public class SerializationTest
                 Assert.That( result.IsSuccess, Is.True, $"Export should succeed." );
             }
 
-            await TestContext.Out.WriteAsync( await File.ReadAllTextAsync( dest ) );
+
+            var exportedText = await File.ReadAllTextAsync( dest );
+
+            Assert.Multiple( () =>
+                {
+                    Assert.That( exportedText, Is.Not.Null.And.Not.Empty, "Exported text should not be empty." );
+                    Assert.That( exportedText, Does.Contain( "<plist" ), "Export should produce plist/XML content." );
+                    Assert.That( exportedText, Does.Contain( "</plist>" ), "Export should close the plist document." );
+                    Assert.That( exportedText, Does.Contain( "Epic Lead" ), "Export should contain the patch name." );
+                }
+            );
+
+            await TestContext.Out.WriteAsync( exportedText );
         }
         finally
         {

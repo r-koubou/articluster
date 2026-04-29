@@ -21,8 +21,8 @@ public sealed class StudioOneLocalFileConvertingService : ILocalFileConvertingSe
         // Export
         foreach( var x in definitions.Items )
         {
-            var outputDirectory = MakeStudioOneOutputDirectory( outputBaseDirectory, x );
-            var outputPath = MakeStudioOneOutputPath( outputDirectory, x );
+            var outputDirectory = MakeOutputDirectory( outputBaseDirectory, x );
+            var outputPath = MakeOutputPath( outputDirectory, x );
 
             try
             {
@@ -57,7 +57,7 @@ public sealed class StudioOneLocalFileConvertingService : ILocalFileConvertingSe
         return Result<Unit, ConvertReason>.Success( Unit.Default );
     }
 
-    private static string MakeStudioOneOutputDirectory( string baseDirectory, UniversalDefinitionProductSet definitions )
+    private static string MakeOutputDirectory( string baseDirectory, UniversalDefinitionProductSet definitions )
     {
         return Path.Combine(
             baseDirectory,
@@ -67,7 +67,7 @@ public sealed class StudioOneLocalFileConvertingService : ILocalFileConvertingSe
         );
     }
 
-    private static string MakeStudioOneOutputPath( string outputDirectory, UniversalDefinitionProductSet definitions )
+    private static string MakeOutputPath( string outputDirectory, UniversalDefinitionProductSet definitions )
     {
         return Path.Combine(
             outputDirectory,
