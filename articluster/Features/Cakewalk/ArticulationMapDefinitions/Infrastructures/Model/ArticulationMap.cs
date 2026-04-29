@@ -13,5 +13,5 @@ public class ArticulationMap
     public List<Group> Groups { get; set; } = [ ];
 
     [JsonPropertyName( "articulations" )]
-    public List<Articulation> Articulations { get; set; } = [ ];
+    public IList<Articulation> Articulations { get; set; } = [ ];
 }
