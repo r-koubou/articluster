@@ -1,6 +1,6 @@
 {
 	"language_version": "default",
-	"target_framework": "netstandard2.1",
+	"target_framework": "net10.0",
 	"target_app_framework": "net10.0",
 	"namespace_prefix": "ArtiCluster",
 	"author": "R-Koubou"
