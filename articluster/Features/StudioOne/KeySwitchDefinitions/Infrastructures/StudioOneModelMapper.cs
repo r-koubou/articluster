@@ -178,15 +178,15 @@ public sealed class StudioOneModelMapper : IStudioOneModelMapper
 
             result.Add( type switch
                 {
-                    MidiStatusType.NoteOn => $"note{data1}.{data2}",
+                    MidiStatusType.NoteOn  => $"note{data1}.{data2}",
                     MidiStatusType.NoteOff => $"off{data1}.{data2}",
-                    MidiStatusType.ControlChange => message.Status.Value switch
+                    MidiStatusType.ControlChangeOrChannelVoiceMessage when message.IsControlChangeMessage => data1 switch
                     {
                         0 or 32 => $"bc{data1}.{data2}",
-                        _ => $"cc{data1}.{data2}"
+                        _       => $"cc{data1}.{data2}"
                     },
                     MidiStatusType.ProgramChange => $"pc{data1}",
-                    _ => ""
+                    _                            => ""
                 }
             );
         }

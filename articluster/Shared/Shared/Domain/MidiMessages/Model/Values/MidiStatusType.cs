@@ -8,26 +8,15 @@ public enum MidiStatusType
     NoteOff = 0x80,
     NoteOn = 0x90,
     PolyphonicKeyPressure = 0xA0,
-    ControlChange = 0xB0,
+    ControlChangeOrChannelVoiceMessage = 0xB0,
     ProgramChange = 0xC0,
     ChannelPressure = 0xD0,
     PitchBendChange = 0xE0,
     #endregion
 
-    #region Channel Mode Message
-    AllSoundOff = 0xB0,
-    ResetAllController = 0xB0,
-    LocalControl = 0xB0,
-    NotesOff = 0xB0,
-    OmniOff = 0xB0,
-    OmniOn = 0xB0,
-    MonoMode = 0xB0,
-    PolyMode = 0xB0,
-    #endregion
-
     #region System Common Message
     SysExBegin = 0xF0,
-    MidiTimeRecord = 0xF1,
+    MidiTimecode = 0xF1,
     SongPosition = 0xF2,
     SongSelect = 0xF3,
     ChainRequest = 0xF6,

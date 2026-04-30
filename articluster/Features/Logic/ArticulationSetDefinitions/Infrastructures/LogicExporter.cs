@@ -146,7 +146,7 @@ public class LogicExporter : IDefinitionExporter
                 midiMessageDictionary.Add( "Status", "Aftertouch" );
                 break;
 
-            case MidiStatusType.ControlChange:
+            case MidiStatusType.ControlChangeOrChannelVoiceMessage when message.IsControlChangeMessage:
                 midiMessageDictionary.Add( "Status", "Controller" );
                 break;
 
