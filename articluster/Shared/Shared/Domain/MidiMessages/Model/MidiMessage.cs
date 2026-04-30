@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+
 using ArtiCluster.Shared.Domain.MidiMessages.Model.Values;
 
 namespace ArtiCluster.Shared.Domain.MidiMessages.Model;
@@ -53,19 +55,8 @@ public sealed record MidiMessage
                 >= 0x80 and <= 0x8F => MidiStatusType.NoteOff,
                 >= 0x90 and <= 0x9F => MidiStatusType.NoteOn,
                 >= 0xA0 and <= 0xAF => MidiStatusType.PolyphonicKeyPressure,
-                // Channel Mode Message
-                >= 0xB0 and <= 0xBF => Data1.Value switch
-                {
-                    0x78 => MidiStatusType.AllSoundOff,
-                    0x79 => MidiStatusType.ResetAllController,
-                    0x7A => MidiStatusType.LocalControl,
-                    0x7B => MidiStatusType.NotesOff,
-                    0x7C => MidiStatusType.OmniOff,
-                    0x7D => MidiStatusType.OmniOn,
-                    0x7E => MidiStatusType.MonoMode,
-                    0x7F => MidiStatusType.PolyMode,
-                    _    => MidiStatusType.ControlChange
-                },
+                // Control Change (Data1:0-119) or Channel Mode Message (Data1:120-127)
+                >= 0xB0 and <= 0xBF => MidiStatusType.ControlChangeOrChannelVoiceMessage,
                 // Channel Voice
                 >= 0xC0 and <= 0xCF => MidiStatusType.ProgramChange,
                 >= 0xD0 and <= 0xDF => MidiStatusType.ChannelPressure,
@@ -94,6 +85,33 @@ public sealed record MidiMessage
     }
     #endregion ~Status Byte Utilitises
 
+    #region Channel Message Mode Utilities
+    public MidiChannelMessageModeType ChannelMessageModeType
+    {
+        get
+        {
+            if( StatusType != MidiStatusType.ControlChangeOrChannelVoiceMessage )
+            {
+                return MidiChannelMessageModeType.Undefined;
+            }
+
+            return Status.Value switch
+            {
+                >= 0xB0 and <= 0xBF when Data1.Value == 0x78 => MidiChannelMessageModeType.AllSoundOff,
+                >= 0xB0 and <= 0xBF when Data1.Value == 0x79 => MidiChannelMessageModeType.ResetAllController,
+                >= 0xB0 and <= 0xBF when Data1.Value == 0x7A => MidiChannelMessageModeType.LocalControl,
+                >= 0xB0 and <= 0xBF when Data1.Value == 0x7B => MidiChannelMessageModeType.NotesOff,
+                >= 0xB0 and <= 0xBF when Data1.Value == 0x7C => MidiChannelMessageModeType.OmniOff,
+                >= 0xB0 and <= 0xBF when Data1.Value == 0x7D => MidiChannelMessageModeType.OmniOn,
+                >= 0xB0 and <= 0xBF when Data1.Value == 0x7E => MidiChannelMessageModeType.MonoMode,
+                >= 0xB0 and <= 0xBF when Data1.Value == 0x7F => MidiChannelMessageModeType.PolyMode,
+                _                                            => MidiChannelMessageModeType.Undefined
+            };
+        }
+    }
+    #endregion ~Channel Message Mode Utilities
+
+    #region Channel Utilities
     public bool TryGetChannel( out MidiChannel channel )
     {
         channel = null!;
