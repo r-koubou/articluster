@@ -15,7 +15,9 @@ public sealed class LocalBinaryContentWriter( string filePath ) : IBinaryContent
     // ReSharper restore MemberCanBePrivate.Global
 
     public void Dispose()
-        => DisposeAsync().GetAwaiter().GetResult();
+    {
+        fileStream.Dispose();
+    }
 
     public async ValueTask DisposeAsync()
     {

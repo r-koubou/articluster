@@ -69,7 +69,7 @@ public class CakewalkModelMapper : IModelMapper<CakewalkRootObject>
         );
     }
 
-    private static List<Transform> ConvertArticulationTransform( Shared.Domain.UniversalDefinitions.Model.Articulation articulation )
+    private static List<Transform> ConvertArticulationTransform( Shared.Domain.UniversalDefinitions.Model.Articulation _ )
     {
         //TODO If support cakewalk dependent items
         return [ ];

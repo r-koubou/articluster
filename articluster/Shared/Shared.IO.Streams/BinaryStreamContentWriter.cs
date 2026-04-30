@@ -16,7 +16,14 @@ public sealed class BinaryStreamContentWriter( Stream stream, bool leaveOpen = f
     // ReSharper restore MemberCanBePrivate.Global
 
     public void Dispose()
-        => DisposeAsync().GetAwaiter().GetResult();
+    {
+        if( LeaveOpen )
+        {
+            return;
+        }
+
+        Stream.Dispose();
+    }
 
     public async ValueTask DisposeAsync()
     {

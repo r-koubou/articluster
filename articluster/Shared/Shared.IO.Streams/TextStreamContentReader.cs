@@ -23,7 +23,14 @@ public sealed class TextStreamContentReader(
     // ReSharper restore MemberCanBePrivate.Global
 
     public void Dispose()
-        => DisposeAsync().GetAwaiter().GetResult();
+    {
+        if( LeaveOpen )
+        {
+            return;
+        }
+
+        Stream.Dispose();
+    }
 
     public async ValueTask DisposeAsync()
     {

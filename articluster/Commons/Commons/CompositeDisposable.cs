@@ -14,7 +14,17 @@ public sealed class CompositeDisposable : IDisposable, IAsyncDisposable
     }
 
     public void Dispose()
-        => DisposeAsync().GetAwaiter().GetResult();
+    {
+        foreach( var x in disposables )
+        {
+            if( x is IDisposable disposable )
+            {
+                disposable.Dispose();
+            }
+        }
+
+        disposables.Clear();
+    }
 
     public async ValueTask DisposeAsync()
     {
@@ -24,12 +34,10 @@ public sealed class CompositeDisposable : IDisposable, IAsyncDisposable
             {
                 case IAsyncDisposable asyncDisposable:
                     await asyncDisposable.DisposeAsync();
-
                     break;
 
                 case IDisposable disposable:
                     disposable.Dispose();
-
                     break;
             }
         }

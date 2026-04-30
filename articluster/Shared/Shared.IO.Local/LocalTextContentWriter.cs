@@ -29,7 +29,9 @@ public sealed class LocalTextContentWriter(
     public LocalTextContentWriter( string filePath ) : this( filePath, Encoding.UTF8 ) {}
 
     public void Dispose()
-        => DisposeAsync().GetAwaiter().GetResult();
+    {
+        streamWriter.Dispose();
+    }
 
     public async ValueTask DisposeAsync()
     {
