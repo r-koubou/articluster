@@ -3,7 +3,6 @@ using System.IO;
 using System.Threading;
 using System.Threading.Tasks;
 
-using ArtiCluster.Commons.Extensions;
 using ArtiCluster.Shared.IO.Abstractions;
 using ArtiCluster.Shared.IO.Abstractions.Values;
 
@@ -17,7 +16,9 @@ public sealed class LocalBinaryContentReader( string filePath ) : IBinaryContent
     // ReSharper restore MemberCanBePrivate.Global
 
     public void Dispose()
-        => DisposeAsync().GetAwaiter().GetResult();
+    {
+        fileStream.Dispose();
+    }
 
     public async ValueTask DisposeAsync()
     {

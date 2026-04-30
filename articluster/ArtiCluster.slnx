@@ -8,7 +8,8 @@
     <Project Path="Applications/Cli/Applications.Cli.csproj" />
   </Folder>
   <Folder Name="/Commons/">
-    <Project Path="Commons/Commons.csproj" />
+    <Project Path="Commons/Commons/Commons.csproj" />
+    <Project Path="Commons/Tests.Helpers/Tests.Helpers.csproj" />
   </Folder>
   <Folder Name="/Features/" />
   <Folder Name="/Features/Cakewalk.ArticulationMapDefinitions/">
@@ -49,6 +50,7 @@
     <Project Path="Features/UniversalDefinitions/Infrastructures/Infrastructures.Yaml/UniversalDefinitions.Infrastructures.Yaml.csproj" />
   </Folder>
   <Folder Name="/Shared/">
+    <Project Path="Shared/Shared.Mock/Shared.Mock.csproj" />
     <Project Path="Shared/Shared/Shared.csproj" />
   </Folder>
   <Folder Name="/Shared/IO/">

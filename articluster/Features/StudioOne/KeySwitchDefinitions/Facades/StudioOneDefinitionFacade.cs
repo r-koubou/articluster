@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 
 using ArtiCluster.Commons;
 using ArtiCluster.Features.StudioOne.KeySwitchDefinitions.Infrastructures;
+using ArtiCluster.Features.StudioOne.KeySwitchDefinitions.UseCases;
 using ArtiCluster.Shared.Domain.UniversalDefinitions;
 using ArtiCluster.Shared.IO.Abstractions;
 using ArtiCluster.Shared.IO.Local;
@@ -21,8 +22,8 @@ public sealed class StudioOneDefinitionFacade : IStudioOneDefinitionFacade
         CancellationToken cancellationToken = default )
     {
         var exporter = new StudioOneExporter();
-        var input = new UseCases.ExportInputPort( source, exporter, writer );
-        var useCase = new UseCases.ExportUseCase();
+        var input = new ExportInputPort( source, exporter, writer );
+        var useCase = new ExportUseCase();
 
         var result = await useCase.ExecuteAsync( input, cancellationToken );
 

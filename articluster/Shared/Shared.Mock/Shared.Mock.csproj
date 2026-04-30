@@ -6,13 +6,13 @@
         <Nullable>enable</Nullable>
         <Copyright>R-Koubou</Copyright>
         <Company>R-Koubou</Company>
-        <Product>ArtiCluster.Shared.IO.Abstractions</Product>
-        <AssemblyName>ArtiCluster.Shared.IO.Abstractions</AssemblyName>
-        <RootNamespace>ArtiCluster.Shared.IO.Abstractions</RootNamespace>
+        <Product>ArtiCluster.Shared.Mock</Product>
+        <AssemblyName>ArtiCluster.Shared.Mock</AssemblyName>
+        <RootNamespace>ArtiCluster.Shared.Mock</RootNamespace>
     </PropertyGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\..\Commons\Commons\Commons.csproj" />
+      <ProjectReference Include="..\Shared\Shared.csproj" />
     </ItemGroup>
 
 </Project>

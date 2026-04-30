@@ -18,7 +18,7 @@
     </ItemGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\..\Commons\Commons.csproj" />
+      <ProjectReference Include="..\..\Commons\Commons\Commons.csproj" />
       <ProjectReference Include="..\..\Features\UniversalDefinitions\Facades\UniversalDefinitions.Facades.csproj" />
       <ProjectReference Include="..\..\Shared\Shared.IO.Local\Shared.IO.Local.csproj" />
       <ProjectReference Include="..\..\Shared\Shared\Shared.csproj" />

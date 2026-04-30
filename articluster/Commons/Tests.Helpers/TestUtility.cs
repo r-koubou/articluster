@@ -2,9 +2,9 @@ using System.IO;
 
 using NUnit.Framework;
 
-namespace ArtiCluster.Features.StudioOne.KeySwitchDefinitions.Infrastructures.Tests;
+namespace ArtiCluster.Tests.Helpers;
 
-internal static class TestUtility
+public static class TestUtility
 {
     // ReSharper disable once MemberCanBePrivate.Global
     public static readonly string TestDataDirectoryRoot = Path.Combine( TestContext.CurrentContext.TestDirectory, "TestData" );

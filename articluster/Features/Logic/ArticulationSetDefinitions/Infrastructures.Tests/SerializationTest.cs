@@ -3,6 +3,7 @@ using System.IO;
 using System.Threading.Tasks;
 
 using ArtiCluster.Shared.IO.Local;
+using ArtiCluster.Shared.Mock;
 
 using NUnit.Framework;
 
@@ -15,7 +16,7 @@ public class SerializationTest
     public async Task ExportTest()
     {
         var id = Guid.NewGuid();
-        var source = TestUtility.CreateMock( id, patchName: "Epic Lead" );
+        var source = MockUniversalDefinition.CreateDefinition( id, patchName: "Epic Lead" );
 
         var dest = Path.GetTempFileName();
 

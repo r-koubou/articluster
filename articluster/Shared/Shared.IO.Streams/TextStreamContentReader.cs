@@ -5,7 +5,6 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
-using ArtiCluster.Commons.Extensions;
 using ArtiCluster.Shared.IO.Abstractions;
 using ArtiCluster.Shared.IO.Abstractions.Values;
 
@@ -24,7 +23,14 @@ public sealed class TextStreamContentReader(
     // ReSharper restore MemberCanBePrivate.Global
 
     public void Dispose()
-        => DisposeAsync().GetAwaiter().GetResult();
+    {
+        if( LeaveOpen )
+        {
+            return;
+        }
+
+        Stream.Dispose();
+    }
 
     public async ValueTask DisposeAsync()
     {
