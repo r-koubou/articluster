@@ -8,7 +8,7 @@
     <Project Path="Applications/Cli/Applications.Cli.csproj" />
   </Folder>
   <Folder Name="/Commons/">
-    <Project Path="Commons/Commons.csproj" />
+    <Project Path="Commons/Commons/Commons.csproj" />
   </Folder>
   <Folder Name="/Features/" />
   <Folder Name="/Features/Cakewalk.ArticulationMapDefinitions/">
