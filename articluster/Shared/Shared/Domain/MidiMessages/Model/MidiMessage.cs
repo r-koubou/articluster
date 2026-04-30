@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+using System;
 
 using ArtiCluster.Shared.Domain.MidiMessages.Model.Values;
 
@@ -63,7 +63,7 @@ public sealed record MidiMessage
                 >= 0xE0 and <= 0xEF => MidiStatusType.PitchBendChange,
                 // System Common Message
                 0xF0 => MidiStatusType.SysExBegin,
-                0xF1 => MidiStatusType.MidiTimeRecord,
+                0xF1 => MidiStatusType.MidiTimecode,
                 0xF2 => MidiStatusType.SongPosition,
                 0xF3 => MidiStatusType.SongSelect,
                 0xF4 => MidiStatusType.Undefined,
@@ -125,4 +125,84 @@ public sealed record MidiMessage
 
         return true;
     }
+    #endregion ~Channel Utilities
+
+    #region Data Byte Utilities
+    public int RequireDataByteCount
+    {
+        get
+        {
+            return StatusType switch
+            {
+                MidiStatusType.NoteOff                            => 2,
+                MidiStatusType.NoteOn                             => 2,
+                MidiStatusType.PolyphonicKeyPressure              => 2,
+                MidiStatusType.ControlChangeOrChannelVoiceMessage => 2,
+                MidiStatusType.ProgramChange                      => 1,
+                MidiStatusType.ChannelPressure                    => 1,
+                MidiStatusType.PitchBendChange                    => 2,
+                MidiStatusType.SysExBegin                         => -1, // Variable length
+                MidiStatusType.MidiTimecode                       => 1,
+                MidiStatusType.Start                              => 1,
+                MidiStatusType.Continue                           => 1,
+                MidiStatusType.Stop                               => 1,
+                MidiStatusType.ActiveSensing                      => 1,
+                MidiStatusType.Reset                              => 1,
+                _                                                 => -1
+            };
+        }
+    }
+
+    public bool TryGetRequireDataByteCount( out int count )
+    {
+        try
+        {
+            count = RequireDataByteCount;
+            return true;
+        }
+        catch
+        {
+            count = -1;
+            return false;
+        }
+    }
+
+    /// <summary>
+    /// Attempt to retrieve the value of the data byte based on the value of the MIDI status byte
+    /// </summary>
+    /// <param name="count">Store data byte count (if -1, couldn't get )</param>
+    /// <param name="data1">Store data byte 1 value (if -1, couldn't get )</param>
+    /// <param name="data2">Store data byte 2 value (if -1, couldn't get )</param>
+    /// <return>
+    /// <list type="bullet">
+    ///   <item>If the MIDI status cannot be determined, return false</item>
+    ///   <item>Returns false if the required data byte <see cref="Data1"/> or <see cref="Data2"/> is <see cref="MidiDataByte.None"/></item>
+    /// </list>
+    /// </return>
+    public bool TryGetDataByte1( out int count, out int data1, out int data2 )
+    {
+        count = data1 = data2 = -1;
+
+        if( !TryGetRequireDataByteCount( out count ) )
+        {
+            return false;
+        }
+
+        switch( count )
+        {
+            case 1 when Data1 == MidiDataByte.None:
+            case 2 when ( Data1 == MidiDataByte.None || Data2 == MidiDataByte.None ):
+                return false;
+            case 1:
+                data1 = Data1.Value;
+                return true;
+            case 2:
+                data1 = Data2.Value;
+                data2 = Data2.Value;
+                return true;
+            default:
+                return false;
+        }
+    }
+    #endregion ~Data Byte Utilities
 }

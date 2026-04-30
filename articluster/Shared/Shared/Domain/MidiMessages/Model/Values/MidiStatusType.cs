@@ -16,7 +16,7 @@ public enum MidiStatusType
 
     #region System Common Message
     SysExBegin = 0xF0,
-    MidiTimeRecord = 0xF1,
+    MidiTimecode = 0xF1,
     SongPosition = 0xF2,
     SongSelect = 0xF3,
     ChainRequest = 0xF6,
