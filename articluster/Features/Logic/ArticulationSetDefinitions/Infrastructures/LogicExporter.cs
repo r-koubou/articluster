@@ -41,7 +41,6 @@ public class LogicExporter : IDefinitionExporter
         {
             return Result<Unit, ExportReason>.Failure( ExportReason.OtherError, e );
         }
-
     }
 
     private static NSDictionary ConvertRootNsDictionary( UniversalDefinition source )
@@ -110,43 +109,15 @@ public class LogicExporter : IDefinitionExporter
             int? data1 = message.Data1 == MidiDataByte.None ? null : message.Data1.Value;
             int? data2 = message.Data2 == MidiDataByte.None ? null : message.Data2.Value;
 
+
+            if( !ConvertMessageStatus( message, midiMessageDictionary ) )
+            {
+                continue;
+            }
+
             if( data1 != null )
             {
                 midiMessageDictionary.Add( "MB1", data1 );
-            }
-
-            // ToDo 他のStatusTypeも必要に応じて追加する(要Logicで書き出してチェックが必要)
-            switch( message.StatusType )
-            {
-                case MidiStatusType.NoteOn:
-                    midiMessageDictionary.Add( "Status", "Note On" );
-                    break;
-
-                case MidiStatusType.NoteOff:
-                    midiMessageDictionary.Add( "Status", "Note Off" );
-                    break;
-
-                case MidiStatusType.ChannelPressure:
-                    midiMessageDictionary.Add( "Status", "Aftertouch" );
-                    break;
-
-                case MidiStatusType.ControlChange:
-                    midiMessageDictionary.Add( "Status", "Controller" );
-                    break;
-
-                case MidiStatusType.ProgramChange:
-                    midiMessageDictionary.Add( "Status", "Program" );
-                    break;
-
-                case MidiStatusType.PolyphonicKeyPressure:
-                    midiMessageDictionary.Add( "Status", "Poly Aftertouch" );
-                    break;
-
-                case MidiStatusType.PitchBendChange:
-                    midiMessageDictionary.Add( "Status", "Pitch Bend" );
-                    break;
-                default:
-                    continue;
             }
 
             if( data2 != null )
@@ -156,5 +127,44 @@ public class LogicExporter : IDefinitionExporter
 
             dest.Add( midiMessageDictionary );
         }
+    }
+
+    private static bool ConvertMessageStatus( MidiMessage message, NSDictionary midiMessageDictionary )
+    {
+        // ToDo 他のStatusTypeも必要に応じて追加する(要Logicで書き出してチェックが必要)
+        switch( message.StatusType )
+        {
+            case MidiStatusType.NoteOn:
+                midiMessageDictionary.Add( "Status", "Note On" );
+                break;
+
+            case MidiStatusType.NoteOff:
+                midiMessageDictionary.Add( "Status", "Note Off" );
+                break;
+
+            case MidiStatusType.ChannelPressure:
+                midiMessageDictionary.Add( "Status", "Aftertouch" );
+                break;
+
+            case MidiStatusType.ControlChange:
+                midiMessageDictionary.Add( "Status", "Controller" );
+                break;
+
+            case MidiStatusType.ProgramChange:
+                midiMessageDictionary.Add( "Status", "Program" );
+                break;
+
+            case MidiStatusType.PolyphonicKeyPressure:
+                midiMessageDictionary.Add( "Status", "Poly Aftertouch" );
+                break;
+
+            case MidiStatusType.PitchBendChange:
+                midiMessageDictionary.Add( "Status", "Pitch Bend" );
+                break;
+            default:
+                return false;
+        }
+
+        return true;
     }
 }
