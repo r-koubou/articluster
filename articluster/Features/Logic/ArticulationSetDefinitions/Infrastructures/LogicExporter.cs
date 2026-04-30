@@ -119,6 +119,14 @@ public class LogicExporter : IDefinitionExporter
                     midiMessageDictionary.Add( "Status", "Note On" );
                     break;
 
+                case MidiStatusType.NoteOff:
+                    midiMessageDictionary.Add( "Status", "Note Off" );
+                    break;
+
+                case MidiStatusType.ChannelPressure:
+                    midiMessageDictionary.Add( "Status", "Aftertouch" );
+                    break;
+
                 case MidiStatusType.ControlChange:
                     midiMessageDictionary.Add( "Status", "Controller" );
                     break;
@@ -126,6 +134,16 @@ public class LogicExporter : IDefinitionExporter
                 case MidiStatusType.ProgramChange:
                     midiMessageDictionary.Add( "Status", "Program" );
                     break;
+
+                case MidiStatusType.PolyphonicKeyPressure:
+                    midiMessageDictionary.Add( "Status", "Poly Aftertouch" );
+                    break;
+
+                case MidiStatusType.PitchBendChange:
+                    midiMessageDictionary.Add( "Status", "Pitch Bend" );
+                    break;
+                default:
+                    continue;
             }
 
             midiMessageDictionary.Add( "ValueLow", data2 );
