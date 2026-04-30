@@ -25,6 +25,7 @@
     </ItemGroup>
 
     <ItemGroup>
+      <ProjectReference Include="..\..\..\..\Shared\Shared.IO.Streams\Shared.IO.Streams.csproj" />
       <ProjectReference Include="..\Infrastructures.Yaml\UniversalDefinitions.Infrastructures.Yaml.csproj" />
     </ItemGroup>
 
