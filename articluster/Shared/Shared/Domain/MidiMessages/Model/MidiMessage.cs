@@ -34,6 +34,9 @@ public sealed record MidiMessage
     public bool IsChannelVoiceMessage
         => Status.Value is >= 0x80 and <= 0xEF && !IsChannelModeMessage;
 
+    public bool IsControlChangeMessage
+        => Status.Value is >= 0xB0 and <= 0xBF && Data1.Value is >= 0x00 and <= 0x77;
+
     public bool IsChannelModeMessage
         => Status.Value is >= 0xB0 and <= 0xBF && Data1.Value is >= 0x78 and <= 0x7F;
 
