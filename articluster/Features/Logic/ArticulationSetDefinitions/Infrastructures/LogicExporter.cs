@@ -107,10 +107,13 @@ public class LogicExporter : IDefinitionExporter
         {
             var midiMessageDictionary = new NSDictionary();
 
-            var data1 = message.Data1.Value;
-            var data2 = message.Data2.Value;
+            int? data1 = message.Data1 == MidiDataByte.None ? null : message.Data1.Value;
+            int? data2 = message.Data2 == MidiDataByte.None ? null : message.Data2.Value;
 
-            midiMessageDictionary.Add( "MB1", data1 );
+            if( data1 != null )
+            {
+                midiMessageDictionary.Add( "MB1", data1 );
+            }
 
             // ToDo 他のStatusTypeも必要に応じて追加する(要Logicで書き出してチェックが必要)
             switch( message.StatusType )
@@ -146,7 +149,10 @@ public class LogicExporter : IDefinitionExporter
                     continue;
             }
 
-            midiMessageDictionary.Add( "ValueLow", data2 );
+            if( data2 != null )
+            {
+                midiMessageDictionary.Add( "ValueLow", data2 );
+            }
 
             dest.Add( midiMessageDictionary );
         }
