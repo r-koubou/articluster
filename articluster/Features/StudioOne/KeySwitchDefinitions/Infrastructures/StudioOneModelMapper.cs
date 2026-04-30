@@ -180,7 +180,7 @@ public sealed class StudioOneModelMapper : IStudioOneModelMapper
                 {
                     MidiStatusType.NoteOn  => $"note{data1}.{data2}",
                     MidiStatusType.NoteOff => $"off{data1}.{data2}",
-                    MidiStatusType.ControlChangeOrChannelVoiceMessage when message.IsControlChangeMessage => message.Status.Value switch
+                    MidiStatusType.ControlChangeOrChannelVoiceMessage when message.IsControlChangeMessage => data1 switch
                     {
                         0 or 32 => $"bc{data1}.{data2}",
                         _       => $"cc{data1}.{data2}"

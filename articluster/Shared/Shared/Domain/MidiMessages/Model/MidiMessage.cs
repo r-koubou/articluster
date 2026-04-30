@@ -1,5 +1,3 @@
-using System;
-
 using ArtiCluster.Shared.Domain.MidiMessages.Model.Values;
 
 namespace ArtiCluster.Shared.Domain.MidiMessages.Model;
@@ -146,11 +144,16 @@ public sealed record MidiMessage
                 MidiStatusType.PitchBendChange                    => 2,
                 MidiStatusType.SysExBegin                         => -1, // Variable length
                 MidiStatusType.MidiTimecode                       => 1,
-                MidiStatusType.Start                              => 1,
-                MidiStatusType.Continue                           => 1,
-                MidiStatusType.Stop                               => 1,
-                MidiStatusType.ActiveSensing                      => 1,
-                MidiStatusType.Reset                              => 1,
+                MidiStatusType.SongPosition                       => 2,
+                MidiStatusType.SongSelect                         => 1,
+                MidiStatusType.ChainRequest                       => 0,
+                MidiStatusType.SysExEnd                           => 0,
+                MidiStatusType.MidiClock                          => 0,
+                MidiStatusType.Start                              => 0,
+                MidiStatusType.Continue                           => 0,
+                MidiStatusType.Stop                               => 0,
+                MidiStatusType.ActiveSensing                      => 0,
+                MidiStatusType.Reset                              => 0,
                 _                                                 => -1
             };
         }
@@ -176,12 +179,12 @@ public sealed record MidiMessage
     /// <param name="count">Store data byte count (if -1, couldn't get )</param>
     /// <param name="data1">Store data byte 1 value (if -1, couldn't get )</param>
     /// <param name="data2">Store data byte 2 value (if -1, couldn't get )</param>
-    /// <return>
+    /// <returns>
     /// <list type="bullet">
     ///   <item>If the MIDI status cannot be determined, return false</item>
     ///   <item>Returns false if the required data byte <see cref="Data1"/> or <see cref="Data2"/> is <see cref="MidiDataByte.None"/></item>
     /// </list>
-    /// </return>
+    /// </returns>
     public bool TryGetDataByte1( out int count, out int data1, out int data2 )
     {
         count = data1 = data2 = -1;
@@ -200,7 +203,7 @@ public sealed record MidiMessage
                 data1 = Data1.Value;
                 return true;
             case 2:
-                data1 = Data2.Value;
+                data1 = Data1.Value;
                 data2 = Data2.Value;
                 return true;
             default:
