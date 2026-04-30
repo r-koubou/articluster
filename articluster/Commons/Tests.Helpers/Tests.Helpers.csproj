@@ -3,17 +3,11 @@
     <PropertyGroup>
         <LangVersion>default</LangVersion>
         <TargetFramework>net10.0</TargetFramework>
-        <RootNamespace>ArtiCluster.Commons.Tests</RootNamespace>
-        <AssemblyName>ArtiCluster.Commons.Tests</AssemblyName>
+        <RootNamespace>ArtiCluster.Tests.Helpers</RootNamespace>
+        <AssemblyName>ArtiCluster.Tests.Helpers</AssemblyName>
         <Nullable>enable</Nullable>
         <IsPackable>false</IsPackable>
     </PropertyGroup>
-
-    <ItemGroup>
-        <None Update="TestData\**\*">
-            <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-        </None>
-    </ItemGroup>
 
     <ItemGroup>
         <PackageReference Include="nunit" Version="4.5.1" />
