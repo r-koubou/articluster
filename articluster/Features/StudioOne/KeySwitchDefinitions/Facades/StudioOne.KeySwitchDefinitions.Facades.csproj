@@ -15,7 +15,6 @@
       <ProjectReference Include="..\..\..\..\Commons\Commons.csproj" />
       <ProjectReference Include="..\..\..\..\Shared\Shared.IO.Abstractions\Shared.IO.Abstractions.csproj" />
       <ProjectReference Include="..\..\..\..\Shared\Shared.IO.Local\Shared.IO.Local.csproj" />
-      <ProjectReference Include="..\..\..\..\Shared\Shared.IO.Streams\Shared.IO.Streams.csproj" />
       <ProjectReference Include="..\..\..\..\Shared\Shared\Shared.csproj" />
       <ProjectReference Include="..\Infrastructures\StudioOne.KeySwitchDefinitions.Infrastructures.csproj" />
       <ProjectReference Include="..\UseCases\StudioOne.KeySwitchDefinitions.UseCases.csproj" />
