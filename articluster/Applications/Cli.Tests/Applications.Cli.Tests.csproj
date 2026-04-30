@@ -22,6 +22,7 @@
     </ItemGroup>
 
     <ItemGroup>
+      <ProjectReference Include="..\..\Commons\Tests.Helpers\Tests.Helpers.csproj" />
       <ProjectReference Include="..\Services\Applications.Services.csproj" />
     </ItemGroup>
 

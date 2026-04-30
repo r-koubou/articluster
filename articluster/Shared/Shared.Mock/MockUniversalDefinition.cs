@@ -13,10 +13,10 @@ public static class MockUniversalDefinition
     {
         return new UniversalDefinitionProductCollection(
             [
-                Create( Guid.NewGuid(), manufacturerName: "Acme Corp", productName: "Super Synth", patchName: "Epic Lead" ),
-                Create( Guid.NewGuid(), manufacturerName: "Acme Corp X", productName: "Great Synth", patchName: "Epic Lead" ),
-                Create( Guid.NewGuid(), manufacturerName: "Acme Corp Y", productName: "Better Synth", patchName: "Epic Lead" ),
-                Create( Guid.NewGuid(), manufacturerName: "Acme Corp Y", productName: "Goog Synth", patchName: "Epic Lead" ),
+                CreateDefinition( Guid.NewGuid(), manufacturerName: "Acme Corp", productName: "Super Synth", patchName: "Epic Lead" ),
+                CreateDefinition( Guid.NewGuid(), manufacturerName: "Acme Corp X", productName: "Great Synth", patchName: "Epic Lead" ),
+                CreateDefinition( Guid.NewGuid(), manufacturerName: "Acme Corp Y", productName: "Better Synth", patchName: "Epic Lead" ),
+                CreateDefinition( Guid.NewGuid(), manufacturerName: "Acme Corp Y", productName: "Goog Synth", patchName: "Epic Lead" ),
             ]
         );
     }
@@ -28,9 +28,9 @@ public static class MockUniversalDefinition
             manufacturerName: manufacturerName,
             items:
             [
-                Create( Guid.NewGuid(), manufacturerName ),
-                Create( Guid.NewGuid(), manufacturerName, productName: "Super Guitar", patchName: "Guitar1" ),
-                Create( Guid.NewGuid(), manufacturerName, productName: "Super Bass", patchName: "E.Bass" ),
+                CreateDefinition( Guid.NewGuid(), manufacturerName ),
+                CreateDefinition( Guid.NewGuid(), manufacturerName, productName: "Super Guitar", patchName: "Guitar1" ),
+                CreateDefinition( Guid.NewGuid(), manufacturerName, productName: "Super Bass", patchName: "E.Bass" ),
             ]
         );
     }
@@ -44,13 +44,13 @@ public static class MockUniversalDefinition
             productName: productName,
             items:
             [
-                Create( Guid.NewGuid(), manufacturerName, productName ),
-                Create( Guid.NewGuid(), manufacturerName, productName, patchName: "Warm Pad" )
+                CreateDefinition( Guid.NewGuid(), manufacturerName, productName ),
+                CreateDefinition( Guid.NewGuid(), manufacturerName, productName, patchName: "Warm Pad" )
             ]
         );
     }
 
-    public static UniversalDefinition Create(
+    public static UniversalDefinition CreateDefinition(
         Guid id,
         string manufacturerName = "Acme Corp",
         string productName = "Super Synth",

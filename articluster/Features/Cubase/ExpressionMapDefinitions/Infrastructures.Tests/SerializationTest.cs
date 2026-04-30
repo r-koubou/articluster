@@ -8,6 +8,7 @@ using System.Xml.Serialization;
 using ArtiCluster.Commons.IO;
 using ArtiCluster.Features.Cubase.ExpressionMapDefinitions.Infrastructures.Model;
 using ArtiCluster.Shared.IO.Local;
+using ArtiCluster.Shared.Mock;
 
 using NUnit.Framework;
 
@@ -20,7 +21,7 @@ public class SerializationTest
     public void SerializeTest()
     {
         var id = Guid.NewGuid();
-        var source = TestUtility.CreateMock( id, patchName: "Epic Lead" );
+        var source = MockUniversalDefinition.CreateDefinition( id, patchName: "Epic Lead" );
 
         var mapResult = new CubaseModelMapper().Map( source );
 
@@ -50,7 +51,7 @@ public class SerializationTest
     public async Task ExportTest()
     {
         var id = Guid.NewGuid();
-        var source = TestUtility.CreateMock( id, patchName: "Epic Lead" );
+        var source = MockUniversalDefinition.CreateDefinition( id, patchName: "Epic Lead" );
 
         var mapResult = new CubaseModelMapper().Map( source );
 

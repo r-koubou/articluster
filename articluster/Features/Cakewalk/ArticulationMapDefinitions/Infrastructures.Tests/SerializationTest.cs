@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 
 using ArtiCluster.Shared.Domain.UniversalDefinitions;
 using ArtiCluster.Shared.IO.Local;
+using ArtiCluster.Shared.Mock;
 
 using NUnit.Framework;
 
@@ -19,8 +20,8 @@ public class SerializationTest
         var id1 = Guid.NewGuid();
         var id2 = Guid.NewGuid();
 
-        var source1 = TestUtility.CreateMock( id1, patchName: "Epic Lead" );
-        var source2 = TestUtility.CreateMock( id2, patchName: "E.Bass" );
+        var source1 = MockUniversalDefinition.CreateDefinition( id1, patchName: "Epic Lead" );
+        var source2 = MockUniversalDefinition.CreateDefinition( id2, patchName: "E.Bass" );
 
         var productSet = new UniversalDefinitionProductSet(
             manufacturerName: source1.ManufacturerName,
@@ -43,8 +44,8 @@ public class SerializationTest
         var id1 = Guid.NewGuid();
         var id2 = Guid.NewGuid();
 
-        var source1 = TestUtility.CreateMock( id1, patchName: "Epic Lead" );
-        var source2 = TestUtility.CreateMock( id2, patchName: "E.Bass" );
+        var source1 = MockUniversalDefinition.CreateDefinition( id1, patchName: "Epic Lead" );
+        var source2 = MockUniversalDefinition.CreateDefinition( id2, patchName: "E.Bass" );
 
         var productSet = new UniversalDefinitionProductSet(
             manufacturerName: source1.ManufacturerName,
