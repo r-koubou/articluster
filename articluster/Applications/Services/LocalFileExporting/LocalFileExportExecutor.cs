@@ -1,0 +1,49 @@
+using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Threading;
+using System.Threading.Tasks;
+
+using ArtiCluster.Commons;
+using ArtiCluster.Shared.IO.Local;
+
+namespace ArtiCluster.Applications.Services.LocalFileExporting;
+
+public sealed class LocalFileExportExecutor<TSource> : ILocalFileExportExecutor<TSource>
+{
+    public async Task<Result<Unit, ExportFailureReason>> ExecuteAsync(
+        string baseOutputDirectory,
+        IEnumerable<TSource> sources,
+        ILocalFileExportStrategy<TSource> exportStrategy,
+        CancellationToken cancellationToken = default )
+    {
+        foreach( var x in sources )
+        {
+            var outputDirectory = exportStrategy.GetOutputDirectory( baseOutputDirectory, x );
+            var outputPath = Path.Combine( outputDirectory, exportStrategy.GetExportFileName( x ) );
+
+            try
+            {
+                Directory.CreateDirectory( outputDirectory );
+
+                await using var writer = new LocalTextContentWriter( outputPath );
+                var result = await exportStrategy.ExportAsync( writer, x, cancellationToken );
+
+                if( result.IsFailure )
+                {
+                    return result;
+                }
+            }
+            catch( IOException e )
+            {
+                return Result<Unit, ExportFailureReason>.Failure( ExportFailureReason.IoError, e );
+            }
+            catch( Exception e )
+            {
+                return Result<Unit, ExportFailureReason>.Failure( ExportFailureReason.OtherError, e );
+            }
+        }
+
+        return Result<Unit, ExportFailureReason>.Success( Unit.Default );
+    }
+}
