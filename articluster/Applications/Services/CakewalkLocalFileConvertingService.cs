@@ -18,7 +18,6 @@ public sealed class CakewalkLocalFileConvertingService : ILocalFileConvertingSer
         var executor = new LocalFileExportExecutor<UniversalDefinitionProductSet>();
         var strategy = new CakewalkLocalFileExportStrategy();
 
-        // Export
         foreach( var x in definitions.Items )
         {
             var result = await executor.ExecuteAsync( outputBaseDirectory, [ x ], strategy, cancellationToken );

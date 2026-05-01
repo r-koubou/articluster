@@ -3,28 +3,26 @@ using System.Threading;
 using System.Threading.Tasks;
 
 using ArtiCluster.Commons;
-using ArtiCluster.Features.Cakewalk.ArticulationMapDefinitions.Facades;
-using ArtiCluster.Shared.Domain.UniversalDefinitions;
+using ArtiCluster.Features.Cubase.ExpressionMapDefinitions.Facades;
+using ArtiCluster.Shared.Domain.UniversalDefinitions.Model;
 using ArtiCluster.Shared.IO.Abstractions;
-
-using ExportReason = ArtiCluster.Features.Cakewalk.ArticulationMapDefinitions.Facades.ExportReason;
 
 namespace ArtiCluster.Applications.Services.LocalFileExporting;
 
-public sealed class CakewalkLocalFileExportStrategy : ILocalFileExportStrategy<UniversalDefinitionProductSet>
+public sealed class CubaseLocalFileExportStrategy : ILocalFileExportStrategy<UniversalDefinition>
 {
-    public string GetOutputDirectory( string baseDirectory, UniversalDefinitionProductSet source )
-        => Path.Combine( baseDirectory, "Cakewalk", source.ManufacturerName.Value, source.ProductName.Value );
+    public string GetOutputDirectory( string baseDirectory, UniversalDefinition source )
+        => Path.Combine( baseDirectory, "Cubase", source.ManufacturerName.Value, source.ProductName.Value );
 
-    public string GetExportFileName( UniversalDefinitionProductSet source )
-        => source.ProductName.Value + ".artmap";
+    public string GetExportFileName( UniversalDefinition source )
+        => source.ProductName.Value + ".expressionmap";
 
     public async Task<Result<Unit, ExportFailureReason>> ExportAsync(
         ITextContentWriter writer,
-        UniversalDefinitionProductSet source,
+        UniversalDefinition source,
         CancellationToken cancellationToken = default )
     {
-        var facade = new CakewalkDefinitionFacade();
+        var facade = new CubaseDefinitionFacade();
 
         var exportResult = await facade.ExportAsync( writer, source, cancellationToken );
 
