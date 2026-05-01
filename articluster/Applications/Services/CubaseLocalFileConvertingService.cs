@@ -1,14 +1,11 @@
-using System;
-using System.IO;
 using System.Threading;
 using System.Threading.Tasks;
 
 using ArtiCluster.Applications.Services.Abstractions;
+using ArtiCluster.Applications.Services.LocalFileExporting;
 using ArtiCluster.Commons;
-using ArtiCluster.Features.Cubase.ExpressionMapDefinitions.Facades;
 using ArtiCluster.Shared.Domain.UniversalDefinitions;
 using ArtiCluster.Shared.Domain.UniversalDefinitions.Model;
-using ArtiCluster.Shared.IO.Local;
 
 namespace ArtiCluster.Applications.Services;
 
@@ -19,77 +16,28 @@ public sealed class CubaseLocalFileConvertingService : ILocalFileConvertingServi
 
     public async Task<Result<Unit, ConvertReason>> ConvertAsync( string outputBaseDirectory, UniversalDefinitionProductCollection definitions, CancellationToken cancellationToken = default )
     {
+        var executor = new LocalFileExportExecutor<UniversalDefinition>();
+        var strategy = new CubaseLocalFileExportStrategy();
+
         foreach( var productSet in definitions.Items )
         {
             foreach( var definition in productSet.Items )
             {
-                var result = await ConvertImplAsync( outputBaseDirectory, definition, cancellationToken );
+                var result = await executor.ExecuteAsync( outputBaseDirectory, [ definition ], strategy, cancellationToken );
 
                 if( result.IsFailure )
                 {
-                    return result;
+                    return result.MapError( reason => reason switch
+                        {
+                            ExportFailureReason.SerializationError => ConvertReason.SerializationError,
+                            ExportFailureReason.IoError            => ConvertReason.IoError,
+                            _                                      => ConvertReason.OtherError
+                        }
+                    );
                 }
             }
         }
 
         return Result<Unit, ConvertReason>.Success( Unit.Default );
-    }
-
-    private async Task<Result<Unit, ConvertReason>> ConvertImplAsync(
-        string outputBaseDirectory,
-        UniversalDefinition definition,
-        CancellationToken cancellationToken = default )
-    {
-        var outputDirectory = MakeOutputDirectory( outputBaseDirectory, definition );
-        var outputPath = MakeOutputPath( outputDirectory, definition );
-
-        try
-        {
-            Directory.CreateDirectory( outputDirectory );
-
-            await using var writer = new LocalTextContentWriter( outputPath );
-            var facade = new CubaseDefinitionFacade();
-            var exportResult = await facade.ExportAsync( writer, definition, cancellationToken );
-
-            if( exportResult.IsFailure )
-            {
-                return Result<Unit, ConvertReason>.Failure(
-                    exportResult.Reason switch
-                    {
-                        ExportReason.SerializationError => ConvertReason.SerializationError,
-                        ExportReason.IoError            => ConvertReason.IoError,
-                        _                               => ConvertReason.OtherError
-                    }
-                );
-            }
-        }
-        catch( IOException e )
-        {
-            return Result<Unit, ConvertReason>.Failure( ConvertReason.IoError, e );
-        }
-        catch( Exception e )
-        {
-            return Result<Unit, ConvertReason>.Failure( ConvertReason.OtherError, e );
-        }
-
-        return Result<Unit, ConvertReason>.Success( Unit.Default );
-    }
-
-    private string MakeOutputDirectory( string baseDirectory, UniversalDefinition definition )
-    {
-        return Path.Combine(
-            baseDirectory,
-            "Cubase",
-            definition.ManufacturerName.Value,
-            definition.ProductName.Value
-        );
-    }
-
-    private static string MakeOutputPath( string outputDirectory, UniversalDefinition definitions )
-    {
-        return Path.Combine(
-            outputDirectory,
-            definitions.ProductName.Value + ".expressionmap"
-        );
     }
 }
