@@ -1,4 +1,4 @@
-namespace ArtiCluster.Features.UniversalDefinitionsNew.Models;
+namespace ArtiCluster.Features.UniversalDefinitions.Models;
 
 public sealed class MidiMessageModel
 {

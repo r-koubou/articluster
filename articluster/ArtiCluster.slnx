@@ -44,13 +44,13 @@
     <Project Path="Features/StudioOne/KeySwitches/Tests/StudioOne.KeySwitches.Tests.csproj" />
   </Folder>
   <Folder Name="/Features/UniversalDefinitions/">
-    <Project Path="Features/UniversalDefinitionsNew/Contracts/UniversalDefinitionsNew.Contracts.csproj" />
-    <Project Path="Features/UniversalDefinitionsNew/Exports/UniversalDefinitionsNew.Exports.csproj" />
-    <Project Path="Features/UniversalDefinitionsNew/Facades/UniversalDefinitionsNew.Facades.csproj" />
-    <Project Path="Features/UniversalDefinitionsNew/Imports/UniversalDefinitionsNew.Imports.csproj" />
-    <Project Path="Features/UniversalDefinitionsNew/Mappers/UniversalDefinitionsNew.Mappers.csproj" />
-    <Project Path="Features/UniversalDefinitionsNew/Models/UniversalDefinitionsNew.Models.csproj" />
-    <Project Path="Features/UniversalDefinitionsNew/Tests/UniversalDefinitionsNew.Tests.csproj" />
+    <Project Path="Features/UniversalDefinitions/Contracts/UniversalDefinitions.Contracts.csproj" />
+    <Project Path="Features/UniversalDefinitions/Exports/UniversalDefinitions.Exports.csproj" />
+    <Project Path="Features/UniversalDefinitions/Facades/UniversalDefinitions.Facades.csproj" />
+    <Project Path="Features/UniversalDefinitions/Imports/UniversalDefinitions.Imports.csproj" />
+    <Project Path="Features/UniversalDefinitions/Mappers/UniversalDefinitions.Mappers.csproj" />
+    <Project Path="Features/UniversalDefinitions/Models/UniversalDefinitions.Models.csproj" />
+    <Project Path="Features/UniversalDefinitions/Tests/UniversalDefinitions.Tests.csproj" />
   </Folder>
   <Folder Name="/Shared/">
     <Project Path="Shared/Shared.Mock/Shared.Mock.csproj" />

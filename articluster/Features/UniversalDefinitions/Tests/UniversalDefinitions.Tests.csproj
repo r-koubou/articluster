@@ -3,8 +3,8 @@
     <PropertyGroup>
         <LangVersion>default</LangVersion>
         <TargetFramework>net10.0</TargetFramework>
-        <RootNamespace>ArtiCluster.Features.UniversalDefinitionsNew.Tests</RootNamespace>
-        <AssemblyName>ArtiCluster.Features.UniversalDefinitionsNew.Tests</AssemblyName>
+        <RootNamespace>ArtiCluster.Features.UniversalDefinitions.Tests</RootNamespace>
+        <AssemblyName>ArtiCluster.Features.UniversalDefinitions.Tests</AssemblyName>
         <Nullable>enable</Nullable>
         <IsPackable>false</IsPackable>
     </PropertyGroup>

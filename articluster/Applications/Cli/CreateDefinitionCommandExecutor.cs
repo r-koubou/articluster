@@ -5,7 +5,7 @@ using System.Threading;
 using System.Threading.Tasks;
 
 using ArtiCluster.Applications.Services;
-using ArtiCluster.Features.UniversalDefinitionsNew.Facades;
+using ArtiCluster.Features.UniversalDefinitions.Facades;
 using ArtiCluster.Shared.IO.Local;
 
 namespace ArtiCluster.Applications.Cli;

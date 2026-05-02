@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 
 using ArtiCluster.Applications.Services.Abstractions;
 using ArtiCluster.Commons;
-using ArtiCluster.Features.UniversalDefinitionsNew.Contracts;
-using ArtiCluster.Features.UniversalDefinitionsNew.Facades;
+using ArtiCluster.Features.UniversalDefinitions.Contracts;
+using ArtiCluster.Features.UniversalDefinitions.Facades;
 using ArtiCluster.Shared.Domain.UniversalDefinitions;
 using ArtiCluster.Shared.Domain.UniversalDefinitions.Model;
 using ArtiCluster.Shared.IO.Local;

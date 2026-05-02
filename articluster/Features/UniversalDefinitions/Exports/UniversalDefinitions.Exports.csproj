@@ -6,9 +6,9 @@
         <Nullable>enable</Nullable>
         <Copyright>R-Koubou</Copyright>
         <Company>R-Koubou</Company>
-        <Product>ArtiCluster.Features.UniversalDefinitionsNew.Exports</Product>
-        <AssemblyName>ArtiCluster.Features.UniversalDefinitionsNew.Exports</AssemblyName>
-        <RootNamespace>ArtiCluster.Features.UniversalDefinitionsNew.Exports</RootNamespace>
+        <Product>ArtiCluster.Features.UniversalDefinitions.Exports</Product>
+        <AssemblyName>ArtiCluster.Features.UniversalDefinitions.Exports</AssemblyName>
+        <RootNamespace>ArtiCluster.Features.UniversalDefinitions.Exports</RootNamespace>
     </PropertyGroup>
 
     <ItemGroup>
@@ -19,9 +19,9 @@
       <ProjectReference Include="..\..\..\Commons\Commons\Commons.csproj" />
       <ProjectReference Include="..\..\..\Shared\Shared.IO.Abstractions\Shared.IO.Abstractions.csproj" />
       <ProjectReference Include="..\..\..\Shared\Shared\Shared.csproj" />
-      <ProjectReference Include="..\Contracts\UniversalDefinitionsNew.Contracts.csproj" />
-      <ProjectReference Include="..\Mappers\UniversalDefinitionsNew.Mappers.csproj" />
-      <ProjectReference Include="..\Models\UniversalDefinitionsNew.Models.csproj" />
+      <ProjectReference Include="..\Contracts\UniversalDefinitions.Contracts.csproj" />
+      <ProjectReference Include="..\Mappers\UniversalDefinitions.Mappers.csproj" />
+      <ProjectReference Include="..\Models\UniversalDefinitions.Models.csproj" />
     </ItemGroup>
 
 </Project>

@@ -2,13 +2,13 @@ using System.Threading;
 using System.Threading.Tasks;
 
 using ArtiCluster.Commons;
-using ArtiCluster.Features.UniversalDefinitionsNew.Contracts;
-using ArtiCluster.Features.UniversalDefinitionsNew.Exports;
-using ArtiCluster.Features.UniversalDefinitionsNew.Imports;
+using ArtiCluster.Features.UniversalDefinitions.Contracts;
+using ArtiCluster.Features.UniversalDefinitions.Exports;
+using ArtiCluster.Features.UniversalDefinitions.Imports;
 using ArtiCluster.Shared.Domain.UniversalDefinitions.Model;
 using ArtiCluster.Shared.IO.Abstractions;
 
-namespace ArtiCluster.Features.UniversalDefinitionsNew.Facades;
+namespace ArtiCluster.Features.UniversalDefinitions.Facades;
 
 public sealed class UniversalDefinitionFacade : IUniversalDefinitionFacade
 {

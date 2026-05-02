@@ -6,18 +6,18 @@
         <Nullable>enable</Nullable>
         <Copyright>R-Koubou</Copyright>
         <Company>R-Koubou</Company>
-        <Product>ArtiCluster.Features.UniversalDefinitionsNew.Facades</Product>
-        <AssemblyName>ArtiCluster.Features.UniversalDefinitionsNew.Facades</AssemblyName>
-        <RootNamespace>ArtiCluster.Features.UniversalDefinitionsNew.Facades</RootNamespace>
+        <Product>ArtiCluster.Features.UniversalDefinitions.Facades</Product>
+        <AssemblyName>ArtiCluster.Features.UniversalDefinitions.Facades</AssemblyName>
+        <RootNamespace>ArtiCluster.Features.UniversalDefinitions.Facades</RootNamespace>
     </PropertyGroup>
 
     <ItemGroup>
       <ProjectReference Include="..\..\..\Commons\Commons\Commons.csproj" />
       <ProjectReference Include="..\..\..\Shared\Shared.IO.Abstractions\Shared.IO.Abstractions.csproj" />
       <ProjectReference Include="..\..\..\Shared\Shared\Shared.csproj" />
-      <ProjectReference Include="..\Contracts\UniversalDefinitionsNew.Contracts.csproj" />
-      <ProjectReference Include="..\Exports\UniversalDefinitionsNew.Exports.csproj" />
-      <ProjectReference Include="..\Imports\UniversalDefinitionsNew.Imports.csproj" />
+      <ProjectReference Include="..\Contracts\UniversalDefinitions.Contracts.csproj" />
+      <ProjectReference Include="..\Exports\UniversalDefinitions.Exports.csproj" />
+      <ProjectReference Include="..\Imports\UniversalDefinitions.Imports.csproj" />
     </ItemGroup>
 
 </Project>

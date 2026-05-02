@@ -18,7 +18,7 @@
     <ProjectReference Include="..\..\Features\Logic\Articulations\Contracts\Logic.Articulations.Contracts.csproj" />
     <ProjectReference Include="..\..\Features\Logic\Articulations\Facades\Logic.Articulations.Facades.csproj" />
     <ProjectReference Include="..\..\Features\StudioOne\KeySwitches\Facades\StudioOne.KeySwitches.Facades.csproj" />
-    <ProjectReference Include="..\..\Features\UniversalDefinitionsNew\Facades\UniversalDefinitionsNew.Facades.csproj" />
+    <ProjectReference Include="..\..\Features\UniversalDefinitions\Facades\UniversalDefinitions.Facades.csproj" />
     <ProjectReference Include="..\..\Shared\Shared.IO.Abstractions\Shared.IO.Abstractions.csproj"/>
     <ProjectReference Include="..\..\Shared\Shared.IO.Local\Shared.IO.Local.csproj" />
     <ProjectReference Include="..\..\Shared\Shared\Shared.csproj"/>

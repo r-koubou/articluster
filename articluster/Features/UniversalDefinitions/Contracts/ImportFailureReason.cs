@@ -1,4 +1,4 @@
-namespace ArtiCluster.Features.UniversalDefinitionsNew.Contracts;
+namespace ArtiCluster.Features.UniversalDefinitions.Contracts;
 
 public enum ImportFailureReason
 {

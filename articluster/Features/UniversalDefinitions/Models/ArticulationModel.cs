@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 
-namespace ArtiCluster.Features.UniversalDefinitionsNew.Models;
+namespace ArtiCluster.Features.UniversalDefinitions.Models;
 
 public class ArticulationModel
 {

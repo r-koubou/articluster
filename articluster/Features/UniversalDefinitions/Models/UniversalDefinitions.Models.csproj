@@ -6,9 +6,9 @@
         <Nullable>enable</Nullable>
         <Copyright>R-Koubou</Copyright>
         <Company>R-Koubou</Company>
-        <Product>ArtiCluster.Features.UniversalDefinitionsNew.Models</Product>
-        <AssemblyName>ArtiCluster.Features.UniversalDefinitionsNew.Models</AssemblyName>
-        <RootNamespace>ArtiCluster.Features.UniversalDefinitionsNew.Models</RootNamespace>
+        <Product>ArtiCluster.Features.UniversalDefinitions.Models</Product>
+        <AssemblyName>ArtiCluster.Features.UniversalDefinitions.Models</AssemblyName>
+        <RootNamespace>ArtiCluster.Features.UniversalDefinitions.Models</RootNamespace>
     </PropertyGroup>
 
 </Project>

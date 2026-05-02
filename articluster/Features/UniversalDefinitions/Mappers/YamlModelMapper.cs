@@ -1,11 +1,11 @@
 using System.Collections.Generic;
 using System.Linq;
 
-using ArtiCluster.Features.UniversalDefinitionsNew.Models;
+using ArtiCluster.Features.UniversalDefinitions.Models;
 using ArtiCluster.Shared.Domain.MidiMessages.Model.Values;
 using ArtiCluster.Shared.Domain.UniversalDefinitions.Model;
 
-namespace ArtiCluster.Features.UniversalDefinitionsNew.Mappers;
+namespace ArtiCluster.Features.UniversalDefinitions.Mappers;
 
 public static class YamlModelMapper
 {

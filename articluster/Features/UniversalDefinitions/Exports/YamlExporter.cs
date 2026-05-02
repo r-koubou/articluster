@@ -4,14 +4,14 @@ using System.Threading;
 using System.Threading.Tasks;
 
 using ArtiCluster.Commons;
-using ArtiCluster.Features.UniversalDefinitionsNew.Contracts;
-using ArtiCluster.Features.UniversalDefinitionsNew.Mappers;
+using ArtiCluster.Features.UniversalDefinitions.Contracts;
+using ArtiCluster.Features.UniversalDefinitions.Mappers;
 using ArtiCluster.Shared.Domain.UniversalDefinitions.Model;
 using ArtiCluster.Shared.IO.Abstractions;
 
 using YamlDotNet.Core;
 
-namespace ArtiCluster.Features.UniversalDefinitionsNew.Exports;
+namespace ArtiCluster.Features.UniversalDefinitions.Exports;
 
 public sealed class YamlExporter
 {
