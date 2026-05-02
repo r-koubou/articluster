@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 
 using ArtiCluster.Applications.Services.Abstractions;
 using ArtiCluster.Commons;
-using ArtiCluster.Features.UniversalDefinitions.Facades;
+using ArtiCluster.Features.UniversalDefinitionsNew.Contracts;
+using ArtiCluster.Features.UniversalDefinitionsNew.Facades;
 using ArtiCluster.Shared.Domain.UniversalDefinitions;
 using ArtiCluster.Shared.Domain.UniversalDefinitions.Model;
 using ArtiCluster.Shared.IO.Local;
@@ -32,9 +33,9 @@ public sealed class BulkImportUniversalDefinitionService : IBulkImportUniversalD
                 {
                     var reason = importResult.Reason switch
                     {
-                        ImportReason.DeserializationError => BulkImportReason.DeserializationError,
-                        ImportReason.IoError              => BulkImportReason.IoError,
-                        _                                 => BulkImportReason.OtherError
+                        ImportFailureReason.DeserializationError => BulkImportReason.DeserializationError,
+                        ImportFailureReason.IoError              => BulkImportReason.IoError,
+                        _                                        => BulkImportReason.OtherError
                     };
 
                     return Result<UniversalDefinitionProductCollection, BulkImportReason>.Failure( reason );
