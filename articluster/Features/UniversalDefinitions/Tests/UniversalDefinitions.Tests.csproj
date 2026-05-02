@@ -21,4 +21,18 @@
         <PackageReference Include="Microsoft.NET.Test.Sdk" Version="18.4.0" />
     </ItemGroup>
 
+    <ItemGroup>
+      <ProjectReference Include="..\..\..\Commons\Commons\Commons.csproj" />
+      <ProjectReference Include="..\..\..\Commons\Tests.Helpers\Tests.Helpers.csproj" />
+      <ProjectReference Include="..\..\..\Shared\Shared.IO.Abstractions\Shared.IO.Abstractions.csproj" />
+      <ProjectReference Include="..\..\..\Shared\Shared.IO.Local\Shared.IO.Local.csproj" />
+      <ProjectReference Include="..\..\..\Shared\Shared.IO.Streams\Shared.IO.Streams.csproj" />
+      <ProjectReference Include="..\..\..\Shared\Shared.Mock\Shared.Mock.csproj" />
+      <ProjectReference Include="..\..\..\Shared\Shared\Shared.csproj" />
+      <ProjectReference Include="..\Exports\UniversalDefinitions.Exports.csproj" />
+      <ProjectReference Include="..\Imports\UniversalDefinitions.Imports.csproj" />
+      <ProjectReference Include="..\Mappers\UniversalDefinitions.Mappers.csproj" />
+      <ProjectReference Include="..\Models\UniversalDefinitions.Models.csproj" />
+    </ItemGroup>
+
 </Project>
