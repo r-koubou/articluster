@@ -52,15 +52,6 @@
     <Project Path="Features/UniversalDefinitionsNew/Models/UniversalDefinitionsNew.Models.csproj" />
     <Project Path="Features/UniversalDefinitionsNew/Tests/UniversalDefinitionsNew.Tests.csproj" />
   </Folder>
-  <Folder Name="/Features/UniversalDefinitions_OLD/">
-    <Project Path="Features/UniversalDefinitions/Facades/UniversalDefinitions.Facades.csproj" />
-    <Project Path="Features/UniversalDefinitions/Gateways/UniversalDefinitions.Gateways.csproj" />
-    <Project Path="Features/UniversalDefinitions/UseCases/UniversalDefinitions.UseCases.csproj" />
-  </Folder>
-  <Folder Name="/Features/UniversalDefinitions_OLD/Infrastructures/">
-    <Project Path="Features/UniversalDefinitions/Infrastructures/Infrastructures.Yaml.Tests/UniversalDefinitions.Infrastructures.Yaml.Tests.csproj" />
-    <Project Path="Features/UniversalDefinitions/Infrastructures/Infrastructures.Yaml/UniversalDefinitions.Infrastructures.Yaml.csproj" />
-  </Folder>
   <Folder Name="/Shared/">
     <Project Path="Shared/Shared.Mock/Shared.Mock.csproj" />
     <Project Path="Shared/Shared/Shared.csproj" />
