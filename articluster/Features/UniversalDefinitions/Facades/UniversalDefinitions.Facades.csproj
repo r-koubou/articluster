@@ -13,10 +13,11 @@
 
     <ItemGroup>
       <ProjectReference Include="..\..\..\Commons\Commons\Commons.csproj" />
+      <ProjectReference Include="..\..\..\Shared\Shared.IO.Abstractions\Shared.IO.Abstractions.csproj" />
       <ProjectReference Include="..\..\..\Shared\Shared\Shared.csproj" />
-      <ProjectReference Include="..\Gateways\UniversalDefinitions.Gateways.csproj" />
-      <ProjectReference Include="..\Infrastructures\Infrastructures.Yaml\UniversalDefinitions.Infrastructures.Yaml.csproj" />
-      <ProjectReference Include="..\UseCases\UniversalDefinitions.UseCases.csproj" />
+      <ProjectReference Include="..\Contracts\UniversalDefinitions.Contracts.csproj" />
+      <ProjectReference Include="..\Exports\UniversalDefinitions.Exports.csproj" />
+      <ProjectReference Include="..\Imports\UniversalDefinitions.Imports.csproj" />
     </ItemGroup>
 
 </Project>

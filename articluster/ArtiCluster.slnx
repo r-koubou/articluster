@@ -12,42 +12,45 @@
     <Project Path="Commons/Tests.Helpers/Tests.Helpers.csproj" />
   </Folder>
   <Folder Name="/Features/" />
-  <Folder Name="/Features/Cakewalk.ArticulationMapDefinitions/">
-    <Project Path="Features/Cakewalk/ArticulationMapDefinitions/Facades/Cakewalk.ArticulationMapDefinitions.Facades.csproj" />
-    <Project Path="Features/Cakewalk/ArticulationMapDefinitions/Gateways/Cakewalk.ArticulationMapDefinitions.Gateways.csproj" />
-    <Project Path="Features/Cakewalk/ArticulationMapDefinitions/Infrastructures.Tests/Cakewalk.ArticulationMapDefinitions.Infrastructures.Tests.csproj" />
-    <Project Path="Features/Cakewalk/ArticulationMapDefinitions/Infrastructures/Cakewalk.ArticulationMapDefinitions.Infrastructures.csproj" />
-    <Project Path="Features/Cakewalk/ArticulationMapDefinitions/UseCases/Cakewalk.ArticulationMapDefinitions.UseCases.csproj" />
+  <Folder Name="/Features/Cakewalk.ArticulationMaps/">
+    <Project Path="Features/Cakewalk/ArticulationMaps/Contracts/Cakewalk.ArticulationMaps.Contracts.csproj" />
+    <Project Path="Features/Cakewalk/ArticulationMaps/Exports/Cakewalk.ArticulationMaps.Exports.csproj" />
+    <Project Path="Features/Cakewalk/ArticulationMaps/Facades/Cakewalk.ArticulationMaps.Facades.csproj" />
+    <Project Path="Features/Cakewalk/ArticulationMaps/Mappers/Cakewalk.ArticulationMaps.Mappers.csproj" />
+    <Project Path="Features/Cakewalk/ArticulationMaps/Models/Cakewalk.ArticulationMaps.Models.csproj" />
+    <Project Path="Features/Cakewalk/ArticulationMaps/Tests/Cakewalk.ArticulationMaps.Tests.csproj" />
   </Folder>
-  <Folder Name="/Features/Cubase.ExpressionMapDefinitions/">
-    <Project Path="Features/Cubase/ExpressionMapDefinitions/Facades/Cubase.ExpressionMapDefinitions.Facades.csproj" />
-    <Project Path="Features/Cubase/ExpressionMapDefinitions/Gateways/Cubase.ExpressionMapDefinitions.Gateways.csproj" />
-    <Project Path="Features/Cubase/ExpressionMapDefinitions/Infrastructures.Tests/Cubase.ExpressionMapDefinitions.Infrastructures.Tests.csproj" />
-    <Project Path="Features/Cubase/ExpressionMapDefinitions/Infrastructures/Cubase.ExpressionMapDefinitions.Infrastructures.csproj" />
-    <Project Path="Features/Cubase/ExpressionMapDefinitions/UseCases/Cubase.ExpressionMapDefinitions.UseCases.csproj" />
+  <Folder Name="/Features/Cubase.ExpressionMaps/">
+    <Project Path="Features/Cubase/ExpressionMaps/Contracts/Cubase.ExpressionMaps.Contracts.csproj" />
+    <Project Path="Features/Cubase/ExpressionMaps/Exports/Cubase.ExpressionMaps.Exports.csproj" />
+    <Project Path="Features/Cubase/ExpressionMaps/Facades/Cubase.ExpressionMaps.Facades.csproj" />
+    <Project Path="Features/Cubase/ExpressionMaps/Mappers/Cubase.ExpressionMaps.Mappers.csproj" />
+    <Project Path="Features/Cubase/ExpressionMaps/Models/Cubase.ExpressionMaps.Models.csproj" />
+    <Project Path="Features/Cubase/ExpressionMaps/Tests/Cubase.ExpressionMaps.Tests.csproj" />
   </Folder>
-  <Folder Name="/Features/Logic.ArticulationSetDefinitions/">
-    <Project Path="Features/Logic/ArticulationSetDefinitions/Facades/Logic.ArticulationSetDefinitions.Facades.csproj" />
-    <Project Path="Features/Logic/ArticulationSetDefinitions/Gateways/Logic.ArticulationSetDefinitions.Gateways.csproj" />
-    <Project Path="Features/Logic/ArticulationSetDefinitions/Infrastructures.Tests/Logic.ArticulationSetDefinitions.Infrastructures.Tests.csproj" />
-    <Project Path="Features/Logic/ArticulationSetDefinitions/Infrastructures/Logic.ArticulationSetDefinitions.Infrastructures.csproj" />
-    <Project Path="Features/Logic/ArticulationSetDefinitions/UseCases/Logic.ArticulationSetDefinitions.UseCases.csproj" />
+  <Folder Name="/Features/Logic.Articulations/">
+    <Project Path="Features/Logic/Articulations/Contracts/Logic.Articulations.Contracts.csproj" />
+    <Project Path="Features/Logic/Articulations/Exports/Logic.Articulations.Exports.csproj" />
+    <Project Path="Features/Logic/Articulations/Facades/Logic.Articulations.Facades.csproj" />
+    <Project Path="Features/Logic/Articulations/Mappers/Logic.Articulations.Mappers.csproj" />
+    <Project Path="Features/Logic/Articulations/Tests/Logic.Articulations.Tests.csproj" />
   </Folder>
-  <Folder Name="/Features/StudioOne.KeySwitchDefinitions/">
-    <Project Path="Features/StudioOne/KeySwitchDefinitions/Facades/StudioOne.KeySwitchDefinitions.Facades.csproj" />
-    <Project Path="Features/StudioOne/KeySwitchDefinitions/Gateways/StudioOne.KeySwitchDefinitions.Gateways.csproj" />
-    <Project Path="Features/StudioOne/KeySwitchDefinitions/Infrastructures/StudioOne.KeySwitchDefinitions.Infrastructures.csproj" />
-    <Project Path="Features/StudioOne/KeySwitchDefinitions/Infrastructures.Tests/StudioOne.KeySwitchDefinitions.Infrastructures.Tests.csproj" />
-    <Project Path="Features/StudioOne/KeySwitchDefinitions/UseCases/StudioOne.KeySwitchDefinitions.UseCases.csproj" />
+  <Folder Name="/Features/StudioOne.KeySwitches/">
+    <Project Path="Features/StudioOne/KeySwitches/Contracts/StudioOne.KeySwitches.Contracts.csproj" />
+    <Project Path="Features/StudioOne/KeySwitches/Exports/StudioOne.KeySwitches.Exports.csproj" />
+    <Project Path="Features/StudioOne/KeySwitches/Facades/StudioOne.KeySwitches.Facades.csproj" />
+    <Project Path="Features/StudioOne/KeySwitches/Mappers/StudioOne.KeySwitches.Mappers.csproj" />
+    <Project Path="Features/StudioOne/KeySwitches/Models/StudioOne.KeySwitches.Models.csproj" />
+    <Project Path="Features/StudioOne/KeySwitches/Tests/StudioOne.KeySwitches.Tests.csproj" />
   </Folder>
   <Folder Name="/Features/UniversalDefinitions/">
+    <Project Path="Features/UniversalDefinitions/Contracts/UniversalDefinitions.Contracts.csproj" />
+    <Project Path="Features/UniversalDefinitions/Exports/UniversalDefinitions.Exports.csproj" />
     <Project Path="Features/UniversalDefinitions/Facades/UniversalDefinitions.Facades.csproj" />
-    <Project Path="Features/UniversalDefinitions/Gateways/UniversalDefinitions.Gateways.csproj" />
-    <Project Path="Features/UniversalDefinitions/UseCases/UniversalDefinitions.UseCases.csproj" />
-  </Folder>
-  <Folder Name="/Features/UniversalDefinitions/Infrastructures/">
-    <Project Path="Features/UniversalDefinitions/Infrastructures/Infrastructures.Yaml.Tests/UniversalDefinitions.Infrastructures.Yaml.Tests.csproj" />
-    <Project Path="Features/UniversalDefinitions/Infrastructures/Infrastructures.Yaml/UniversalDefinitions.Infrastructures.Yaml.csproj" />
+    <Project Path="Features/UniversalDefinitions/Imports/UniversalDefinitions.Imports.csproj" />
+    <Project Path="Features/UniversalDefinitions/Mappers/UniversalDefinitions.Mappers.csproj" />
+    <Project Path="Features/UniversalDefinitions/Models/UniversalDefinitions.Models.csproj" />
+    <Project Path="Features/UniversalDefinitions/Tests/UniversalDefinitions.Tests.csproj" />
   </Folder>
   <Folder Name="/Shared/">
     <Project Path="Shared/Shared.Mock/Shared.Mock.csproj" />

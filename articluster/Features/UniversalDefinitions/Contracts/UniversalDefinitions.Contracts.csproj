@@ -1,0 +1,20 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <LangVersion>default</LangVersion>
+        <TargetFramework>net10.0</TargetFramework>
+        <Nullable>enable</Nullable>
+        <Copyright>R-Koubou</Copyright>
+        <Company>R-Koubou</Company>
+        <Product>ArtiCluster.Features.UniversalDefinitions.Contracts</Product>
+        <AssemblyName>ArtiCluster.Features.UniversalDefinitions.Contracts</AssemblyName>
+        <RootNamespace>ArtiCluster.Features.UniversalDefinitions.Contracts</RootNamespace>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\..\..\Commons\Commons\Commons.csproj" />
+      <ProjectReference Include="..\..\..\Shared\Shared.IO.Abstractions\Shared.IO.Abstractions.csproj" />
+      <ProjectReference Include="..\..\..\Shared\Shared\Shared.csproj" />
+    </ItemGroup>
+
+</Project>

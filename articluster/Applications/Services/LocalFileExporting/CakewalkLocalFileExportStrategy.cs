@@ -3,11 +3,11 @@ using System.Threading;
 using System.Threading.Tasks;
 
 using ArtiCluster.Commons;
-using ArtiCluster.Features.Cakewalk.ArticulationMapDefinitions.Facades;
+using ArtiCluster.Features.Cakewalk.ArticulationMaps.Facades;
 using ArtiCluster.Shared.Domain.UniversalDefinitions;
 using ArtiCluster.Shared.IO.Abstractions;
 
-using ExportReason = ArtiCluster.Features.Cakewalk.ArticulationMapDefinitions.Facades.ExportReason;
+using FacadeExportFailureReason = ArtiCluster.Features.Cakewalk.ArticulationMaps.Contracts.ExportFailureReason;
 
 namespace ArtiCluster.Applications.Services.LocalFileExporting;
 
@@ -33,9 +33,9 @@ public sealed class CakewalkLocalFileExportStrategy : ILocalFileExportStrategy<U
             return Result<Unit, ExportFailureReason>.Failure(
                 exportResult.Reason switch
                 {
-                    ExportReason.SerializationError => ExportFailureReason.SerializationError,
-                    ExportReason.IoError            => ExportFailureReason.IoError,
-                    _                               => ExportFailureReason.OtherError
+                    FacadeExportFailureReason.SerializationError => ExportFailureReason.SerializationError,
+                    FacadeExportFailureReason.IoError            => ExportFailureReason.IoError,
+                    _                                            => ExportFailureReason.OtherError
                 }
             );
         }

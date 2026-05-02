@@ -3,9 +3,11 @@ using System.Threading;
 using System.Threading.Tasks;
 
 using ArtiCluster.Commons;
-using ArtiCluster.Features.Logic.ArticulationSetDefinitions.Facades;
+using ArtiCluster.Features.Logic.Articulations.Facades;
 using ArtiCluster.Shared.Domain.UniversalDefinitions.Model;
 using ArtiCluster.Shared.IO.Abstractions;
+
+using FacadeExportFailureReason = ArtiCluster.Features.Logic.Articulations.Contracts.ExportFailureReason;
 
 namespace ArtiCluster.Applications.Services.LocalFileExporting;
 
@@ -31,9 +33,9 @@ public sealed class LogicLocalFileExportStrategy : ILocalFileExportStrategy<Univ
             return Result<Unit, ExportFailureReason>.Failure(
                 exportResult.Reason switch
                 {
-                    ExportReason.SerializationError => ExportFailureReason.SerializationError,
-                    ExportReason.IoError            => ExportFailureReason.IoError,
-                    _                               => ExportFailureReason.OtherError
+                    FacadeExportFailureReason.SerializationError => ExportFailureReason.SerializationError,
+                    FacadeExportFailureReason.IoError            => ExportFailureReason.IoError,
+                    _                                            => ExportFailureReason.OtherError
                 }
             );
         }
