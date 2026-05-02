@@ -63,6 +63,14 @@
     <Project Path="Features/StudioOne/KeySwitchDefinitions/Infrastructures.Tests/StudioOne.KeySwitchDefinitions.Infrastructures.Tests.csproj" />
     <Project Path="Features/StudioOne/KeySwitchDefinitions/UseCases/StudioOne.KeySwitchDefinitions.UseCases.csproj" />
   </Folder>
+  <Folder Name="/Features/StudioOne.KeySwitches/">
+    <Project Path="Features/StudioOne/KeySwitches/Contracts/StudioOne.KeySwitches.Contracts.csproj" />
+    <Project Path="Features/StudioOne/KeySwitches/Exports/StudioOne.KeySwitches.Exports.csproj" />
+    <Project Path="Features/StudioOne/KeySwitches/Facades/StudioOne.KeySwitches.Facades.csproj" />
+    <Project Path="Features/StudioOne/KeySwitches/Mappers/StudioOne.KeySwitches.Mappers.csproj" />
+    <Project Path="Features/StudioOne/KeySwitches/Models/StudioOne.KeySwitches.Models.csproj" />
+    <Project Path="Features/StudioOne/KeySwitches/Tests/StudioOne.KeySwitches.Tests.csproj" />
+  </Folder>
   <Folder Name="/Features/UniversalDefinitions/">
     <Project Path="Features/UniversalDefinitions/Facades/UniversalDefinitions.Facades.csproj" />
     <Project Path="Features/UniversalDefinitions/Gateways/UniversalDefinitions.Gateways.csproj" />

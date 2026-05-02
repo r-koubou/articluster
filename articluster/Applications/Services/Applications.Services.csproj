@@ -17,9 +17,10 @@
     <ProjectReference Include="..\..\Features\Cubase\ExpressionMaps\Facades\Cubase.ExpressionMaps.Facades.csproj" />
     <ProjectReference Include="..\..\Features\Logic\Articulations\Contracts\Logic.Articulations.Contracts.csproj" />
     <ProjectReference Include="..\..\Features\Logic\Articulations\Facades\Logic.Articulations.Facades.csproj" />
-    <ProjectReference Include="..\..\Features\StudioOne\KeySwitchDefinitions\Facades\StudioOne.KeySwitchDefinitions.Facades.csproj"/>
+    <ProjectReference Include="..\..\Features\StudioOne\KeySwitches\Facades\StudioOne.KeySwitches.Facades.csproj" />
     <ProjectReference Include="..\..\Features\UniversalDefinitions\Facades\UniversalDefinitions.Facades.csproj"/>
     <ProjectReference Include="..\..\Shared\Shared.IO.Abstractions\Shared.IO.Abstractions.csproj"/>
+    <ProjectReference Include="..\..\Shared\Shared.IO.Local\Shared.IO.Local.csproj" />
     <ProjectReference Include="..\..\Shared\Shared\Shared.csproj"/>
     <ProjectReference Include="..\Services.Abstractions\Applications.Services.Abstractions.csproj"/>
   </ItemGroup>
