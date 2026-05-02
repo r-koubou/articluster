@@ -42,6 +42,13 @@
     <Project Path="Features/Cubase/ExpressionMaps/Models/Cubase.ExpressionMaps.Models.csproj" />
     <Project Path="Features/Cubase/ExpressionMaps/Tests/Cubase.ExpressionMaps.Tests.csproj" />
   </Folder>
+  <Folder Name="/Features/Logic.Articulations/">
+    <Project Path="Features/Logic/Articulations/Contracts/Logic.Articulations.Contracts.csproj" />
+    <Project Path="Features/Logic/Articulations/Exports/Logic.Articulations.Exports.csproj" />
+    <Project Path="Features/Logic/Articulations/Facades/Logic.Articulations.Facades.csproj" />
+    <Project Path="Features/Logic/Articulations/Mappers/Logic.Articulations.Mappers.csproj" />
+    <Project Path="Features/Logic/Articulations/Tests/Logic.Articulations.Tests.csproj" />
+  </Folder>
   <Folder Name="/Features/Logic.ArticulationSetDefinitions/">
     <Project Path="Features/Logic/ArticulationSetDefinitions/Facades/Logic.ArticulationSetDefinitions.Facades.csproj" />
     <Project Path="Features/Logic/ArticulationSetDefinitions/Gateways/Logic.ArticulationSetDefinitions.Gateways.csproj" />

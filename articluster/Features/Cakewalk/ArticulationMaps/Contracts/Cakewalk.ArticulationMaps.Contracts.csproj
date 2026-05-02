@@ -15,8 +15,6 @@
     <ProjectReference Include="..\..\..\..\Commons\Commons\Commons.csproj"/>
     <ProjectReference Include="..\..\..\..\Shared\Shared.IO.Abstractions\Shared.IO.Abstractions.csproj"/>
     <ProjectReference Include="..\..\..\..\Shared\Shared\Shared.csproj"/>
-    <ProjectReference Include="..\Exports\Cakewalk.ArticulationMaps.Exports.csproj"/>
-    <ProjectReference Include="..\Mappers\Cakewalk.ArticulationMaps.Mappers.csproj"/>
   </ItemGroup>
 
 </Project>
