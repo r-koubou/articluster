@@ -12,13 +12,6 @@
     <Project Path="Commons/Tests.Helpers/Tests.Helpers.csproj" />
   </Folder>
   <Folder Name="/Features/" />
-  <Folder Name="/Features/Cakewalk.ArticulationMapDefinitions/">
-    <Project Path="Features/Cakewalk/ArticulationMapDefinitions/Facades/Cakewalk.ArticulationMapDefinitions.Facades.csproj" />
-    <Project Path="Features/Cakewalk/ArticulationMapDefinitions/Gateways/Cakewalk.ArticulationMapDefinitions.Gateways.csproj" />
-    <Project Path="Features/Cakewalk/ArticulationMapDefinitions/Infrastructures.Tests/Cakewalk.ArticulationMapDefinitions.Infrastructures.Tests.csproj" />
-    <Project Path="Features/Cakewalk/ArticulationMapDefinitions/Infrastructures/Cakewalk.ArticulationMapDefinitions.Infrastructures.csproj" />
-    <Project Path="Features/Cakewalk/ArticulationMapDefinitions/UseCases/Cakewalk.ArticulationMapDefinitions.UseCases.csproj" />
-  </Folder>
   <Folder Name="/Features/Cakewalk.ArticulationMaps/">
     <Project Path="Features/Cakewalk/ArticulationMaps/Contracts/Cakewalk.ArticulationMaps.Contracts.csproj" />
     <Project Path="Features/Cakewalk/ArticulationMaps/Exports/Cakewalk.ArticulationMaps.Exports.csproj" />
@@ -26,13 +19,6 @@
     <Project Path="Features/Cakewalk/ArticulationMaps/Mappers/Cakewalk.ArticulationMaps.Mappers.csproj" />
     <Project Path="Features/Cakewalk/ArticulationMaps/Models/Cakewalk.ArticulationMaps.Models.csproj" />
     <Project Path="Features/Cakewalk/ArticulationMaps/Tests/Cakewalk.ArticulationMaps.Tests.csproj" />
-  </Folder>
-  <Folder Name="/Features/Cubase.ExpressionMapDefinitions/">
-    <Project Path="Features/Cubase/ExpressionMapDefinitions/Facades/Cubase.ExpressionMapDefinitions.Facades.csproj" />
-    <Project Path="Features/Cubase/ExpressionMapDefinitions/Gateways/Cubase.ExpressionMapDefinitions.Gateways.csproj" />
-    <Project Path="Features/Cubase/ExpressionMapDefinitions/Infrastructures.Tests/Cubase.ExpressionMapDefinitions.Infrastructures.Tests.csproj" />
-    <Project Path="Features/Cubase/ExpressionMapDefinitions/Infrastructures/Cubase.ExpressionMapDefinitions.Infrastructures.csproj" />
-    <Project Path="Features/Cubase/ExpressionMapDefinitions/UseCases/Cubase.ExpressionMapDefinitions.UseCases.csproj" />
   </Folder>
   <Folder Name="/Features/Cubase.ExpressionMaps/">
     <Project Path="Features/Cubase/ExpressionMaps/Contracts/Cubase.ExpressionMaps.Contracts.csproj" />
@@ -48,20 +34,6 @@
     <Project Path="Features/Logic/Articulations/Facades/Logic.Articulations.Facades.csproj" />
     <Project Path="Features/Logic/Articulations/Mappers/Logic.Articulations.Mappers.csproj" />
     <Project Path="Features/Logic/Articulations/Tests/Logic.Articulations.Tests.csproj" />
-  </Folder>
-  <Folder Name="/Features/Logic.ArticulationSetDefinitions/">
-    <Project Path="Features/Logic/ArticulationSetDefinitions/Facades/Logic.ArticulationSetDefinitions.Facades.csproj" />
-    <Project Path="Features/Logic/ArticulationSetDefinitions/Gateways/Logic.ArticulationSetDefinitions.Gateways.csproj" />
-    <Project Path="Features/Logic/ArticulationSetDefinitions/Infrastructures.Tests/Logic.ArticulationSetDefinitions.Infrastructures.Tests.csproj" />
-    <Project Path="Features/Logic/ArticulationSetDefinitions/Infrastructures/Logic.ArticulationSetDefinitions.Infrastructures.csproj" />
-    <Project Path="Features/Logic/ArticulationSetDefinitions/UseCases/Logic.ArticulationSetDefinitions.UseCases.csproj" />
-  </Folder>
-  <Folder Name="/Features/StudioOne.KeySwitchDefinitions/">
-    <Project Path="Features/StudioOne/KeySwitchDefinitions/Facades/StudioOne.KeySwitchDefinitions.Facades.csproj" />
-    <Project Path="Features/StudioOne/KeySwitchDefinitions/Gateways/StudioOne.KeySwitchDefinitions.Gateways.csproj" />
-    <Project Path="Features/StudioOne/KeySwitchDefinitions/Infrastructures/StudioOne.KeySwitchDefinitions.Infrastructures.csproj" />
-    <Project Path="Features/StudioOne/KeySwitchDefinitions/Infrastructures.Tests/StudioOne.KeySwitchDefinitions.Infrastructures.Tests.csproj" />
-    <Project Path="Features/StudioOne/KeySwitchDefinitions/UseCases/StudioOne.KeySwitchDefinitions.UseCases.csproj" />
   </Folder>
   <Folder Name="/Features/StudioOne.KeySwitches/">
     <Project Path="Features/StudioOne/KeySwitches/Contracts/StudioOne.KeySwitches.Contracts.csproj" />
