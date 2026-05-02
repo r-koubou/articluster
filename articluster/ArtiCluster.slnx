@@ -34,6 +34,14 @@
     <Project Path="Features/Cubase/ExpressionMapDefinitions/Infrastructures/Cubase.ExpressionMapDefinitions.Infrastructures.csproj" />
     <Project Path="Features/Cubase/ExpressionMapDefinitions/UseCases/Cubase.ExpressionMapDefinitions.UseCases.csproj" />
   </Folder>
+  <Folder Name="/Features/Cubase.ExpressionMaps/">
+    <Project Path="Features/Cubase/ExpressionMaps/Contracts/Cubase.ExpressionMaps.Contracts.csproj" />
+    <Project Path="Features/Cubase/ExpressionMaps/Exports/Cubase.ExpressionMaps.Exports.csproj" />
+    <Project Path="Features/Cubase/ExpressionMaps/Facades/Cubase.ExpressionMaps.Facades.csproj" />
+    <Project Path="Features/Cubase/ExpressionMaps/Mappers/Cubase.ExpressionMaps.Mappers.csproj" />
+    <Project Path="Features/Cubase/ExpressionMaps/Models/Cubase.ExpressionMaps.Models.csproj" />
+    <Project Path="Features/Cubase/ExpressionMaps/Tests/Cubase.ExpressionMaps.Tests.csproj" />
+  </Folder>
   <Folder Name="/Features/Logic.ArticulationSetDefinitions/">
     <Project Path="Features/Logic/ArticulationSetDefinitions/Facades/Logic.ArticulationSetDefinitions.Facades.csproj" />
     <Project Path="Features/Logic/ArticulationSetDefinitions/Gateways/Logic.ArticulationSetDefinitions.Gateways.csproj" />
