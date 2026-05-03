@@ -42,4 +42,16 @@ public sealed record UniversalDefinitionProductCollection
     {
         return new UniversalDefinitionProductCollection( items );
     }
+
+    public IEnumerable<UniversalDefinition> EnumerateDefinitions()
+    {
+        // ReSharper disable once LoopCanBeConvertedToQuery
+        foreach( var productSet in Items )
+        {
+            foreach( var definition in productSet.Items )
+            {
+                yield return definition;
+            }
+        }
+    }
 }

@@ -4,10 +4,12 @@ using System.IO;
 using System.Threading;
 using System.Threading.Tasks;
 
+using ArtiCluster.Applications.Services.Abstractions;
+using ArtiCluster.Applications.Services.LocalFileConversions.Strategies;
 using ArtiCluster.Commons;
 using ArtiCluster.Shared.IO.Local;
 
-namespace ArtiCluster.Applications.Services.LocalFileExporting;
+namespace ArtiCluster.Applications.Services.LocalFileConversions.Executors;
 
 public sealed class LocalFileExportExecutor<TSource> : ILocalFileExportExecutor<TSource>
 {

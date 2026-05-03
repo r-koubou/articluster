@@ -1,10 +1,11 @@
 using System.Threading;
 using System.Threading.Tasks;
 
+using ArtiCluster.Applications.Services.Abstractions;
 using ArtiCluster.Commons;
 using ArtiCluster.Shared.IO.Abstractions;
 
-namespace ArtiCluster.Applications.Services.LocalFileExporting;
+namespace ArtiCluster.Applications.Services.LocalFileConversions.Strategies;
 
 public interface ILocalFileExportStrategy<in TSource>
 {

@@ -5,19 +5,22 @@ using System.IO;
 using System.Threading;
 using System.Threading.Tasks;
 
-using ArtiCluster.Applications.Services;
 using ArtiCluster.Applications.Services.Abstractions;
 
 namespace ArtiCluster.Applications.Cli;
 
 internal sealed class ConvertingCommandExecutor : ICommandExecutor
 {
-    private readonly IEnumerable<ILocalFileConvertingService> services;
+    private readonly IEnumerable<ILocalFileConversionService> services;
+    private readonly IUniversalDefinitionLocalFileService importService;
 
     // ReSharper disable once ConvertToPrimaryConstructor
-    public ConvertingCommandExecutor( IEnumerable<ILocalFileConvertingService> services )
+    public ConvertingCommandExecutor(
+        IEnumerable<ILocalFileConversionService> services,
+        IUniversalDefinitionLocalFileService importService )
     {
-        this.services = services;
+        this.services      = services;
+        this.importService = importService;
     }
 
     public Command CreateCommand()
@@ -53,16 +56,20 @@ internal sealed class ConvertingCommandExecutor : ICommandExecutor
                     return 1;
                 }
 
-                return await ExecuteAsync( inputDirectory,  outputDirectory, services );
+                return await ExecuteAsync( inputDirectory,  outputDirectory, services, importService );
             }
         );
 
         return command;
     }
 
-    private static async Task<int> ExecuteAsync( string inputDirectory, string outputBaseDirectory, IEnumerable<ILocalFileConvertingService> convertingServices, CancellationToken cancellationToken = default )
+    private static async Task<int> ExecuteAsync(
+        string inputDirectory,
+        string outputBaseDirectory,
+        IEnumerable<ILocalFileConversionService> convertingServices,
+        IUniversalDefinitionLocalFileService importService,
+        CancellationToken cancellationToken = default )
     {
-        var importService = new BulkImportUniversalDefinitionService();
         var importResult = await importService.ImportAsync( inputDirectory, cancellationToken );
 
         if( importResult.IsFailure )

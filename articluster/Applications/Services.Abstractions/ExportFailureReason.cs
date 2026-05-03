@@ -1,4 +1,4 @@
-namespace ArtiCluster.Applications.Services.LocalFileExporting;
+namespace ArtiCluster.Applications.Services.Abstractions;
 
 public enum ExportFailureReason
 {

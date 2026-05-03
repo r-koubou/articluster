@@ -3,6 +3,7 @@ using System.CommandLine;
 using ArtiCluster.Applications.Cli;
 using ArtiCluster.Applications.Services;
 using ArtiCluster.Applications.Services.Abstractions;
+using ArtiCluster.Applications.Services.LocalFileConversions;
 
 using Microsoft.Extensions.DependencyInjection;
 
@@ -12,10 +13,11 @@ var services = new ServiceCollection();
 services.AddTransient<CreateDefinitionCommandExecutor>();
 services.AddTransient<ConvertingCommandExecutor>();
 // Converters
-services.AddTransient<ILocalFileConvertingService, CubaseLocalFileConvertingService>();
-services.AddTransient<ILocalFileConvertingService, StudioOneLocalFileConvertingService>();
-services.AddTransient<ILocalFileConvertingService, CakewalkLocalFileConvertingService>();
-services.AddTransient<ILocalFileConvertingService, LogicLocalFileConvertingService>();
+services.AddSingleton<IUniversalDefinitionLocalFileService, UniversalDefinitionLocalFileService>();
+services.AddTransient<ILocalFileConversionService, CubaseLocalFileConversionService>();
+services.AddTransient<ILocalFileConversionService, StudioOneLocalFileConversionService>();
+services.AddTransient<ILocalFileConversionService, CakewalkLocalFileConversionService>();
+services.AddTransient<ILocalFileConversionService, LogicLocalFileConversionService>();
 
 using var serviceProvider = services.BuildServiceProvider();
 

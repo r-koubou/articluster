@@ -2,6 +2,7 @@ using System.IO;
 using System.Threading.Tasks;
 
 using ArtiCluster.Applications.Services;
+using ArtiCluster.Applications.Services.LocalFileConversions;
 using ArtiCluster.Tests.Helpers;
 
 using NUnit.Framework;
@@ -19,13 +20,27 @@ public class ConvertServiceTest
             "Acme Corp"
         );
 
-        var service = new BulkImportUniversalDefinitionService();
+        var service = new UniversalDefinitionLocalFileService();
         var result = await service.ImportAsync( dir );
 
         Assert.That( result.IsSuccess, Is.True );
 
         var definitions = result.Unwrap();
         Assert.That( definitions.Count, Is.EqualTo( 1 ) );
+    }
+
+    [Test]
+    public async Task ExportTemplateTest()
+    {
+        var filePath = Path.Combine(
+            TestUtility.TestDataDirectoryRoot,
+            "testdata.yaml"
+        );
+
+        var service = new UniversalDefinitionLocalFileService();
+        var result = await service.ExportTemplateAsync( filePath );
+
+        Assert.That( result.IsSuccess, Is.True );
     }
 
     [Test]
@@ -36,7 +51,7 @@ public class ConvertServiceTest
             "Acme Corp"
         );
 
-        var importService = new BulkImportUniversalDefinitionService();
+        var importService = new UniversalDefinitionLocalFileService();
         var importResult = await importService.ImportAsync( inputBaseDir );
 
         Assert.That( importResult.IsSuccess, Is.True );
@@ -49,7 +64,7 @@ public class ConvertServiceTest
             "converted"
         );
 
-        var convertService = new CubaseLocalFileConvertingService();
+        var convertService = new CubaseLocalFileConversionService();
         var convertResult = await convertService.ConvertAsync( outputBaseDir, definitions );
 
         Assert.That( convertResult.IsSuccess, Is.True );
@@ -63,7 +78,7 @@ public class ConvertServiceTest
             "Acme Corp"
         );
 
-        var importService = new BulkImportUniversalDefinitionService();
+        var importService = new UniversalDefinitionLocalFileService();
         var importResult = await importService.ImportAsync( inputBaseDir );
 
         Assert.That( importResult.IsSuccess, Is.True );
@@ -76,7 +91,7 @@ public class ConvertServiceTest
             "converted"
         );
 
-        var convertService = new StudioOneLocalFileConvertingService();
+        var convertService = new StudioOneLocalFileConversionService();
         var convertResult = await convertService.ConvertAsync( outputBaseDir, definitions );
 
         Assert.That( convertResult.IsSuccess, Is.True );

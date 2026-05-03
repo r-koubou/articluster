@@ -6,18 +6,18 @@ using ArtiCluster.Shared.Domain.UniversalDefinitions;
 
 namespace ArtiCluster.Applications.Services.Abstractions;
 
-public enum ConvertReason
+public enum ConvertFailureReason
 {
     SerializationError,
     IoError,
     OtherError
 }
 
-public interface ILocalFileConvertingService
+public interface ILocalFileConversionService
 {
     string TargetDawName { get; }
 
-    Task<Result<Unit, ConvertReason>> ConvertAsync(
+    Task<Result<Unit, ConvertFailureReason>> ConvertAsync(
         string outputBaseDirectory,
         UniversalDefinitionProductCollection definitions,
         CancellationToken cancellationToken = default

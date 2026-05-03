@@ -8,6 +8,7 @@
     "schedule": [
     "* 9-21 * * 6,0"
   ],
+  "prHourlyLimit": 4,
   "dependencyDashboard": true,
   "labels": [
     "dependencies",
@@ -15,8 +16,6 @@
   ],
   "enabledManagers": [
     "nuget",
-    "gradle",
-    "gradle-wrapper",
     "github-actions",
     "pep621"
   ],
