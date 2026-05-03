@@ -11,7 +11,7 @@ namespace ArtiCluster.Applications.Services.LocalFileConversions.Runners;
 
 public sealed class LocalFileConversionRunner : ILocalFileConversionRunner
 {
-    public async Task<Result<Unit, ConvertReason>> RunAsync<TSource>(
+    public async Task<Result<Unit, ConvertFailureReason>> RunAsync<TSource>(
         string outputBaseDirectory,
         IEnumerable<TSource> sources,
         ILocalFileExportStrategy<TSource> strategy,
@@ -27,14 +27,14 @@ public sealed class LocalFileConversionRunner : ILocalFileConversionRunner
             {
                 return result.MapError( reason => reason switch
                     {
-                        ExportFailureReason.SerializationError => ConvertReason.SerializationError,
-                        ExportFailureReason.IoError            => ConvertReason.IoError,
-                        _                                      => ConvertReason.OtherError
+                        ExportFailureReason.SerializationError => ConvertFailureReason.SerializationError,
+                        ExportFailureReason.IoError            => ConvertFailureReason.IoError,
+                        _                                      => ConvertFailureReason.OtherError
                     }
                 );
             }
         }
 
-        return Result<Unit, ConvertReason>.Success( Unit.Default );
+        return Result<Unit, ConvertFailureReason>.Success( Unit.Default );
     }
 }

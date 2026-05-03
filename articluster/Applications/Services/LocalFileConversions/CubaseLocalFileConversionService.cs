@@ -14,7 +14,7 @@ public sealed class CubaseLocalFileConversionService : ILocalFileConversionServi
     public string TargetDawName
         => "Cubase";
 
-    public async Task<Result<Unit, ConvertReason>> ConvertAsync(
+    public async Task<Result<Unit, ConvertFailureReason>> ConvertAsync(
         string outputBaseDirectory,
         UniversalDefinitionProductCollection definitions,
         CancellationToken cancellationToken = default )

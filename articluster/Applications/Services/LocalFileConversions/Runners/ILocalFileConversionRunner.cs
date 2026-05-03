@@ -10,7 +10,7 @@ namespace ArtiCluster.Applications.Services.LocalFileConversions.Runners;
 
 public interface ILocalFileConversionRunner
 {
-    Task<Result<Unit, ConvertReason>> RunAsync<TSource>(
+    Task<Result<Unit, ConvertFailureReason>> RunAsync<TSource>(
         string outputBaseDirectory,
         IEnumerable<TSource> sources,
         ILocalFileExportStrategy<TSource> strategy,

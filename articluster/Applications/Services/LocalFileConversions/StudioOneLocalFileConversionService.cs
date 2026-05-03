@@ -14,7 +14,7 @@ public sealed class StudioOneLocalFileConversionService : ILocalFileConversionSe
     public string TargetDawName
         => "Studio One";
 
-    public async Task<Result<Unit, ConvertReason>> ConvertAsync(
+    public async Task<Result<Unit, ConvertFailureReason>> ConvertAsync(
         string outputBaseDirectory,
         UniversalDefinitionProductCollection definitions,
         CancellationToken cancellationToken = default )
