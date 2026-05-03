@@ -12,7 +12,7 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <PackageReference Include="plist-cil" Version="2.2.0" />
+        <PackageReference Include="plist-cil" Version="2.3.1" />
     </ItemGroup>
 
     <ItemGroup>
