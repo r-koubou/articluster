@@ -1,24 +1,24 @@
+using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
 
 using ArtiCluster.Applications.Services.Abstractions;
 using ArtiCluster.Applications.Services.LocalFileExporting;
 using ArtiCluster.Commons;
-using ArtiCluster.Shared.Domain.UniversalDefinitions;
 
-namespace ArtiCluster.Applications.Services;
+namespace ArtiCluster.Applications.Services.LocalFileConversions;
 
-public sealed class CakewalkLocalFileConvertingService : ILocalFileConvertingService
+public sealed class LocalFileConversionRunner : ILocalFileConversionRunner
 {
-    public string TargetDawName
-        => "Cakewalk";
-
-    public async Task<Result<Unit, ConvertReason>> ConvertAsync( string outputBaseDirectory, UniversalDefinitionProductCollection definitions, CancellationToken cancellationToken = default )
+    public async Task<Result<Unit, ConvertReason>> RunAsync<TSource>(
+        string outputBaseDirectory,
+        IEnumerable<TSource> sources,
+        ILocalFileExportStrategy<TSource> strategy,
+        CancellationToken cancellationToken = default )
     {
-        var executor = new LocalFileExportExecutor<UniversalDefinitionProductSet>();
-        var strategy = new CakewalkLocalFileExportStrategy();
+        var executor = new LocalFileExportExecutor<TSource>();
 
-        foreach( var x in definitions.Items )
+        foreach( var x in sources )
         {
             var result = await executor.ExecuteAsync( outputBaseDirectory, [ x ], strategy, cancellationToken );
 

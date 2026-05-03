@@ -3,6 +3,7 @@ using System.CommandLine;
 using ArtiCluster.Applications.Cli;
 using ArtiCluster.Applications.Services;
 using ArtiCluster.Applications.Services.Abstractions;
+using ArtiCluster.Applications.Services.LocalFileConversions;
 
 using Microsoft.Extensions.DependencyInjection;
 
