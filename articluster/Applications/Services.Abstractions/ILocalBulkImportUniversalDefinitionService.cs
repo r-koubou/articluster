@@ -6,16 +6,9 @@ using ArtiCluster.Shared.Domain.UniversalDefinitions;
 
 namespace ArtiCluster.Applications.Services.Abstractions;
 
-public enum BulkImportFailureReason
+public interface ILocalBulkImportUniversalDefinitionService
 {
-    DeserializationError,
-    IoError,
-    OtherError
-}
-
-public interface IBulkImportUniversalDefinitionService
-{
-    Task<Result<UniversalDefinitionProductCollection, BulkImportFailureReason>> ImportAsync(
+    Task<Result<UniversalDefinitionProductCollection, ImportFailureReason>> ImportAsync(
         string definitionsDirectory,
         CancellationToken cancellationToken = default );
 }

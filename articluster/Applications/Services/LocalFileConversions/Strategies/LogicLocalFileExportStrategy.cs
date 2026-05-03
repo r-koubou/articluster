@@ -2,6 +2,7 @@ using System.IO;
 using System.Threading;
 using System.Threading.Tasks;
 
+using ArtiCluster.Applications.Services.Abstractions;
 using ArtiCluster.Commons;
 using ArtiCluster.Features.Logic.Articulations.Facades;
 using ArtiCluster.Shared.Domain.UniversalDefinitions.Model;

@@ -3,12 +3,20 @@ using System.CommandLine;
 using System.Threading;
 using System.Threading.Tasks;
 
-using ArtiCluster.Applications.Services;
+using ArtiCluster.Applications.Services.Abstractions;
 
 namespace ArtiCluster.Applications.Cli;
 
 internal sealed class CreateDefinitionCommandExecutor : ICommandExecutor
 {
+    private readonly IUniversalDefinitionLocalFileService service;
+
+    // ReSharper disable once ConvertToPrimaryConstructor
+    public CreateDefinitionCommandExecutor( IUniversalDefinitionLocalFileService service )
+    {
+        this.service = service;
+    }
+
     public Command CreateCommand()
     {
         var outputCreatedPathArgument = new Argument<string>( "path/to/output.yaml" );
@@ -25,16 +33,16 @@ internal sealed class CreateDefinitionCommandExecutor : ICommandExecutor
                     throw new InvalidOperationException( "Output path is required." );
                 }
 
-                return await ExecuteAsync( outputPath );
+                return await ExecuteAsync( outputPath, service );
             }
         );
 
         return command;
     }
 
-    private static async Task<int> ExecuteAsync( string outputPath, CancellationToken cancellationToken = default )
+    private static async Task<int> ExecuteAsync( string outputPath, IUniversalDefinitionLocalFileService service, CancellationToken cancellationToken = default )
     {
-        var result = await UniversalDefinitionService.WriteTemplateAsync( outputPath, cancellationToken );
+        var result = await service.ExportTemplateAsync( outputPath, cancellationToken );
 
         if( result.IsFailure )
         {
