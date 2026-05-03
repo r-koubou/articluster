@@ -5,16 +5,25 @@ using System.Threading.Tasks;
 
 using ArtiCluster.Applications.Services.Abstractions;
 
+using Microsoft.Extensions.Logging;
+
+#pragma warning disable CA2254
+#pragma warning disable CA1873
+
 namespace ArtiCluster.Applications.Cli;
 
 internal sealed class CreateDefinitionCommandExecutor : ICommandExecutor
 {
     private readonly IUniversalDefinitionLocalFileService service;
+    private readonly ILogger<CreateDefinitionCommandExecutor> logger;
 
     // ReSharper disable once ConvertToPrimaryConstructor
-    public CreateDefinitionCommandExecutor( IUniversalDefinitionLocalFileService service )
+    public CreateDefinitionCommandExecutor(
+        IUniversalDefinitionLocalFileService service,
+        ILogger<CreateDefinitionCommandExecutor> logger )
     {
         this.service = service;
+        this.logger  = logger;
     }
 
     public Command CreateCommand()
@@ -33,14 +42,14 @@ internal sealed class CreateDefinitionCommandExecutor : ICommandExecutor
                     throw new InvalidOperationException( "Output path is required." );
                 }
 
-                return await ExecuteAsync( outputPath, service );
+                return await ExecuteAsync( outputPath );
             }
         );
 
         return command;
     }
 
-    private static async Task<int> ExecuteAsync( string outputPath, IUniversalDefinitionLocalFileService service, CancellationToken cancellationToken = default )
+    private async Task<int> ExecuteAsync( string outputPath, CancellationToken cancellationToken = default )
     {
         var result = await service.ExportTemplateAsync( outputPath, cancellationToken );
 
@@ -48,7 +57,7 @@ internal sealed class CreateDefinitionCommandExecutor : ICommandExecutor
         {
             var error = result.UnwrapError();
 
-            await Console.Error.WriteLineAsync( $"Failed to create Universal Definition file: {result.Reason}" );
+            logger.LogError( $"Failed to create Universal Definition file: {result.Reason}" );
 
             if( error.Error != null )
             {
@@ -58,7 +67,7 @@ internal sealed class CreateDefinitionCommandExecutor : ICommandExecutor
             return 1;
         }
 
-        Console.WriteLine( $"Created Universal Definition file at: {outputPath}" );
+        logger.LogInformation( $"Created Universal Definition file at: {outputPath}" );
 
         return 0;
     }

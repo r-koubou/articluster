@@ -7,20 +7,29 @@ using System.Threading.Tasks;
 
 using ArtiCluster.Applications.Services.Abstractions;
 
+using Microsoft.Extensions.Logging;
+
+#pragma warning disable CA2254
+#pragma warning disable CA1873
+
 namespace ArtiCluster.Applications.Cli;
 
 internal sealed class ConvertingCommandExecutor : ICommandExecutor
 {
     private readonly IEnumerable<ILocalFileConversionService> services;
     private readonly IUniversalDefinitionLocalFileService importService;
+    private readonly ILogger<ConvertingCommandExecutor> logger;
+
 
     // ReSharper disable once ConvertToPrimaryConstructor
     public ConvertingCommandExecutor(
         IEnumerable<ILocalFileConversionService> services,
-        IUniversalDefinitionLocalFileService importService )
+        IUniversalDefinitionLocalFileService importService,
+        ILogger<ConvertingCommandExecutor> logger )
     {
         this.services      = services;
         this.importService = importService;
+        this.logger        = logger;
     }
 
     public Command CreateCommand()
@@ -32,6 +41,7 @@ internal sealed class ConvertingCommandExecutor : ICommandExecutor
             inputDirectoryArgument,
             outputDirectoryArgument
         };
+
         command.SetAction( async parseResult =>
             {
                 var inputDirectory = parseResult.GetValue( inputDirectoryArgument );
@@ -44,44 +54,40 @@ internal sealed class ConvertingCommandExecutor : ICommandExecutor
 
                 if( Directory.Exists( outputDirectory ) )
                 {
-                    await Console.Error.WriteLineAsync( $"Output directory already exists. ({outputDirectory})" );
-
+                    logger.LogError( $"Output directory already exists. ({outputDirectory})" );
                     return 1;
                 }
 
                 if( inputDirectory == outputDirectory )
                 {
-                    await Console.Error.WriteLineAsync( $"Input and Output paths cannot be the same. ({outputDirectory})" );
-
+                    logger.LogError( $"Input and Output paths cannot be the same. ({outputDirectory})" );
                     return 1;
                 }
 
-                return await ExecuteAsync( inputDirectory,  outputDirectory, services, importService );
+                return await ExecuteAsync( inputDirectory, outputDirectory );
             }
         );
 
         return command;
     }
 
-    private static async Task<int> ExecuteAsync(
+    private async Task<int> ExecuteAsync(
         string inputDirectory,
         string outputBaseDirectory,
-        IEnumerable<ILocalFileConversionService> convertingServices,
-        IUniversalDefinitionLocalFileService importService,
         CancellationToken cancellationToken = default )
     {
         var importResult = await importService.ImportAsync( inputDirectory, cancellationToken );
 
         if( importResult.IsFailure )
         {
-            await Console.Error.WriteLineAsync( $"Failed to import Universal Definitions: {importResult.Reason}" );
+            logger.LogError( $"Failed to import Universal Definitions: {importResult.Reason}" );
 
             return 1;
         }
 
-        foreach( var service in convertingServices )
+        foreach( var service in services )
         {
-            await Console.Out.WriteLineAsync( $"Converting to \"{service.TargetDawName}\" format..." );
+            logger.LogInformation( $"Convert to \"{service.TargetDawName}\" format..." );
 
             var convertResult = await service.ConvertAsync( outputBaseDirectory, importResult.Unwrap(), cancellationToken );
 
@@ -90,13 +96,12 @@ internal sealed class ConvertingCommandExecutor : ICommandExecutor
                 continue;
             }
 
-            await Console.Error.WriteLineAsync( $"Failed to convert (target:{service.TargetDawName}, reason:{convertResult.Reason})" );
+            logger.LogError( $"Failed to convert (target:{service.TargetDawName}, reason:{convertResult.Reason})" );
 
             return 1;
-
         }
 
-        await Console.Out.WriteLineAsync( "Successfully converted." );
+        logger.LogInformation( "Successfully converted." );
 
         return 0;
     }

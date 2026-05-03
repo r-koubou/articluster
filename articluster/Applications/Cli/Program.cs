@@ -9,13 +9,17 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 
 using Serilog;
+using Serilog.Core;
+using Serilog.Events;
 
 var services = new ServiceCollection();
 
 #region Setup Logging
 const string logOutputTemplate = "[{Timestamp:HH:mm:ss} {Level:u4}] {SourceContext:l} {Message:lj}{NewLine}{Exception}";
+var levelSwitch = new LoggingLevelSwitch();
+
 Log.Logger = new LoggerConfiguration()
-            .MinimumLevel.Information()
+            .MinimumLevel.ControlledBy( levelSwitch )
             .WriteTo.Console( outputTemplate: logOutputTemplate )
             .CreateLogger();
 
@@ -25,7 +29,7 @@ services.AddLogging( builder =>
         builder.AddSerilog( dispose: true );
     }
 );
-#endregion
+#endregion ~Setup Logging
 
 #region DI
 // Commands
@@ -37,14 +41,30 @@ services.AddTransient<ILocalFileConversionService, CubaseLocalFileConversionServ
 services.AddTransient<ILocalFileConversionService, StudioOneLocalFileConversionService>();
 services.AddTransient<ILocalFileConversionService, CakewalkLocalFileConversionService>();
 services.AddTransient<ILocalFileConversionService, LogicLocalFileConversionService>();
-#endregion
+#endregion ~DI
 
-using var serviceProvider = services.BuildServiceProvider();
+await using var serviceProvider = services.BuildServiceProvider();
 
+#region Parsing Arguments
+
+// Root -> Sub Commands
 var root = new RootCommand
 {
     serviceProvider.GetRequiredService<CreateDefinitionCommandExecutor>().CreateCommand(),
     serviceProvider.GetRequiredService<ConvertingCommandExecutor>().CreateCommand()
 };
 
-return root.Parse( args ).Invoke();
+// Global FLags
+var verboseOption = new Option<bool>( "-v", "--verbose" );
+
+root.Add( verboseOption );
+
+var parseResult = root.Parse( args );
+
+if( parseResult.GetValue( verboseOption ) )
+{
+    levelSwitch.MinimumLevel = LogEventLevel.Verbose;
+}
+
+return await parseResult.InvokeAsync();
+#endregion ~Parsing Arguments
