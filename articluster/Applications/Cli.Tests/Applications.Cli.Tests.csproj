@@ -23,7 +23,7 @@
 
     <ItemGroup>
       <ProjectReference Include="..\..\Commons\Tests.Helpers\Tests.Helpers.csproj" />
-      <ProjectReference Include="..\Services\Applications.Services.csproj" />
+      <ProjectReference Include="..\Cli\Applications.Cli.csproj" />
     </ItemGroup>
 
 </Project>

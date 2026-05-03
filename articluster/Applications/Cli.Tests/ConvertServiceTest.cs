@@ -1,3 +1,4 @@
+using System;
 using System.IO;
 using System.Threading.Tasks;
 
@@ -5,9 +6,23 @@ using ArtiCluster.Applications.Services;
 using ArtiCluster.Applications.Services.LocalFileConversions;
 using ArtiCluster.Tests.Helpers;
 
+using Microsoft.Extensions.Logging;
+
 using NUnit.Framework;
 
+
 namespace ArtiCluster.Applications.Cli.Tests;
+
+class NullLogger<T> : ILogger<T>
+{
+    public void Log<TState>( LogLevel logLevel, EventId eventId, TState state, Exception? exception, Func<TState, Exception?, string> formatter )    {}
+
+    public bool IsEnabled( LogLevel logLevel )
+        => true;
+
+    public IDisposable? BeginScope<TState>( TState state ) where TState : notnull
+        => null;
+}
 
 [TestFixture]
 public class ConvertServiceTest
@@ -20,7 +35,7 @@ public class ConvertServiceTest
             "Acme Corp"
         );
 
-        var service = new UniversalDefinitionLocalFileService();
+        var service = new UniversalDefinitionLocalFileService( new NullLogger<UniversalDefinitionLocalFileService>() );
         var result = await service.ImportAsync( dir );
 
         Assert.That( result.IsSuccess, Is.True );
@@ -37,7 +52,7 @@ public class ConvertServiceTest
             "testdata.yaml"
         );
 
-        var service = new UniversalDefinitionLocalFileService();
+        var service = new UniversalDefinitionLocalFileService( new NullLogger<UniversalDefinitionLocalFileService>() );
         var result = await service.ExportTemplateAsync( filePath );
 
         Assert.That( result.IsSuccess, Is.True );
@@ -51,7 +66,7 @@ public class ConvertServiceTest
             "Acme Corp"
         );
 
-        var importService = new UniversalDefinitionLocalFileService();
+        var importService = new UniversalDefinitionLocalFileService( new NullLogger<UniversalDefinitionLocalFileService>() );
         var importResult = await importService.ImportAsync( inputBaseDir );
 
         Assert.That( importResult.IsSuccess, Is.True );
@@ -78,7 +93,7 @@ public class ConvertServiceTest
             "Acme Corp"
         );
 
-        var importService = new UniversalDefinitionLocalFileService();
+        var importService = new UniversalDefinitionLocalFileService( new NullLogger<UniversalDefinitionLocalFileService>() );
         var importResult = await importService.ImportAsync( inputBaseDir );
 
         Assert.That( importResult.IsSuccess, Is.True );
