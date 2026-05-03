@@ -9,7 +9,7 @@ using ArtiCluster.Shared.Domain.UniversalDefinitions;
 
 namespace ArtiCluster.Applications.Services.LocalFileConversions;
 
-public sealed class CakewalkLocalFileConvertingService : ILocalFileConvertingService
+public sealed class CakewalkLocalFileConversionService : ILocalFileConversionService
 {
     public string TargetDawName
         => "Cakewalk";

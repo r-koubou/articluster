@@ -9,10 +9,10 @@ using ArtiCluster.Shared.Domain.UniversalDefinitions;
 
 namespace ArtiCluster.Applications.Services.LocalFileConversions;
 
-public sealed class StudioOneLocalFileConvertingService : ILocalFileConvertingService
+public sealed class CubaseLocalFileConversionService : ILocalFileConversionService
 {
     public string TargetDawName
-        => "Studio One";
+        => "Cubase";
 
     public async Task<Result<Unit, ConvertReason>> ConvertAsync(
         string outputBaseDirectory,
@@ -20,11 +20,11 @@ public sealed class StudioOneLocalFileConvertingService : ILocalFileConvertingSe
         CancellationToken cancellationToken = default )
     {
         var runner = new LocalFileConversionRunner();
-        var strategy = new StudioOneLocalFileExportStrategy();
+        var strategy = new CubaseLocalFileExportStrategy();
 
         return await runner.RunAsync(
             outputBaseDirectory,
-            definitions.Items,
+            definitions.EnumerateDefinitions(),
             strategy,
             cancellationToken
         );

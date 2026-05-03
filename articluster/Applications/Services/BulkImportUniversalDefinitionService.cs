@@ -16,7 +16,7 @@ namespace ArtiCluster.Applications.Services;
 
 public sealed class BulkImportUniversalDefinitionService : IBulkImportUniversalDefinitionService
 {
-    public async Task<Result<UniversalDefinitionProductCollection, BulkImportReason>> ImportAsync( string definitionsDirectory, CancellationToken cancellationToken = default )
+    public async Task<Result<UniversalDefinitionProductCollection, BulkImportFailureReason>> ImportAsync( string definitionsDirectory, CancellationToken cancellationToken = default )
     {
         try
         {
@@ -33,32 +33,32 @@ public sealed class BulkImportUniversalDefinitionService : IBulkImportUniversalD
                 {
                     var reason = importResult.Reason switch
                     {
-                        ImportFailureReason.DeserializationError => BulkImportReason.DeserializationError,
-                        ImportFailureReason.IoError              => BulkImportReason.IoError,
-                        _                                        => BulkImportReason.OtherError
+                        ImportFailureReason.DeserializationError => BulkImportFailureReason.DeserializationError,
+                        ImportFailureReason.IoError              => BulkImportFailureReason.IoError,
+                        _                                        => BulkImportFailureReason.OtherError
                     };
 
-                    return Result<UniversalDefinitionProductCollection, BulkImportReason>.Failure( reason );
+                    return Result<UniversalDefinitionProductCollection, BulkImportFailureReason>.Failure( reason );
                 }
 
                 definitions.Add( importResult.Unwrap() );
             }
 
-            return Result<UniversalDefinitionProductCollection, BulkImportReason>.Success(
+            return Result<UniversalDefinitionProductCollection, BulkImportFailureReason>.Success(
                 new UniversalDefinitionProductCollection( definitions )
             );
         }
         catch( IOException e )
         {
-            return Result<UniversalDefinitionProductCollection, BulkImportReason>.Failure(
-                BulkImportReason.IoError,
+            return Result<UniversalDefinitionProductCollection, BulkImportFailureReason>.Failure(
+                BulkImportFailureReason.IoError,
                 e
             );
         }
         catch( Exception e )
         {
-            return Result<UniversalDefinitionProductCollection, BulkImportReason>.Failure(
-                BulkImportReason.OtherError,
+            return Result<UniversalDefinitionProductCollection, BulkImportFailureReason>.Failure(
+                BulkImportFailureReason.OtherError,
                 e
             );
         }

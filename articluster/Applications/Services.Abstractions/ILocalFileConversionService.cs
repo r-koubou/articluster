@@ -13,7 +13,7 @@ public enum ConvertReason
     OtherError
 }
 
-public interface ILocalFileConvertingService
+public interface ILocalFileConversionService
 {
     string TargetDawName { get; }
 

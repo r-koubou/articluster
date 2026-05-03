@@ -9,10 +9,10 @@ using ArtiCluster.Shared.Domain.UniversalDefinitions;
 
 namespace ArtiCluster.Applications.Services.LocalFileConversions;
 
-public sealed class LogicLocalFileConvertingService : ILocalFileConvertingService
+public sealed class StudioOneLocalFileConversionService : ILocalFileConversionService
 {
     public string TargetDawName
-        => "Logic";
+        => "Studio One";
 
     public async Task<Result<Unit, ConvertReason>> ConvertAsync(
         string outputBaseDirectory,
@@ -20,11 +20,11 @@ public sealed class LogicLocalFileConvertingService : ILocalFileConvertingServic
         CancellationToken cancellationToken = default )
     {
         var runner = new LocalFileConversionRunner();
-        var strategy = new LogicLocalFileExportStrategy();
+        var strategy = new StudioOneLocalFileExportStrategy();
 
         return await runner.RunAsync(
             outputBaseDirectory,
-            definitions.EnumerateDefinitions(),
+            definitions.Items,
             strategy,
             cancellationToken
         );

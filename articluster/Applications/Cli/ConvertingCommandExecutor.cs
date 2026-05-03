@@ -12,10 +12,10 @@ namespace ArtiCluster.Applications.Cli;
 
 internal sealed class ConvertingCommandExecutor : ICommandExecutor
 {
-    private readonly IEnumerable<ILocalFileConvertingService> services;
+    private readonly IEnumerable<ILocalFileConversionService> services;
 
     // ReSharper disable once ConvertToPrimaryConstructor
-    public ConvertingCommandExecutor( IEnumerable<ILocalFileConvertingService> services )
+    public ConvertingCommandExecutor( IEnumerable<ILocalFileConversionService> services )
     {
         this.services = services;
     }
@@ -60,7 +60,7 @@ internal sealed class ConvertingCommandExecutor : ICommandExecutor
         return command;
     }
 
-    private static async Task<int> ExecuteAsync( string inputDirectory, string outputBaseDirectory, IEnumerable<ILocalFileConvertingService> convertingServices, CancellationToken cancellationToken = default )
+    private static async Task<int> ExecuteAsync( string inputDirectory, string outputBaseDirectory, IEnumerable<ILocalFileConversionService> convertingServices, CancellationToken cancellationToken = default )
     {
         var importService = new BulkImportUniversalDefinitionService();
         var importResult = await importService.ImportAsync( inputDirectory, cancellationToken );

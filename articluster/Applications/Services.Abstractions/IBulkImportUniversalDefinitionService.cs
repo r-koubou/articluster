@@ -6,7 +6,7 @@ using ArtiCluster.Shared.Domain.UniversalDefinitions;
 
 namespace ArtiCluster.Applications.Services.Abstractions;
 
-public enum BulkImportReason
+public enum BulkImportFailureReason
 {
     DeserializationError,
     IoError,
@@ -15,5 +15,7 @@ public enum BulkImportReason
 
 public interface IBulkImportUniversalDefinitionService
 {
-    Task<Result<UniversalDefinitionProductCollection, BulkImportReason>> ImportAsync( string definitionsDirectory, CancellationToken cancellationToken = default );
+    Task<Result<UniversalDefinitionProductCollection, BulkImportFailureReason>> ImportAsync(
+        string definitionsDirectory,
+        CancellationToken cancellationToken = default );
 }

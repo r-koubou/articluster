@@ -13,10 +13,10 @@ var services = new ServiceCollection();
 services.AddTransient<CreateDefinitionCommandExecutor>();
 services.AddTransient<ConvertingCommandExecutor>();
 // Converters
-services.AddTransient<ILocalFileConvertingService, CubaseLocalFileConvertingService>();
-services.AddTransient<ILocalFileConvertingService, StudioOneLocalFileConvertingService>();
-services.AddTransient<ILocalFileConvertingService, CakewalkLocalFileConvertingService>();
-services.AddTransient<ILocalFileConvertingService, LogicLocalFileConvertingService>();
+services.AddTransient<ILocalFileConversionService, CubaseLocalFileConversionService>();
+services.AddTransient<ILocalFileConversionService, StudioOneLocalFileConversionService>();
+services.AddTransient<ILocalFileConversionService, CakewalkLocalFileConversionService>();
+services.AddTransient<ILocalFileConversionService, LogicLocalFileConversionService>();
 
 using var serviceProvider = services.BuildServiceProvider();
 
