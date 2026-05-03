@@ -54,8 +54,13 @@ var root = new RootCommand
     serviceProvider.GetRequiredService<ConvertingCommandExecutor>().CreateCommand()
 };
 
+root.Description = "The tool to convert Universal Definition files into local file formats for various DAWs.";
+
 // Global FLags
-var verboseOption = new Option<bool>( "-v", "--verbose" );
+var verboseOption = new Option<bool>( "-v", "--verbose" )
+{
+    Description = "Enables verbose logging output"
+};
 
 root.Add( verboseOption );
 
