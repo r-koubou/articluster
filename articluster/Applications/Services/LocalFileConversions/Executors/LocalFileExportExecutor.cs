@@ -9,10 +9,20 @@ using ArtiCluster.Applications.Services.LocalFileConversions.Strategies;
 using ArtiCluster.Commons;
 using ArtiCluster.Shared.IO.Local;
 
+using Microsoft.Extensions.Logging;
+
 namespace ArtiCluster.Applications.Services.LocalFileConversions.Executors;
 
-public sealed class LocalFileExportExecutor<TSource> : ILocalFileExportExecutor<TSource>
+public sealed partial class LocalFileExportExecutor<TSource> : ILocalFileExportExecutor<TSource>
 {
+    private readonly ILogger<LocalFileExportExecutor<TSource>> logger;
+
+    // ReSharper disable once ConvertToPrimaryConstructor
+    public LocalFileExportExecutor( ILoggerFactory loggerFactory )
+    {
+        logger = loggerFactory.CreateLogger<LocalFileExportExecutor<TSource>>();
+    }
+
     public async Task<Result<Unit, ExportFailureReason>> ExecuteAsync(
         string baseOutputDirectory,
         IEnumerable<TSource> sources,
@@ -23,6 +33,8 @@ public sealed class LocalFileExportExecutor<TSource> : ILocalFileExportExecutor<
         {
             var outputDirectory = exportStrategy.GetOutputDirectory( baseOutputDirectory, x );
             var outputPath = Path.Combine( outputDirectory, exportStrategy.GetExportFileName( x ) );
+
+            LogExportingToOutputPath( outputPath );
 
             try
             {
@@ -48,4 +60,7 @@ public sealed class LocalFileExportExecutor<TSource> : ILocalFileExportExecutor<
 
         return Result<Unit, ExportFailureReason>.Success( Unit.Default );
     }
+
+    [LoggerMessage( LogLevel.Debug, "Exporting to {OutputPath}" )]
+    partial void LogExportingToOutputPath( string outputPath );
 }

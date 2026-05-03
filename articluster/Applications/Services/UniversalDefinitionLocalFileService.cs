@@ -12,15 +12,27 @@ using ArtiCluster.Shared.Domain.UniversalDefinitions;
 using ArtiCluster.Shared.Domain.UniversalDefinitions.Model;
 using ArtiCluster.Shared.IO.Local;
 
+using Microsoft.Extensions.Logging;
+
 using FacadeImportFailureReason = ArtiCluster.Features.UniversalDefinitions.Contracts.ImportFailureReason;
 using FacadeExportFailureReason = ArtiCluster.Features.UniversalDefinitions.Contracts.ExportFailureReason;
 
 namespace ArtiCluster.Applications.Services;
 
-public sealed class UniversalDefinitionLocalFileService : IUniversalDefinitionLocalFileService
+public sealed partial class UniversalDefinitionLocalFileService : IUniversalDefinitionLocalFileService
 {
+    private readonly ILogger<UniversalDefinitionLocalFileService> logger;
+
+    // ReSharper disable once ConvertToPrimaryConstructor
+    public UniversalDefinitionLocalFileService( ILogger<UniversalDefinitionLocalFileService> logger )
+    {
+        this.logger = logger;
+    }
+
     public async Task<Result<UniversalDefinitionProductCollection, ImportFailureReason>> ImportAsync( string definitionsDirectory, CancellationToken cancellationToken = default )
     {
+        logger.LogInformation( "Import begin" );
+
         try
         {
             var facade = new UniversalDefinitionFacade();
@@ -29,6 +41,8 @@ public sealed class UniversalDefinitionLocalFileService : IUniversalDefinitionLo
 
             foreach( var file in definitionFiles )
             {
+                LogImportingFileFile( file );
+
                 using var reader = new LocalTextContentReader( file );
                 var importResult = await facade.ImportAsync( reader, cancellationToken );
 
@@ -46,6 +60,8 @@ public sealed class UniversalDefinitionLocalFileService : IUniversalDefinitionLo
 
                 definitions.Add( importResult.Unwrap() );
             }
+
+            LogImportedSuccessfullyCount( definitions.Count );
 
             return Result<UniversalDefinitionProductCollection, ImportFailureReason>.Success(
                 new UniversalDefinitionProductCollection( definitions )
@@ -69,6 +85,8 @@ public sealed class UniversalDefinitionLocalFileService : IUniversalDefinitionLo
 
     public async Task<Result<Unit, ExportFailureReason>> ExportAsync( string outputPath, UniversalDefinition definition, CancellationToken cancellationToken = default )
     {
+        logger.LogInformation( "Export begin" );
+
         try
         {
             var outputDirectory = Path.GetDirectoryName( outputPath );
@@ -135,4 +153,12 @@ public sealed class UniversalDefinitionLocalFileService : IUniversalDefinitionLo
 
         return await ExportAsync( outputPath, definition, cancellationToken );
     }
+
+    #region Logging
+    [LoggerMessage( LogLevel.Debug, "Importing file: {File}" )]
+    partial void LogImportingFileFile( string file );
+
+    [LoggerMessage( LogLevel.Information, "Imported successfully {Count} definitions" )]
+    partial void LogImportedSuccessfullyCount( int count );
+    #endregion
 }

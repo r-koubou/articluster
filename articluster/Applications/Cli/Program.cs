@@ -6,9 +6,32 @@ using ArtiCluster.Applications.Services.Abstractions;
 using ArtiCluster.Applications.Services.LocalFileConversions;
 
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Logging;
+
+using Serilog;
+using Serilog.Core;
+using Serilog.Events;
 
 var services = new ServiceCollection();
 
+#region Setup Logging
+const string logOutputTemplate = "[{Timestamp:HH:mm:ss} {Level:u4}] {SourceContext:l} {Message:lj}{NewLine}{Exception}";
+var levelSwitch = new LoggingLevelSwitch();
+
+Log.Logger = new LoggerConfiguration()
+            .MinimumLevel.ControlledBy( levelSwitch )
+            .WriteTo.Console( outputTemplate: logOutputTemplate )
+            .CreateLogger();
+
+services.AddLogging( builder =>
+    {
+        builder.ClearProviders();
+        builder.AddSerilog( dispose: true );
+    }
+);
+#endregion ~Setup Logging
+
+#region DI
 // Commands
 services.AddTransient<CreateDefinitionCommandExecutor>();
 services.AddTransient<ConvertingCommandExecutor>();
@@ -18,13 +41,35 @@ services.AddTransient<ILocalFileConversionService, CubaseLocalFileConversionServ
 services.AddTransient<ILocalFileConversionService, StudioOneLocalFileConversionService>();
 services.AddTransient<ILocalFileConversionService, CakewalkLocalFileConversionService>();
 services.AddTransient<ILocalFileConversionService, LogicLocalFileConversionService>();
+#endregion ~DI
 
-using var serviceProvider = services.BuildServiceProvider();
+await using var serviceProvider = services.BuildServiceProvider();
 
+#region Parsing Arguments
+
+// Root -> Sub Commands
 var root = new RootCommand
 {
     serviceProvider.GetRequiredService<CreateDefinitionCommandExecutor>().CreateCommand(),
     serviceProvider.GetRequiredService<ConvertingCommandExecutor>().CreateCommand()
 };
 
-return root.Parse( args ).Invoke();
+root.Description = "The tool to convert Universal Definition files into local file formats for various DAWs.";
+
+// Global FLags
+var verboseOption = new Option<bool>( "-v", "--verbose" )
+{
+    Description = "Enables verbose logging output"
+};
+
+root.Add( verboseOption );
+
+var parseResult = root.Parse( args );
+
+if( parseResult.GetValue( verboseOption ) )
+{
+    levelSwitch.MinimumLevel = LogEventLevel.Verbose;
+}
+
+return await parseResult.InvokeAsync();
+#endregion ~Parsing Arguments

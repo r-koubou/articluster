@@ -7,19 +7,29 @@ using ArtiCluster.Applications.Services.LocalFileConversions.Strategies;
 using ArtiCluster.Commons;
 using ArtiCluster.Shared.Domain.UniversalDefinitions;
 
+using Microsoft.Extensions.Logging;
+
 namespace ArtiCluster.Applications.Services.LocalFileConversions;
 
 public sealed class LogicLocalFileConversionService : ILocalFileConversionService
 {
+    private readonly ILoggerFactory loggerFactory;
+
     public string TargetDawName
         => "Logic";
+
+    // ReSharper disable once ConvertToPrimaryConstructor
+    public LogicLocalFileConversionService( ILoggerFactory loggerFactory )
+    {
+        this.loggerFactory = loggerFactory;
+    }
 
     public async Task<Result<Unit, ConvertFailureReason>> ConvertAsync(
         string outputBaseDirectory,
         UniversalDefinitionProductCollection definitions,
         CancellationToken cancellationToken = default )
     {
-        var runner = new LocalFileConversionRunner();
+        var runner = new LocalFileConversionRunner( loggerFactory );
         var strategy = new LogicLocalFileExportStrategy();
 
         return await runner.RunAsync(
