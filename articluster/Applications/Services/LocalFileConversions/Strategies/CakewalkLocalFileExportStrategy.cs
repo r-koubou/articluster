@@ -3,28 +3,28 @@ using System.Threading;
 using System.Threading.Tasks;
 
 using ArtiCluster.Commons;
-using ArtiCluster.Features.Cubase.ExpressionMaps.Facades;
-using ArtiCluster.Shared.Domain.UniversalDefinitions.Model;
+using ArtiCluster.Features.Cakewalk.ArticulationMaps.Facades;
+using ArtiCluster.Shared.Domain.UniversalDefinitions;
 using ArtiCluster.Shared.IO.Abstractions;
 
-using FacadeExportFailureReason = ArtiCluster.Features.Cubase.ExpressionMaps.Contracts.ExportFailureReason;
+using FacadeExportFailureReason = ArtiCluster.Features.Cakewalk.ArticulationMaps.Contracts.ExportFailureReason;
 
-namespace ArtiCluster.Applications.Services.LocalFileExporting;
+namespace ArtiCluster.Applications.Services.LocalFileConversions.Strategies;
 
-public sealed class CubaseLocalFileExportStrategy : ILocalFileExportStrategy<UniversalDefinition>
+public sealed class CakewalkLocalFileExportStrategy : ILocalFileExportStrategy<UniversalDefinitionProductSet>
 {
-    public string GetOutputDirectory( string baseDirectory, UniversalDefinition source )
-        => Path.Combine( baseDirectory, "Cubase", source.ManufacturerName.Value, source.ProductName.Value );
+    public string GetOutputDirectory( string baseDirectory, UniversalDefinitionProductSet source )
+        => Path.Combine( baseDirectory, "Cakewalk", source.ManufacturerName.Value, source.ProductName.Value );
 
-    public string GetExportFileName( UniversalDefinition source )
-        => source.ProductName.Value + ".expressionmap";
+    public string GetExportFileName( UniversalDefinitionProductSet source )
+        => source.ProductName.Value + ".artmap";
 
     public async Task<Result<Unit, ExportFailureReason>> ExportAsync(
         ITextContentWriter writer,
-        UniversalDefinition source,
+        UniversalDefinitionProductSet source,
         CancellationToken cancellationToken = default )
     {
-        var facade = new CubaseDefinitionFacade();
+        var facade = new CakewalkDefinitionFacade();
 
         var exportResult = await facade.ExportAsync( writer, source, cancellationToken );
 

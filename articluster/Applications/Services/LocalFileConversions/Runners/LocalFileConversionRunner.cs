@@ -3,10 +3,11 @@ using System.Threading;
 using System.Threading.Tasks;
 
 using ArtiCluster.Applications.Services.Abstractions;
-using ArtiCluster.Applications.Services.LocalFileExporting;
+using ArtiCluster.Applications.Services.LocalFileConversions.Executors;
+using ArtiCluster.Applications.Services.LocalFileConversions.Strategies;
 using ArtiCluster.Commons;
 
-namespace ArtiCluster.Applications.Services.LocalFileConversions;
+namespace ArtiCluster.Applications.Services.LocalFileConversions.Runners;
 
 public sealed class LocalFileConversionRunner : ILocalFileConversionRunner
 {

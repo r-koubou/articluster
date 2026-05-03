@@ -3,28 +3,28 @@ using System.Threading;
 using System.Threading.Tasks;
 
 using ArtiCluster.Commons;
-using ArtiCluster.Features.Logic.Articulations.Facades;
+using ArtiCluster.Features.Cubase.ExpressionMaps.Facades;
 using ArtiCluster.Shared.Domain.UniversalDefinitions.Model;
 using ArtiCluster.Shared.IO.Abstractions;
 
-using FacadeExportFailureReason = ArtiCluster.Features.Logic.Articulations.Contracts.ExportFailureReason;
+using FacadeExportFailureReason = ArtiCluster.Features.Cubase.ExpressionMaps.Contracts.ExportFailureReason;
 
-namespace ArtiCluster.Applications.Services.LocalFileExporting;
+namespace ArtiCluster.Applications.Services.LocalFileConversions.Strategies;
 
-public sealed class LogicLocalFileExportStrategy : ILocalFileExportStrategy<UniversalDefinition>
+public sealed class CubaseLocalFileExportStrategy : ILocalFileExportStrategy<UniversalDefinition>
 {
     public string GetOutputDirectory( string baseDirectory, UniversalDefinition source )
-        => Path.Combine( baseDirectory, "Logic", source.ManufacturerName.Value, source.ProductName.Value );
+        => Path.Combine( baseDirectory, "Cubase", source.ManufacturerName.Value, source.ProductName.Value );
 
     public string GetExportFileName( UniversalDefinition source )
-        => source.ProductName.Value + ".plist";
+        => source.ProductName.Value + ".expressionmap";
 
     public async Task<Result<Unit, ExportFailureReason>> ExportAsync(
         ITextContentWriter writer,
         UniversalDefinition source,
         CancellationToken cancellationToken = default )
     {
-        var facade = new LogicDefinitionFacade();
+        var facade = new CubaseDefinitionFacade();
 
         var exportResult = await facade.ExportAsync( writer, source, cancellationToken );
 
