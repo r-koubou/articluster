@@ -1,4 +1,3 @@
-using Terminal.Gui.App;
 using Terminal.Gui.Configuration;
 using Terminal.Gui.Drawing;
 using Terminal.Gui.ViewBase;
@@ -8,14 +7,12 @@ namespace ArtiCluster.Applications.Cli.Editor.UI;
 
 public class MainWindow : Window
 {
-    private readonly IApplication application;
     private readonly ApplicationContext context;
 
     // ReSharper disable once ConvertToPrimaryConstructor
-    public MainWindow( IApplication application )
+    public MainWindow( ApplicationContext context )
     {
-        this.application = application;
-        context          = new ApplicationContext();
+        this.context = context;
         InitComponent();
     }
 
@@ -48,7 +45,7 @@ public class MainWindow : Window
         var rightTopFrame = new GeneralDataEditFrameView( context )
         {
             Width       = Dim.Fill(),
-            Height      = Dim.Percent( 30 ),
+            Height      = Dim.Percent( 40 ),
             BorderStyle = LineStyle.Single,
             CanFocus    = true
         };

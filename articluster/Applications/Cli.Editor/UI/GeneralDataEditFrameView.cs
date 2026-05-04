@@ -52,5 +52,20 @@ public class GeneralDataEditFrameView : FrameView
                 };
             }
         );
+
+        var editExtraButton = new Button
+        {
+            Text = "Edit Extra",
+            Y = 5
+        };
+
+        editExtraButton.Accepting += (s, e) =>
+        {
+            using var dialog = new EditExtraDataDialog( context.Current.Extra );
+            App?.Run( dialog );
+
+        };
+
+        Add( editExtraButton );
     }
 }
