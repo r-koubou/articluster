@@ -8,8 +8,6 @@ namespace ArtiCluster.Commons.EventEmitting;
 /// </summary>
 public sealed class EventEmitter : IEventEmitter
 {
-    private readonly object lockObject = new();
-
     // object : 任意のIObservable<T>型を出し入れしたいため
     private readonly IDictionary<Type, object> registered = new Dictionary<Type, object>();
 
@@ -31,49 +29,40 @@ public sealed class EventEmitter : IEventEmitter
     /// <inheritdoc />
     public IObservable<TEvent> AsObservable<TEvent>() where TEvent : IEvent
     {
-        lock( lockObject )
+        if( TryGetObservable( out IObservable<TEvent> result ) )
         {
-            if( TryGetObservable( out IObservable<TEvent> result ) )
-            {
-                return result;
-            }
-
-            result = new EventObservable<TEvent>();
-
-            if( !registered.TryAdd( typeof( TEvent ), result ) )
-            {
-                throw new InvalidOperationException( $"Failed to register {typeof( TEvent ).Name}." );
-            }
-
             return result;
         }
+
+        result = new EventObservable<TEvent>();
+
+        if( !registered.TryAdd( typeof( TEvent ), result ) )
+        {
+            throw new InvalidOperationException( $"Failed to register {typeof( TEvent ).Name}." );
+        }
+
+        return result;
     }
 
     public void Dispose()
     {
-        lock( lockObject )
-        {
-            registered.Clear();
-        }
+        registered.Clear();
     }
 
     private bool TryGetObservable<TEvent>( out IObservable<TEvent> result ) where TEvent : IEvent
     {
-        lock( lockObject )
+        var type = typeof( TEvent );
+
+        result = NullObservable<TEvent>.Instance;
+
+        if( !registered.TryGetValue( type, out var value ) )
         {
-            var type = typeof( TEvent );
-
-            result = NullObservable<TEvent>.Instance;
-
-            if( !registered.TryGetValue( type, out var value ) )
-            {
-                return false;
-            }
-
-            result = (IObservable<TEvent>)value;
-
-            return true;
+            return false;
         }
+
+        result = (IObservable<TEvent>)value;
+
+        return true;
     }
 
     #region IObservable Implementation
@@ -102,7 +91,6 @@ public sealed class EventEmitter : IEventEmitter
 
     private class EventObservable<TEvent> : IObservable<TEvent> where TEvent : IEvent
     {
-        private readonly object lockObject = new();
         private readonly List<IObserver<TEvent>> subscribers = [];
 
         #region IObservable
@@ -110,19 +98,11 @@ public sealed class EventEmitter : IEventEmitter
         /// <inheritdoc />
         public IDisposable Subscribe( IObserver<TEvent> observer )
         {
-            lock( lockObject )
-            {
-                subscribers.Add( observer );
-            }
+            subscribers.Add( observer );
 
             return new AnonymousDisposer( () =>
                 {
-
-                    lock( lockObject )
-                    {
-                        observer.OnCompleted();
-                        subscribers.Remove( observer );
-                    }
+                    subscribers.Remove( observer );
                 }
             );
         }
@@ -131,12 +111,7 @@ public sealed class EventEmitter : IEventEmitter
 
         public void Publish( TEvent evt )
         {
-            List<IObserver<TEvent>> snapshot;
-
-            lock( lockObject )
-            {
-                snapshot = new List<IObserver<TEvent>>( subscribers );
-            }
+            var snapshot = new List<IObserver<TEvent>>( subscribers );
 
             foreach( var subscriber in snapshot )
             {
@@ -159,6 +134,7 @@ public sealed class EventEmitter : IEventEmitter
     {
         private readonly Action dispose;
 
+        // ReSharper disable once ConvertToPrimaryConstructor
         public AnonymousDisposer( Action dispose )
             => this.dispose = dispose;
 
