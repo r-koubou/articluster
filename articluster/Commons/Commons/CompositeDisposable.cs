@@ -6,20 +6,30 @@ namespace ArtiCluster.Commons;
 
 public sealed class CompositeDisposable : IDisposable, IAsyncDisposable
 {
-    private readonly List<object> disposables = [ ];
+    private readonly List<IDisposable> disposables = [ ];
+    private readonly List<IAsyncDisposable> asyncDisposables = [ ];
 
-    public void Add<T>( T disposable ) where T : IDisposable, IAsyncDisposable
+    public void Add( IDisposable disposable )
     {
         disposables.Add( disposable );
+    }
+
+    public void Add( IAsyncDisposable disposable )
+    {
+        asyncDisposables.Add( disposable );
     }
 
     public void Dispose()
     {
         foreach( var x in disposables )
         {
-            if( x is IDisposable disposable )
+            try
             {
-                disposable.Dispose();
+                x.Dispose();
+            }
+            catch
+            {
+                // ignored
             }
         }
 
@@ -28,20 +38,18 @@ public sealed class CompositeDisposable : IDisposable, IAsyncDisposable
 
     public async ValueTask DisposeAsync()
     {
-        foreach( var x in disposables )
+        foreach( var x in asyncDisposables )
         {
-            switch( x )
+            try
             {
-                case IAsyncDisposable asyncDisposable:
-                    await asyncDisposable.DisposeAsync();
-                    break;
-
-                case IDisposable disposable:
-                    disposable.Dispose();
-                    break;
+                await x.DisposeAsync();
+            }
+            catch
+            {
+                // ignored
             }
         }
 
-        disposables.Clear();
+        asyncDisposables.Clear();
     }
 }
