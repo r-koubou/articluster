@@ -1,11 +1,11 @@
 using System;
 using System.IO;
-using System.Text;
 using System.Threading.Tasks;
 using System.Xml;
 using System.Xml.Serialization;
 
 using ArtiCluster.Commons.IO;
+using ArtiCluster.Commons.Text;
 using ArtiCluster.Features.StudioOne.KeySwitches.Exports;
 using ArtiCluster.Features.StudioOne.KeySwitches.Mappers;
 using ArtiCluster.Features.StudioOne.KeySwitches.Models;
@@ -45,7 +45,7 @@ public class SerializationTest
         var xmlNamespaces = new XmlSerializerNamespaces();
         xmlNamespaces.Add( "", "" );
 
-        var stringWriter = new StringWriterWithEncoding( Encoding.UTF8 );
+        var stringWriter = new StringWriterWithEncoding( EncodingConstants.Utf8NoBom );
         var xmlWriterSettings = new XmlWriterSettings
         {
             Indent = true,
