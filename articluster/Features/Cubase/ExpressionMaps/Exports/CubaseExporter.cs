@@ -8,6 +8,7 @@ using System.Xml.Serialization;
 
 using ArtiCluster.Commons;
 using ArtiCluster.Commons.IO;
+using ArtiCluster.Commons.Text;
 using ArtiCluster.Features.Cubase.ExpressionMaps.Contracts;
 using ArtiCluster.Features.Cubase.ExpressionMaps.Mappers;
 using ArtiCluster.Features.Cubase.ExpressionMaps.Models;
@@ -35,7 +36,7 @@ public sealed class CubaseExporter
             var xmlNamespaces = new XmlSerializerNamespaces();
             xmlNamespaces.Add( "", "" );
 
-            var stringWriter = new StringWriterWithEncoding( Encoding.UTF8 );
+            var stringWriter = new StringWriterWithEncoding( EncodingConstants.Utf8NoBom );
             var xmlWriterSettings = new XmlWriterSettings
             {
                 Indent = true,
