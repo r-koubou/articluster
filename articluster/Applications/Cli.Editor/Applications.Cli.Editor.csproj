@@ -1,0 +1,26 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <OutputType>Exe</OutputType>
+        <LangVersion>default</LangVersion>
+        <TargetFramework>net10.0</TargetFramework>
+        <Nullable>enable</Nullable>
+        <Copyright>R-Koubou</Copyright>
+        <Company>R-Koubou</Company>
+        <Product>ArtiCluster.Applications.Cli.Editor</Product>
+        <AssemblyName>ArtiCluster.Applications.Cli.Editor</AssemblyName>
+        <RootNamespace>ArtiCluster.Applications.Cli.Editor</RootNamespace>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\..\Commons\Commons\Commons.csproj" />
+      <ProjectReference Include="..\..\Shared\Shared\Shared.csproj" />
+      <ProjectReference Include="..\Services.Abstractions\Applications.Services.Abstractions.csproj" />
+      <ProjectReference Include="..\Services\Applications.Services.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <PackageReference Include="Terminal.Gui" Version="2.0.1" />
+    </ItemGroup>
+
+</Project>
