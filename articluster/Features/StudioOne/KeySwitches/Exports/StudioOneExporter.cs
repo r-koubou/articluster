@@ -46,7 +46,7 @@ public sealed class StudioOneExporter
                 Indent = true
             };
 
-            using var xmlWriter = XmlWriter.Create( stringWriter, xmlWriterSettings );
+            await using var xmlWriter = XmlWriter.Create( stringWriter, xmlWriterSettings );
             serializer.Serialize( xmlWriter, rootElement, xmlNamespaces );
 
             await writer.WriteAsync( stringWriter.ToString(), cancellationToken );

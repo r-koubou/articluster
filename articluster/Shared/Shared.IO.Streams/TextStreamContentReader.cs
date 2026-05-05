@@ -45,7 +45,7 @@ public sealed class TextStreamContentReader(
 
     public async Task<string> ReadAllAsync( CancellationToken cancellationToken = default )
     {
-        using var binaryReader = new BinaryStreamContentReader( Stream, leaveOpen: true );
+        await using var binaryReader = new BinaryStreamContentReader( Stream, leaveOpen: true );
         var buffer = await binaryReader.ReadAllAsync( cancellationToken );
 
         return TextEncoding.GetString( buffer.ToArray() );

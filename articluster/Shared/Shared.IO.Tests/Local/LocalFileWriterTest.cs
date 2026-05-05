@@ -19,7 +19,7 @@ public class LocalFileWriterTest
         {
             // Write
             {
-                using var writer = new LocalTextContentWriter( path );
+                await using var writer = new LocalTextContentWriter( path );
                 await writer.WriteAsync( "Hello", CancellationToken.None );
             }
             // Verify
@@ -44,7 +44,7 @@ public class LocalFileWriterTest
         {
             // Write
             {
-                using var writer = new LocalBinaryContentWriter( path );
+                await using var writer = new LocalBinaryContentWriter( path );
                 await writer.WriteAsync( testData, CancellationToken.None );
             }
             // Verify

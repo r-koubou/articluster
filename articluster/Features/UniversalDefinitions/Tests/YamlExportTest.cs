@@ -60,7 +60,7 @@ public class YamlExportTest
         try
         {
             await using var stream = File.Create( destPath );
-            using var reader = new TextStreamContentWriter( stream );
+            await using var reader = new TextStreamContentWriter( stream );
             var exporter = new YamlExporter();
             var result = await exporter.ExportAsync( reader, source, CancellationToken.None );
 
