@@ -30,6 +30,12 @@ on:
         default: "Debug"
         description: |
           dotnet Build configuration (Debug, Release)
+      dotnet_custom_build_properties:
+        required: false
+        type: string
+        default: ""
+        description: |
+          Additional properties to pass to dotnet build/publish command (e.g.: "-p:CustomProperty=Value -p:AnotherProperty=AnotherValue")
 
   workflow_dispatch:
     inputs:
@@ -62,6 +68,12 @@ on:
           - Release
         description: |
           dotnet Build configuration (Debug, Release)
+      dotnet_custom_build_properties:
+        required: false
+        type: string
+        default: ""
+        description: |
+          Additional properties to pass to dotnet build/publish command (e.g.: "/p:CustomProperty=Value /p:AnotherProperty=AnotherValue")
 
 #--------------------------------------------------------------
 # Build C# project
@@ -79,7 +91,7 @@ jobs:
       BASE_DIR: ${{ github.workspace }}/${{ inputs.base_dir }}
       PUBLISH_DIRNAME: publish
       BUILD_CONFIGURATION: ${{ inputs.configuration }}
-
+      DOTNET_CUSTOM_BUILD_PROPERTIES: ${{ inputs.dotnet_custom_build_properties }}
     steps:
     - name: Show workflow inputs
       run: |
@@ -95,6 +107,7 @@ jobs:
           echo "|Prefix|${{ inputs.prefix }}|"
           echo "|Base Directory|${{ inputs.base_dir }}|"
           echo "|csproj Filename|${{ inputs.csproject_filename }}|"
+          echo "|Dotnet Custom Build Properties|${{ inputs.dotnet_custom_build_properties }}|"
           echo ""
         } >> $GITHUB_STEP_SUMMARY
 
@@ -182,6 +195,7 @@ jobs:
           echo "|PUBLISH_DIR|${{ env.PUBLISH_DIR }}|"
           echo "|BUILD_CONFIGURATION|${{ env.BUILD_CONFIGURATION }}|"
           echo "|BUILD_VERSION|${{ env.BUILD_VERSION }}|"
+          echo "|DOTNET_CUSTOM_BUILD_PROPERTIES|${{ env.DOTNET_CUSTOM_BUILD_PROPERTIES }}|"
           echo "|VERSION_INFO_PATH|${{ env.VERSION_INFO_PATH }}|"
           echo "|ARTIFACT_NAME|${{ env.ARTIFACT_NAME }}|"
           echo ""
@@ -222,7 +236,14 @@ jobs:
     - name: Build Project
       run: |
         pushd ${{ env.BASE_DIR }}
-        dotnet publish ${{ env.CSPROJ_PATH }} -p:FileVersion=${{ env.BUILD_VERSION }} -p:Version=${{ env.BUILD_VERSION }} -p:AssemblyVersion=${{ env.BUILD_VERSION }} -c ${{ env.BUILD_CONFIGURATION }} -o ${{ env.PUBLISH_RELATIVE_DIR_FROM_BASE }}
+        dotnet \
+          publish ${{ env.CSPROJ_PATH }} \
+          -p:FileVersion=${{ env.BUILD_VERSION }} \
+          -p:Version=${{ env.BUILD_VERSION }} \
+          -p:AssemblyVersion=${{ env.BUILD_VERSION }} \
+          -c ${{ env.BUILD_CONFIGURATION }} \
+          -o ${{ env.PUBLISH_RELATIVE_DIR_FROM_BASE }} \
+          ${{ env.DOTNET_CUSTOM_BUILD_PROPERTIES }}
         popd
 
     #----------------------------------------------------------
