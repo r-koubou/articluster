@@ -46,6 +46,7 @@ public sealed class StudioOneExporter
                 Indent = true
             };
 
+            // ReSharper disable once UseAwaitUsing
             using var xmlWriter = XmlWriter.Create( stringWriter, xmlWriterSettings );
             serializer.Serialize( xmlWriter, rootElement, xmlNamespaces );
 

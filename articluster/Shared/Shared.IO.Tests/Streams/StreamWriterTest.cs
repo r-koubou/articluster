@@ -21,7 +21,7 @@ public class StreamWriterTest
         {
             // Write
             {
-                using var writer = new TextStreamContentWriter( File.Create( path ) );
+                await using var writer = new TextStreamContentWriter( File.Create( path ) );
                 await writer.WriteAsync( "Hello", CancellationToken.None );
             }
             // Verify
@@ -46,7 +46,7 @@ public class StreamWriterTest
         {
             // Write
             {
-                using var writer = new BinaryStreamContentWriter( File.Create( path ) );
+                await using var writer = new BinaryStreamContentWriter( File.Create( path ) );
                 await writer.WriteAsync( testData, CancellationToken.None );
             }
             // Verify

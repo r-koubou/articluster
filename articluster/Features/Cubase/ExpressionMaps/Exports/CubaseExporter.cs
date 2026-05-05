@@ -1,6 +1,5 @@
 using System;
 using System.IO;
-using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Xml;
@@ -43,6 +42,7 @@ public sealed class CubaseExporter
                 Async  = true
             };
 
+            // ReSharper disable once UseAwaitUsing
             using var xmlWriter = XmlWriter.Create( stringWriter, xmlWriterSettings );
             serializer.Serialize( xmlWriter, mapResult.Unwrap(), xmlNamespaces );
 
