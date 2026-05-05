@@ -1,0 +1,22 @@
+name: Build articluster-cli NuGet package (Release)
+
+on:
+  push:
+    tags:
+      - 'v*'
+
+  workflow_dispatch:
+    inputs:
+      version:
+        required: true
+        default: ''
+
+jobs:
+  build-articluster-cli-nuget-release:
+    uses: ./.github/workflows/build-nuget-package.yml
+    secrets: inherit
+    with:
+      configuration: Release
+      prefix: articluster
+      base_dir: "articluster/Applications/Cli"
+      csproject_filename: "Applications.Cli.csproj"
