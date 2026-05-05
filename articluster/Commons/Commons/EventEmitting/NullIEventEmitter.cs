@@ -20,14 +20,14 @@ public class NullIEventEmitter : IEventEmitter
 
     public IObservable<TEvent> AsObservable<TEvent>() where TEvent : IEvent
     {
-        return NullObservable<TEvent>.Instance;
+        return NullObservable<TEvent>.Null;
     }
 
     public void Dispose() {}
 
     private class NullObservable<TEvent> : IObservable<TEvent> where TEvent : IEvent
     {
-        public static readonly NullObservable<TEvent> Instance = new();
+        public static readonly NullObservable<TEvent> Null = new();
 
         public IDisposable Subscribe( IObserver<TEvent> observer )
         {
