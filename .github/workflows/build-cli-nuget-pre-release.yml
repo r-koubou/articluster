@@ -1,11 +1,10 @@
-name: Build articluster-cli NuGet package (Release)
+name: Build articluster-cli NuGet package (Pre-Release)
 
 on:
   push:
     tags:
-      - 'v*'
-      - '!v*-pre'
-      - '!v*-pre.*'
+      - 'v*-pre'
+      - 'v*-pre.*'
 
   workflow_dispatch:
     inputs:
@@ -14,11 +13,12 @@ on:
         default: ''
 
 jobs:
-  build-articluster-cli-nuget-release:
+  build-articluster-cli-nuget-pre-release:
     uses: ./.github/workflows/build-nuget-package.yml
     secrets: inherit
     with:
       configuration: Release
+      pre_release: true
       prefix: articluster-cli-nuget
       base_dir: "articluster/Applications/Cli"
       csproject_filename: "Applications.Cli.csproj"
