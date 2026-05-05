@@ -1,4 +1,4 @@
-name: Build csproj project
+name: Build nuget package
 
 on:
   workflow_call:
@@ -30,12 +30,18 @@ on:
         default: "Debug"
         description: |
           dotnet Build configuration (Debug, Release)
+      pre_release:
+        required: false
+        type: boolean
+        default: false
+        description: |
+          If true, add option --prerelease to dotnet pack command to mark the package as pre-release.
       dotnet_custom_build_properties:
         required: false
         type: string
         default: ""
         description: |
-          Additional properties to pass to dotnet build/publish command (e.g.: "-p:CustomProperty=Value -p:AnotherProperty=AnotherValue")
+          Additional properties to pass to dotnet pack command (e.g.: "-p:CustomProperty=Value -p:AnotherProperty=AnotherValue")
 
   workflow_dispatch:
     inputs:
@@ -68,30 +74,37 @@ on:
           - Release
         description: |
           dotnet Build configuration (Debug, Release)
+      pre_release:
+        required: false
+        type: boolean
+        default: false
+        description: |
+          If true, add option --prerelease to dotnet pack command to mark the package as pre-release.
       dotnet_custom_build_properties:
         required: false
         type: string
         default: ""
         description: |
-          Additional properties to pass to dotnet build/publish command (e.g.: "/p:CustomProperty=Value /p:AnotherProperty=AnotherValue")
+          Additional properties to pass to dotnet pack command (e.g.: "-p:CustomProperty=Value -p:AnotherProperty=AnotherValue")
 
 #--------------------------------------------------------------
-# Build C# project
+# Build NuGet package
 #--------------------------------------------------------------
 jobs:
-  build-csproj:
+  build-nuget-package:
     name: build (${{ inputs.configuration }})
     runs-on: ubuntu-latest
     env:
       DOTNET_SDK_VERSION: ${{ vars.DOTNET_SDK_VERSION }}
       DOTNET_CLI_TELEMETRY_OPTOUT: 1
       DOTNET_SKIP_FIRST_TIME_EXPERIENCE: 1
-      PREFIX: ${{ inputs.prefix }}
+      PREFIX: ${{ inputs.prefix }}${{ inputs.pre_release && '-pre-release' || '' }}
       CSPROJ_FILENAME: ${{ inputs.csproject_filename }}
       BASE_DIR: ${{ github.workspace }}/${{ inputs.base_dir }}
       PUBLISH_DIRNAME: publish
       BUILD_CONFIGURATION: ${{ inputs.configuration }}
       DOTNET_CUSTOM_BUILD_PROPERTIES: ${{ inputs.dotnet_custom_build_properties }}
+      PRE_RELEASE: ${{ inputs.pre_release }}
     steps:
     - name: Show workflow inputs
       run: |
@@ -104,6 +117,7 @@ jobs:
           echo "|Commit SHA| ${{ github.sha }}|"
           echo "|Version|${{ inputs.version }}|"
           echo "|Configuration|${{ inputs.configuration }}|"
+          echo "|Pre-Release|${{ inputs.pre_release }}|"
           echo "|Prefix|${{ inputs.prefix }}|"
           echo "|Base Directory|${{ inputs.base_dir }}|"
           echo "|csproj Filename|${{ inputs.csproject_filename }}|"
@@ -129,6 +143,14 @@ jobs:
     - name:  Setup csproj file path variable
       run: |
         echo "CSPROJ_PATH=${{ env.BASE_DIR }}/${{ env.CSPROJ_FILENAME }}" >> $GITHUB_ENV
+
+    - name: Setup Nuget Pre-Release option variable
+      run: |
+        if [ "${{ env.PRE_RELEASE }}" = "true" ]; then
+          echo "NUGET_PRERELEASE_OPTION=--prerelease" >> $GITHUB_ENV
+        else
+          echo "NUGET_PRERELEASE_OPTION=" >> $GITHUB_ENV
+        fi
 
     - name: Setup Publish Directory Variable
       run: |
@@ -196,6 +218,7 @@ jobs:
           echo "|BUILD_CONFIGURATION|${{ env.BUILD_CONFIGURATION }}|"
           echo "|BUILD_VERSION|${{ env.BUILD_VERSION }}|"
           echo "|DOTNET_CUSTOM_BUILD_PROPERTIES|${{ env.DOTNET_CUSTOM_BUILD_PROPERTIES }}|"
+          echo "|NUGET_PRERELEASE_OPTION|${{ env.NUGET_PRERELEASE_OPTION }}|"
           echo "|VERSION_INFO_PATH|${{ env.VERSION_INFO_PATH }}|"
           echo "|ARTIFACT_NAME|${{ env.ARTIFACT_NAME }}|"
           echo ""
@@ -231,22 +254,6 @@ jobs:
         } >> $GITHUB_STEP_SUMMARY
 
     #----------------------------------------------------------
-    # Build
-    #----------------------------------------------------------
-    - name: Build Project
-      run: |
-        pushd ${{ env.BASE_DIR }}
-        dotnet \
-          publish ${{ env.CSPROJ_PATH }} \
-          -p:FileVersion=${{ env.BUILD_VERSION }} \
-          -p:Version=${{ env.BUILD_VERSION }} \
-          -p:AssemblyVersion=${{ env.BUILD_VERSION }} \
-          -c ${{ env.BUILD_CONFIGURATION }} \
-          -o ${{ env.PUBLISH_RELATIVE_DIR_FROM_BASE }} \
-          ${{ env.DOTNET_CUSTOM_BUILD_PROPERTIES }}
-        popd
-
-    #----------------------------------------------------------
     # Create Version Information File
     #----------------------------------------------------------
     - name: Create Version information file
@@ -256,9 +263,26 @@ jobs:
           echo "Build Configuration: ${{ env.BUILD_CONFIGURATION }}"
           echo "Build date: $(date)"
           echo "Version: ${{ env.BUILD_VERSION }}"
+          echo "Pre-Release: ${{ env.PRE_RELEASE }}"
           echo "Branch: ${{ github.ref_name }}"
           echo "Commit: ${{ github.sha }}"
         } >> ${{ env.VERSION_INFO_PATH }}
+
+    #----------------------------------------------------------
+    # Pack to NuGet package
+    #----------------------------------------------------------
+    - name: Create NuGet package
+      run: |
+        pushd ${{ env.BASE_DIR }}
+        dotnet pack ${{ env.CSPROJ_PATH }} \
+          -p:PackageVersion=${{ env.BUILD_VERSION }} \
+          -p:FileVersion=${{ env.BUILD_VERSION }} \
+          -p:Version=${{ env.BUILD_VERSION }} \
+          -p:AssemblyVersion=${{ env.BUILD_VERSION }} \
+          -c ${{ env.BUILD_CONFIGURATION }} \
+          -o ${{ env.PUBLISH_RELATIVE_DIR_FROM_BASE }} \
+          ${{ env.DOTNET_CUSTOM_BUILD_PROPERTIES }}
+        popd
 
     - name: Show Version information file
       run: |
