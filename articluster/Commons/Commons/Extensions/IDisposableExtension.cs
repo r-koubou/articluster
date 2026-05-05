@@ -4,8 +4,8 @@ namespace ArtiCluster.Commons.Extensions;
 
 public static class IDisposableExtension
 {
-    public static void AddTo( this IDisposable self, CompositeDisposable compositeDisposable )
+    public static void AddTo( this IDisposable self, CompositeDisposable target )
     {
-        compositeDisposable.Add( self );
+        target.Add( self );
     }
 }
