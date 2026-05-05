@@ -18,7 +18,7 @@ public sealed class LogicLocalFileExportStrategy : ILocalFileExportStrategy<Univ
         => Path.Combine( baseDirectory, "Logic", source.ManufacturerName.Value, source.ProductName.Value );
 
     public string GetExportFileName( UniversalDefinition source )
-        => source.ProductName.Value + ".plist";
+        => source.PatchName.Value + ".plist";
 
     public async Task<Result<Unit, ExportFailureReason>> ExportAsync(
         ITextContentWriter writer,

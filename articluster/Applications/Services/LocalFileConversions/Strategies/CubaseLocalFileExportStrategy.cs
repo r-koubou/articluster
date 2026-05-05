@@ -18,7 +18,7 @@ public sealed class CubaseLocalFileExportStrategy : ILocalFileExportStrategy<Uni
         => Path.Combine( baseDirectory, "Cubase", source.ManufacturerName.Value, source.ProductName.Value );
 
     public string GetExportFileName( UniversalDefinition source )
-        => source.ProductName.Value + ".expressionmap";
+        => source.PatchName.Value + ".expressionmap";
 
     public async Task<Result<Unit, ExportFailureReason>> ExportAsync(
         ITextContentWriter writer,
