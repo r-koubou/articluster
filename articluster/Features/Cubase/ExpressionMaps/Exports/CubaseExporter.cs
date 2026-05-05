@@ -42,7 +42,8 @@ public sealed class CubaseExporter
                 Async  = true
             };
 
-            await using var xmlWriter = XmlWriter.Create( stringWriter, xmlWriterSettings );
+            // ReSharper disable once UseAwaitUsing
+            using var xmlWriter = XmlWriter.Create( stringWriter, xmlWriterSettings );
             serializer.Serialize( xmlWriter, mapResult.Unwrap(), xmlNamespaces );
 
             await writer.WriteAsync( stringWriter.ToString(), cancellationToken );
