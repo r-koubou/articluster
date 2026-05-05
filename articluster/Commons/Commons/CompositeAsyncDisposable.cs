@@ -1,20 +1,21 @@
 using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace ArtiCluster.Commons;
 
-public sealed class CompositeDisposable : IDisposable
+public sealed class CompositeAsyncDisposable : IAsyncDisposable
 {
-    private readonly List<IDisposable> disposables = [ ];
+    private readonly List<IAsyncDisposable> disposables = [ ];
     private bool disposed;
 
-    public void Add( IDisposable disposable )
+    public void Add( IAsyncDisposable disposable )
     {
         ObjectDisposedException.ThrowIf( disposed, this );
         disposables.Add( disposable );
     }
 
-    public void Dispose()
+    public async ValueTask DisposeAsync()
     {
         if( disposed )
         {
@@ -25,7 +26,7 @@ public sealed class CompositeDisposable : IDisposable
 
         foreach( var x in disposables )
         {
-            x.Dispose();
+            await x.DisposeAsync().ConfigureAwait( false );
         }
 
         disposables.Clear();
