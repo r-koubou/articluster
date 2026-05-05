@@ -8,8 +8,21 @@
         <Copyright>R-Koubou</Copyright>
         <Company>R-Koubou</Company>
         <Product>ArtiCluster</Product>
-        <AssemblyName>ArtiCluster.Applications.Cli</AssemblyName>
+        <AssemblyName>artiCluster</AssemblyName>
         <RootNamespace>ArtiCluster.Applications.Cli</RootNamespace>
+        <!-- nuget -->
+        <PackageId>ArtiCluster</PackageId>
+        <PackAsTool>true</PackAsTool>
+        <ToolCommandName>articluster</ToolCommandName>
+        <Authors>R-Koubou</Authors>
+        <PackageLicenseExpression>MIT</PackageLicenseExpression>
+        <PackageReadmeFile>README.md</PackageReadmeFile>
+        <PackageTags>csharp;console;tool;daw;midi;keyswitch;articulation</PackageTags>
+        <PackageProjectUrl>https://github.com/r-koubou/articluster</PackageProjectUrl>
+        <RepositoryUrl>https://github.com/r-koubou/articluster</RepositoryUrl>
+        <PackageReleaseNotes>
+          Initial release.
+        </PackageReleaseNotes>
     </PropertyGroup>
 
     <ItemGroup>
@@ -24,6 +37,28 @@
       <ProjectReference Include="..\..\Commons\Commons\Commons.csproj" />
       <ProjectReference Include="..\Services.Abstractions\Applications.Services.Abstractions.csproj" />
       <ProjectReference Include="..\Services\Applications.Services.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Content Include="..\..\..\LICENSE">
+        <Link>LICENSE</Link>
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </Content>
+      <Content Include="..\..\..\README.md">
+        <Link>README.md</Link>
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </Content>
+      <Content Include="..\..\NOTICE.md">
+        <Link>NOTICE.md</Link>
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </Content>
+    </ItemGroup>
+
+    <!--  nuget  -->
+    <ItemGroup>
+      <None Include="..\..\..\LICENSE" Pack="true" PackagePath="\" />
+      <None Include="..\..\..\README.md" Pack="true" PackagePath="\" />
+      <None Include="..\..\NOTICE.md" Pack="true" PackagePath="\" />
     </ItemGroup>
 
 </Project>

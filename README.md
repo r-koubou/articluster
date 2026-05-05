@@ -53,7 +53,7 @@ dotnet tool uninstall --global ArtiCluster
 
 ```sh
 Usage:
-  ArtiCluster [command] [options]
+  artiCluster [command] [options]
 
 Options:
   -v, --verbose   Enables verbose logging output
