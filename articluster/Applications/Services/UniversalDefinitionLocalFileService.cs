@@ -7,7 +7,6 @@ using System.Threading.Tasks;
 using ArtiCluster.Applications.Services.Abstractions;
 using ArtiCluster.Commons;
 using ArtiCluster.Features.UniversalDefinitions.Facades;
-using ArtiCluster.Shared.Domain.MidiMessages.Model;
 using ArtiCluster.Shared.Domain.UniversalDefinitions;
 using ArtiCluster.Shared.Domain.UniversalDefinitions.Model;
 using ArtiCluster.Shared.IO.Local;
@@ -132,24 +131,7 @@ public sealed partial class UniversalDefinitionLocalFileService : IUniversalDefi
 
     public async Task<Result<Unit, ExportFailureReason>> ExportTemplateAsync( string outputPath, CancellationToken cancellationToken = default )
     {
-        var definition = UniversalDefinition.Create(
-            id: Guid.NewGuid(),
-            author: "Example Author",
-            manufacturerName: "Example Manufacturer",
-            productName: "Example Product",
-            patchName: "Example Patch",
-            description: "Example Description",
-            articulations:
-            [
-                Articulation.Create(
-                    name: "Articulation Name",
-                    midiMessages:
-                    [
-                        MidiMessage.Create( 0x90, 60, 100 )
-                    ]
-                )
-            ]
-        );
+        var definition = UniversalDefinition.CreateTemplate();
 
         return await ExportAsync( outputPath, definition, cancellationToken );
     }

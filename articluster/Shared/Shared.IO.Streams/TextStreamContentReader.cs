@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
+using ArtiCluster.Commons.Text;
 using ArtiCluster.Shared.IO.Abstractions;
 using ArtiCluster.Shared.IO.Abstractions.Values;
 
@@ -18,7 +19,7 @@ public sealed class TextStreamContentReader(
 {
     // ReSharper disable MemberCanBePrivate.Global
     private Stream Stream { get; } = stream;
-    private Encoding TextEncoding { get; } = textEncoding ?? Encoding.UTF8;
+    private Encoding TextEncoding { get; } = textEncoding ?? EncodingConstants.Utf8NoBom;
     public bool LeaveOpen { get; } = leaveOpen;
     // ReSharper restore MemberCanBePrivate.Global
 
