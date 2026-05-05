@@ -252,11 +252,13 @@ jobs:
     - name: Create Version information file
       run: |
         mkdir -p ${{ env.PUBLISH_DIR }}
-        echo "Build Configuration: ${{ env.BUILD_CONFIGURATION }}" >> ${{ env.VERSION_INFO_PATH }}
-        echo "Build date: $(date)" >> ${{ env.VERSION_INFO_PATH }}
-        echo "Version: ${{ env.BUILD_VERSION }}" >> ${{ env.VERSION_INFO_PATH }}
-        echo "Branch: ${{ github.ref_name }}" >> ${{ env.VERSION_INFO_PATH }}
-        echo "Commit: ${{ github.sha }}" >> ${{ env.VERSION_INFO_PATH }}
+        {
+          echo "Build Configuration: ${{ env.BUILD_CONFIGURATION }}"
+          echo "Build date: $(date)"
+          echo "Version: ${{ env.BUILD_VERSION }}"
+          echo "Branch: ${{ github.ref_name }}"
+          echo "Commit: ${{ github.sha }}"
+        } >> ${{ env.VERSION_INFO_PATH }}
 
     - name: Show Version information file
       run: |
