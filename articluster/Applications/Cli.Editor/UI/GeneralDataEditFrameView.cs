@@ -63,7 +63,6 @@ public class GeneralDataEditFrameView : FrameView
         {
             using var dialog = new EditExtraDataDialog( context.Current.Extra );
             App?.Run( dialog );
-
         };
 
         Add( editExtraButton );
