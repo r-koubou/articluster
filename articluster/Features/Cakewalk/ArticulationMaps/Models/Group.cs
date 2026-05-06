@@ -2,17 +2,11 @@ using System.Text.Json.Serialization;
 
 namespace ArtiCluster.Features.Cakewalk.ArticulationMaps.Models;
 
-public class Group
+public sealed class Group
 {
     [JsonPropertyName( "id" )]
-    public int Id { get; }
+    public int Id { get; set; }
 
     [JsonPropertyName( "name" )]
-    public string Name { get; }
-
-    public Group( int id, string name )
-    {
-        Id   = id;
-        Name = name;
-    }
+    public string Name { get; set; } = string.Empty;
 }
