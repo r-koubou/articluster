@@ -15,7 +15,7 @@ namespace ArtiCluster.Applications.Services.LocalFileConversions.Strategies;
 public sealed class CakewalkLocalFileExportStrategy : ILocalFileExportStrategy<UniversalDefinitionProductSet>
 {
     public string GetOutputDirectory( string baseDirectory, UniversalDefinitionProductSet source )
-        => Path.Combine( baseDirectory, "Cakewalk", source.ManufacturerName.Value, source.ProductName.Value );
+        => Path.Combine( baseDirectory, "Cakewalk", source.ManufacturerName.Value );
 
     public string GetExportFileName( UniversalDefinitionProductSet source )
         => source.ProductName.Value + ".artmap";
