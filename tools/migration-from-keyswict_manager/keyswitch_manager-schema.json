@@ -1,0 +1,185 @@
+{
+  "$schema": "http://json-schema.org/draft-06/schema#",
+  "$ref": "#/definitions/Root",
+  "definitions": {
+    "Root": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "KeySwitches": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/KeySwitches"
+          }
+        }
+      },
+      "required": [
+        "KeySwitches"
+      ],
+      "title": "Root"
+    },
+    "KeySwitches": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "Id": {
+          "type": "string",
+          "format": "uuid"
+        },
+        "Author": {
+          "type": "string"
+        },
+        "Description": {
+          "type": "string"
+        },
+        "Created": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "LastUpdated": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "DeveloperName": {
+          "type": "string"
+        },
+        "ProductName": {
+          "type": "string"
+        },
+        "InstrumentName": {
+          "type": "string"
+        },
+        "Articulations": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Articulations"
+          }
+        },
+        "ExtraData": {
+          "$ref": "#/definitions/ExtraData"
+        }
+      },
+      "required": [
+        "Author",
+        "Created",
+        "Description",
+        "DeveloperName",
+        "Id",
+        "InstrumentName",
+        "LastUpdated",
+        "ProductName"
+      ],
+      "title": "KeySwitches"
+    },
+    "Articulations": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "Name": {
+          "type": "string"
+        },
+        "MidiMessage": {
+          "$ref": "#/definitions/MidiMessage"
+        },
+        "ExtraData": {
+          "$ref": "#/definitions/ExtraData"
+        }
+      },
+      "required": [
+        "Name"
+      ],
+      "title": "Articulations"
+    },
+    "ExtraData": {
+      "title": "ExtraData",
+      "type": "object",
+      "additionalProperties": true
+    },
+    "MidiMessage": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "NoteOn": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/NoteOn"
+          }
+        },
+        "ControlChange": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/ControlChange"
+          }
+        },
+        "ProgramChange": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/ProgramChange"
+          }
+        }
+      },
+      "required": [
+      ],
+      "title": "MidiMessage"
+    },
+    "ControlChange": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "Channel": {
+          "type": "integer"
+        },
+        "ControlNumber": {
+          "type": "integer"
+        },
+        "Data": {
+          "type": "integer"
+        }
+      },
+      "required": [
+        "Channel",
+        "ControlNumber",
+        "Data"
+      ],
+      "title": "ControlChange"
+    },
+    "NoteOn": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "Channel": {
+          "type": "integer"
+        },
+        "Note": {
+          "type": "string"
+        },
+        "Velocity": {
+          "type": "integer"
+        }
+      },
+      "required": [
+        "Channel",
+        "Note",
+        "Velocity"
+      ],
+      "title": "NoteOn"
+    },
+    "ProgramChange": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "Channel": {
+          "type": "integer"
+        },
+        "ProgramNumber": {
+          "type": "integer"
+        }
+      },
+      "required": [
+        "Channel",
+        "ProgramNumber"
+      ],
+      "title": "ProgramChange"
+    }
+  }
+}

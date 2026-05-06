@@ -1,0 +1,31 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <LangVersion>default</LangVersion>
+    <TargetFramework>net10.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <Copyright>R-Koubou</Copyright>
+    <Company>R-Koubou</Company>
+    <Product>ArtiCluster.Applications.Services</Product>
+    <AssemblyName>ArtiCluster.Applications.Services</AssemblyName>
+    <RootNamespace>ArtiCluster.Applications.Services</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\Commons\Commons\Commons.csproj"/>
+    <ProjectReference Include="..\..\Features\Cakewalk\ArticulationMaps\Facades\Cakewalk.ArticulationMaps.Facades.csproj"/>
+    <ProjectReference Include="..\..\Features\Cubase\ExpressionMaps\Facades\Cubase.ExpressionMaps.Facades.csproj" />
+    <ProjectReference Include="..\..\Features\Logic\Articulations\Contracts\Logic.Articulations.Contracts.csproj" />
+    <ProjectReference Include="..\..\Features\Logic\Articulations\Facades\Logic.Articulations.Facades.csproj" />
+    <ProjectReference Include="..\..\Features\StudioOne\KeySwitches\Facades\StudioOne.KeySwitches.Facades.csproj" />
+    <ProjectReference Include="..\..\Features\UniversalDefinitions\Facades\UniversalDefinitions.Facades.csproj" />
+    <ProjectReference Include="..\..\Shared\Shared.IO.Local\Shared.IO.Local.csproj" />
+    <ProjectReference Include="..\..\Shared\Shared\Shared.csproj"/>
+    <ProjectReference Include="..\Services.Abstractions\Applications.Services.Abstractions.csproj"/>
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="10.0.7" />
+  </ItemGroup>
+
+</Project>

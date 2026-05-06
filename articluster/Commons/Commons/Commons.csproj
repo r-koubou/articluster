@@ -1,0 +1,14 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <LangVersion>default</LangVersion>
+        <TargetFramework>net10.0</TargetFramework>
+        <Nullable>enable</Nullable>
+        <Copyright>R-Koubou</Copyright>
+        <Company>R-Koubou</Company>
+        <Product>ArtiCluster.Commons</Product>
+        <AssemblyName>ArtiCluster.Commons</AssemblyName>
+        <RootNamespace>ArtiCluster.Commons</RootNamespace>
+    </PropertyGroup>
+
+</Project>

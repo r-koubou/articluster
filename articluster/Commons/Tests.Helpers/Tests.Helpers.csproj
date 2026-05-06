@@ -1,0 +1,18 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <LangVersion>default</LangVersion>
+        <TargetFramework>net10.0</TargetFramework>
+        <RootNamespace>ArtiCluster.Tests.Helpers</RootNamespace>
+        <AssemblyName>ArtiCluster.Tests.Helpers</AssemblyName>
+        <Nullable>enable</Nullable>
+        <IsPackable>false</IsPackable>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <PackageReference Include="nunit" Version="4.5.1" />
+        <PackageReference Include="NUnit3TestAdapter" Version="6.2.0" />
+        <PackageReference Include="Microsoft.NET.Test.Sdk" Version="18.5.1" />
+    </ItemGroup>
+
+</Project>

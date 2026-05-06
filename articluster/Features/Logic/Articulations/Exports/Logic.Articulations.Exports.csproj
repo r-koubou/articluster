@@ -1,0 +1,26 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <LangVersion>default</LangVersion>
+        <TargetFramework>net10.0</TargetFramework>
+        <Nullable>enable</Nullable>
+        <Copyright>R-Koubou</Copyright>
+        <Company>R-Koubou</Company>
+        <Product>ArtiCluster.Features.Logic.Articulations.Exports</Product>
+        <AssemblyName>ArtiCluster.Features.Logic.Articulations.Exports</AssemblyName>
+        <RootNamespace>ArtiCluster.Features.Logic.Articulations.Exports</RootNamespace>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <PackageReference Include="plist-cil" Version="2.3.1" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\..\..\..\Commons\Commons\Commons.csproj" />
+      <ProjectReference Include="..\..\..\..\Shared\Shared.IO.Abstractions\Shared.IO.Abstractions.csproj" />
+      <ProjectReference Include="..\..\..\..\Shared\Shared\Shared.csproj" />
+      <ProjectReference Include="..\Contracts\Logic.Articulations.Contracts.csproj" />
+      <ProjectReference Include="..\Mappers\Logic.Articulations.Mappers.csproj" />
+    </ItemGroup>
+
+</Project>

@@ -1,0 +1,40 @@
+name: Build articluster-cli
+
+on:
+  workflow_dispatch:
+    inputs:
+      version:
+        required: true
+        type: string
+        default: '1.x.x'
+
+      configuration:
+        required: true
+        type: choice
+        options:
+          - Debug
+          - Release
+        default: Debug
+
+  workflow_call:
+    inputs:
+      version:
+        required: false
+        type: string
+        default: ''
+
+      configuration:
+        required: true
+        type: string
+        default: 'Debug'
+
+jobs:
+  build-articluster-cli:
+    uses: ./.github/workflows/build-csproj.yml
+    secrets: inherit
+    with:
+      configuration: ${{ inputs.configuration }}
+      prefix: articluster-cli
+      base_dir: "articluster/Applications/Cli"
+      csproject_filename: "Applications.Cli.csproj"
+      version: ${{ inputs.version }}

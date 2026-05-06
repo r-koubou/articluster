@@ -1,0 +1,176 @@
+{
+  "$schema": "http://json-schema.org/draft-06/schema#",
+  "$ref": "#/definitions/UniversalDefinition",
+  "definitions": {
+    "UniversalDefinition": {
+      "title": "UniversalDefinition",
+      "type": "object",
+      "description": "The root of articulation",
+      "additionalProperties": false,
+      "properties": {
+        "Id": {
+          "type": "string",
+          "format": "uuid"
+        },
+        "Author": {
+          "type": "string"
+        },
+        "ManufacturerName": {
+          "type": "string"
+        },
+        "ProductName": {
+          "type": "string"
+        },
+        "PatchName": {
+          "type": "string"
+        },
+        "Description": {
+          "type": "string"
+        },
+        "Articulations": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Articulation"
+          }
+        },
+        "Extra": {
+          "$ref": "#/definitions/Extra"
+        }
+      },
+      "required": [
+        "Id",
+        "Author",
+        "ManufacturerName",
+        "ProductName",
+        "PatchName",
+        "Articulations"
+      ],
+      "examples": [
+        {
+          "Id": "34023d3f-30b0-4646-90e8-5d2978d09d43",
+          "Author": "R-Koubou",
+          "ManufacturerName": "Acme Corp",
+          "ProductName": "Super Guitar",
+          "PatchName": "Guitar 1",
+          "Description": "Guitar 1 articulation.",
+          "Articulations": [
+            {
+              "Name": "Sustain",
+              "MidiMessages": [
+                {
+                  "Status": 144,
+                  "Data1": 64,
+                  "Data2": 100
+                }
+              ],
+              "Extra": {
+                "Extra.Custom.Key": "Custom Value"
+              }
+            },
+            {
+              "Name": "Bridge Mute",
+              "MidiMessages": [
+                {
+                  "Status": 144,
+                  "Data1": 66,
+                  "Data2": 100
+                }
+              ],
+              "Extra": {
+                "Extra.Custom.Key": "Custom Value"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    "Articulation": {
+      "title": "Articulation",
+      "type": "object",
+      "description": "Defines an articulation with its name and associated MIDI messages",
+      "additionalProperties": false,
+      "properties": {
+        "Name": {
+          "type": "string"
+        },
+        "MidiMessages": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/MidiMessage"
+          }
+        },
+        "Extra": {
+          "$ref": "#/definitions/Extra"
+        }
+      },
+      "required": [
+        "Name",
+        "MidiMessages"
+      ],
+      "examples": [
+        {
+          "Name": "Sustain",
+          "MidiMessages": [
+            {
+              "Status": 144,
+              "Data1": 64,
+              "Data2": 100
+            }
+          ],
+          "Extra": {
+            "Extra.Custom.Key": "Custom Value"
+          }
+        }
+      ]
+    },
+    "MidiMessage": {
+      "title": "MidiMessage",
+      "type": "object",
+      "description": "A MIDI message within the articulation, consisting of a status byte and two data bytes",
+      "additionalProperties": false,
+      "properties": {
+        "Status": {
+          "type": "integer",
+          "description": "MIDI Status Byte"
+        },
+        "Channel": {
+          "type": "integer",
+          "description": "MIDI Channel (0-15). If `-1` or `not defined`, it will be ignored in conversion"
+        },
+        "Data1": {
+          "type": "integer",
+          "description": "MIDI Data Byte 1 (0-127). If `not defined`, it will be ignored in conversion"
+        },
+        "Data2": {
+          "type": "integer",
+          "description": "MIDI Data Byte 2 (0-127). If `not defined`, it will be ignored in conversion"
+        }
+      },
+      "required": [
+        "Status"
+      ],
+      "examples": [
+        {
+          "Status": 144,
+          "Data1": 64,
+          "Data2": 100
+        },
+        {
+          "Status": 144,
+          "Channel": 0,
+          "Data1": 64,
+          "Data2": 100
+        }
+      ]
+    },
+    "Extra": {
+      "title": "Extra",
+      "type": "object",
+      "description": "Additional custom properties for the articulation and assignments",
+      "additionalProperties": true,
+      "examples": [
+        { "Extra.Custom.Key": "Custom Value" }
+      ]
+    }
+  }
+}
