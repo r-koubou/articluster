@@ -1,4 +1,4 @@
-name: Build articluster-cli - Release
+name: NuGet articluster-cli
 
 on:
   workflow_dispatch:
@@ -8,6 +8,14 @@ on:
         type: string
         default: '1.x.x'
 
+      configuration:
+        required: true
+        type: choice
+        options:
+          - Debug
+          - Release
+        default: Debug
+
   workflow_call:
     inputs:
       version:
@@ -15,12 +23,17 @@ on:
         type: string
         default: ''
 
+      configuration:
+        required: true
+        type: string
+        default: 'Debug'
+
 jobs:
-  build-articluster-cli-release:
-    uses: ./.github/workflows/build-csproj.yml
+  pack-nuget-articluster-cli:
+    uses: ./.github/workflows/pack-nuget.yml
     secrets: inherit
     with:
-      configuration: Release
+      configuration: ${{ inputs.configuration }}
       prefix: articluster-cli
       base_dir: "articluster/Applications/Cli"
       csproject_filename: "Applications.Cli.csproj"

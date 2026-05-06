@@ -1,6 +1,9 @@
-name: Build articluster-cli NuGet package (Debug)
+name: NuGet articluster-cli - Development
 
 on:
+  pull_request:
+    branches:
+      - develop
   push:
     branches:
       - develop
@@ -9,17 +12,13 @@ on:
       - refactor/**
 
   workflow_dispatch:
-    inputs:
-      version:
-        required: true
-        default: ''
 
 jobs:
-  build-articluster-cli-nuget-develop:
-    uses: ./.github/workflows/build-nuget-package.yml
+  build-articluster-cli-nuget-development:
+    uses: ./.github/workflows/pack-nuget.yml
     secrets: inherit
     with:
       configuration: Debug
-      prefix: articluster-cli-nuget
+      prefix: articluster-cli
       base_dir: "articluster/Applications/Cli"
       csproject_filename: "Applications.Cli.csproj"

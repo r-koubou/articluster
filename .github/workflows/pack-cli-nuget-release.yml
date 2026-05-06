@@ -1,6 +1,13 @@
-name: Build articluster-cli - Release
+name: NuGet articluster-cli - Release
 
 on:
+  workflow_call:
+    inputs:
+      version:
+        required: true
+        type: string
+        default: '1.x.x'
+
   workflow_dispatch:
     inputs:
       version:
@@ -8,16 +15,9 @@ on:
         type: string
         default: '1.x.x'
 
-  workflow_call:
-    inputs:
-      version:
-        required: false
-        type: string
-        default: ''
-
 jobs:
-  build-articluster-cli-release:
-    uses: ./.github/workflows/build-csproj.yml
+  pack-nuget-articluster-cli-release:
+    uses: ./.github/workflows/pack-nuget.yml
     secrets: inherit
     with:
       configuration: Release

@@ -1,4 +1,4 @@
-name: run-dotnet-unit-test
+name: 'Unit Test - .NET projects'
 
 on:
   pull_request:
