@@ -18,13 +18,11 @@ public sealed class CakewalkModelMapper
         try
         {
             var result = new CakewalkRootObject();
-            var patches = result.ArticulationMaps;
+            var articulationMaps = result.ArticulationMaps;
+            var groups = ConvertArticulationGroup( source );
+            var articulationMap = ConvertArticulationMap( source, groups );
 
-            foreach( var definition in source.Items )
-            {
-                var articulationMap = ConvertArticulationMap( definition );
-                patches.Add( articulationMap );
-            }
+            articulationMaps.Add( articulationMap );
 
             return Result<CakewalkRootObject, Unit>.Success( result );
         }
@@ -34,46 +32,96 @@ public sealed class CakewalkModelMapper
         }
     }
 
-    private static ArticulationMap ConvertArticulationMap( UniversalDefinition source )
+    private static ArticulationMap ConvertArticulationMap(
+        UniversalDefinitionProductSet source,
+        IReadOnlyCollection<Group> groups )
     {
         var id = 1;
         var index = 0;
-        var groupId = 1;
 
         var articulations = new List<Articulation>();
 
-        foreach( var x in source.Articulations )
+        foreach( var definition in source.Items )
         {
-            var a = ConvertArticulation( x, id, index, groupId );
-            articulations.Add( a );
+            foreach( var x in definition.Articulations )
+            {
+                var articulation = ConvertArticulation( definition, x, groups, id, index );
+                articulations.Add( articulation );
 
-            id++;
-            index++;
+                id++;
+                index++;
+            }
         }
 
         return new ArticulationMap
         {
-            Name = source.ProductName.Value,
-            Groups =
-            [
-                new Group( 1, source.PatchName.Value )
-            ],
+            Name          = source.ProductName.Value,
+            Groups        = new List<Group>( groups ),
             Articulations = articulations
         };
     }
 
-    private static Articulation ConvertArticulation( Shared.Domain.UniversalDefinitions.Model.Articulation articulation, int id, int index, int groupId )
+    private static List<Group> ConvertArticulationGroup( UniversalDefinitionProductSet source )
     {
+        var result = new List<Group>();
+        var id = 1;
+
+        foreach( var x in source.Items )
+        {
+            var g = new Group
+            {
+                Id = id,
+                Name = x.PatchName.Value
+            };
+
+            result.Add( g );
+            id++;
+        }
+
+        return result;
+    }
+
+    private static Articulation ConvertArticulation(
+        UniversalDefinition definition,
+        Shared.Domain.UniversalDefinitions.Model.Articulation articulation,
+        IReadOnlyCollection<Group> groups,
+        int id,
+        int index )
+    {
+        if( !TryGetGroupId( definition, groups, out var groupId ) )
+        {
+            throw new InvalidOperationException( $"Group not found for articulation {articulation.Name.Value}" );
+        }
+
         return new Articulation(
             id,
             articulation.Name.Value,
             index,
             groupId,
-            "ffff0000",
-            0,
+            "ff4da3b9",
+            120, // 120: At Exported from Cakewalk
             ConvertArticulationEvents( articulation ),
             ConvertArticulationTransform( articulation )
         );
+    }
+
+    private static bool TryGetGroupId(
+        UniversalDefinition source,
+        IReadOnlyCollection<Group> groups,
+        out int groupId )
+    {
+        groupId = -1;
+
+        foreach( var x in groups )
+        {
+            if( x.Name == source.PatchName.Value )
+            {
+                groupId = x.Id;
+                return true;
+            }
+        }
+
+        return false;
     }
 
     private static List<Transform> ConvertArticulationTransform( Shared.Domain.UniversalDefinitions.Model.Articulation _ )
@@ -96,11 +144,16 @@ public sealed class CakewalkModelMapper
 
         MidiEvent CreateEvent( MidiMessage x )
         {
+            var allowTransposeMidiCh = 1;
+
+            // TODO MIDI チャンネルの指定の有無が判定できないため、allowTransposeMidiCh = 1 (全チャンネルで受け付ける)を維持
+
             return new MidiEvent
             {
                 Byte1 = x.Status.Value,
                 Byte2 = x.Data1.Value,
                 Byte3 = x.Data2.Value,
+                AllowTransposeMidiCh = allowTransposeMidiCh
             };
         }
     }

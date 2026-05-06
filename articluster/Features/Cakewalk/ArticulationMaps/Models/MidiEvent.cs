@@ -34,9 +34,13 @@ namespace ArtiCluster.Features.Cakewalk.ArticulationMaps.Models
         public int Byte4 { get; set; } = 0x00;
 
         [JsonPropertyName( "allowTranspose" )]
+        // 0: off
+        // 1: on
         public int AllowTranspose { get; set; } = 0;
 
         [JsonPropertyName( "allowTransposeMidiCh" )]
+        // midi ch in status byte is     0: 1
+        // midi ch in status byte is not 0: 0
         public int AllowTransposeMidiCh { get; set; } = 1;
 
         [JsonPropertyName( "triggerAt" )]
