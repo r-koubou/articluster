@@ -1,4 +1,4 @@
-name: Build nuget package
+name: Build NuGet Package
 
 on:
   workflow_call:
