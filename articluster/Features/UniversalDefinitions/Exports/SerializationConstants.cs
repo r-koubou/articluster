@@ -6,6 +6,7 @@ internal static class SerializationConstants
 {
     public static readonly ISerializer DefaultSerializer
         = new SerializerBuilder()
+         .WithIndentedSequences()
          .ConfigureDefaultValuesHandling( DefaultValuesHandling.OmitNull )
          .Build();
 }
