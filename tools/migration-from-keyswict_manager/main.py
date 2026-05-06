@@ -14,6 +14,7 @@ THIS_SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
 OUTPUT_DIR = os.path.join(THIS_SCRIPT_DIR, "out")
 
 yaml = YAML()
+yaml.indent(mapping=2, sequence=4, offset=2)
 
 
 def convert(src: original.Coordinate):

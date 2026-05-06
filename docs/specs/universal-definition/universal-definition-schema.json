@@ -130,13 +130,20 @@
       "additionalProperties": false,
       "properties": {
         "Status": {
-          "type": "integer"
+          "type": "integer",
+          "description": "MIDI Status Byte"
+        },
+        "Channel": {
+          "type": "integer",
+          "description": "MIDI Channel (0-15). If `-1` or `not defined`, it will be ignored in conversion"
         },
         "Data1": {
-          "type": "integer"
+          "type": "integer",
+          "description": "MIDI Data Byte 1 (0-127). If `not defined`, it will be ignored in conversion"
         },
         "Data2": {
-          "type": "integer"
+          "type": "integer",
+          "description": "MIDI Data Byte 2 (0-127). If `not defined`, it will be ignored in conversion"
         }
       },
       "required": [
@@ -145,6 +152,12 @@
       "examples": [
         {
           "Status": 144,
+          "Data1": 64,
+          "Data2": 100
+        },
+        {
+          "Status": 144,
+          "Channel": 0,
           "Data1": 64,
           "Data2": 100
         }

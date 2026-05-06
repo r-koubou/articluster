@@ -217,10 +217,15 @@ public sealed class CubaseModelMapper
     {
         foreach( var message in articulation.MidiMessages )
         {
+            var channel = message.Channel == MidiChannel.None
+                ? 0
+                : message.Channel.Value;
+
             var status = message.Status.Value;
             int? data1 = message.Data1 == MidiDataByte.None ? null : message.Data1.Value;
             int? data2 = message.Data2 == MidiDataByte.None ? null : message.Data2.Value;
-            listOfPOutputEvent.Obj.Add( POutputEvent.New( status, data1, data2 ) );
+
+            listOfPOutputEvent.Obj.Add( POutputEvent.New( status | channel, data1, data2 ) );
         }
     }
     #endregion ~Sub Routines

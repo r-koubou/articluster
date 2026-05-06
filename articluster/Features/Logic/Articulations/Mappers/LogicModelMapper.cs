@@ -77,10 +77,14 @@ public sealed class LogicModelMapper
             int? data1 = message.Data1 == MidiDataByte.None ? null : message.Data1.Value;
             int? data2 = message.Data2 == MidiDataByte.None ? null : message.Data2.Value;
 
-
             if( !ConvertMessageStatus( message, midiMessageDictionary ) )
             {
                 continue;
+            }
+
+            if( message.Channel != MidiChannel.None )
+            {
+                midiMessageDictionary.Add( "MidiChannel", message.Channel.Value );
             }
 
             if( data1 != null )
@@ -99,7 +103,6 @@ public sealed class LogicModelMapper
 
     private static bool ConvertMessageStatus( MidiMessage message, NSDictionary midiMessageDictionary )
     {
-        // ToDo 他のStatusTypeも必要に応じて追加する(要Logicで書き出してチェックが必要)
         switch( message.StatusType )
         {
             case MidiStatusType.NoteOn:
