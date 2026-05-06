@@ -34,7 +34,7 @@ public static class DomainModelMapper
         return source
               .Select( model => Articulation.Create(
                            name: model.Name,
-                           midiMessages: model.MidiMessages.Select( x => MidiMessage.Create( x.Status, x.Data1, x.Data2 ) ).ToList(),
+                           midiMessages: model.MidiMessages.Select( x => MidiMessage.Create( x.Status, x.Data1, x.Data2, x.Channel ) ).ToList(),
                            extra: new Dictionary<string, string>( model.Extra )
                        )
                )

@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using ArtiCluster.Commons;
 using ArtiCluster.Features.Cakewalk.ArticulationMaps.Models;
 using ArtiCluster.Shared.Domain.MidiMessages.Model;
+using ArtiCluster.Shared.Domain.MidiMessages.Model.Values;
 using ArtiCluster.Shared.Domain.UniversalDefinitions;
 using ArtiCluster.Shared.Domain.UniversalDefinitions.Model;
 
@@ -144,13 +145,17 @@ public sealed class CakewalkModelMapper
 
         MidiEvent CreateEvent( MidiMessage x )
         {
-            var allowTransposeMidiCh = 1;
+            var midiChannel = x.Channel == MidiChannel.None
+                ? 0
+                : x.Channel.Value;
 
-            // TODO MIDI チャンネルの指定の有無が判定できないため、allowTransposeMidiCh = 1 (全チャンネルで受け付ける)を維持
+            var allowTransposeMidiCh = x.Channel == MidiChannel.None
+                ? 1
+                : 0;
 
             return new MidiEvent
             {
-                Byte1 = x.Status.Value,
+                Byte1 = x.Status.Value | midiChannel,
                 Byte2 = x.Data1.Value,
                 Byte3 = x.Data2.Value,
                 AllowTransposeMidiCh = allowTransposeMidiCh

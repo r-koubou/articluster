@@ -6,6 +6,6 @@ internal static class SerializationConstants
 {
     public static readonly ISerializer DefaultSerializer
         = new SerializerBuilder()
-         .ConfigureDefaultValuesHandling( DefaultValuesHandling.Preserve )
+         .ConfigureDefaultValuesHandling( DefaultValuesHandling.OmitNull )
          .Build();
 }

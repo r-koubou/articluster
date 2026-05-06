@@ -7,25 +7,31 @@ public sealed record MidiMessage
     public MidiStatusByte Status { get; init; }
     public MidiDataByte Data1 { get; init; }
     public MidiDataByte Data2 { get; init; }
+    public MidiChannel Channel { get; init; }
 
-    public MidiMessage( MidiStatusByte statusByte, MidiDataByte? dataByte1 = null, MidiDataByte? dataByte2 = null )
+    // ReSharper disable once MemberCanBePrivate.Global
+    public MidiMessage( MidiStatusByte statusByte, MidiDataByte? dataByte1 = null, MidiDataByte? dataByte2 = null,  MidiChannel? channel = null )
     {
-        Status = statusByte;
-        Data1  = dataByte1 ?? MidiDataByte.None;
-        Data2  = dataByte2 ?? MidiDataByte.None;
+        Status  = statusByte;
+        Data1   = dataByte1 ?? MidiDataByte.None;
+        Data2   = dataByte2 ?? MidiDataByte.None;
+        Channel = channel ?? MidiChannel.None;
     }
 
-    public static MidiMessage Create( int statusByte, int? dataByte1 = null, int? dataByte2 = null )
+    public static MidiMessage Create( int statusByte, int? dataByte1 = null, int? dataByte2 = null, int? channel = null )
     {
         return new MidiMessage(
             new MidiStatusByte( statusByte ),
             dataByte1 != null ? new MidiDataByte( dataByte1.Value ) : null,
-            dataByte2 != null ? new MidiDataByte( dataByte2.Value ) : null
+            dataByte2 != null ? new MidiDataByte( dataByte2.Value ) : null,
+            channel != null && channel != MidiChannel.None.Value
+                ? new MidiChannel( channel.Value )
+                : null
         );
     }
 
     public override string ToString()
-        => $"Midi Message: status={Status.Value:X2}, ({StatusType}), data1={Data1.Value:X2}, data2={Data2.Value:X2}";
+        => $"Midi Message: channel={Channel.Value:X2} status={Status.Value:X2}, ({StatusType}), data1={Data1.Value:X2}, data2={Data2.Value:X2}";
 
     #region Status Byte Utilities
     // ReSharper disable MemberCanBePrivate.Global
@@ -113,19 +119,8 @@ public sealed record MidiMessage
     #endregion ~Channel Message Mode Utilities
 
     #region Channel Utilities
-    public bool TryGetChannel( out MidiChannel channel )
-    {
-        channel = null!;
-
-        if( !IsChannelVoiceMessage || IsChannelModeMessage )
-        {
-            return false;
-        }
-
-        channel = new MidiChannel( Status.Value & 0x0F );
-
-        return true;
-    }
+    public bool HasChannel
+        => Channel != MidiChannel.None;
     #endregion ~Channel Utilities
 
     #region Data Byte Utilities

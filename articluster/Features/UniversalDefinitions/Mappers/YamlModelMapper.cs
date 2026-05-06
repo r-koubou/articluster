@@ -32,9 +32,10 @@ public static class YamlModelMapper
                        Name = assignment.Name.Value,
                        MidiMessages = assignment.MidiMessages.Select( x => new MidiMessageModel
                            {
-                               Status = x.Status.Value,
-                               Data1  = x.Data1 == MidiDataByte.None ? null : x.Data1.Value,
-                               Data2  = x.Data2 == MidiDataByte.None ? null : x.Data2.Value,
+                               Status  = x.Status.Value,
+                               Data1   = x.Data1 == MidiDataByte.None ? null : x.Data1.Value,
+                               Data2   = x.Data2 == MidiDataByte.None ? null : x.Data2.Value,
+                               Channel = x.Channel == MidiChannel.None ? null : x.Channel.Value
                            }
                        ).ToList(),
                        Extra = new Dictionary<string, string>( assignment.Extra )

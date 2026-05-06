@@ -39,13 +39,13 @@ public class DomainModelMapperTest
                     MidiMessages =
                     [
                         // Note On
-                        new MidiMessageModel( 0x90, 40, 100 ),
+                        new MidiMessageModel( 0x90, 40, 100, -1 ),
                         // Note Off
-                        new MidiMessageModel( 0x80, 40, 110 ),
+                        new MidiMessageModel( 0x80, 40, 110, 0 ),
                         // Control Change
-                        new MidiMessageModel( 0xB0, 1, 127 ),
+                        new MidiMessageModel( 0xB0, 1, 127, 1 ),
                         // Program Change
-                        new MidiMessageModel( 0xC0, 49  ),
+                        new MidiMessageModel( 0xC0, 49 ),
                     ],
                     Extra = new Dictionary<string, string>
                     {
@@ -85,18 +85,22 @@ public class DomainModelMapperTest
                 Assert.That( midiMessages[ 0 ].Status.Value, Is.EqualTo( 0x90 ) );
                 Assert.That( midiMessages[ 0 ].Data1.Value, Is.EqualTo( 40 ) );
                 Assert.That( midiMessages[ 0 ].Data2.Value, Is.EqualTo( 100 ) );
+                Assert.That( midiMessages[ 0 ].Channel.Value, Is.EqualTo( MidiChannel.None.Value ) );
                 // Note Off
                 Assert.That( midiMessages[ 1 ].Status.Value, Is.EqualTo( 0x80 ) );
                 Assert.That( midiMessages[ 1 ].Data1.Value, Is.EqualTo( 40 ) );
                 Assert.That( midiMessages[ 1 ].Data2.Value, Is.EqualTo( 110 ) );
+                Assert.That( midiMessages[ 1 ].Channel.Value, Is.EqualTo( 0 ) );
                 // Control Change
                 Assert.That( midiMessages[ 2 ].Status.Value, Is.EqualTo( 0xB0 ) );
                 Assert.That( midiMessages[ 2 ].Data1.Value, Is.EqualTo( 1 ) );
                 Assert.That( midiMessages[ 2 ].Data2.Value, Is.EqualTo( 127 ) );
+                Assert.That( midiMessages[ 2 ].Channel.Value, Is.EqualTo( 1 ) );
                 // Program Change
                 Assert.That( midiMessages[ 3 ].Status.Value, Is.EqualTo( 0xC0 ) );
                 Assert.That( midiMessages[ 3 ].Data1.Value, Is.EqualTo( 49 ) );
                 Assert.That( midiMessages[ 3 ].Data2.Value, Is.EqualTo( MidiDataByte.None.Value ) );
+                Assert.That( midiMessages[ 3 ].Channel.Value, Is.EqualTo( MidiChannel.None.Value ) );
             }
         );
     }
