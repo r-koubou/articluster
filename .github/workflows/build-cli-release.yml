@@ -1,4 +1,4 @@
-name: Build articluster-cli (Release)
+name: Build articluster-cli - Release
 
 on:
   workflow_dispatch:

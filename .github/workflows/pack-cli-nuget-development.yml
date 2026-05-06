@@ -1,4 +1,4 @@
-name: articluster-cli NuGet package (Development)
+name: NuGet articluster-cli - Development
 
 on:
   pull_request:
@@ -14,7 +14,7 @@ on:
   workflow_dispatch:
 
 jobs:
-  build-articluster-cli-nuget-develop:
+  build-articluster-cli-nuget-development:
     uses: ./.github/workflows/pack-nuget.yml
     secrets: inherit
     with:

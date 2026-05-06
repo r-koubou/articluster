@@ -1,4 +1,4 @@
-name: Build articluster-cli (Development)
+name: Build articluster-cli - Development
 
 on:
   pull_request:
@@ -14,7 +14,7 @@ on:
   workflow_dispatch:
 
 jobs:
-  build-articluster-cli-debug:
+  build-articluster-cli-development:
     uses: ./.github/workflows/build-csproj.yml
     secrets: inherit
     with:

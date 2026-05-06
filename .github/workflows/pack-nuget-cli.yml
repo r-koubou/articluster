@@ -1,4 +1,4 @@
-name: articluster-cli NuGet package
+name: NuGet articluster-cli
 
 on:
   workflow_dispatch:

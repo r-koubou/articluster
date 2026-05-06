@@ -1,4 +1,4 @@
-name: articluster-cli NuGet package (Release)
+name: NuGet articluster-cli - Release
 
 on:
   workflow_call:
