@@ -1,6 +1,10 @@
 name: NuGet articluster-cli - Release
 
 on:
+  pull_request:
+    branches:
+      - main
+
   workflow_call:
     inputs:
       version:

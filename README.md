@@ -18,9 +18,9 @@ This software is the successor to [KeySwitchManager](https://github.com/r-koubou
 ## Supported DAW
 
 - Cubase / Nuendo (*.expressionmap)
-- Cakewalk (*.artmap)
+- Cakewalk / Sonar (*.artmap)
 - Logic Pro (*.plist)
-- Studio One / Studio Pro (*.keyswitch)
+- Studio Pro / Studio One (*.keyswitch)
 
 
 ## Requirements

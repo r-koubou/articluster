@@ -1,6 +1,10 @@
 name: Build articluster-cli - Release
 
 on:
+  pull_request:
+    branches:
+      - main
+
   workflow_dispatch:
     inputs:
       version:

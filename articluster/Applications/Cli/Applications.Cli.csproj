@@ -54,6 +54,12 @@
       </Content>
     </ItemGroup>
 
+    <ItemGroup>
+      <None Update="CHANGELOG.md">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </None>
+    </ItemGroup>
+
     <!--  nuget  -->
     <ItemGroup>
       <None Include="..\..\..\LICENSE" Pack="true" PackagePath="\" />
