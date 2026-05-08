@@ -36,10 +36,17 @@ internal sealed class ConvertingCommandExecutor : ICommandExecutor
     {
         var inputDirectoryArgument = new Argument<string>( "input-dir" );
         var outputDirectoryArgument = new Argument<string>( "output-dir" );
+
+        var overwriteOption = new Option<bool>( "-o", "--overwrite" )
+        {
+            Description = "Overwrite output directory if it already exists."
+        };
+
         var command = new Command( "convert", "Convert to DAW-specific format." )
         {
             inputDirectoryArgument,
-            outputDirectoryArgument
+            outputDirectoryArgument,
+            overwriteOption
         };
 
         command.SetAction( async parseResult =>
@@ -52,10 +59,17 @@ internal sealed class ConvertingCommandExecutor : ICommandExecutor
                     throw new InvalidOperationException( "Input or Output directory is not provided." );
                 }
 
+                var allowOverwrite = parseResult.GetValue( overwriteOption );
+
                 if( Directory.Exists( outputDirectory ) )
                 {
-                    logger.LogError( $"Output directory already exists. ({outputDirectory})" );
-                    return 1;
+                    if( !allowOverwrite )
+                    {
+                        logger.LogError( $"Output directory already exists. ({outputDirectory})" );
+                        return 1;
+                    }
+
+                    logger.LogInformation( $"Existing files in the output directory will be overwritten. ({outputDirectory})" );
                 }
 
                 if( inputDirectory == outputDirectory )
