@@ -15,7 +15,7 @@ namespace ArtiCluster.Applications.Services.LocalFileConversions.Strategies;
 public sealed class StudioOneLocalFileExportStrategy : ILocalFileExportStrategy<UniversalDefinitionProductSet>
 {
     public string GetOutputDirectory( string baseDirectory, UniversalDefinitionProductSet source )
-        => Path.Combine( baseDirectory, "StudioOne", source.ManufacturerName.Value, source.ProductName.Value );
+        => Path.Combine( baseDirectory, "StudioOne", source.ManufacturerName.Value );
 
     public string GetExportFileName( UniversalDefinitionProductSet source )
         => source.ProductName.Value + ".keyswitch";
