@@ -53,7 +53,7 @@ dotnet tool uninstall --global ArtiCluster
 
 ```sh
 Usage:
-  artiCluster [command] [options]
+  articluster [command] [options]
 
 Options:
   -v, --verbose   Enables verbose logging output
@@ -70,7 +70,7 @@ Commands:
 ### 1. Create a Universal Definition file using the `new` command.
 
 ```sh
-ArtiCluster new ./MyInstrument.yaml
+articluster new ./MyInstrument.yaml
 ```
 
 ### 2. Edit the generated Universal Definition file to define your articulations and MIDI messages.
@@ -84,7 +84,7 @@ https://articluster-editor.pages.dev/
 ### 3. Use the `convert` command to generate DAW-specific articulation mapping files from your Universal Definition files.
 
 ```sh
-ArtiCluster convert ./input-directory ./output-directory
+articluster convert ./input-directory ./output-directory
 ```
 
 ## About Universal Definition (*.yaml)
