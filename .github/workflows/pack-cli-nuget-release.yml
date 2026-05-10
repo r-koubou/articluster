@@ -4,13 +4,9 @@ on:
   pull_request:
     branches:
       - main
-
-  workflow_call:
-    inputs:
-      version:
-        required: true
-        type: string
-        default: '1.x.x'
+  push:
+    branches:
+      - release/**
 
   workflow_dispatch:
     inputs:
@@ -18,6 +14,13 @@ on:
         required: true
         type: string
         default: '1.x.x'
+
+  workflow_call:
+    inputs:
+      version:
+        required: true
+        type: string
+        default: '0.0.0-rc'
 
 jobs:
   pack-nuget-articluster-cli-release:
