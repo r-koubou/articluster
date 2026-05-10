@@ -15,13 +15,16 @@
         <PackAsTool>true</PackAsTool>
         <ToolCommandName>articluster</ToolCommandName>
         <Authors>R-Koubou</Authors>
+        <Description>ArtiCluster is conversion and management tool that supports articulation mapping files across DAWs.</Description>
         <PackageLicenseExpression>MIT</PackageLicenseExpression>
         <PackageReadmeFile>README.md</PackageReadmeFile>
         <PackageTags>csharp;console;tool;daw;midi;keyswitch;articulation</PackageTags>
         <PackageProjectUrl>https://github.com/r-koubou/articluster</PackageProjectUrl>
         <RepositoryUrl>https://github.com/r-koubou/articluster</RepositoryUrl>
         <PackageReleaseNotes>
-          Initial release.
+          - Added logging for failures during file loading and conversion processes.
+          - Added 'Idle' articulation when run "new command"
+          - Fixed an issue where file extensions are no longer required when specifying a file path for the "new command" argument.
         </PackageReleaseNotes>
     </PropertyGroup>
 

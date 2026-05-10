@@ -1,6 +1,7 @@
 {
   "$schema": "http://json-schema.org/draft-06/schema#",
   "$ref": "#/definitions/UniversalDefinition",
+  "description": "Definition of the Universal Definition",
   "definitions": {
     "UniversalDefinition": {
       "title": "UniversalDefinition",
@@ -54,6 +55,10 @@
           "PatchName": "Guitar 1",
           "Description": "Guitar 1 articulation.",
           "Articulations": [
+            {
+              "name": "Idle",
+              "MidiMessages": []
+            },
             {
               "Name": "Sustain",
               "MidiMessages": [
@@ -135,14 +140,20 @@
         },
         "Channel": {
           "type": "integer",
+          "minimum": -1,
+          "maximum": 15,
           "description": "MIDI Channel (0-15). If `-1` or `not defined`, it will be ignored in conversion"
         },
         "Data1": {
           "type": "integer",
+          "minimum": 0,
+          "maximum": 127,
           "description": "MIDI Data Byte 1 (0-127). If `not defined`, it will be ignored in conversion"
         },
         "Data2": {
           "type": "integer",
+          "minimum": 0,
+          "maximum": 127,
           "description": "MIDI Data Byte 2 (0-127). If `not defined`, it will be ignored in conversion"
         }
       },
