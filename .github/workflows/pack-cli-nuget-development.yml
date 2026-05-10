@@ -1,17 +1,23 @@
 name: NuGet articluster-cli - Development
 
 on:
-  pull_request:
-    branches:
-      - develop
   push:
     branches:
       - develop
-      - feature/**
-      - fix/**
-      - refactor/**
 
   workflow_dispatch:
+    inputs:
+      version:
+        required: true
+        type: string
+        default: '0.0.0-develop'
+
+  workflow_call:
+    inputs:
+      version:
+        required: true
+        type: string
+        default: '0.0.0-develop'
 
 jobs:
   build-articluster-cli-nuget-development:
@@ -22,3 +28,4 @@ jobs:
       prefix: articluster-cli
       base_dir: "articluster/Applications/Cli"
       csproject_filename: "Applications.Cli.csproj"
+      version: ${{ inputs.version }}

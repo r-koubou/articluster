@@ -4,6 +4,9 @@ on:
   pull_request:
     branches:
       - main
+  push:
+    branches:
+      - release/**
 
   workflow_dispatch:
     inputs:
@@ -17,7 +20,7 @@ on:
       version:
         required: false
         type: string
-        default: ''
+        default: '0.0.0-rc'
 
 jobs:
   build-articluster-cli-release:

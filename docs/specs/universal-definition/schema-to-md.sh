@@ -1,8 +1,8 @@
 #!/bin/sh
 
 mkdir -p ./.out
-uvx jsonschema2md --header-level 2 \
-                  --show-examples all \
-                  --examples-as-yaml  \
-                  ./universal-definition-schema.json \
-                  ./.out/generated.md
+
+uvx jsonschema-markdown --title "Universal Definition Schema" \
+                        --examples-format yaml \
+                        --no-footer \
+                        ./universal-definition-schema.json > ./.out/generated.md

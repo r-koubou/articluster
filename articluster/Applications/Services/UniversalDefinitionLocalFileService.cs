@@ -54,6 +54,8 @@ public sealed partial class UniversalDefinitionLocalFileService : IUniversalDefi
                         _                                              => ImportFailureReason.OtherError
                     };
 
+                    LogFailedToImportDefinitionFromFileFile( file, reason, importResult.UnwrapError().Error );
+
                     return Result<UniversalDefinitionProductCollection, ImportFailureReason>.Failure( reason );
                 }
 
@@ -142,5 +144,8 @@ public sealed partial class UniversalDefinitionLocalFileService : IUniversalDefi
 
     [LoggerMessage( LogLevel.Information, "Imported successfully {Count} definitions" )]
     partial void LogImportedSuccessfullyCount( int count );
+
+    [LoggerMessage( LogLevel.Critical, "Failed to import definition from file {File}. Reason: {Reason}" )]
+    partial void LogFailedToImportDefinitionFromFileFile( string file, ImportFailureReason reason, Exception? exception );
     #endregion
 }

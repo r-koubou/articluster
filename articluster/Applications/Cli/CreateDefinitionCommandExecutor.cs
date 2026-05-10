@@ -28,7 +28,7 @@ internal sealed class CreateDefinitionCommandExecutor : ICommandExecutor
 
     public Command CreateCommand()
     {
-        var outputCreatedPathArgument = new Argument<string>( "path/to/output.yaml" );
+        var outputCreatedPathArgument = new Argument<string>( "path/to/name" );
         var command = new Command( "new", "Create a Universal Definition file" )
         {
             outputCreatedPathArgument
@@ -40,6 +40,11 @@ internal sealed class CreateDefinitionCommandExecutor : ICommandExecutor
                 if( outputPath == null )
                 {
                     throw new InvalidOperationException( "Output path is required." );
+                }
+
+                if( !outputPath.EndsWith( ".yaml" ) )
+                {
+                    outputPath  += ".yaml";
                 }
 
                 return await ExecuteAsync( outputPath );
