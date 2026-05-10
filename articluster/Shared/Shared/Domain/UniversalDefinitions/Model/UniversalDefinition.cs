@@ -72,6 +72,10 @@ public sealed record UniversalDefinition
             articulations:
             [
                 Articulation.Create(
+                    name: "Idle",
+                    midiMessages: []
+                ),
+                Articulation.Create(
                     name: "Articulation Name",
                     midiMessages:
                     [
