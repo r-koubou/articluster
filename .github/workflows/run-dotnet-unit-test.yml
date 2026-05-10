@@ -7,9 +7,6 @@ on:
       - develop
   push:
     branches:
-      - main
-      - develop
-      - release/**
       - hotfix/**
       - feature/**
       - refactor/**
