@@ -43,10 +43,13 @@ public sealed partial class LocalFileExportExecutor<TSource> : ILocalFileExportE
                 await using var writer = new LocalTextContentWriter( outputPath );
                 var result = await exportStrategy.ExportAsync( writer, x, cancellationToken );
 
-                if( result.IsFailure )
+                if( result.IsSuccess )
                 {
-                    return result;
+                    continue;
                 }
+
+                LogFailedToExportToOutput( outputPath, result.Reason, result.UnwrapError().Error );
+                return result;
             }
             catch( IOException e )
             {
@@ -61,6 +64,11 @@ public sealed partial class LocalFileExportExecutor<TSource> : ILocalFileExportE
         return Result<Unit, ExportFailureReason>.Success( Unit.Default );
     }
 
+    #region Logging
     [LoggerMessage( LogLevel.Debug, "Exporting to {OutputPath}" )]
     partial void LogExportingToOutputPath( string outputPath );
+
+    [LoggerMessage( LogLevel.Error, "Failed to export to {OutputPath} with reason {Reason}" )]
+    partial void LogFailedToExportToOutput( string outputPath, ExportFailureReason reason, Exception? exception );
+    #endregion
 }

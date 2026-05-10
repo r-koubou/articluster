@@ -94,7 +94,7 @@ internal sealed class ConvertingCommandExecutor : ICommandExecutor
 
         if( importResult.IsFailure )
         {
-            logger.LogError( $"Failed to import Universal Definitions: {importResult.Reason}" );
+            logger.LogCritical( $"Failed to import Universal Definitions: {importResult.Reason}" );
 
             return 1;
         }
@@ -110,7 +110,7 @@ internal sealed class ConvertingCommandExecutor : ICommandExecutor
                 continue;
             }
 
-            logger.LogError( $"Failed to convert (target:{service.TargetDawName}, reason:{convertResult.Reason})" );
+            logger.LogCritical( $"Failed to convert (target:{service.TargetDawName}, reason:{convertResult.Reason})" );
 
             return 1;
         }
