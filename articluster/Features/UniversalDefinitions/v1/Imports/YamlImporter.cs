@@ -14,7 +14,7 @@ using YamlDotNet.Core;
 
 namespace ArtiCluster.Features.UniversalDefinitions.v1.Imports;
 
-public sealed class YamlImporter
+public sealed class YamlImporter : IUniversalDefinitionImporter
 {
     public async Task<Result<UniversalDefinition, ImportFailureReason>> ImportAsync(
         ITextContentReader reader,

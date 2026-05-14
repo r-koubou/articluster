@@ -1,7 +1,11 @@
 using System;
 using System.Collections.Generic;
 
+using ArtiCluster.Features.UniversalDefinitions.Contracts;
+
 using Semver;
+
+using YamlDotNet.Serialization;
 
 // ReSharper disable UnusedAutoPropertyAccessor.Global
 // ReSharper disable AutoPropertyCanBeMadeGetOnly.Global
@@ -9,10 +13,11 @@ using Semver;
 
 namespace ArtiCluster.Features.UniversalDefinitions.v1.Models;
 
-public class UniversalDefinitionModel
+public class UniversalDefinitionModel : IUniversalDefinitionModel
 {
     public static readonly SemVersion CurrentFormatVersion = new( 1, 0, 0 );
 
+    [YamlMember( Alias = IUniversalDefinitionModel.FormatVersionFieldName )]
     public string FormatVersion { get; set; } = CurrentFormatVersion.ToString();
 
     public Guid Id { get; set; } = Guid.NewGuid();
