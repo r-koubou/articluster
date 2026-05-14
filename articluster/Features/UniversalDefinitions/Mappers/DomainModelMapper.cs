@@ -17,6 +17,11 @@ public static class DomainModelMapper
             throw new ArgumentNullException( nameof( source ) );
         }
 
+        if( source.FormatVersion != UniversalDefinitionModel.CurrentFormatVersion )
+        {
+            throw new UnsupportedFormatVersionException( source.FormatVersion );
+        }
+
         return UniversalDefinition.Create(
             id: source.Id,
             author: source.Author,
