@@ -9,12 +9,26 @@
       "description": "The root of articulation",
       "additionalProperties": false,
       "properties": {
+        "FormatVersion": {
+          "type": "integer",
+          "description": "Universal File Format Version",
+          "examples": [
+            1
+          ]
+        },
         "Id": {
           "type": "string",
-          "format": "uuid"
+          "format": "uuid",
+          "description": "Unique identifier for this Universal Definition",
+          "examples": [
+            "259fda39-6197-49e8-aee1-ab1e568635ad"
+          ]
         },
         "Author": {
-          "type": "string"
+          "type": "string",
+          "examples": [
+            "Your Name"
+          ]
         },
         "ManufacturerName": {
           "type": "string"
@@ -23,10 +37,16 @@
           "type": "string"
         },
         "PatchName": {
-          "type": "string"
+          "type": "string",
+          "examples": [
+            "Guitar",
+            "Bass",
+            "Violin"
+          ]
         },
         "Description": {
-          "type": "string"
+          "type": "string",
+          "description": "Description of this Universal Definition file"
         },
         "Articulations": {
           "type": "array",
@@ -39,6 +59,7 @@
         }
       },
       "required": [
+        "FormatVersion",
         "Id",
         "Author",
         "ManufacturerName",
@@ -48,6 +69,7 @@
       ],
       "examples": [
         {
+          "FormatVersion": 1,
           "Id": "34023d3f-30b0-4646-90e8-5d2978d09d43",
           "Author": "R-Koubou",
           "ManufacturerName": "Acme Corp",
@@ -56,7 +78,7 @@
           "Description": "Guitar 1 articulation.",
           "Articulations": [
             {
-              "name": "Idle",
+              "Name": "Idle",
               "MidiMessages": []
             },
             {

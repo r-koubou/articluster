@@ -1,5 +1,9 @@
 # Changelog
 
+## Version 1.0.3
+
+- Added `FormatVersion` field to Universal Definition specification to allow for future format changes and backward compatibility.
+
 ## Version 1.0.2
 
 - Added logging for failures during file loading and conversion processes.

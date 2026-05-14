@@ -13,6 +13,7 @@ public static class YamlModelMapper
     {
         return new UniversalDefinitionModel
         {
+            FormatVersion    = UniversalDefinitionModel.CurrentFormatVersion,
             Id               = source.Id,
             Author           = source.Author.Value,
             ManufacturerName = source.ManufacturerName.Value,

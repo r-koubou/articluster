@@ -9,6 +9,10 @@ namespace ArtiCluster.Features.UniversalDefinitions.Models;
 
 public class UniversalDefinitionModel
 {
+    public const int CurrentFormatVersion = 1;
+
+    public int FormatVersion { get; set; }
+
     public Guid Id { get; set; } = Guid.NewGuid();
 
     public string Author { get; set; } = string.Empty;

@@ -20,6 +20,7 @@ public class DomainModelMapperTest
         var id = Guid.NewGuid();
         var source = new UniversalDefinitionModel
         {
+            FormatVersion    = UniversalDefinitionModel.CurrentFormatVersion,
             Id               = id,
             Author           = "John Doe",
             ManufacturerName = "Acme Corp",
@@ -110,6 +111,7 @@ public class DomainModelMapperTest
     {
         var source = new UniversalDefinitionModel
         {
+            FormatVersion    = UniversalDefinitionModel.CurrentFormatVersion,
             Author           = "John Doe",
             ManufacturerName = "Acme Corp",
             ProductName      = "Super Synth",

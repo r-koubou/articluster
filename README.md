@@ -77,7 +77,7 @@ articluster new ./MyInstrument
 
 You can use any text editor to edit the YAML file. The file structure is defined by the schema, which specifies the required fields and their formats.
 
-We also offer tools that can be edited online.
+**We also offer tools that can be edited online.**
 
 https://articluster-editor.pages.dev/
 
@@ -94,6 +94,7 @@ The `Universal Definition` is an intermediate format used to convert data into k
 The following is a sample Universal Definition File.
 
 ```yaml
+FormatVersion: 1
 Id: 56ca2345-1ef9-4a96-95d0-9c8c210b9e9d
 Author: Example Author
 ManufacturerName: Example Manufacturer
@@ -132,6 +133,7 @@ The root of articulation
 #### Examples
 
 ```yaml
+FormatVersion: 1
 Id: 34023d3f-30b0-4646-90e8-5d2978d09d43
 Author: R-Koubou
 ManufacturerName: Acme Corp
@@ -139,7 +141,7 @@ ProductName: Super Guitar
 PatchName: Guitar 1
 Description: Guitar 1 articulation.
 Articulations:
-- name: Idle
+- Name: Idle
   MidiMessages: []
 - Name: Sustain
   MidiMessages:
@@ -163,13 +165,14 @@ Articulations:
 
 | Property | Type | Required | Possible values | Deprecated | Default | Description | Examples |
 | -------- | ---- | -------- | --------------- | ---------- | ------- | ----------- | -------- |
-| Id | `string` | ✅ | Format: [`uuid`](https://json-schema.org/understanding-json-schema/reference/string#built-in-formats) |  |  |  |  |
-| Author | `string` | ✅ | string |  |  |  |  |
+| FormatVersion | `integer` | ✅ | integer |  |  | Universal File Format Version | ```1``` |
+| Id | `string` | ✅ | Format: [`uuid`](https://json-schema.org/understanding-json-schema/reference/string#built-in-formats) |  |  | Unique identifier for this Universal Definition | ```259fda39-6197-49e8-aee1-ab1e568635ad``` |
+| Author | `string` | ✅ | string |  |  |  | ```Your Name``` |
 | ManufacturerName | `string` | ✅ | string |  |  |  |  |
 | ProductName | `string` | ✅ | string |  |  |  |  |
-| PatchName | `string` | ✅ | string |  |  |  |  |
+| PatchName | `string` | ✅ | string |  |  |  | ```Guitar```, ```Bass```, ```Violin``` |
 | Articulations | `array` | ✅ | [Articulation](#articulation) |  |  |  |  |
-| Description | `string` |  | string |  |  |  |  |
+| Description | `string` |  | string |  |  | Description of this Universal Definition file |  |
 | Extra | `object` |  | [Extra](#extra) |  |  |  |  |
 
 ## Articulation

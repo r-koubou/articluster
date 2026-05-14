@@ -22,7 +22,12 @@ public class YamlImportTest
         var importer = new YamlImporter();
         var result = await importer.ImportAsync( reader, CancellationToken.None );
 
-        Assert.That( result.IsSuccess, Is.True, "Import should succeed" );
+        Assert.That(
+            result.IsSuccess, Is.True,
+            message: !result.IsSuccess
+                ? $"Import should succeed (reason: {result.Reason} )"
+                : ""
+        );
     }
 
     [Test]
