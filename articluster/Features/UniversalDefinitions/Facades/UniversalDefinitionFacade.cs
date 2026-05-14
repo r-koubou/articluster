@@ -3,8 +3,8 @@ using System.Threading.Tasks;
 
 using ArtiCluster.Commons;
 using ArtiCluster.Features.UniversalDefinitions.Contracts;
-using ArtiCluster.Features.UniversalDefinitions.Exports;
-using ArtiCluster.Features.UniversalDefinitions.Imports;
+using ArtiCluster.Features.UniversalDefinitions.v1.Exports;
+using ArtiCluster.Features.UniversalDefinitions.v1.Imports;
 using ArtiCluster.Shared.Domain.UniversalDefinitions.Model;
 using ArtiCluster.Shared.IO.Abstractions;
 

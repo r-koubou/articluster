@@ -5,7 +5,7 @@ using System.Collections.Generic;
 // ReSharper disable AutoPropertyCanBeMadeGetOnly.Global
 // ReSharper disable CollectionNeverQueried.Global
 
-namespace ArtiCluster.Features.UniversalDefinitions.Models;
+namespace ArtiCluster.Features.UniversalDefinitions.v1.Models;
 
 public class UniversalDefinitionModel
 {

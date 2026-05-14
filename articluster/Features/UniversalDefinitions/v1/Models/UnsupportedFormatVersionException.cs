@@ -1,6 +1,6 @@
 using System;
 
-namespace ArtiCluster.Features.UniversalDefinitions.Models;
+namespace ArtiCluster.Features.UniversalDefinitions.v1.Models;
 
 public class UnsupportedFormatVersionException( int formatVersion )
     : Exception( $"Unsupported format version: {formatVersion}" )

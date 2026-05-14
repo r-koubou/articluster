@@ -2,8 +2,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 
-using ArtiCluster.Features.UniversalDefinitions.Mappers;
-using ArtiCluster.Features.UniversalDefinitions.Models;
+using ArtiCluster.Features.UniversalDefinitions.v1.Mappers;
+using ArtiCluster.Features.UniversalDefinitions.v1.Models;
 using ArtiCluster.Shared.Domain.MidiMessages.Model;
 using ArtiCluster.Shared.Domain.MidiMessages.Model.Values;
 
