@@ -22,9 +22,7 @@
         <PackageProjectUrl>https://github.com/r-koubou/articluster</PackageProjectUrl>
         <RepositoryUrl>https://github.com/r-koubou/articluster</RepositoryUrl>
         <PackageReleaseNotes>
-          - Added logging for failures during file loading and conversion processes.
-          - Added 'Idle' articulation when run "new command"
-          - Fixed an issue where file extensions are no longer required when specifying a file path for the "new command" argument.
+          - Added `FormatVersion` field to Universal Definition specification to allow for future format changes and backward compatibility.
         </PackageReleaseNotes>
     </PropertyGroup>
 
