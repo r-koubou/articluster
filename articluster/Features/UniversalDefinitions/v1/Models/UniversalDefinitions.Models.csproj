@@ -15,4 +15,8 @@
       <ProjectReference Include="..\..\..\..\Shared\Shared\Shared.csproj" />
     </ItemGroup>
 
+    <ItemGroup>
+      <PackageReference Include="Semver" Version="3.0.0" />
+    </ItemGroup>
+
 </Project>

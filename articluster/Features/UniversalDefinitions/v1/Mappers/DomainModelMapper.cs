@@ -6,6 +6,8 @@ using ArtiCluster.Features.UniversalDefinitions.v1.Models;
 using ArtiCluster.Shared.Domain.MidiMessages.Model;
 using ArtiCluster.Shared.Domain.UniversalDefinitions.Model;
 
+using Semver;
+
 namespace ArtiCluster.Features.UniversalDefinitions.v1.Mappers;
 
 public static class DomainModelMapper
@@ -17,7 +19,9 @@ public static class DomainModelMapper
             throw new ArgumentNullException( nameof( source ) );
         }
 
-        if( source.FormatVersion != UniversalDefinitionModel.CurrentFormatVersion )
+        var version = SemVersion.Parse( source.FormatVersion, SemVersionStyles.Strict );
+
+        if( version.Major != UniversalDefinitionModel.CurrentFormatVersion.Major )
         {
             throw new UnsupportedFormatVersionException( source.FormatVersion );
         }

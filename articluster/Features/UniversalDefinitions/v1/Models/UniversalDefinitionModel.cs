@@ -1,6 +1,8 @@
 using System;
 using System.Collections.Generic;
 
+using Semver;
+
 // ReSharper disable UnusedAutoPropertyAccessor.Global
 // ReSharper disable AutoPropertyCanBeMadeGetOnly.Global
 // ReSharper disable CollectionNeverQueried.Global
@@ -9,9 +11,9 @@ namespace ArtiCluster.Features.UniversalDefinitions.v1.Models;
 
 public class UniversalDefinitionModel
 {
-    public const int CurrentFormatVersion = 1;
+    public static readonly SemVersion CurrentFormatVersion = new( 1, 0, 0 );
 
-    public int FormatVersion { get; set; }
+    public string FormatVersion { get; set; } = CurrentFormatVersion.ToString();
 
     public Guid Id { get; set; } = Guid.NewGuid();
 

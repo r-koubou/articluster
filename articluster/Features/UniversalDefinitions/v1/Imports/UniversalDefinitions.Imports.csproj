@@ -12,6 +12,7 @@
     </PropertyGroup>
 
     <ItemGroup>
+        <PackageReference Include="Semver" Version="3.0.0" />
         <PackageReference Include="YamlDotNet" Version="17.1.0" />
     </ItemGroup>
 
