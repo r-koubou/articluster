@@ -49,9 +49,10 @@ public sealed partial class UniversalDefinitionLocalFileService : IUniversalDefi
                 {
                     var reason = importResult.Reason switch
                     {
-                        FacadeImportFailureReason.DeserializationError => ImportFailureReason.DeserializationError,
-                        FacadeImportFailureReason.IoError              => ImportFailureReason.IoError,
-                        _                                              => ImportFailureReason.OtherError
+                        FacadeImportFailureReason.UnsupportedFormatVersion => ImportFailureReason.UnsupportedFormatVersion,
+                        FacadeImportFailureReason.DeserializationError     => ImportFailureReason.DeserializationError,
+                        FacadeImportFailureReason.IoError                  => ImportFailureReason.IoError,
+                        _                                                  => ImportFailureReason.OtherError
                     };
 
                     LogFailedToImportDefinitionFromFileFile( file, reason, importResult.UnwrapError().Error );

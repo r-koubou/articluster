@@ -132,6 +132,7 @@ The root of articulation
 #### Examples
 
 ```yaml
+FormatVersion: 1
 Id: 34023d3f-30b0-4646-90e8-5d2978d09d43
 Author: R-Koubou
 ManufacturerName: Acme Corp
@@ -139,7 +140,7 @@ ProductName: Super Guitar
 PatchName: Guitar 1
 Description: Guitar 1 articulation.
 Articulations:
-- name: Idle
+- Name: Idle
   MidiMessages: []
 - Name: Sustain
   MidiMessages:
@@ -163,13 +164,14 @@ Articulations:
 
 | Property | Type | Required | Possible values | Deprecated | Default | Description | Examples |
 | -------- | ---- | -------- | --------------- | ---------- | ------- | ----------- | -------- |
-| Id | `string` | ✅ | Format: [`uuid`](https://json-schema.org/understanding-json-schema/reference/string#built-in-formats) |  |  |  |  |
-| Author | `string` | ✅ | string |  |  |  |  |
+| FormatVersion | `integer` | ✅ | integer |  |  | Universal File Format Version | ```1``` |
+| Id | `string` | ✅ | Format: [`uuid`](https://json-schema.org/understanding-json-schema/reference/string#built-in-formats) |  |  | Unique identifier for this Universal Definition | ```259fda39-6197-49e8-aee1-ab1e568635ad``` |
+| Author | `string` | ✅ | string |  |  |  | ```Your Name``` |
 | ManufacturerName | `string` | ✅ | string |  |  |  |  |
 | ProductName | `string` | ✅ | string |  |  |  |  |
-| PatchName | `string` | ✅ | string |  |  |  |  |
+| PatchName | `string` | ✅ | string |  |  |  | ```Guitar```, ```Bass```, ```Violin``` |
 | Articulations | `array` | ✅ | [Articulation](#articulation) |  |  |  |  |
-| Description | `string` |  | string |  |  |  |  |
+| Description | `string` |  | string |  |  | Description of this Universal Definition file |  |
 | Extra | `object` |  | [Extra](#extra) |  |  |  |  |
 
 ## Articulation

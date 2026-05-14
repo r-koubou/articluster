@@ -34,6 +34,10 @@ public sealed class YamlImporter
         {
             return Result<UniversalDefinition, ImportFailureReason>.Failure( ImportFailureReason.DeserializationError, e );
         }
+        catch( UnsupportedFormatVersionException e )
+        {
+            return Result<UniversalDefinition, ImportFailureReason>.Failure( ImportFailureReason.UnsupportedFormatVersion, e );
+        }
         catch( IOException e )
         {
             return Result<UniversalDefinition, ImportFailureReason>.Failure( ImportFailureReason.IoError, e );
