@@ -77,7 +77,7 @@ articluster new ./MyInstrument
 
 You can use any text editor to edit the YAML file. The file structure is defined by the schema, which specifies the required fields and their formats.
 
-We also offer tools that can be edited online.
+**We also offer tools that can be edited online.**
 
 https://articluster-editor.pages.dev/
 
@@ -94,6 +94,7 @@ The `Universal Definition` is an intermediate format used to convert data into k
 The following is a sample Universal Definition File.
 
 ```yaml
+FormatVersion: 1
 Id: 56ca2345-1ef9-4a96-95d0-9c8c210b9e9d
 Author: Example Author
 ManufacturerName: Example Manufacturer
