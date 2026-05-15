@@ -21,20 +21,6 @@ public static class MockUniversalDefinition
         );
     }
 
-    public static UniversalDefinitionManufacturerSet CreateManufacturerSet(
-        string manufacturerName = "Acme Corp" )
-    {
-        return UniversalDefinitionManufacturerSet.Create(
-            manufacturerName: manufacturerName,
-            items:
-            [
-                CreateDefinition( Guid.NewGuid(), manufacturerName ),
-                CreateDefinition( Guid.NewGuid(), manufacturerName, productName: "Super Guitar", patchName: "Guitar1" ),
-                CreateDefinition( Guid.NewGuid(), manufacturerName, productName: "Super Bass", patchName: "E.Bass" ),
-            ]
-        );
-    }
-
     public static UniversalDefinitionProductSet CreateProductSet(
         string manufacturerName = "Acme Corp",
         string productName = "Super Synth" )
