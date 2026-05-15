@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 
+using ArtiCluster.Features.UniversalDefinitions.Contracts;
 using ArtiCluster.Features.UniversalDefinitions.v1.Models;
 using ArtiCluster.Shared.Domain.MidiMessages.Model;
 using ArtiCluster.Shared.Domain.UniversalDefinitions.Model;

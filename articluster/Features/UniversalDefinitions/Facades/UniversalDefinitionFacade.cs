@@ -4,7 +4,6 @@ using System.Threading.Tasks;
 
 using ArtiCluster.Commons;
 using ArtiCluster.Features.UniversalDefinitions.Contracts;
-using ArtiCluster.Features.UniversalDefinitions.v1.Models;
 using ArtiCluster.Shared.Domain.UniversalDefinitions.Model;
 using ArtiCluster.Shared.IO.Abstractions;
 using ArtiCluster.Shared.IO.Buffered;
