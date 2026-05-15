@@ -1,7 +1,7 @@
 {
   "$schema": "http://json-schema.org/draft-06/schema#",
   "$ref": "#/definitions/UniversalDefinition",
-  "description": "Definition of the Universal Definition",
+  "description": "Definition of the Universal Definition v1.0.0 file format.",
   "definitions": {
     "UniversalDefinition": {
       "title": "UniversalDefinition",
@@ -26,18 +26,22 @@
         },
         "Author": {
           "type": "string",
+          "description": "Author name of this Universal Definition",
           "examples": [
             "Your Name"
           ]
         },
         "ManufacturerName": {
-          "type": "string"
+          "type": "string",
+          "description": "Name of the manufacturer"
         },
         "ProductName": {
-          "type": "string"
+          "type": "string",
+          "description": "Name of the product"
         },
         "PatchName": {
           "type": "string",
+          "description": "Name of the patch",
           "examples": [
             "Guitar",
             "Bass",
@@ -50,6 +54,7 @@
         },
         "Articulations": {
           "type": "array",
+          "description": "List of articulations in this Universal Definition",
           "items": {
             "$ref": "#/definitions/Articulation"
           }
@@ -118,7 +123,12 @@
       "additionalProperties": false,
       "properties": {
         "Name": {
-          "type": "string"
+          "type": "string",
+          "description": "Name of the articulation",
+          "examples": [
+            "Sustain",
+            "Bridge Mute"
+          ]
         },
         "MidiMessages": {
           "type": "array",
@@ -199,7 +209,7 @@
     "Extra": {
       "title": "Extra",
       "type": "object",
-      "description": "Additional custom properties for the articulation and assignments",
+      "description": "Reserved for future use. Can be used to store additional metadata as key-value pairs.",
       "additionalProperties": true,
       "examples": [
         { "Extra.Custom.Key": "Custom Value" }
