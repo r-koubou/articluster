@@ -94,7 +94,7 @@ The `Universal Definition` is an intermediate format used to convert data into k
 The following is a sample Universal Definition File.
 
 ```yaml
-FormatVersion: 1
+FormatVersion: 1.0.0
 Id: 56ca2345-1ef9-4a96-95d0-9c8c210b9e9d
 Author: Example Author
 ManufacturerName: Example Manufacturer
@@ -133,7 +133,7 @@ The root of articulation
 #### Examples
 
 ```yaml
-FormatVersion: 1
+FormatVersion: 1.0.0
 Id: 34023d3f-30b0-4646-90e8-5d2978d09d43
 Author: R-Koubou
 ManufacturerName: Acme Corp
@@ -165,7 +165,7 @@ Articulations:
 
 | Property | Type | Required | Possible values | Deprecated | Default | Description | Examples |
 | -------- | ---- | -------- | --------------- | ---------- | ------- | ----------- | -------- |
-| FormatVersion | `integer` | ✅ | integer |  |  | Universal File Format Version | ```1``` |
+| FormatVersion | `string` | ✅ | string |  |  | Universal File Format Version (<major>.<minor>.<patch>) | ```1.0.0``` |
 | Id | `string` | ✅ | Format: [`uuid`](https://json-schema.org/understanding-json-schema/reference/string#built-in-formats) |  |  | Unique identifier for this Universal Definition | ```259fda39-6197-49e8-aee1-ab1e568635ad``` |
 | Author | `string` | ✅ | string |  |  |  | ```Your Name``` |
 | ManufacturerName | `string` | ✅ | string |  |  |  |  |

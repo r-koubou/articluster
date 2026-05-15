@@ -1,5 +1,9 @@
 # Changelog
 
+## Version 1.0.4
+
+- Modified `FormatVersion` field in Universal Definition specification to Semantic Versioning.
+
 ## Version 1.0.3
 
 - Added `FormatVersion` field to Universal Definition specification to allow for future format changes and backward compatibility.
