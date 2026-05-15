@@ -2,8 +2,9 @@ using System;
 
 namespace ArtiCluster.Features.UniversalDefinitions.Contracts;
 
-public class UnsupportedFormatVersionException( string formatVersion )
-    : Exception( $"Unsupported format version: {formatVersion}" )
+public class UnsupportedFormatVersionException : Exception
 {
-    public string FormatVersion => formatVersion;
+    // ReSharper disable once ConvertToPrimaryConstructor
+    public UnsupportedFormatVersionException( string formatVersion = "Unknown" )
+        : base( formatVersion ) {}
 }
