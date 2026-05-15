@@ -1,0 +1,24 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <LangVersion>default</LangVersion>
+        <TargetFramework>net10.0</TargetFramework>
+        <Nullable>enable</Nullable>
+        <Copyright>R-Koubou</Copyright>
+        <Company>R-Koubou</Company>
+        <Product>ArtiCluster.Features.UniversalDefinitions.v1.Models</Product>
+        <AssemblyName>ArtiCluster.Features.UniversalDefinitions.v1.Models</AssemblyName>
+        <RootNamespace>ArtiCluster.Features.UniversalDefinitions.v1.Models</RootNamespace>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\..\..\..\Shared\Shared\Shared.csproj" />
+      <ProjectReference Include="..\..\Contracts\UniversalDefinitions.Contracts.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <PackageReference Include="Semver" Version="3.0.0" />
+      <PackageReference Include="YamlDotNet" Version="17.1.0" />
+    </ItemGroup>
+
+</Project>

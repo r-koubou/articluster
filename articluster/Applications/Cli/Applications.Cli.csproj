@@ -22,7 +22,7 @@
         <PackageProjectUrl>https://github.com/r-koubou/articluster</PackageProjectUrl>
         <RepositoryUrl>https://github.com/r-koubou/articluster</RepositoryUrl>
         <PackageReleaseNotes>
-          - Added `FormatVersion` field to Universal Definition specification to allow for future format changes and backward compatibility.
+          - Modified `FormatVersion` field in Universal Definition specification to Semantic Versioning.
         </PackageReleaseNotes>
     </PropertyGroup>
 

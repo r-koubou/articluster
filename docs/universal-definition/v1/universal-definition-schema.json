@@ -10,10 +10,10 @@
       "additionalProperties": false,
       "properties": {
         "FormatVersion": {
-          "type": "integer",
-          "description": "Universal File Format Version",
+          "type": "string",
+          "description": "Universal File Format Version (<major>.<minor>.<patch>)",
           "examples": [
-            1
+            "1.0.0"
           ]
         },
         "Id": {
@@ -69,7 +69,7 @@
       ],
       "examples": [
         {
-          "FormatVersion": 1,
+          "FormatVersion": "1.0.0",
           "Id": "34023d3f-30b0-4646-90e8-5d2978d09d43",
           "Author": "R-Koubou",
           "ManufacturerName": "Acme Corp",

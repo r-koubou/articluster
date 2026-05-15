@@ -6,13 +6,13 @@
         <Nullable>enable</Nullable>
         <Copyright>R-Koubou</Copyright>
         <Company>R-Koubou</Company>
-        <Product>ArtiCluster.Features.UniversalDefinitions.Models</Product>
-        <AssemblyName>ArtiCluster.Features.UniversalDefinitions.Models</AssemblyName>
-        <RootNamespace>ArtiCluster.Features.UniversalDefinitions.Models</RootNamespace>
+        <Product>ArtiCluster.Shared.IO.Buffered</Product>
+        <AssemblyName>ArtiCluster.Shared.IO.Buffered</AssemblyName>
+        <RootNamespace>ArtiCluster.Shared.IO.Buffered</RootNamespace>
     </PropertyGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\..\..\Shared\Shared\Shared.csproj" />
+      <ProjectReference Include="..\Shared.IO.Abstractions\Shared.IO.Abstractions.csproj" />
     </ItemGroup>
 
 </Project>

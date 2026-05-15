@@ -45,18 +45,21 @@
   </Folder>
   <Folder Name="/Features/UniversalDefinitions/">
     <Project Path="Features/UniversalDefinitions/Contracts/UniversalDefinitions.Contracts.csproj" />
-    <Project Path="Features/UniversalDefinitions/Exports/UniversalDefinitions.Exports.csproj" />
     <Project Path="Features/UniversalDefinitions/Facades/UniversalDefinitions.Facades.csproj" />
-    <Project Path="Features/UniversalDefinitions/Imports/UniversalDefinitions.Imports.csproj" />
-    <Project Path="Features/UniversalDefinitions/Mappers/UniversalDefinitions.Mappers.csproj" />
-    <Project Path="Features/UniversalDefinitions/Models/UniversalDefinitions.Models.csproj" />
-    <Project Path="Features/UniversalDefinitions/Tests/UniversalDefinitions.Tests.csproj" />
+  </Folder>
+  <Folder Name="/Features/UniversalDefinitions/v1/">
+    <Project Path="Features/UniversalDefinitions/v1/Exports/UniversalDefinitions.Exports.csproj" />
+    <Project Path="Features/UniversalDefinitions/v1/Imports/UniversalDefinitions.Imports.csproj" />
+    <Project Path="Features/UniversalDefinitions/v1/Mappers/UniversalDefinitions.Mappers.csproj" />
+    <Project Path="Features/UniversalDefinitions/v1/Models/UniversalDefinitions.Models.csproj" />
+    <Project Path="Features/UniversalDefinitions/v1/Tests/UniversalDefinitions.Tests.csproj" />
   </Folder>
   <Folder Name="/Shared/">
     <Project Path="Shared/Shared.Mock/Shared.Mock.csproj" />
     <Project Path="Shared/Shared/Shared.csproj" />
   </Folder>
   <Folder Name="/Shared/IO/">
+    <Project Path="Shared/Shared.IO.Buffered/Shared.IO.Buffered.csproj" />
     <Project Path="Shared/Shared.IO.Local/Shared.IO.Local.csproj" />
     <Project Path="Shared/Shared.IO.Abstractions/Shared.IO.Abstractions.csproj" />
     <Project Path="Shared/Shared.IO.Streams/Shared.IO.Streams.csproj" />

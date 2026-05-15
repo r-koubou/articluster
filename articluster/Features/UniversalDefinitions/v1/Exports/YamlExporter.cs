@@ -5,15 +5,15 @@ using System.Threading.Tasks;
 
 using ArtiCluster.Commons;
 using ArtiCluster.Features.UniversalDefinitions.Contracts;
-using ArtiCluster.Features.UniversalDefinitions.Mappers;
+using ArtiCluster.Features.UniversalDefinitions.v1.Mappers;
 using ArtiCluster.Shared.Domain.UniversalDefinitions.Model;
 using ArtiCluster.Shared.IO.Abstractions;
 
 using YamlDotNet.Core;
 
-namespace ArtiCluster.Features.UniversalDefinitions.Exports;
+namespace ArtiCluster.Features.UniversalDefinitions.v1.Exports;
 
-public sealed class YamlExporter
+public sealed class YamlExporter : IUniversalDefinitionExporter
 {
     public async Task<Result<Unit, ExportFailureReason>> ExportAsync(
         ITextContentWriter writer,
