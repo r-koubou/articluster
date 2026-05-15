@@ -14,10 +14,16 @@
     <ItemGroup>
       <ProjectReference Include="..\..\..\Commons\Commons\Commons.csproj" />
       <ProjectReference Include="..\..\..\Shared\Shared.IO.Abstractions\Shared.IO.Abstractions.csproj" />
+      <ProjectReference Include="..\..\..\Shared\Shared.IO.Buffered\Shared.IO.Buffered.csproj" />
       <ProjectReference Include="..\..\..\Shared\Shared\Shared.csproj" />
       <ProjectReference Include="..\Contracts\UniversalDefinitions.Contracts.csproj" />
-      <ProjectReference Include="..\Exports\UniversalDefinitions.Exports.csproj" />
-      <ProjectReference Include="..\Imports\UniversalDefinitions.Imports.csproj" />
+      <ProjectReference Include="..\v1\Exports\UniversalDefinitions.Exports.csproj" />
+      <ProjectReference Include="..\v1\Imports\UniversalDefinitions.Imports.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <PackageReference Include="Semver" Version="3.0.0" />
+      <PackageReference Include="YamlDotNet" Version="17.1.0" />
     </ItemGroup>
 
 </Project>

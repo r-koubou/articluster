@@ -1,11 +1,11 @@
 using System.Collections.Generic;
 using System.Linq;
 
-using ArtiCluster.Features.UniversalDefinitions.Models;
+using ArtiCluster.Features.UniversalDefinitions.v1.Models;
 using ArtiCluster.Shared.Domain.MidiMessages.Model.Values;
 using ArtiCluster.Shared.Domain.UniversalDefinitions.Model;
 
-namespace ArtiCluster.Features.UniversalDefinitions.Mappers;
+namespace ArtiCluster.Features.UniversalDefinitions.v1.Mappers;
 
 public static class YamlModelMapper
 {
@@ -13,7 +13,6 @@ public static class YamlModelMapper
     {
         return new UniversalDefinitionModel
         {
-            FormatVersion    = UniversalDefinitionModel.CurrentFormatVersion,
             Id               = source.Id,
             Author           = source.Author.Value,
             ManufacturerName = source.ManufacturerName.Value,

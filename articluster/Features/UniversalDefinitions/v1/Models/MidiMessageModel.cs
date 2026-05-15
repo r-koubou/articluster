@@ -1,6 +1,6 @@
 using ArtiCluster.Shared.Domain.MidiMessages.Model.Values;
 
-namespace ArtiCluster.Features.UniversalDefinitions.Models;
+namespace ArtiCluster.Features.UniversalDefinitions.v1.Models;
 
 public sealed class MidiMessageModel
 {
