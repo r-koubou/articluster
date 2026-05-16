@@ -12,15 +12,14 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <PackageReference Include="Semver" Version="3.0.0" />
         <PackageReference Include="YamlDotNet" Version="17.1.0" />
     </ItemGroup>
 
     <ItemGroup>
-        <ProjectReference Include="..\..\..\..\Commons\Commons\Commons.csproj" />
-        <ProjectReference Include="..\..\..\..\Shared\Shared.IO.Abstractions\Shared.IO.Abstractions.csproj" />
-        <ProjectReference Include="..\..\..\..\Shared\Shared\Shared.csproj" />
-        <ProjectReference Include="..\..\Contracts\UniversalDefinitions.Contracts.csproj" />
+        <ProjectReference Include="..\..\..\Commons\Commons\Commons.csproj" />
+        <ProjectReference Include="..\..\..\Shared\Shared.IO.Abstractions\Shared.IO.Abstractions.csproj" />
+        <ProjectReference Include="..\..\..\Shared\Shared\Shared.csproj" />
+        <ProjectReference Include="..\Contracts\UniversalDefinitions.Contracts.csproj" />
         <ProjectReference Include="..\Mappers\UniversalDefinitions.Mappers.csproj" />
         <ProjectReference Include="..\Models\UniversalDefinitions.Models.csproj" />
     </ItemGroup>
