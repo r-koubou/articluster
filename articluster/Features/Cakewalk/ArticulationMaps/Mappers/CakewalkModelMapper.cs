@@ -7,6 +7,7 @@ using ArtiCluster.Shared.Domain.MidiMessages.Model;
 using ArtiCluster.Shared.Domain.MidiMessages.Model.Values;
 using ArtiCluster.Shared.Domain.UniversalDefinitions;
 using ArtiCluster.Shared.Domain.UniversalDefinitions.Model;
+using ArtiCluster.Shared.Domain.UniversalDefinitions.Model.Values;
 
 using Articulation = ArtiCluster.Features.Cakewalk.ArticulationMaps.Models.Articulation;
 
@@ -46,9 +47,11 @@ public sealed class CakewalkModelMapper
         {
             foreach( var group in definition.ArticulationGroups )
             {
+                var groupName = group.Name;
+
                 foreach( var x in group.Articulations )
                 {
-                    var articulation = ConvertArticulation( definition, x, groups, id, index );
+                    var articulation = ConvertArticulation( groupName, definition, x, groups, id, index );
                     articulations.Add( articulation );
 
                     id++;
@@ -60,7 +63,7 @@ public sealed class CakewalkModelMapper
         return new ArticulationMap
         {
             Name          = source.ProductName.Value,
-            Groups        = new List<Group>( groups ),
+            Groups        = [ ..groups ],
             Articulations = articulations
         };
     }
@@ -86,6 +89,7 @@ public sealed class CakewalkModelMapper
     }
 
     private static Articulation ConvertArticulation(
+        ArticulationGroupName articulationGroupName,
         UniversalDefinition definition,
         Shared.Domain.UniversalDefinitions.Model.Articulation articulation,
         IReadOnlyCollection<Group> groups,
@@ -99,7 +103,7 @@ public sealed class CakewalkModelMapper
 
         return new Articulation(
             id,
-            articulation.Name.Value,
+            $"{articulationGroupName.Value} - {articulation.Name.Value}",
             index,
             groupId,
             "ff4da3b9",
@@ -134,7 +138,7 @@ public sealed class CakewalkModelMapper
         return [ ];
     }
 
-    private static IEnumerable<MidiEvent> ConvertArticulationEvents( Shared.Domain.UniversalDefinitions.Model.Articulation articulation )
+    private static List<MidiEvent> ConvertArticulationEvents( Shared.Domain.UniversalDefinitions.Model.Articulation articulation )
     {
         var result = new List<MidiEvent>();
 
