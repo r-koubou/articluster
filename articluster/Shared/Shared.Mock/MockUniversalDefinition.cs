@@ -21,11 +21,11 @@ public static class MockUniversalDefinition
         );
     }
 
-    public static UniversalDefinitionProductSet CreateProductSet(
+    public static ProductSet CreateProductSet(
         string manufacturerName = "Acme Corp",
         string productName = "Super Synth" )
     {
-        return UniversalDefinitionProductSet.Create(
+        return ProductSet.Create(
             manufacturerName: manufacturerName,
             productName: productName,
             items:

@@ -13,7 +13,7 @@ namespace ArtiCluster.Features.StudioOne.KeySwitches.Mappers;
 
 public sealed class StudioOneModelMapper
 {
-    public Result<StudioOneRootElement, ExportFailureReason> Map( UniversalDefinitionProductSet source )
+    public Result<StudioOneRootElement, ExportFailureReason> Map( ProductSet source )
     {
         if( source.IsEmpty )
         {
@@ -52,7 +52,7 @@ public sealed class StudioOneModelMapper
         return Result<StudioOneRootElement, ExportFailureReason>.Success( rootElement );
     }
 
-    private static Result<StudioOneRootElement, ExportFailureReason> MapWithFolders( UniversalDefinitionProductSet source, int assignId )
+    private static Result<StudioOneRootElement, ExportFailureReason> MapWithFolders( ProductSet source, int assignId )
     {
 #if false
     <?xml version = "1.0" encoding = "utf-8"?>

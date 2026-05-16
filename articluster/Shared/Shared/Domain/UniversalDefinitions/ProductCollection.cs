@@ -9,7 +9,7 @@ namespace ArtiCluster.Shared.Domain.UniversalDefinitions;
 public sealed record ProductCollection
 {
     // ReSharper disable MemberCanBePrivate.Global
-    public IReadOnlyCollection<UniversalDefinitionProductSet> Items { get; }
+    public IReadOnlyCollection<ProductSet> Items { get; }
 
     public int Count
         => Items.Count;
@@ -33,7 +33,7 @@ public sealed record ProductCollection
                         x.ProductName
                     }
                 )
-               .Select( g => new UniversalDefinitionProductSet( g.Key.ManufacturerName, g.Key.ProductName, g ) )
+               .Select( g => new ProductSet( g.Key.ManufacturerName, g.Key.ProductName, g ) )
                .ToList();
     }
 }

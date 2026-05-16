@@ -7,7 +7,7 @@ using ArtiCluster.Shared.Domain.UniversalDefinitions.Model.Values;
 
 namespace ArtiCluster.Shared.Domain.UniversalDefinitions;
 
-public sealed record UniversalDefinitionProductSet
+public sealed record ProductSet
 {
     // ReSharper disable MemberCanBePrivate.Global
     public ManufacturerName ManufacturerName { get; }
@@ -23,7 +23,7 @@ public sealed record UniversalDefinitionProductSet
         => Items.Count == 0;
     // ReSharper restore MemberCanBePrivate.Global
 
-    public UniversalDefinitionProductSet(
+    public ProductSet(
         ManufacturerName manufacturerName,
         ProductName productName,
         IEnumerable<UniversalDefinition> items )
@@ -45,12 +45,12 @@ public sealed record UniversalDefinitionProductSet
         Items            = itemList;
     }
 
-    public static UniversalDefinitionProductSet Create(
+    public static ProductSet Create(
         string manufacturerName,
         string productName,
         IEnumerable<UniversalDefinition> items )
     {
-        return new UniversalDefinitionProductSet(
+        return new ProductSet(
             new ManufacturerName( manufacturerName ),
             new ProductName( productName ),
             items
