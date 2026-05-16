@@ -54,25 +54,31 @@ public static class MockUniversalDefinition
                 { "GlobalKey1", "GlobalValue1" },
                 { "GlobalKey2", "GlobalValue2" }
             },
-            articulations:
+            articulationGroups:
             [
-                Articulation.Create(
-                    name: "Sustain",
-                    midiMessages:
+                ArticulationGroup.Create(
+                    name: "Main",
+                    articulations:
                     [
-                        // Note On
-                        MidiMessage.Create( 0x90, 40, 100 ),
-                        // Note Off
-                        MidiMessage.Create( 0x80, 40, 110 ),
-                        // Control Change
-                        MidiMessage.Create( 0xB0, 1, 127 ),
-                        // Program Change
-                        MidiMessage.Create( 0xC0, 49 ),
-                    ],
-                    extra: new Dictionary<string, string>
-                    {
-                        { "LocalKey", "LocalValue" }
-                    }
+                        Articulation.Create(
+                            name: "Sustain",
+                            midiMessages:
+                            [
+                                // Note On
+                                MidiMessage.Create( 0x90, 40, 100 ),
+                                // Note Off
+                                MidiMessage.Create( 0x80, 40, 110 ),
+                                // Control Change
+                                MidiMessage.Create( 0xB0, 1, 127 ),
+                                // Program Change
+                                MidiMessage.Create( 0xC0, 49 ),
+                            ],
+                            extra: new Dictionary<string, string>
+                            {
+                                { "LocalKey", "LocalValue" }
+                            }
+                        )
+                    ]
                 )
             ]
         );

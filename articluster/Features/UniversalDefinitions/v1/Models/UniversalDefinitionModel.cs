@@ -89,7 +89,7 @@ public class UniversalDefinitionModel : IUniversalDefinitionModel
     /// <remarks>
     /// Added Format Version: 1.0.0
     /// </remarks>
-    public List<ArticulationModel> Articulations { get; set; } = new();
+    public List<ArticulationGroupModel> ArticulationGroups { get; set; } = new();
 
     /// <summary>
     /// Reserved for future use. Can be used to store additional metadata as key-value pairs.

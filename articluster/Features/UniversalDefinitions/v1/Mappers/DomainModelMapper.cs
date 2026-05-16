@@ -34,7 +34,7 @@ public static class DomainModelMapper
             productName: source.ProductName,
             patchName: source.PatchName,
             description: source.Description,
-            articulations: MapAssignments( source.Articulations ),
+            articulationGroups: MapAssignments( source.Articulations ),
             extra: new Dictionary<string, string>( source.Extra )
         );
     }
