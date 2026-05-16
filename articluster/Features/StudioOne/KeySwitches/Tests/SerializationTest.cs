@@ -29,7 +29,7 @@ public class SerializationTest
         var source1 = MockUniversalDefinition.CreateDefinition( id1, patchName: "Epic Lead" );
         var source2 = MockUniversalDefinition.CreateDefinition( id2, patchName: "E.Bass" );
 
-        var productSet = new UniversalDefinitionProductSet(
+        var productSet = new ProductSet(
             manufacturerName: source1.ManufacturerName,
             productName: source1.ProductName,
             items: [ source1, source2 ]
@@ -66,7 +66,7 @@ public class SerializationTest
         var id = Guid.NewGuid();
         var source = MockUniversalDefinition.CreateDefinition( id, patchName: "Epic Lead" );
 
-        var productSet = new UniversalDefinitionProductSet(
+        var productSet = new ProductSet(
             manufacturerName: source.ManufacturerName,
             productName: source.ProductName,
             items: [ source ]

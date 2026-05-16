@@ -5,24 +5,24 @@ using System.Threading.Tasks;
 using ArtiCluster.Applications.Services.Abstractions;
 using ArtiCluster.Commons;
 using ArtiCluster.Features.Cubase.ExpressionMaps.Facades;
-using ArtiCluster.Shared.Domain.UniversalDefinitions.Model;
+using ArtiCluster.Shared.Domain.UniversalDefinitions;
 using ArtiCluster.Shared.IO.Abstractions;
 
 using FacadeExportFailureReason = ArtiCluster.Features.Cubase.ExpressionMaps.Contracts.ExportFailureReason;
 
 namespace ArtiCluster.Applications.Services.LocalFileConversions.Strategies;
 
-public sealed class CubaseLocalFileExportStrategy : ILocalFileExportStrategy<UniversalDefinition>
+public sealed class CubaseLocalFileExportStrategy : ILocalFileExportStrategy<SeparatedArticulationGroupSet>
 {
-    public string GetOutputDirectory( string baseDirectory, UniversalDefinition source )
-        => Path.Combine( baseDirectory, "Cubase", source.ManufacturerName.Value, source.ProductName.Value );
+    public string GetOutputDirectory( string baseDirectory, SeparatedArticulationGroupSet source )
+        => Path.Combine( baseDirectory, "Cubase", source.ManufacturerName.Value, source.ProductName.Value, source.PatchName.Value );
 
-    public string GetExportFileName( UniversalDefinition source )
-        => source.PatchName.Value + ".expressionmap";
+    public string GetExportFileName( SeparatedArticulationGroupSet source )
+        => $"{source.ArticulationGroupName.Value}.expressionmap";
 
     public async Task<Result<Unit, ExportFailureReason>> ExportAsync(
         ITextContentWriter writer,
-        UniversalDefinition source,
+        SeparatedArticulationGroupSet source,
         CancellationToken cancellationToken = default )
     {
         var facade = new CubaseDefinitionFacade();

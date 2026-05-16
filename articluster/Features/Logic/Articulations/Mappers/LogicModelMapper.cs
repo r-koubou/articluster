@@ -3,6 +3,7 @@ using System.Linq;
 
 using ArtiCluster.Shared.Domain.MidiMessages.Model;
 using ArtiCluster.Shared.Domain.MidiMessages.Model.Values;
+using ArtiCluster.Shared.Domain.UniversalDefinitions;
 using ArtiCluster.Shared.Domain.UniversalDefinitions.Model;
 
 using Claunia.PropertyList;
@@ -11,7 +12,7 @@ namespace ArtiCluster.Features.Logic.Articulations.Mappers;
 
 public sealed class LogicModelMapper
 {
-    public NSDictionary Map( UniversalDefinition source )
+    public NSDictionary Map( SeparatedArticulationGroupSet source )
     {
         var result = new NSDictionary();
         var id = 1001;
@@ -21,7 +22,7 @@ public sealed class LogicModelMapper
         {
             var articulations = new NSArray();
 
-            foreach( var articulation in source.Articulations )
+            foreach( var articulation in source.Items )
             {
                 articulations.Add( ConvertArticulation( articulation, id, articulationId ) );
                 id++;
@@ -40,7 +41,7 @@ public sealed class LogicModelMapper
 
         #region MultipleOutputsActive
         {
-            var multipleOutputsActive = source.Articulations.Any( x => x.MidiMessages.Count >= 2 );
+            var multipleOutputsActive = source.Items.Any( x => x.MidiMessages.Count >= 2 );
             result.Add( "MultipleOutputsActive", multipleOutputsActive );
         }
         #endregion

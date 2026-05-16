@@ -14,7 +14,7 @@ namespace ArtiCluster.Features.Cakewalk.ArticulationMaps.Mappers;
 
 public sealed class CakewalkModelMapper
 {
-    public Result<CakewalkRootObject, Unit> Map( UniversalDefinitionProductSet source )
+    public Result<CakewalkRootObject, Unit> Map( ProductSet source )
     {
         try
         {
@@ -34,7 +34,7 @@ public sealed class CakewalkModelMapper
     }
 
     private static ArticulationMap ConvertArticulationMap(
-        UniversalDefinitionProductSet source,
+        ProductSet source,
         IReadOnlyCollection<Group> groups )
     {
         var id = 1;
@@ -44,13 +44,16 @@ public sealed class CakewalkModelMapper
 
         foreach( var definition in source.Items )
         {
-            foreach( var x in definition.Articulations )
+            foreach( var group in definition.ArticulationGroups )
             {
-                var articulation = ConvertArticulation( definition, x, groups, id, index );
-                articulations.Add( articulation );
+                foreach( var x in group.Articulations )
+                {
+                    var articulation = ConvertArticulation( definition, x, groups, id, index );
+                    articulations.Add( articulation );
 
-                id++;
-                index++;
+                    id++;
+                    index++;
+                }
             }
         }
 
@@ -62,7 +65,7 @@ public sealed class CakewalkModelMapper
         };
     }
 
-    private static List<Group> ConvertArticulationGroup( UniversalDefinitionProductSet source )
+    private static List<Group> ConvertArticulationGroup( ProductSet source )
     {
         var result = new List<Group>();
         var id = 1;

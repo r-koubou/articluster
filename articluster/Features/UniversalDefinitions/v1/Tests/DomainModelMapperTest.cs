@@ -31,26 +31,33 @@ public class DomainModelMapperTest
                 { "GlobalKey1", "GlobalValue1" },
                 { "GlobalKey2", "GlobalValue2" }
             },
-            Articulations =
+            ArticulationGroups =
             [
-                new ArticulationModel
+                new ArticulationGroupModel
                 {
-                    Name = "Sustain",
-                    MidiMessages =
+                    Name = "Main",
+                    Articulations =
                     [
-                        // Note On
-                        new MidiMessageModel( 0x90, 40, 100, -1 ),
-                        // Note Off
-                        new MidiMessageModel( 0x80, 40, 110, 0 ),
-                        // Control Change
-                        new MidiMessageModel( 0xB0, 1, 127, 1 ),
-                        // Program Change
-                        new MidiMessageModel( 0xC0, 49 ),
-                    ],
-                    Extra = new Dictionary<string, string>
-                    {
-                        { "LocalKey", "LocalValue" }
-                    }
+                        new ArticulationModel
+                        {
+                            Name = "Sustain",
+                            MidiMessages =
+                            [
+                                // Note On
+                                new MidiMessageModel( 0x90, 40, 100, -1 ),
+                                // Note Off
+                                new MidiMessageModel( 0x80, 40, 110, 0 ),
+                                // Control Change
+                                new MidiMessageModel( 0xB0, 1, 127, 1 ),
+                                // Program Change
+                                new MidiMessageModel( 0xC0, 49 ),
+                            ],
+                            Extra = new Dictionary<string, string>
+                            {
+                                { "LocalKey", "LocalValue" }
+                            }
+                        }
+                    ]
                 }
             ]
         };
@@ -66,18 +73,18 @@ public class DomainModelMapperTest
                 Assert.That( actual.PatchName.Value, Is.EqualTo( source.PatchName ) );
                 Assert.That( actual.Description.Value, Is.EqualTo( source.Description ) );
                 Assert.That( actual.Extra, Is.EqualTo( source.Extra ) );
-                Assert.That( actual.Articulations, Has.Count.EqualTo( 1 ) );
+                Assert.That( actual.ArticulationGroups, Has.Count.EqualTo( 1 ) );
             }
         );
 
-        var assignment = actual.Articulations.Single();
+        var assignment = actual.ArticulationGroups.Single().Articulations.Single();
 
         Assert.Multiple( () =>
             {
                 Assert.That( assignment.Name.Value, Is.EqualTo( "Sustain" ) );
-                Assert.That( assignment.Extra, Is.EqualTo( source.Articulations[ 0 ].Extra ) );
+                Assert.That( assignment.Extra, Is.EqualTo( source.ArticulationGroups.Single().Articulations.Single().Extra ) );
 
-                var midiMessages = new List<MidiMessage>( actual.Articulations.Single().MidiMessages );
+                var midiMessages = new List<MidiMessage>( actual.ArticulationGroups.Single().Articulations.Single().MidiMessages );
 
                 Assert.That( midiMessages.Count, Is.EqualTo( 4 ) );
 
@@ -114,15 +121,22 @@ public class DomainModelMapperTest
             ManufacturerName = "Acme Corp",
             ProductName      = "Super Synth",
             PatchName        = "Epic Lead",
-            Articulations =
+            ArticulationGroups =
             [
-                new ArticulationModel
+                new ArticulationGroupModel
                 {
-                    Name = "Sustain",
-                    Extra = new Dictionary<string, string>
-                    {
-                        { "LocalKey", "LocalValue" }
-                    }
+                    Name = "Main",
+                    Articulations =
+                    [
+                        new ArticulationModel
+                        {
+                            Name = "Sustain",
+                            Extra = new Dictionary<string, string>
+                            {
+                                { "LocalKey", "LocalValue" }
+                            }
+                        }
+                    ]
                 }
             ],
             Extra = new Dictionary<string, string>
@@ -133,13 +147,13 @@ public class DomainModelMapperTest
 
         var actual = DomainModelMapper.Map( source );
 
-        source.Extra[ "GlobalKey" ]                 = "Updated";
-        source.Articulations[ 0 ].Extra[ "LocalKey" ] = "Updated";
+        source.Extra[ "GlobalKey" ]                            = "Updated";
+        source.ArticulationGroups.Single().Extra[ "LocalKey" ] = "Updated";
 
         Assert.Multiple( () =>
             {
                 Assert.That( actual.Extra[ "GlobalKey" ], Is.EqualTo( "GlobalValue" ) );
-                Assert.That( actual.Articulations.Single().Extra[ "LocalKey" ], Is.EqualTo( "LocalValue" ) );
+                Assert.That( actual.ArticulationGroups.Single().Articulations.Single().Extra[ "LocalKey" ], Is.EqualTo( "LocalValue" ) );
             }
         );
     }

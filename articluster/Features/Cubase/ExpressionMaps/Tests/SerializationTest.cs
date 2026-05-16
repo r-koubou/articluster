@@ -1,5 +1,6 @@
 using System;
 using System.IO;
+using System.Linq;
 using System.Threading.Tasks;
 using System.Xml;
 using System.Xml.Serialization;
@@ -9,6 +10,7 @@ using ArtiCluster.Commons.Text;
 using ArtiCluster.Features.Cubase.ExpressionMaps.Exports;
 using ArtiCluster.Features.Cubase.ExpressionMaps.Mappers;
 using ArtiCluster.Features.Cubase.ExpressionMaps.Models;
+using ArtiCluster.Shared.Domain.UniversalDefinitions;
 using ArtiCluster.Shared.IO.Local;
 using ArtiCluster.Shared.Mock;
 
@@ -23,7 +25,15 @@ public class SerializationTest
     public void SerializeTest()
     {
         var id = Guid.NewGuid();
-        var source = MockUniversalDefinition.CreateDefinition( id, patchName: "Epic Lead" );
+        var mock = MockUniversalDefinition.CreateDefinition( id, patchName: "Epic Lead" );
+
+        var source = SeparatedArticulationGroupSet.Create(
+            mock.ManufacturerName.Value,
+            mock.ProductName.Value,
+            mock.PatchName.Value,
+            "Main",
+            mock.ArticulationGroups.Single().Articulations
+        );
 
         var mapResult = new CubaseModelMapper().Map( source );
 
@@ -53,7 +63,15 @@ public class SerializationTest
     public async Task ExportTest()
     {
         var id = Guid.NewGuid();
-        var source = MockUniversalDefinition.CreateDefinition( id, patchName: "Epic Lead" );
+        var mock = MockUniversalDefinition.CreateDefinition( id, patchName: "Epic Lead" );
+
+        var source = SeparatedArticulationGroupSet.Create(
+            mock.ManufacturerName.Value,
+            mock.ProductName.Value,
+            mock.PatchName.Value,
+            "Main",
+            mock.ArticulationGroups.Single().Articulations
+        );
 
         var mapResult = new CubaseModelMapper().Map( source );
 

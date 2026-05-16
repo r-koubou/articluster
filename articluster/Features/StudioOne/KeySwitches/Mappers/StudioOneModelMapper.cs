@@ -13,7 +13,7 @@ namespace ArtiCluster.Features.StudioOne.KeySwitches.Mappers;
 
 public sealed class StudioOneModelMapper
 {
-    public Result<StudioOneRootElement, ExportFailureReason> Map( UniversalDefinitionProductSet source )
+    public Result<StudioOneRootElement, ExportFailureReason> Map( ProductSet source )
     {
         if( source.IsEmpty )
         {
@@ -52,7 +52,7 @@ public sealed class StudioOneModelMapper
         return Result<StudioOneRootElement, ExportFailureReason>.Success( rootElement );
     }
 
-    private static Result<StudioOneRootElement, ExportFailureReason> MapWithFolders( UniversalDefinitionProductSet source, int assignId )
+    private static Result<StudioOneRootElement, ExportFailureReason> MapWithFolders( ProductSet source, int assignId )
     {
 #if false
     <?xml version = "1.0" encoding = "utf-8"?>
@@ -72,26 +72,29 @@ public sealed class StudioOneModelMapper
 
         foreach( var definition in source.Items )
         {
-            if( definition.Articulations.Count == 0 )
+            foreach( var group in definition.ArticulationGroups )
             {
-                continue;
+                if( group.Articulations.Count == 0 )
+                {
+                    continue;
+                }
+
+                var folder = new ElementAttribute
+                {
+                    Folder = "1",
+                    Name   = group.Name.Value
+                };
+
+                // ReSharper disable once ForeachCanBePartlyConvertedToQueryUsingAnotherGetEnumerator
+                foreach( var articulation in group.Articulations )
+                {
+                    var attributeElement = MapElementAttribute( articulation, assignId );
+                    folder.Children.Add( attributeElement );
+                    assignId++;
+                }
+
+                rootElement.AttributeElements.Add( folder );
             }
-
-            var folder = new ElementAttribute
-            {
-                Folder = "1",
-                Name   = definition.PatchName.Value
-            };
-
-            // ReSharper disable once ForeachCanBePartlyConvertedToQueryUsingAnotherGetEnumerator
-            foreach( var articulation in definition.Articulations )
-            {
-                var attributeElement = MapElementAttribute( articulation, assignId );
-                folder.Children.Add( attributeElement );
-                assignId++;
-            }
-
-            rootElement.AttributeElements.Add( folder );
         }
 
         return Result<StudioOneRootElement, ExportFailureReason>.Success( rootElement );
@@ -103,12 +106,15 @@ public sealed class StudioOneModelMapper
 
         foreach( var definition in sources )
         {
-            foreach( var articulation in definition.Articulations )
+            foreach( var group in definition.ArticulationGroups )
             {
-                var attr = MapElementAttribute( articulation, assignId );
-                assignId++;
+                foreach( var articulation in group.Articulations )
+                {
+                    var attr = MapElementAttribute( articulation, assignId );
+                    assignId++;
 
-                result.Add( attr );
+                    result.Add( attr );
+                }
             }
         }
 

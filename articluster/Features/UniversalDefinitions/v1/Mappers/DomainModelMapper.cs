@@ -34,20 +34,26 @@ public static class DomainModelMapper
             productName: source.ProductName,
             patchName: source.PatchName,
             description: source.Description,
-            articulations: MapAssignments( source.Articulations ),
+            articulationGroups: MapArticulationGroups( source.ArticulationGroups ),
             extra: new Dictionary<string, string>( source.Extra )
         );
     }
 
-    private static List<Articulation> MapAssignments( IEnumerable<ArticulationModel> source )
+    private static List<ArticulationGroup> MapArticulationGroups( IEnumerable<ArticulationGroupModel> source )
     {
+        // @formatter:off
         return source
-              .Select( model => Articulation.Create(
+              .Select( model => ArticulationGroup.Create(
                            name: model.Name,
-                           midiMessages: model.MidiMessages.Select( x => MidiMessage.Create( x.Status, x.Data1, x.Data2, x.Channel ) ).ToList(),
+                           articulations: model.Articulations.Select( x => Articulation.Create(
+                                name: x.Name,
+                                midiMessages: x.MidiMessages.Select( m => MidiMessage.Create( m.Status, m.Data1, m.Data2, m.Channel ) ).ToList(),
+                                extra: new Dictionary<string, string>( x.Extra )
+                            )).ToList(),
                            extra: new Dictionary<string, string>( model.Extra )
                        )
                )
               .ToList();
+        // @formatter:on
     }
 }

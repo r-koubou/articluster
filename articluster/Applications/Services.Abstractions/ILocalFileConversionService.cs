@@ -1,8 +1,9 @@
+using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
 
 using ArtiCluster.Commons;
-using ArtiCluster.Shared.Domain.UniversalDefinitions;
+using ArtiCluster.Shared.Domain.UniversalDefinitions.Model;
 
 namespace ArtiCluster.Applications.Services.Abstractions;
 
@@ -19,7 +20,7 @@ public interface ILocalFileConversionService
 
     Task<Result<Unit, ConvertFailureReason>> ConvertAsync(
         string outputBaseDirectory,
-        UniversalDefinitionProductCollection definitions,
+        IReadOnlyCollection<UniversalDefinition> definitions,
         CancellationToken cancellationToken = default
     );
 }

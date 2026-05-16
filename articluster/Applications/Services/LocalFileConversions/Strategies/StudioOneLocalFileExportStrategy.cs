@@ -12,17 +12,17 @@ using FacadeExportFailureReason = ArtiCluster.Features.StudioOne.KeySwitches.Con
 
 namespace ArtiCluster.Applications.Services.LocalFileConversions.Strategies;
 
-public sealed class StudioOneLocalFileExportStrategy : ILocalFileExportStrategy<UniversalDefinitionProductSet>
+public sealed class StudioOneLocalFileExportStrategy : ILocalFileExportStrategy<ProductSet>
 {
-    public string GetOutputDirectory( string baseDirectory, UniversalDefinitionProductSet source )
+    public string GetOutputDirectory( string baseDirectory, ProductSet source )
         => Path.Combine( baseDirectory, "StudioOne", source.ManufacturerName.Value );
 
-    public string GetExportFileName( UniversalDefinitionProductSet source )
+    public string GetExportFileName( ProductSet source )
         => source.ProductName.Value + ".keyswitch";
 
     public async Task<Result<Unit, ExportFailureReason>> ExportAsync(
         ITextContentWriter writer,
-        UniversalDefinitionProductSet source,
+        ProductSet source,
         CancellationToken cancellationToken = default )
     {
         var facade = new StudioOneDefinitionFacade();

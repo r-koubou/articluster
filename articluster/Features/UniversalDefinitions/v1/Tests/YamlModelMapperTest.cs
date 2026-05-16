@@ -30,24 +30,34 @@ public class YamlModelMapperTest
                 { "GlobalKey1", "GlobalValue1" },
                 { "GlobalKey2", "GlobalValue2" }
             },
-            articulations:
+            articulationGroups:
             [
-                Articulation.Create(
-                    name: "Sustain",
-                    midiMessages:
+                ArticulationGroup.Create(
+                    name: "Main",
+                    articulations:
                     [
-                        // Note On
-                        MidiMessage.Create( 0x90, 40, 100 ),
-                        // Note Off
-                        MidiMessage.Create( 0x80, 40, 110 ),
-                        // Control Change
-                        MidiMessage.Create( 0xB0, 1, 127 ),
-                        // Program Change
-                        MidiMessage.Create( 0xC0, 49 ),
+                        Articulation.Create(
+                            name: "Sustain",
+                            midiMessages:
+                            [
+                                // Note On
+                                MidiMessage.Create( 0x90, 40, 100 ),
+                                // Note Off
+                                MidiMessage.Create( 0x80, 40, 110 ),
+                                // Control Change
+                                MidiMessage.Create( 0xB0, 1, 127 ),
+                                // Program Change
+                                MidiMessage.Create( 0xC0, 49 ),
+                            ],
+                            extra: new Dictionary<string, string>
+                            {
+                                { "LocalKey", "LocalValue" }
+                            }
+                        )
                     ],
                     extra: new Dictionary<string, string>
                     {
-                        { "LocalKey", "LocalValue" }
+                        { "GroupKey", "GroupValue" }
                     }
                 )
             ]
@@ -64,18 +74,18 @@ public class YamlModelMapperTest
                 Assert.That( actual.PatchName, Is.EqualTo( source.PatchName.Value ) );
                 Assert.That( actual.Description, Is.EqualTo( source.Description.Value ) );
                 Assert.That( actual.Extra, Is.EqualTo( source.Extra ) );
-                Assert.That( actual.Articulations, Has.Count.EqualTo( 1 ) );
+                Assert.That( actual.ArticulationGroups, Has.Count.EqualTo( 1 ) );
             }
         );
 
-        var assignment = actual.Articulations.Single();
+        var assignment = actual.ArticulationGroups.Single().Articulations.Single();
 
         Assert.Multiple( () =>
             {
                 Assert.That( assignment.Name, Is.EqualTo( "Sustain" ) );
-                Assert.That( assignment.Extra, Is.EqualTo( source.Articulations.Single().Extra ) );
+                Assert.That( assignment.Extra, Is.EqualTo( source.ArticulationGroups.Single().Articulations.Single().Extra ) );
 
-                var midiMessages = new List<MidiMessageModel>( actual.Articulations.Single().MidiMessages );
+                var midiMessages = new List<MidiMessageModel>( actual.ArticulationGroups.Single().Articulations.Single().MidiMessages );
 
                 Assert.That( midiMessages.Count, Is.EqualTo( 4 ) );
 
