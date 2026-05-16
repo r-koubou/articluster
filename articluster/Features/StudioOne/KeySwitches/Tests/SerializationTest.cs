@@ -75,4 +75,30 @@ public class SerializationTest
             File.Delete( dest );
         }
     }
+
+    [Test]
+    public async Task ExportMultiArticulationGroupTest()
+    {
+        var id = Guid.NewGuid();
+        var source = MockUniversalDefinition.CreateMultiArticulationGroupDefinition( id, patchName: "Epic Lead" );
+
+        var dest = Path.GetTempFileName();
+
+        try
+        {
+            await using( var fileWriter = new LocalTextContentWriter( dest ) )
+            {
+                var exporter = new StudioOneExporter();
+
+                var result = await exporter.ExportAsync( fileWriter, source );
+                Assert.That( result.IsSuccess, Is.True, "Export should succeed" );
+            }
+
+            await TestContext.Out.WriteAsync( await File.ReadAllTextAsync( dest ) );
+        }
+        finally
+        {
+            File.Delete( dest );
+        }
+    }
 }
