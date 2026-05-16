@@ -7,7 +7,6 @@ using System.Threading.Tasks;
 using ArtiCluster.Applications.Services.Abstractions;
 using ArtiCluster.Commons;
 using ArtiCluster.Features.UniversalDefinitions.Facades;
-using ArtiCluster.Shared.Domain.UniversalDefinitions;
 using ArtiCluster.Shared.Domain.UniversalDefinitions.Model;
 using ArtiCluster.Shared.IO.Local;
 
@@ -28,7 +27,7 @@ public sealed partial class UniversalDefinitionLocalFileService : IUniversalDefi
         this.logger = logger;
     }
 
-    public async Task<Result<UniversalDefinitionProductCollection, ImportFailureReason>> ImportAsync( string definitionsDirectory, CancellationToken cancellationToken = default )
+    public async Task<Result<IReadOnlyCollection<UniversalDefinition>, ImportFailureReason>> ImportAsync( string definitionsDirectory, CancellationToken cancellationToken = default )
     {
         logger.LogInformation( "Import begin" );
 
@@ -57,7 +56,7 @@ public sealed partial class UniversalDefinitionLocalFileService : IUniversalDefi
 
                     LogFailedToImportDefinitionFromFileFile( file, reason, importResult.UnwrapError().Error );
 
-                    return Result<UniversalDefinitionProductCollection, ImportFailureReason>.Failure( reason );
+                    return Result<IReadOnlyCollection<UniversalDefinition>, ImportFailureReason>.Failure( reason );
                 }
 
                 definitions.Add( importResult.Unwrap() );
@@ -65,20 +64,18 @@ public sealed partial class UniversalDefinitionLocalFileService : IUniversalDefi
 
             LogImportedSuccessfullyCount( definitions.Count );
 
-            return Result<UniversalDefinitionProductCollection, ImportFailureReason>.Success(
-                new UniversalDefinitionProductCollection( definitions )
-            );
+            return Result<IReadOnlyCollection<UniversalDefinition>, ImportFailureReason>.Success( definitions );
         }
         catch( IOException e )
         {
-            return Result<UniversalDefinitionProductCollection, ImportFailureReason>.Failure(
+            return Result<IReadOnlyCollection<UniversalDefinition>, ImportFailureReason>.Failure(
                 ImportFailureReason.IoError,
                 e
             );
         }
         catch( Exception e )
         {
-            return Result<UniversalDefinitionProductCollection, ImportFailureReason>.Failure(
+            return Result<IReadOnlyCollection<UniversalDefinition>, ImportFailureReason>.Failure(
                 ImportFailureReason.OtherError,
                 e
             );
