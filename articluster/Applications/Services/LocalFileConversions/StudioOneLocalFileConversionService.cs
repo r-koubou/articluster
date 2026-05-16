@@ -6,7 +6,6 @@ using ArtiCluster.Applications.Services.Abstractions;
 using ArtiCluster.Applications.Services.LocalFileConversions.Runners;
 using ArtiCluster.Applications.Services.LocalFileConversions.Strategies;
 using ArtiCluster.Commons;
-using ArtiCluster.Shared.Domain.UniversalDefinitions;
 using ArtiCluster.Shared.Domain.UniversalDefinitions.Model;
 
 using Microsoft.Extensions.Logging;
@@ -33,11 +32,10 @@ public sealed class StudioOneLocalFileConversionService : ILocalFileConversionSe
     {
         var runner = new LocalFileConversionRunner( loggerFactory );
         var strategy = new StudioOneLocalFileExportStrategy();
-        var collection = new ProductCollection( definitions );
 
         return await runner.RunAsync(
             outputBaseDirectory,
-            collection.Items,
+            definitions,
             strategy,
             cancellationToken
         );
