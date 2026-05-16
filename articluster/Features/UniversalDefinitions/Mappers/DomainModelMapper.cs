@@ -2,12 +2,9 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 
-using ArtiCluster.Features.UniversalDefinitions.Contracts;
 using ArtiCluster.Features.UniversalDefinitions.v1.Models;
 using ArtiCluster.Shared.Domain.MidiMessages.Model;
 using ArtiCluster.Shared.Domain.UniversalDefinitions.Model;
-
-using Semver;
 
 namespace ArtiCluster.Features.UniversalDefinitions.v1.Mappers;
 
@@ -15,17 +12,7 @@ public static class DomainModelMapper
 {
     public static UniversalDefinition Map( UniversalDefinitionModel source )
     {
-        if( source == null )
-        {
-            throw new ArgumentNullException( nameof( source ) );
-        }
-
-        var version = SemVersion.Parse( source.FormatVersion, SemVersionStyles.Strict );
-
-        if( version.Major != UniversalDefinitionModel.CurrentFormatVersion.Major )
-        {
-            throw new UnsupportedFormatVersionException( source.FormatVersion );
-        }
+        ArgumentNullException.ThrowIfNull( source );
 
         return UniversalDefinition.Create(
             id: source.Id,

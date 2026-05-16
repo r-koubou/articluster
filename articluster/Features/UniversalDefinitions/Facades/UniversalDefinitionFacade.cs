@@ -4,6 +4,8 @@ using System.Threading.Tasks;
 
 using ArtiCluster.Commons;
 using ArtiCluster.Features.UniversalDefinitions.Contracts;
+using ArtiCluster.Features.UniversalDefinitions.v1.Imports;
+using ArtiCluster.Features.UniversalDefinitions.v1.Models;
 using ArtiCluster.Shared.Domain.UniversalDefinitions.Model;
 using ArtiCluster.Shared.IO.Abstractions;
 using ArtiCluster.Shared.IO.Buffered;
@@ -34,7 +36,15 @@ public sealed class UniversalDefinitionFacade : IUniversalDefinitionFacade
             }
 
             var semVersion = SemVersion.Parse( formatVersion.ToString()! );
-            var importer = FormatVersionResolver.ResolveImporter( semVersion );
+
+            // For now, only have one importer, so we ignore the formatVersion.
+
+            if( semVersion.Major != UniversalDefinitionModel.CurrentFormatVersion.Major )
+            {
+                throw new UnsupportedFormatVersionException( semVersion.ToString() );
+            }
+
+            var importer = new YamlImporter();
 
             return await importer.ImportAsync( new TextContentReader( yamlText ), cancellationToken );
         }
