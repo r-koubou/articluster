@@ -13,34 +13,41 @@ public static class YamlModelMapper
     {
         return new UniversalDefinitionModel
         {
-            Id               = source.Id,
-            Author           = source.Author.Value,
-            ManufacturerName = source.ManufacturerName.Value,
-            ProductName      = source.ProductName.Value,
-            PatchName        = source.PatchName.Value,
-            Description      = source.Description.Value,
-            Articulations    = MapAssignment( source.Articulations ),
-            Extra            = new Dictionary<string, string>( source.Extra )
+            Id                 = source.Id,
+            Author             = source.Author.Value,
+            ManufacturerName   = source.ManufacturerName.Value,
+            ProductName        = source.ProductName.Value,
+            PatchName          = source.PatchName.Value,
+            Description        = source.Description.Value,
+            ArticulationGroups = MapArticulationGroups( source.ArticulationGroups ),
+            Extra              = new Dictionary<string, string>( source.Extra )
         };
     }
 
-    private static List<ArticulationModel> MapAssignment( IEnumerable<Articulation> source )
+    private static List<ArticulationGroupModel> MapArticulationGroups( IEnumerable<ArticulationGroup> source )
     {
+        // @formatter:off
         return source
-              .Select( assignment => new ArticulationModel
-                   {
-                       Name = assignment.Name.Value,
-                       MidiMessages = assignment.MidiMessages.Select( x => new MidiMessageModel
-                           {
-                               Status  = x.Status.Value,
-                               Data1   = x.Data1 == MidiDataByte.None ? null : x.Data1.Value,
-                               Data2   = x.Data2 == MidiDataByte.None ? null : x.Data2.Value,
-                               Channel = x.Channel == MidiChannel.None ? null : x.Channel.Value
-                           }
-                       ).ToList(),
-                       Extra = new Dictionary<string, string>( assignment.Extra )
-                   }
-               )
-              .ToList();
+           .Select( assignment => new ArticulationGroupModel
+                {
+                    Name = assignment.Name.Value,
+                    Articulations = assignment.Articulations.Select( x => new ArticulationModel
+                        {
+                            Name = x.Name.Value,
+                            MidiMessages = x.MidiMessages.Select(
+                                m => new MidiMessageModel(
+                                    m.Status.Value,
+                                    m.Data1 == MidiDataByte.None ? null : m.Data1.Value,
+                                    m.Data2 == MidiDataByte.None ? null : m.Data2.Value,
+                                    m.Channel == MidiChannel.None ? null : m.Channel.Value )
+                            ).ToList(),
+                            Extra = new Dictionary<string, string>( x.Extra )
+                        }
+                    ).ToList(),
+                    Extra = new Dictionary<string, string>( assignment.Extra )
+                }
+            )
+           .ToList();
+        // @formatter:on
     }
 }

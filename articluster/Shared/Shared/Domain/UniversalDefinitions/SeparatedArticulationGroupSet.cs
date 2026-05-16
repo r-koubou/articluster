@@ -49,15 +49,19 @@ public sealed record SeparatedArticulationGroupSet
         Items                 = items.ToList();
     }
 
-    public static UniversalDefinitionProductSet Create(
+    public static SeparatedArticulationGroupSet Create(
         string manufacturerName,
         string productName,
-        IEnumerable<UniversalDefinition> items )
+        string patchName,
+        string articulationGroupName,
+        IEnumerable<Articulation>? items = null )
     {
-        return new UniversalDefinitionProductSet(
+        return new SeparatedArticulationGroupSet(
             new ManufacturerName( manufacturerName ),
             new ProductName( productName ),
-            items
+            new PatchName( patchName ),
+            new ArticulationGroupName( articulationGroupName ),
+            items != null ? items.ToList() : [ ]
         );
     }
 }
