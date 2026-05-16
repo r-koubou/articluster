@@ -5,21 +5,25 @@ ManufacturerName: r-koubou
 ProductName: My Guitar
 PatchName: My Guitar 1
 Description: This is my guitar articulation.
-Articulations:
-  -   Name: Sustain
-      MidiMessages:
-        -   Status: 144
-            Data1: 64
-            Data2: 100
-      Extra:
-        StudioOne.Color: '#FF0000'
-  -   Name: Bridge Mute
-      MidiMessages:
-        -   Status: 144
-            Data1: 66
-            Data2: 100
-      Extra:
-        StudioOne.Color: '#00FF00'
+ArticulationGroups:
+  - Name: Main
+    Articulations:
+      - Name: Sustain
+        MidiMessages:
+        - Status: 144
+          Data1: 64
+          Data2: 100
+        Extra:
+          StudioOne.Color: '#FF0000'
+      - Name: Bridge Mute
+        MidiMessages:
+        - Status: 144
+          Data1: 66
+          Data2: 100
+        Extra:
+          StudioOne.Color: '#00FF00'
+    Extra:
+      ArticulationGroupKey: ArticulationGroupValue
 Extra:
   Global.Key1: Value1
   Global.Key2: Value2

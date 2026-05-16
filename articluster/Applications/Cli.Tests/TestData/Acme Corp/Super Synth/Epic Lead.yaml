@@ -5,13 +5,15 @@ ManufacturerName: Acme Corp
 ProductName: Super Synth
 PatchName: Epic Lead
 Description: Acme Corp Super Synth - Epic Lead
-Articulations:
-  -   Name: Sustain
-      MidiMessages:
-        -   Status: 144
-            Data1: 40
-            Data2: 100
-      Extra: {}
+ArticulationGroups:
+  - Name: Main
+    Articulations:
+      - Name: Sustain
+        MidiMessages:
+        - Status: 144
+          Data1: 40
+          Data2: 100
+        Extra: {}
 Extra:
   Global.Key1: Value1
   Global.Key2: Value2
