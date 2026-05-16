@@ -5,24 +5,24 @@ using System.Threading.Tasks;
 using ArtiCluster.Applications.Services.Abstractions;
 using ArtiCluster.Commons;
 using ArtiCluster.Features.StudioOne.KeySwitches.Facades;
-using ArtiCluster.Shared.Domain.UniversalDefinitions;
+using ArtiCluster.Shared.Domain.UniversalDefinitions.Model;
 using ArtiCluster.Shared.IO.Abstractions;
 
 using FacadeExportFailureReason = ArtiCluster.Features.StudioOne.KeySwitches.Contracts.ExportFailureReason;
 
 namespace ArtiCluster.Applications.Services.LocalFileConversions.Strategies;
 
-public sealed class StudioOneLocalFileExportStrategy : ILocalFileExportStrategy<ProductSet>
+public sealed class StudioOneLocalFileExportStrategy : ILocalFileExportStrategy<UniversalDefinition>
 {
-    public string GetOutputDirectory( string baseDirectory, ProductSet source )
-        => Path.Combine( baseDirectory, "StudioOne", source.ManufacturerName.Value );
+    public string GetOutputDirectory( string baseDirectory, UniversalDefinition source )
+        => Path.Combine( baseDirectory, "StudioOne", source.ManufacturerName.Value, source.ProductName.Value );
 
-    public string GetExportFileName( ProductSet source )
-        => source.ProductName.Value + ".keyswitch";
+    public string GetExportFileName( UniversalDefinition source )
+        => source.PatchName.Value + ".keyswitch";
 
     public async Task<Result<Unit, ExportFailureReason>> ExportAsync(
         ITextContentWriter writer,
-        ProductSet source,
+        UniversalDefinition source,
         CancellationToken cancellationToken = default )
     {
         var facade = new StudioOneDefinitionFacade();
