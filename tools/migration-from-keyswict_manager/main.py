@@ -25,6 +25,7 @@ def convert(src: original.Coordinate):
         manufacturer = ks.developer_name
         product = ks.product_name
         patch = ks.instrument_name
+        target_articulation_groups: list[target.ArticulationGroup] = []
         target_articulations: list[target.Articulation] = []
         global_extra = ks.extra_data
 
@@ -47,7 +48,8 @@ def convert(src: original.Coordinate):
 
                         midi_messages.append(
                             target.MIDIMessage(
-                                status=0x90 | note_on.channel,
+                                channel=None,
+                                status=0x90,
                                 data1=midinote.MIDI_NOTES_MAP[note_on.note],
                                 data2=note_on.velocity,
                             )
@@ -64,7 +66,8 @@ def convert(src: original.Coordinate):
 
                         midi_messages.append(
                             target.MIDIMessage(
-                                status=0xB0 | control_change.channel,
+                                channel=None,
+                                status=0xB0,
                                 data1=control_change.control_number,
                                 data2=control_change.data,
                             )
@@ -84,11 +87,15 @@ def convert(src: original.Coordinate):
 
                         midi_messages.append(
                             target.MIDIMessage(
-                                status=0xC0 | program_change.channel,
+                                channel=None,
+                                status=0xC0,
                                 data1=program_change.program_number,
                                 data2=0,
                             )
                         )
+
+                if x.extra_data is not None and len(x.extra_data) == 0:
+                    local_extra = None
 
                 target_articulations.append(
                     target.Articulation(
@@ -97,15 +104,29 @@ def convert(src: original.Coordinate):
                         extra=local_extra,
                     )
                 )
+            # ~for x in ks.articulations:
+
+            target_articulation_groups.append(
+                target.ArticulationGroup(
+                    name=patch,
+                    articulations=target_articulations,
+                    extra=None
+                )
+            )
+
         # ~ if ks.articulations is not None:
 
-        target_coordinate = target.Coordinate(
+        if global_extra is not None and len(global_extra) == 0:
+            global_extra = None
+
+        target_coordinate = target.UniversalDefinition(
+            format_version='1.0.0',
             id=id,
             author="R-Koubou",
             manufacturer_name=manufacturer,
             product_name=product,
             patch_name=patch,
-            articulations=target_articulations,
+            articulation_groups=target_articulation_groups,
             extra=global_extra,
             description=f"{manufacturer} {product} - {patch}",
         )
