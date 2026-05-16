@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using ArtiCluster.Commons;
 using ArtiCluster.Features.Logic.Articulations.Contracts;
 using ArtiCluster.Features.Logic.Articulations.Mappers;
-using ArtiCluster.Shared.Domain.UniversalDefinitions.Model;
+using ArtiCluster.Shared.Domain.UniversalDefinitions;
 using ArtiCluster.Shared.IO.Abstractions;
 
 using Claunia.PropertyList;
@@ -15,7 +15,7 @@ namespace ArtiCluster.Features.Logic.Articulations.Exports;
 
 public sealed class LogicExporter
 {
-    public async Task<Result<Unit, ExportFailureReason>> ExportAsync( ITextContentWriter writer, UniversalDefinition source, CancellationToken cancellationToken = default )
+    public async Task<Result<Unit, ExportFailureReason>> ExportAsync( ITextContentWriter writer, SeparatedArticulationGroupSet source, CancellationToken cancellationToken = default )
     {
         try
         {

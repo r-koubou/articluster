@@ -1,8 +1,10 @@
 using System;
 using System.IO;
+using System.Linq;
 using System.Threading.Tasks;
 
 using ArtiCluster.Features.Logic.Articulations.Exports;
+using ArtiCluster.Shared.Domain.UniversalDefinitions;
 using ArtiCluster.Shared.IO.Local;
 using ArtiCluster.Shared.Mock;
 
@@ -17,7 +19,15 @@ public class SerializationTest
     public async Task ExportTest()
     {
         var id = Guid.NewGuid();
-        var source = MockUniversalDefinition.CreateDefinition( id, patchName: "Epic Lead" );
+        var mock = MockUniversalDefinition.CreateDefinition( id, patchName: "Epic Lead" );
+
+        var source = SeparatedArticulationGroupSet.Create(
+            mock.ManufacturerName.Value,
+            mock.ProductName.Value,
+            mock.PatchName.Value,
+            "Main",
+            mock.ArticulationGroups.Single().Articulations
+        );
 
         var dest = Path.GetTempFileName();
 
