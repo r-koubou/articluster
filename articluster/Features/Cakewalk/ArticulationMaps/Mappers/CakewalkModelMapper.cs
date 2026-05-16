@@ -44,13 +44,16 @@ public sealed class CakewalkModelMapper
 
         foreach( var definition in source.Items )
         {
-            foreach( var x in definition.Articulations )
+            foreach( var group in definition.ArticulationGroups )
             {
-                var articulation = ConvertArticulation( definition, x, groups, id, index );
-                articulations.Add( articulation );
+                foreach( var x in group.Articulations )
+                {
+                    var articulation = ConvertArticulation( definition, x, groups, id, index );
+                    articulations.Add( articulation );
 
-                id++;
-                index++;
+                    id++;
+                    index++;
+                }
             }
         }
 
