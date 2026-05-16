@@ -37,7 +37,8 @@ public sealed class CakewalkLocalFileExportStrategy : ILocalFileExportStrategy<P
                     FacadeExportFailureReason.SerializationError => ExportFailureReason.SerializationError,
                     FacadeExportFailureReason.IoError            => ExportFailureReason.IoError,
                     _                                            => ExportFailureReason.OtherError
-                }
+                },
+                exportResult.UnwrapError().Error
             );
         }
 

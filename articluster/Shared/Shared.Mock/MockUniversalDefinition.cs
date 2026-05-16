@@ -83,4 +83,76 @@ public static class MockUniversalDefinition
             ]
         );
     }
+
+    public static UniversalDefinition CreateMultiArticulationGroupDefinition(
+        Guid id,
+        string manufacturerName = "Acme Corp",
+        string productName = "Super Synth",
+        string patchName = "Epic Lead" )
+    {
+        return UniversalDefinition.Create(
+            id: id,
+            author: "John Doe",
+            manufacturerName: manufacturerName,
+            productName: productName,
+            patchName: patchName,
+            description: "multi-line\ndescription",
+            extra: new Dictionary<string, string>
+            {
+                { "GlobalKey1", "GlobalValue1" },
+                { "GlobalKey2", "GlobalValue2" }
+            },
+            articulationGroups:
+            [
+                ArticulationGroup.Create(
+                    name: "Main",
+                    articulations:
+                    [
+                        Articulation.Create(
+                            name: "Sustain",
+                            midiMessages:
+                            [
+                                // Note On
+                                MidiMessage.Create( 0x90, 40, 100 ),
+                                // Note Off
+                                MidiMessage.Create( 0x80, 40, 110 ),
+                                // Control Change
+                                MidiMessage.Create( 0xB0, 1, 127 ),
+                                // Program Change
+                                MidiMessage.Create( 0xC0, 49 ),
+                            ],
+                            extra: new Dictionary<string, string>
+                            {
+                                { "LocalKey", "LocalValue" }
+                            }
+                        )
+                    ]
+                ),
+                ArticulationGroup.Create(
+                    name: "Other",
+                    articulations:
+                    [
+                        Articulation.Create(
+                            name: "Stop",
+                            midiMessages:
+                            [
+                                // Note On
+                                MidiMessage.Create( 0x90, 40, 100 ),
+                                // Note Off
+                                MidiMessage.Create( 0x80, 40, 110 ),
+                                // Control Change
+                                MidiMessage.Create( 0xB0, 1, 127 ),
+                                // Program Change
+                                MidiMessage.Create( 0xC0, 49 ),
+                            ],
+                            extra: new Dictionary<string, string>
+                            {
+                                { "LocalKey", "LocalValue" }
+                            }
+                        )
+                    ]
+                )
+            ]
+        );
+    }
 }
