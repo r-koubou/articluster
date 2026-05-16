@@ -53,10 +53,10 @@ public sealed record SeparatedArticulationGroupCollection
         Items = itemList;
     }
 
-    public static UniversalDefinitionProductCollection Create(
+    public static ProductCollection Create(
         IEnumerable<UniversalDefinition> items )
     {
-        return new UniversalDefinitionProductCollection( items );
+        return new ProductCollection( items );
     }
 
     public IEnumerable<SeparatedArticulationGroupSet> EnumerateDefinitions()

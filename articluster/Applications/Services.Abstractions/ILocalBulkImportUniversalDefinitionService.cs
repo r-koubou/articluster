@@ -8,7 +8,7 @@ namespace ArtiCluster.Applications.Services.Abstractions;
 
 public interface ILocalBulkImportUniversalDefinitionService
 {
-    Task<Result<UniversalDefinitionProductCollection, ImportFailureReason>> ImportAsync(
+    Task<Result<ProductCollection, ImportFailureReason>> ImportAsync(
         string definitionsDirectory,
         CancellationToken cancellationToken = default );
 }

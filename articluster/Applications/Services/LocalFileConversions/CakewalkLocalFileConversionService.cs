@@ -33,7 +33,7 @@ public sealed class CakewalkLocalFileConversionService : ILocalFileConversionSer
     {
         var runner = new LocalFileConversionRunner( loggerFactory );
         var strategy = new CakewalkLocalFileExportStrategy();
-        var collection = new UniversalDefinitionProductCollection( definitions );
+        var collection = new ProductCollection( definitions );
 
         return await runner.RunAsync(
             outputBaseDirectory,

@@ -9,9 +9,9 @@ namespace ArtiCluster.Shared.Mock;
 
 public static class MockUniversalDefinition
 {
-    public static UniversalDefinitionProductCollection CreateCollection()
+    public static ProductCollection CreateCollection()
     {
-        return new UniversalDefinitionProductCollection(
+        return new ProductCollection(
             [
                 CreateDefinition( Guid.NewGuid(), manufacturerName: "Acme Corp", productName: "Super Synth", patchName: "Epic Lead" ),
                 CreateDefinition( Guid.NewGuid(), manufacturerName: "Acme Corp X", productName: "Great Synth", patchName: "Epic Lead" ),

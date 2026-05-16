@@ -33,7 +33,7 @@ public sealed class StudioOneLocalFileConversionService : ILocalFileConversionSe
     {
         var runner = new LocalFileConversionRunner( loggerFactory );
         var strategy = new StudioOneLocalFileExportStrategy();
-        var collection = new UniversalDefinitionProductCollection( definitions );
+        var collection = new ProductCollection( definitions );
 
         return await runner.RunAsync(
             outputBaseDirectory,
