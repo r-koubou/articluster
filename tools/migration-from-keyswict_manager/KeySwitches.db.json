@@ -32062,7 +32062,7 @@
       "LastUpdated": "2020-10-07T05:44:15.356Z",
       "DeveloperName": "PREMIER SOUND FACTORY",
       "ProductName": "Princess Koto KAGUYA",
-      "InstrumentName": "En",
+      "InstrumentName": "Main",
       "Articulations": [
         {
           "Name": "Idle",
@@ -43276,13 +43276,7 @@
           "Name": "Idle",
           "MidiMessage": {
             "NoteOn": [],
-            "ControlChange": [
-              {
-                "Channel": 0,
-                "ControlNumber": 5,
-                "Data": 0
-              }
-            ],
+            "ControlChange": [],
             "ProgramChange": []
           },
           "ExtraData": {}
