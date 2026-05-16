@@ -15,10 +15,10 @@ namespace ArtiCluster.Applications.Services.LocalFileConversions.Strategies;
 public sealed class CubaseLocalFileExportStrategy : ILocalFileExportStrategy<SeparatedArticulationGroupSet>
 {
     public string GetOutputDirectory( string baseDirectory, SeparatedArticulationGroupSet source )
-        => Path.Combine( baseDirectory, "Cubase", source.ManufacturerName.Value, source.ProductName.Value );
+        => Path.Combine( baseDirectory, "Cubase", source.ManufacturerName.Value, source.ProductName.Value, source.PatchName.Value );
 
     public string GetExportFileName( SeparatedArticulationGroupSet source )
-        => $"{source.ArticulationGroupName}.expressionmap";
+        => $"{source.ArticulationGroupName.Value}.expressionmap";
 
     public async Task<Result<Unit, ExportFailureReason>> ExportAsync(
         ITextContentWriter writer,

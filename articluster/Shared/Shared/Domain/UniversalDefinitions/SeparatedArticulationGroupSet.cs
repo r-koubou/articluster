@@ -37,15 +37,12 @@ public sealed record SeparatedArticulationGroupSet
         ArticulationGroupName articulationGroupName,
         IEnumerable<Articulation> items )
     {
-        if( items == null! )
-        {
-            throw new ArgumentNullException( nameof( items ) );
-        }
+        ArgumentNullException.ThrowIfNull( items );
 
         ManufacturerName      = manufacturerName;
         ProductName           = productName;
-        ArticulationGroupName = articulationGroupName;
         PatchName             = patchName;
+        ArticulationGroupName = articulationGroupName;
         Items                 = items.ToList();
     }
 

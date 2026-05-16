@@ -52,19 +52,4 @@ public sealed record SeparatedArticulationGroupCollection
 
         Items = itemList;
     }
-
-    public static ProductCollection Create(
-        IEnumerable<UniversalDefinition> items )
-    {
-        return new ProductCollection( items );
-    }
-
-    public IEnumerable<SeparatedArticulationGroupSet> EnumerateDefinitions()
-    {
-        // ReSharper disable once LoopCanBeConvertedToQuery
-        foreach( var x in Items )
-        {
-            yield return x;
-        }
-    }
 }
