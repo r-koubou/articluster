@@ -11,7 +11,7 @@
       "InstrumentName": "Main",
       "Articulations": [
         {
-          "Name": "IDLE",
+          "Name": "Idle",
           "MidiMessage": {
             "NoteOn": [],
             "ControlChange": [],
@@ -93,7 +93,7 @@
       "InstrumentName": "Brass Long",
       "Articulations": [
         {
-          "Name": "IDLE",
+          "Name": "Idle",
           "MidiMessage": {
             "NoteOn": [],
             "ControlChange": [],
@@ -205,7 +205,7 @@
       "InstrumentName": "Brass Shorts",
       "Articulations": [
         {
-          "Name": "IDLE",
+          "Name": "Idle",
           "MidiMessage": {
             "NoteOn": [],
             "ControlChange": [],
@@ -287,7 +287,7 @@
       "InstrumentName": "Percussion Cymbals",
       "Articulations": [
         {
-          "Name": "IDLE",
+          "Name": "Idle",
           "MidiMessage": {
             "NoteOn": [],
             "ControlChange": [],
@@ -384,7 +384,7 @@
       "InstrumentName": "Percussion High",
       "Articulations": [
         {
-          "Name": "IDLE",
+          "Name": "Idle",
           "MidiMessage": {
             "NoteOn": [],
             "ControlChange": [],
@@ -481,7 +481,7 @@
       "InstrumentName": "Percussion Low",
       "Articulations": [
         {
-          "Name": "IDLE",
+          "Name": "Idle",
           "MidiMessage": {
             "NoteOn": [],
             "ControlChange": [],
@@ -578,7 +578,7 @@
       "InstrumentName": "Percussion Master",
       "Articulations": [
         {
-          "Name": "IDLE",
+          "Name": "Idle",
           "MidiMessage": {
             "NoteOn": [],
             "ControlChange": [],
@@ -630,7 +630,7 @@
       "InstrumentName": "Strings Legato",
       "Articulations": [
         {
-          "Name": "IDLE",
+          "Name": "Idle",
           "MidiMessage": {
             "NoteOn": [],
             "ControlChange": [],
@@ -742,7 +742,7 @@
       "InstrumentName": "Strings Long",
       "Articulations": [
         {
-          "Name": "IDLE",
+          "Name": "Idle",
           "MidiMessage": {
             "NoteOn": [],
             "ControlChange": [],
@@ -854,7 +854,7 @@
       "InstrumentName": "Strings Shorts",
       "Articulations": [
         {
-          "Name": "IDLE",
+          "Name": "Idle",
           "MidiMessage": {
             "NoteOn": [],
             "ControlChange": [],
@@ -951,7 +951,7 @@
       "InstrumentName": "Winds High Long",
       "Articulations": [
         {
-          "Name": "IDLE",
+          "Name": "Idle",
           "MidiMessage": {
             "NoteOn": [],
             "ControlChange": [],
@@ -1078,7 +1078,7 @@
       "InstrumentName": "Winds High Shorts",
       "Articulations": [
         {
-          "Name": "IDLE",
+          "Name": "Idle",
           "MidiMessage": {
             "NoteOn": [],
             "ControlChange": [],
@@ -1145,7 +1145,7 @@
       "InstrumentName": "Winds Low Long",
       "Articulations": [
         {
-          "Name": "IDLE",
+          "Name": "Idle",
           "MidiMessage": {
             "NoteOn": [],
             "ControlChange": [],
@@ -1227,7 +1227,7 @@
       "InstrumentName": "Winds Low Shorts",
       "Articulations": [
         {
-          "Name": "IDLE",
+          "Name": "Idle",
           "MidiMessage": {
             "NoteOn": [],
             "ControlChange": [],
@@ -1309,7 +1309,7 @@
       "InstrumentName": "Main",
       "Articulations": [
         {
-          "Name": "IDLE",
+          "Name": "Idle",
           "MidiMessage": {
             "NoteOn": [],
             "ControlChange": [],
@@ -1376,7 +1376,7 @@
       "InstrumentName": "Synth",
       "Articulations": [
         {
-          "Name": "IDLE",
+          "Name": "Idle",
           "MidiMessage": {
             "NoteOn": [],
             "ControlChange": [],
@@ -1548,7 +1548,7 @@
       "InstrumentName": "Main",
       "Articulations": [
         {
-          "Name": "IDLE",
+          "Name": "Idle",
           "MidiMessage": {
             "NoteOn": [],
             "ControlChange": [],
@@ -1645,7 +1645,7 @@
       "InstrumentName": "Pattern",
       "Articulations": [
         {
-          "Name": "IDLE",
+          "Name": "Idle",
           "MidiMessage": {
             "NoteOn": [],
             "ControlChange": [],
@@ -1802,7 +1802,7 @@
       "InstrumentName": "Synth",
       "Articulations": [
         {
-          "Name": "IDLE",
+          "Name": "Idle",
           "MidiMessage": {
             "NoteOn": [],
             "ControlChange": [],
@@ -1974,7 +1974,7 @@
       "InstrumentName": "FX",
       "Articulations": [
         {
-          "Name": "IDLE",
+          "Name": "Idle",
           "MidiMessage": {
             "NoteOn": [],
             "ControlChange": [],
@@ -2071,7 +2071,7 @@
       "InstrumentName": "Main",
       "Articulations": [
         {
-          "Name": "IDLE",
+          "Name": "Idle",
           "MidiMessage": {
             "NoteOn": [],
             "ControlChange": [],
@@ -2153,7 +2153,7 @@
       "InstrumentName": "Synth",
       "Articulations": [
         {
-          "Name": "IDLE",
+          "Name": "Idle",
           "MidiMessage": {
             "NoteOn": [],
             "ControlChange": [],
@@ -2325,7 +2325,7 @@
       "InstrumentName": "Main",
       "Articulations": [
         {
-          "Name": "IDLE",
+          "Name": "Idle",
           "MidiMessage": {
             "NoteOn": [],
             "ControlChange": [],
@@ -2392,7 +2392,7 @@
       "InstrumentName": "Synth",
       "Articulations": [
         {
-          "Name": "IDLE",
+          "Name": "Idle",
           "MidiMessage": {
             "NoteOn": [],
             "ControlChange": [],
@@ -2564,7 +2564,7 @@
       "InstrumentName": "Main",
       "Articulations": [
         {
-          "Name": "IDLE",
+          "Name": "Idle",
           "MidiMessage": {
             "NoteOn": [],
             "ControlChange": [],
@@ -2616,7 +2616,7 @@
       "InstrumentName": "Synth",
       "Articulations": [
         {
-          "Name": "IDLE",
+          "Name": "Idle",
           "MidiMessage": {
             "NoteOn": [],
             "ControlChange": [],
@@ -2788,7 +2788,7 @@
       "InstrumentName": "Pitch",
       "Articulations": [
         {
-          "Name": "IDLE",
+          "Name": "Idle",
           "MidiMessage": {
             "NoteOn": [],
             "ControlChange": [],
@@ -2900,7 +2900,7 @@
       "InstrumentName": "Slot",
       "Articulations": [
         {
-          "Name": "IDLE",
+          "Name": "Idle",
           "MidiMessage": {
             "NoteOn": [],
             "ControlChange": [],
@@ -3012,7 +3012,7 @@
       "InstrumentName": "General",
       "Articulations": [
         {
-          "Name": "IDLE",
+          "Name": "Idle",
           "MidiMessage": {
             "NoteOn": [],
             "ControlChange": [],
@@ -3109,7 +3109,7 @@
       "InstrumentName": "Sample",
       "Articulations": [
         {
-          "Name": "IDLE",
+          "Name": "Idle",
           "MidiMessage": {
             "NoteOn": [],
             "ControlChange": [],
@@ -3206,7 +3206,7 @@
       "InstrumentName": "Arcs",
       "Articulations": [
         {
-          "Name": "IDLE",
+          "Name": "Idle",
           "MidiMessage": {
             "NoteOn": [],
             "ControlChange": [],
@@ -3318,7 +3318,7 @@
       "InstrumentName": "Bonus FX Runs",
       "Articulations": [
         {
-          "Name": "IDLE",
+          "Name": "Idle",
           "MidiMessage": {
             "NoteOn": [],
             "ControlChange": [],
@@ -3430,7 +3430,7 @@
       "InstrumentName": "General Arts",
       "Articulations": [
         {
-          "Name": "IDLE",
+          "Name": "Idle",
           "MidiMessage": {
             "NoteOn": [],
             "ControlChange": [],
@@ -3542,7 +3542,7 @@
       "InstrumentName": "Leg Lyrical",
       "Articulations": [
         {
-          "Name": "IDLE",
+          "Name": "Idle",
           "MidiMessage": {
             "NoteOn": [],
             "ControlChange": [],
@@ -3684,7 +3684,7 @@
       "InstrumentName": "Leg Strong",
       "Articulations": [
         {
-          "Name": "IDLE",
+          "Name": "Idle",
           "MidiMessage": {
             "NoteOn": [],
             "ControlChange": [],
@@ -3826,7 +3826,7 @@
       "InstrumentName": "Arcs",
       "Articulations": [
         {
-          "Name": "IDLE",
+          "Name": "Idle",
           "MidiMessage": {
             "NoteOn": [],
             "ControlChange": [],
@@ -3968,7 +3968,7 @@
       "InstrumentName": "Bonus FX Runs",
       "Articulations": [
         {
-          "Name": "IDLE",
+          "Name": "Idle",
           "MidiMessage": {
             "NoteOn": [],
             "ControlChange": [],
@@ -4110,7 +4110,7 @@
       "InstrumentName": "General Arts",
       "Articulations": [
         {
-          "Name": "IDLE",
+          "Name": "Idle",
           "MidiMessage": {
             "NoteOn": [],
             "ControlChange": [],
@@ -4207,7 +4207,7 @@
       "InstrumentName": "Leg Lyrical",
       "Articulations": [
         {
-          "Name": "IDLE",
+          "Name": "Idle",
           "MidiMessage": {
             "NoteOn": [],
             "ControlChange": [],
@@ -4349,7 +4349,7 @@
       "InstrumentName": "Leg Lyrical sus Xfade",
       "Articulations": [
         {
-          "Name": "IDLE",
+          "Name": "Idle",
           "MidiMessage": {
             "NoteOn": [],
             "ControlChange": [],
@@ -4491,7 +4491,7 @@
       "InstrumentName": "Leg Strong",
       "Articulations": [
         {
-          "Name": "IDLE",
+          "Name": "Idle",
           "MidiMessage": {
             "NoteOn": [],
             "ControlChange": [],
@@ -4633,7 +4633,7 @@
       "InstrumentName": "Arcs",
       "Articulations": [
         {
-          "Name": "IDLE",
+          "Name": "Idle",
           "MidiMessage": {
             "NoteOn": [],
             "ControlChange": [],
@@ -4760,7 +4760,7 @@
       "InstrumentName": "Bonus FX Runs",
       "Articulations": [
         {
-          "Name": "IDLE",
+          "Name": "Idle",
           "MidiMessage": {
             "NoteOn": [],
             "ControlChange": [],
@@ -4872,7 +4872,7 @@
       "InstrumentName": "General Arts",
       "Articulations": [
         {
-          "Name": "IDLE",
+          "Name": "Idle",
           "MidiMessage": {
             "NoteOn": [],
             "ControlChange": [],
@@ -4969,7 +4969,7 @@
       "InstrumentName": "Leg Fast",
       "Articulations": [
         {
-          "Name": "IDLE",
+          "Name": "Idle",
           "MidiMessage": {
             "NoteOn": [],
             "ControlChange": [],
@@ -5111,7 +5111,7 @@
       "InstrumentName": "Leg Slow",
       "Articulations": [
         {
-          "Name": "IDLE",
+          "Name": "Idle",
           "MidiMessage": {
             "NoteOn": [],
             "ControlChange": [],
@@ -5253,7 +5253,7 @@
       "InstrumentName": "Sample",
       "Articulations": [
         {
-          "Name": "IDLE",
+          "Name": "Idle",
           "MidiMessage": {
             "NoteOn": [],
             "ControlChange": [],
@@ -5395,7 +5395,7 @@
       "InstrumentName": "Arcs",
       "Articulations": [
         {
-          "Name": "IDLE",
+          "Name": "Idle",
           "MidiMessage": {
             "NoteOn": [],
             "ControlChange": [],
@@ -5507,7 +5507,7 @@
       "InstrumentName": "Bonus FX Runs",
       "Articulations": [
         {
-          "Name": "IDLE",
+          "Name": "Idle",
           "MidiMessage": {
             "NoteOn": [],
             "ControlChange": [],
@@ -5619,7 +5619,7 @@
       "InstrumentName": "General Arts",
       "Articulations": [
         {
-          "Name": "IDLE",
+          "Name": "Idle",
           "MidiMessage": {
             "NoteOn": [],
             "ControlChange": [],
@@ -5731,7 +5731,7 @@
       "InstrumentName": "Leg Lyrical",
       "Articulations": [
         {
-          "Name": "IDLE",
+          "Name": "Idle",
           "MidiMessage": {
             "NoteOn": [],
             "ControlChange": [],
@@ -5873,7 +5873,7 @@
       "InstrumentName": "Leg Strong",
       "Articulations": [
         {
-          "Name": "IDLE",
+          "Name": "Idle",
           "MidiMessage": {
             "NoteOn": [],
             "ControlChange": [],
@@ -6015,7 +6015,7 @@
       "InstrumentName": "Arcs",
       "Articulations": [
         {
-          "Name": "IDLE",
+          "Name": "Idle",
           "MidiMessage": {
             "NoteOn": [],
             "ControlChange": [],
@@ -6157,7 +6157,7 @@
       "InstrumentName": "Bonus FX Runs",
       "Articulations": [
         {
-          "Name": "IDLE",
+          "Name": "Idle",
           "MidiMessage": {
             "NoteOn": [],
             "ControlChange": [],
@@ -6239,7 +6239,7 @@
       "InstrumentName": "General Arts",
       "Articulations": [
         {
-          "Name": "IDLE",
+          "Name": "Idle",
           "MidiMessage": {
             "NoteOn": [],
             "ControlChange": [],
@@ -6351,7 +6351,7 @@
       "InstrumentName": "Leg Lyrical",
       "Articulations": [
         {
-          "Name": "IDLE",
+          "Name": "Idle",
           "MidiMessage": {
             "NoteOn": [],
             "ControlChange": [],
@@ -6493,7 +6493,7 @@
       "InstrumentName": "Leg Strong",
       "Articulations": [
         {
-          "Name": "IDLE",
+          "Name": "Idle",
           "MidiMessage": {
             "NoteOn": [],
             "ControlChange": [],
@@ -6635,7 +6635,7 @@
       "InstrumentName": "Arcs",
       "Articulations": [
         {
-          "Name": "IDLE",
+          "Name": "Idle",
           "MidiMessage": {
             "NoteOn": [],
             "ControlChange": [],
@@ -6762,7 +6762,7 @@
       "InstrumentName": "Bonus FX Runs",
       "Articulations": [
         {
-          "Name": "IDLE",
+          "Name": "Idle",
           "MidiMessage": {
             "NoteOn": [],
             "ControlChange": [],
@@ -6874,7 +6874,7 @@
       "InstrumentName": "General Arts",
       "Articulations": [
         {
-          "Name": "IDLE",
+          "Name": "Idle",
           "MidiMessage": {
             "NoteOn": [],
             "ControlChange": [],
@@ -6986,7 +6986,7 @@
       "InstrumentName": "Leg Lyrical",
       "Articulations": [
         {
-          "Name": "IDLE",
+          "Name": "Idle",
           "MidiMessage": {
             "NoteOn": [],
             "ControlChange": [],
@@ -7128,7 +7128,7 @@
       "InstrumentName": "Leg Strong",
       "Articulations": [
         {
-          "Name": "IDLE",
+          "Name": "Idle",
           "MidiMessage": {
             "NoteOn": [],
             "ControlChange": [],
@@ -7270,7 +7270,7 @@
       "InstrumentName": "Pitch",
       "Articulations": [
         {
-          "Name": "IDLE",
+          "Name": "Idle",
           "MidiMessage": {
             "NoteOn": [],
             "ControlChange": [],
@@ -7487,7 +7487,7 @@
       "InstrumentName": "Slot",
       "Articulations": [
         {
-          "Name": "IDLE",
+          "Name": "Idle",
           "MidiMessage": {
             "NoteOn": [],
             "ControlChange": [],
@@ -7869,7 +7869,7 @@
       "InstrumentName": "Arcs",
       "Articulations": [
         {
-          "Name": "IDLE",
+          "Name": "Idle",
           "MidiMessage": {
             "NoteOn": [],
             "ControlChange": [],
@@ -8041,7 +8041,7 @@
       "InstrumentName": "Effects",
       "Articulations": [
         {
-          "Name": "IDLE",
+          "Name": "Idle",
           "MidiMessage": {
             "NoteOn": [],
             "ControlChange": [],
@@ -8108,7 +8108,7 @@
       "InstrumentName": "Legato",
       "Articulations": [
         {
-          "Name": "IDLE",
+          "Name": "Idle",
           "MidiMessage": {
             "NoteOn": [],
             "ControlChange": [],
@@ -8190,7 +8190,7 @@
       "InstrumentName": "Marcato",
       "Articulations": [
         {
-          "Name": "IDLE",
+          "Name": "Idle",
           "MidiMessage": {
             "NoteOn": [],
             "ControlChange": [],
@@ -8377,7 +8377,7 @@
       "InstrumentName": "Multi Vowels",
       "Articulations": [
         {
-          "Name": "IDLE",
+          "Name": "Idle",
           "MidiMessage": {
             "NoteOn": [],
             "ControlChange": [],
@@ -8699,7 +8699,7 @@
       "InstrumentName": "Non Tonal",
       "Articulations": [
         {
-          "Name": "IDLE",
+          "Name": "Idle",
           "MidiMessage": {
             "NoteOn": [],
             "ControlChange": [],
@@ -8766,7 +8766,7 @@
       "InstrumentName": "Staccato",
       "Articulations": [
         {
-          "Name": "IDLE",
+          "Name": "Idle",
           "MidiMessage": {
             "NoteOn": [],
             "ControlChange": [],
@@ -9133,7 +9133,7 @@
       "InstrumentName": "Sustains",
       "Articulations": [
         {
-          "Name": "IDLE",
+          "Name": "Idle",
           "MidiMessage": {
             "NoteOn": [],
             "ControlChange": [],
@@ -9365,7 +9365,7 @@
       "InstrumentName": "Brass FX",
       "Articulations": [
         {
-          "Name": "IDLE",
+          "Name": "Idle",
           "MidiMessage": {
             "NoteOn": [],
             "ControlChange": [],
@@ -9477,7 +9477,7 @@
       "InstrumentName": "Brass Long",
       "Articulations": [
         {
-          "Name": "IDLE",
+          "Name": "Idle",
           "MidiMessage": {
             "NoteOn": [],
             "ControlChange": [],
@@ -9589,7 +9589,7 @@
       "InstrumentName": "Brass Shorts",
       "Articulations": [
         {
-          "Name": "IDLE",
+          "Name": "Idle",
           "MidiMessage": {
             "NoteOn": [],
             "ControlChange": [],
@@ -9671,7 +9671,7 @@
       "InstrumentName": "Percussion Cymbals",
       "Articulations": [
         {
-          "Name": "IDLE",
+          "Name": "Idle",
           "MidiMessage": {
             "NoteOn": [],
             "ControlChange": [],
@@ -9768,7 +9768,7 @@
       "InstrumentName": "Percussion High",
       "Articulations": [
         {
-          "Name": "IDLE",
+          "Name": "Idle",
           "MidiMessage": {
             "NoteOn": [],
             "ControlChange": [],
@@ -9865,7 +9865,7 @@
       "InstrumentName": "Percussion Low",
       "Articulations": [
         {
-          "Name": "IDLE",
+          "Name": "Idle",
           "MidiMessage": {
             "NoteOn": [],
             "ControlChange": [],
@@ -9962,7 +9962,7 @@
       "InstrumentName": "Percussion Master",
       "Articulations": [
         {
-          "Name": "IDLE",
+          "Name": "Idle",
           "MidiMessage": {
             "NoteOn": [],
             "ControlChange": [],
@@ -10014,7 +10014,7 @@
       "InstrumentName": "Strings FX",
       "Articulations": [
         {
-          "Name": "IDLE",
+          "Name": "Idle",
           "MidiMessage": {
             "NoteOn": [],
             "ControlChange": [],
@@ -10081,7 +10081,7 @@
       "InstrumentName": "Strings Legato",
       "Articulations": [
         {
-          "Name": "IDLE",
+          "Name": "Idle",
           "MidiMessage": {
             "NoteOn": [],
             "ControlChange": [],
@@ -10193,7 +10193,7 @@
       "InstrumentName": "Strings Long",
       "Articulations": [
         {
-          "Name": "IDLE",
+          "Name": "Idle",
           "MidiMessage": {
             "NoteOn": [],
             "ControlChange": [],
@@ -10305,7 +10305,7 @@
       "InstrumentName": "Strings Shorts",
       "Articulations": [
         {
-          "Name": "IDLE",
+          "Name": "Idle",
           "MidiMessage": {
             "NoteOn": [],
             "ControlChange": [],
@@ -10402,7 +10402,7 @@
       "InstrumentName": "Winds High Long",
       "Articulations": [
         {
-          "Name": "IDLE",
+          "Name": "Idle",
           "MidiMessage": {
             "NoteOn": [],
             "ControlChange": [],
@@ -10529,7 +10529,7 @@
       "InstrumentName": "Winds High Shorts",
       "Articulations": [
         {
-          "Name": "IDLE",
+          "Name": "Idle",
           "MidiMessage": {
             "NoteOn": [],
             "ControlChange": [],
@@ -10596,7 +10596,7 @@
       "InstrumentName": "Winds Low FX",
       "Articulations": [
         {
-          "Name": "IDLE",
+          "Name": "Idle",
           "MidiMessage": {
             "NoteOn": [],
             "ControlChange": [],
@@ -10648,7 +10648,7 @@
       "InstrumentName": "Winds Low Long",
       "Articulations": [
         {
-          "Name": "IDLE",
+          "Name": "Idle",
           "MidiMessage": {
             "NoteOn": [],
             "ControlChange": [],
@@ -10730,7 +10730,7 @@
       "InstrumentName": "Winds Low Shorts",
       "Articulations": [
         {
-          "Name": "IDLE",
+          "Name": "Idle",
           "MidiMessage": {
             "NoteOn": [],
             "ControlChange": [],
@@ -10812,7 +10812,7 @@
       "InstrumentName": "Choral FX",
       "Articulations": [
         {
-          "Name": "IDLE",
+          "Name": "Idle",
           "MidiMessage": {
             "NoteOn": [],
             "ControlChange": [],
@@ -11014,7 +11014,7 @@
       "InstrumentName": "Looped Marcato",
       "Articulations": [
         {
-          "Name": "IDLE",
+          "Name": "Idle",
           "MidiMessage": {
             "NoteOn": [],
             "ControlChange": [],
@@ -11276,7 +11276,7 @@
       "InstrumentName": "Marcato",
       "Articulations": [
         {
-          "Name": "IDLE",
+          "Name": "Idle",
           "MidiMessage": {
             "NoteOn": [],
             "ControlChange": [],
@@ -11538,7 +11538,7 @@
       "InstrumentName": "Phrase Builder",
       "Articulations": [
         {
-          "Name": "IDLE",
+          "Name": "Idle",
           "MidiMessage": {
             "NoteOn": [],
             "ControlChange": [],
@@ -11815,7 +11815,7 @@
       "InstrumentName": "Phrase Builder(Pos)",
       "Articulations": [
         {
-          "Name": "IDLE",
+          "Name": "Idle",
           "MidiMessage": {
             "NoteOn": [],
             "ControlChange": [],
@@ -12077,7 +12077,7 @@
       "InstrumentName": "Poly Solo Baritone",
       "Articulations": [
         {
-          "Name": "IDLE",
+          "Name": "Idle",
           "MidiMessage": {
             "NoteOn": [],
             "ControlChange": [],
@@ -12234,7 +12234,7 @@
       "InstrumentName": "Poly Solo Baritone (XF)",
       "Articulations": [
         {
-          "Name": "IDLE",
+          "Name": "Idle",
           "MidiMessage": {
             "NoteOn": [],
             "ControlChange": [],
@@ -12391,7 +12391,7 @@
       "InstrumentName": "Poly Solo Bass",
       "Articulations": [
         {
-          "Name": "IDLE",
+          "Name": "Idle",
           "MidiMessage": {
             "NoteOn": [],
             "ControlChange": [],
@@ -12593,7 +12593,7 @@
       "InstrumentName": "Poly Solo Bass (XF)",
       "Articulations": [
         {
-          "Name": "IDLE",
+          "Name": "Idle",
           "MidiMessage": {
             "NoteOn": [],
             "ControlChange": [],
@@ -12795,7 +12795,7 @@
       "InstrumentName": "Poly Solo Soprano 1",
       "Articulations": [
         {
-          "Name": "IDLE",
+          "Name": "Idle",
           "MidiMessage": {
             "NoteOn": [],
             "ControlChange": [],
@@ -12967,7 +12967,7 @@
       "InstrumentName": "Poly Solo Soprano 1 (XF)",
       "Articulations": [
         {
-          "Name": "IDLE",
+          "Name": "Idle",
           "MidiMessage": {
             "NoteOn": [],
             "ControlChange": [],
@@ -13139,7 +13139,7 @@
       "InstrumentName": "Poly Solo Soprano 2",
       "Articulations": [
         {
-          "Name": "IDLE",
+          "Name": "Idle",
           "MidiMessage": {
             "NoteOn": [],
             "ControlChange": [],
@@ -13326,7 +13326,7 @@
       "InstrumentName": "Poly Solo Soprano 2 (XF)",
       "Articulations": [
         {
-          "Name": "IDLE",
+          "Name": "Idle",
           "MidiMessage": {
             "NoteOn": [],
             "ControlChange": [],
@@ -13513,7 +13513,7 @@
       "InstrumentName": "Poly Solo Tenor",
       "Articulations": [
         {
-          "Name": "IDLE",
+          "Name": "Idle",
           "MidiMessage": {
             "NoteOn": [],
             "ControlChange": [],
@@ -13685,7 +13685,7 @@
       "InstrumentName": "Poly Solo Tenor (XF)",
       "Articulations": [
         {
-          "Name": "IDLE",
+          "Name": "Idle",
           "MidiMessage": {
             "NoteOn": [],
             "ControlChange": [],
@@ -13857,7 +13857,7 @@
       "InstrumentName": "Poly Sustain Fast",
       "Articulations": [
         {
-          "Name": "IDLE",
+          "Name": "Idle",
           "MidiMessage": {
             "NoteOn": [],
             "ControlChange": [],
@@ -14179,7 +14179,7 @@
       "InstrumentName": "Poly Sustain Fast (XF)",
       "Articulations": [
         {
-          "Name": "IDLE",
+          "Name": "Idle",
           "MidiMessage": {
             "NoteOn": [],
             "ControlChange": [],
@@ -14501,7 +14501,7 @@
       "InstrumentName": "Poly Sustain Men Slow",
       "Articulations": [
         {
-          "Name": "IDLE",
+          "Name": "Idle",
           "MidiMessage": {
             "NoteOn": [],
             "ControlChange": [],
@@ -14703,7 +14703,7 @@
       "InstrumentName": "Poly Sustain Men Slow (XF)",
       "Articulations": [
         {
-          "Name": "IDLE",
+          "Name": "Idle",
           "MidiMessage": {
             "NoteOn": [],
             "ControlChange": [],
@@ -14905,7 +14905,7 @@
       "InstrumentName": "Poly Sustain Women Slow",
       "Articulations": [
         {
-          "Name": "IDLE",
+          "Name": "Idle",
           "MidiMessage": {
             "NoteOn": [],
             "ControlChange": [],
@@ -15107,7 +15107,7 @@
       "InstrumentName": "Poly Sustain Women Slow (XF)",
       "Articulations": [
         {
-          "Name": "IDLE",
+          "Name": "Idle",
           "MidiMessage": {
             "NoteOn": [],
             "ControlChange": [],
@@ -15309,7 +15309,7 @@
       "InstrumentName": "Staccato",
       "Articulations": [
         {
-          "Name": "IDLE",
+          "Name": "Idle",
           "MidiMessage": {
             "NoteOn": [],
             "ControlChange": [],
@@ -15616,7 +15616,7 @@
       "InstrumentName": "Staccato FX",
       "Articulations": [
         {
-          "Name": "IDLE",
+          "Name": "Idle",
           "MidiMessage": {
             "NoteOn": [],
             "ControlChange": [],
@@ -15683,7 +15683,7 @@
       "InstrumentName": "Vowel Sustain Men",
       "Articulations": [
         {
-          "Name": "IDLE",
+          "Name": "Idle",
           "MidiMessage": {
             "NoteOn": [],
             "ControlChange": [],
@@ -15945,7 +15945,7 @@
       "InstrumentName": "Vowel Sustain Women",
       "Articulations": [
         {
-          "Name": "IDLE",
+          "Name": "Idle",
           "MidiMessage": {
             "NoteOn": [],
             "ControlChange": [],
@@ -16177,7 +16177,7 @@
       "InstrumentName": "Main",
       "Articulations": [
         {
-          "Name": "IDLE",
+          "Name": "Idle",
           "MidiMessage": {
             "NoteOn": [],
             "ControlChange": [],
@@ -16304,7 +16304,7 @@
       "InstrumentName": "String Force",
       "Articulations": [
         {
-          "Name": "IDLE",
+          "Name": "Idle",
           "MidiMessage": {
             "NoteOn": [],
             "ControlChange": [],
@@ -16461,7 +16461,7 @@
       "InstrumentName": "Runs and Tremolos",
       "Articulations": [
         {
-          "Name": "IDLE",
+          "Name": "Idle",
           "MidiMessage": {
             "NoteOn": [],
             "ControlChange": [],
@@ -16543,7 +16543,7 @@
       "InstrumentName": "SFX",
       "Articulations": [
         {
-          "Name": "IDLE",
+          "Name": "Idle",
           "MidiMessage": {
             "NoteOn": [],
             "ControlChange": [],
@@ -16700,7 +16700,7 @@
       "InstrumentName": "Tonal Longs and Shorts",
       "Articulations": [
         {
-          "Name": "IDLE",
+          "Name": "Idle",
           "MidiMessage": {
             "NoteOn": [],
             "ControlChange": [],
@@ -16872,7 +16872,7 @@
       "InstrumentName": "Octohorn",
       "Articulations": [
         {
-          "Name": "IDLE",
+          "Name": "Idle",
           "MidiMessage": {
             "NoteOn": [],
             "ControlChange": [],
@@ -17014,7 +17014,7 @@
       "InstrumentName": "Trombones",
       "Articulations": [
         {
-          "Name": "IDLE",
+          "Name": "Idle",
           "MidiMessage": {
             "NoteOn": [],
             "ControlChange": [],
@@ -17156,7 +17156,7 @@
       "InstrumentName": "Trumpets",
       "Articulations": [
         {
-          "Name": "IDLE",
+          "Name": "Idle",
           "MidiMessage": {
             "NoteOn": [],
             "ControlChange": [],
@@ -17313,7 +17313,7 @@
       "InstrumentName": "Tubas",
       "Articulations": [
         {
-          "Name": "IDLE",
+          "Name": "Idle",
           "MidiMessage": {
             "NoteOn": [],
             "ControlChange": [],
@@ -17425,7 +17425,7 @@
       "InstrumentName": "Bassoon",
       "Articulations": [
         {
-          "Name": "IDLE",
+          "Name": "Idle",
           "MidiMessage": {
             "NoteOn": [],
             "ControlChange": [],
@@ -17597,7 +17597,7 @@
       "InstrumentName": "Clarinet",
       "Articulations": [
         {
-          "Name": "IDLE",
+          "Name": "Idle",
           "MidiMessage": {
             "NoteOn": [],
             "ControlChange": [],
@@ -17739,7 +17739,7 @@
       "InstrumentName": "Flute",
       "Articulations": [
         {
-          "Name": "IDLE",
+          "Name": "Idle",
           "MidiMessage": {
             "NoteOn": [],
             "ControlChange": [],
@@ -17911,7 +17911,7 @@
       "InstrumentName": "Oboe",
       "Articulations": [
         {
-          "Name": "IDLE",
+          "Name": "Idle",
           "MidiMessage": {
             "NoteOn": [],
             "ControlChange": [],
@@ -18083,7 +18083,7 @@
       "InstrumentName": "Piccolo",
       "Articulations": [
         {
-          "Name": "IDLE",
+          "Name": "Idle",
           "MidiMessage": {
             "NoteOn": [],
             "ControlChange": [],
@@ -18255,7 +18255,7 @@
       "InstrumentName": "Cello",
       "Articulations": [
         {
-          "Name": "IDLE",
+          "Name": "Idle",
           "MidiMessage": {
             "NoteOn": [],
             "ControlChange": [],
@@ -18412,7 +18412,7 @@
       "InstrumentName": "Double Basses",
       "Articulations": [
         {
-          "Name": "IDLE",
+          "Name": "Idle",
           "MidiMessage": {
             "NoteOn": [],
             "ControlChange": [],
@@ -18554,7 +18554,7 @@
       "InstrumentName": "Violas",
       "Articulations": [
         {
-          "Name": "IDLE",
+          "Name": "Idle",
           "MidiMessage": {
             "NoteOn": [],
             "ControlChange": [],
@@ -18711,7 +18711,7 @@
       "InstrumentName": "Violin 1",
       "Articulations": [
         {
-          "Name": "IDLE",
+          "Name": "Idle",
           "MidiMessage": {
             "NoteOn": [],
             "ControlChange": [],
@@ -18868,7 +18868,7 @@
       "InstrumentName": "Violin 2",
       "Articulations": [
         {
-          "Name": "IDLE",
+          "Name": "Idle",
           "MidiMessage": {
             "NoteOn": [],
             "ControlChange": [],
@@ -19036,7 +19036,7 @@
           }
         },
         {
-          "Name": "IDLE",
+          "Name": "Idle",
           "MidiMessage": {
             "NoteOn": [],
             "ControlChange": [],
@@ -19519,7 +19519,7 @@
       "InstrumentName": "Legato",
       "Articulations": [
         {
-          "Name": "IDLE",
+          "Name": "Idle",
           "MidiMessage": {
             "NoteOn": [],
             "ControlChange": [],
@@ -20036,7 +20036,7 @@
       "InstrumentName": "Full Ensemble",
       "Articulations": [
         {
-          "Name": "IDLE",
+          "Name": "Idle",
           "MidiMessage": {
             "NoteOn": [],
             "ControlChange": [],
@@ -20178,7 +20178,7 @@
       "InstrumentName": "Lite Ensemble",
       "Articulations": [
         {
-          "Name": "IDLE",
+          "Name": "Idle",
           "MidiMessage": {
             "NoteOn": [],
             "ControlChange": [],
@@ -20245,7 +20245,7 @@
       "InstrumentName": "Others",
       "Articulations": [
         {
-          "Name": "IDLE",
+          "Name": "Idle",
           "MidiMessage": {
             "NoteOn": [],
             "ControlChange": [],
@@ -20387,7 +20387,7 @@
       "InstrumentName": "Ensemble",
       "Articulations": [
         {
-          "Name": "IDLE",
+          "Name": "Idle",
           "MidiMessage": {
             "NoteOn": [],
             "ControlChange": [],
@@ -20604,7 +20604,7 @@
       "InstrumentName": "Legato",
       "Articulations": [
         {
-          "Name": "IDLE",
+          "Name": "Idle",
           "MidiMessage": {
             "NoteOn": [],
             "ControlChange": [],
@@ -20686,7 +20686,7 @@
       "InstrumentName": "Sample",
       "Articulations": [
         {
-          "Name": "IDLE",
+          "Name": "Idle",
           "MidiMessage": {
             "NoteOn": [],
             "ControlChange": [],
@@ -20903,7 +20903,7 @@
       "InstrumentName": "Con Sordino",
       "Articulations": [
         {
-          "Name": "IDLE",
+          "Name": "Idle",
           "MidiMessage": {
             "NoteOn": [],
             "ControlChange": [],
@@ -20955,7 +20955,7 @@
       "InstrumentName": "Ensemble",
       "Articulations": [
         {
-          "Name": "IDLE",
+          "Name": "Idle",
           "MidiMessage": {
             "NoteOn": [],
             "ControlChange": [],
@@ -21202,7 +21202,7 @@
       "InstrumentName": "Ensemble Lite",
       "Articulations": [
         {
-          "Name": "IDLE",
+          "Name": "Idle",
           "MidiMessage": {
             "NoteOn": [],
             "ControlChange": [],
@@ -21269,7 +21269,7 @@
       "InstrumentName": "Section",
       "Articulations": [
         {
-          "Name": "IDLE",
+          "Name": "Idle",
           "MidiMessage": {
             "NoteOn": [],
             "ControlChange": [],
@@ -21516,7 +21516,7 @@
       "InstrumentName": "Main",
       "Articulations": [
         {
-          "Name": "IDLE",
+          "Name": "Idle",
           "MidiMessage": {
             "NoteOn": [],
             "ControlChange": [],
@@ -21658,7 +21658,7 @@
       "InstrumentName": "Simulate Chord",
       "Articulations": [
         {
-          "Name": "IDLE",
+          "Name": "Idle",
           "MidiMessage": {
             "NoteOn": [],
             "ControlChange": [],
@@ -21740,7 +21740,7 @@
       "InstrumentName": "Finger",
       "Articulations": [
         {
-          "Name": "IDLE",
+          "Name": "Idle",
           "MidiMessage": {
             "NoteOn": [],
             "ControlChange": [],
@@ -21807,7 +21807,7 @@
       "InstrumentName": "Main",
       "Articulations": [
         {
-          "Name": "IDLE",
+          "Name": "Idle",
           "MidiMessage": {
             "NoteOn": [],
             "ControlChange": [],
@@ -21919,7 +21919,7 @@
       "InstrumentName": "Stop",
       "Articulations": [
         {
-          "Name": "IDLE",
+          "Name": "Idle",
           "MidiMessage": {
             "NoteOn": [],
             "ControlChange": [],
@@ -22181,7 +22181,7 @@
       "InstrumentName": "String",
       "Articulations": [
         {
-          "Name": "IDLE",
+          "Name": "Idle",
           "MidiMessage": {
             "NoteOn": [],
             "ControlChange": [],
@@ -22278,7 +22278,7 @@
       "InstrumentName": "Main",
       "Articulations": [
         {
-          "Name": "IDLE",
+          "Name": "Idle",
           "MidiMessage": {
             "NoteOn": [],
             "ControlChange": [],
@@ -22390,7 +22390,7 @@
       "InstrumentName": "Stop",
       "Articulations": [
         {
-          "Name": "IDLE",
+          "Name": "Idle",
           "MidiMessage": {
             "NoteOn": [],
             "ControlChange": [],
@@ -22652,7 +22652,7 @@
       "InstrumentName": "String",
       "Articulations": [
         {
-          "Name": "IDLE",
+          "Name": "Idle",
           "MidiMessage": {
             "NoteOn": [],
             "ControlChange": [],
@@ -22749,7 +22749,7 @@
       "InstrumentName": "Stroke",
       "Articulations": [
         {
-          "Name": "IDLE",
+          "Name": "Idle",
           "MidiMessage": {
             "NoteOn": [],
             "ControlChange": [],
@@ -22816,7 +22816,7 @@
       "InstrumentName": "Main",
       "Articulations": [
         {
-          "Name": "IDLE",
+          "Name": "Idle",
           "MidiMessage": {
             "NoteOn": [],
             "ControlChange": [],
@@ -22928,7 +22928,7 @@
       "InstrumentName": "Stop",
       "Articulations": [
         {
-          "Name": "IDLE",
+          "Name": "Idle",
           "MidiMessage": {
             "NoteOn": [],
             "ControlChange": [],
@@ -23190,7 +23190,7 @@
       "InstrumentName": "String",
       "Articulations": [
         {
-          "Name": "IDLE",
+          "Name": "Idle",
           "MidiMessage": {
             "NoteOn": [],
             "ControlChange": [],
@@ -23287,7 +23287,7 @@
       "InstrumentName": "Thumb",
       "Articulations": [
         {
-          "Name": "IDLE",
+          "Name": "Idle",
           "MidiMessage": {
             "NoteOn": [],
             "ControlChange": [],
@@ -23339,7 +23339,7 @@
       "InstrumentName": "Arpeggio",
       "Articulations": [
         {
-          "Name": "IDLE",
+          "Name": "Idle",
           "MidiMessage": {
             "NoteOn": [],
             "ControlChange": [],
@@ -23391,7 +23391,7 @@
       "InstrumentName": "Mono (Main)",
       "Articulations": [
         {
-          "Name": "IDLE",
+          "Name": "Idle",
           "MidiMessage": {
             "NoteOn": [],
             "ControlChange": [],
@@ -23728,7 +23728,7 @@
       "InstrumentName": "Mono (Other)",
       "Articulations": [
         {
-          "Name": "IDLE",
+          "Name": "Idle",
           "MidiMessage": {
             "NoteOn": [],
             "ControlChange": [],
@@ -23795,7 +23795,7 @@
       "InstrumentName": "Mono (Stop)",
       "Articulations": [
         {
-          "Name": "IDLE",
+          "Name": "Idle",
           "MidiMessage": {
             "NoteOn": [],
             "ControlChange": [],
@@ -24057,7 +24057,7 @@
       "InstrumentName": "Poly (Main)",
       "Articulations": [
         {
-          "Name": "IDLE",
+          "Name": "Idle",
           "MidiMessage": {
             "NoteOn": [],
             "ControlChange": [],
@@ -24319,7 +24319,7 @@
       "InstrumentName": "Poly (Other)",
       "Articulations": [
         {
-          "Name": "IDLE",
+          "Name": "Idle",
           "MidiMessage": {
             "NoteOn": [],
             "ControlChange": [],
@@ -24416,7 +24416,7 @@
       "InstrumentName": "Real Chord (Stop)",
       "Articulations": [
         {
-          "Name": "IDLE",
+          "Name": "Idle",
           "MidiMessage": {
             "NoteOn": [],
             "ControlChange": [],
@@ -24798,7 +24798,7 @@
       "InstrumentName": "Riff (Chord)",
       "Articulations": [
         {
-          "Name": "IDLE",
+          "Name": "Idle",
           "MidiMessage": {
             "NoteOn": [],
             "ControlChange": [],
@@ -25015,7 +25015,7 @@
       "InstrumentName": "Riff (Main)",
       "Articulations": [
         {
-          "Name": "IDLE",
+          "Name": "Idle",
           "MidiMessage": {
             "NoteOn": [],
             "ControlChange": [],
@@ -25157,7 +25157,7 @@
       "InstrumentName": "Riff (Other)",
       "Articulations": [
         {
-          "Name": "IDLE",
+          "Name": "Idle",
           "MidiMessage": {
             "NoteOn": [],
             "ControlChange": [],
@@ -25224,7 +25224,7 @@
       "InstrumentName": "Riff (Stop)",
       "Articulations": [
         {
-          "Name": "IDLE",
+          "Name": "Idle",
           "MidiMessage": {
             "NoteOn": [],
             "ControlChange": [],
@@ -25486,7 +25486,7 @@
       "InstrumentName": "Simulate Chord",
       "Articulations": [
         {
-          "Name": "IDLE",
+          "Name": "Idle",
           "MidiMessage": {
             "NoteOn": [],
             "ControlChange": [],
@@ -25568,7 +25568,7 @@
       "InstrumentName": "3-4",
       "Articulations": [
         {
-          "Name": "IDLE",
+          "Name": "Idle",
           "MidiMessage": {
             "NoteOn": [],
             "ControlChange": [],
@@ -25845,7 +25845,7 @@
       "InstrumentName": "4-4",
       "Articulations": [
         {
-          "Name": "IDLE",
+          "Name": "Idle",
           "MidiMessage": {
             "NoteOn": [],
             "ControlChange": [],
@@ -26332,7 +26332,7 @@
       "InstrumentName": "Ensemble Chordmaker",
       "Articulations": [
         {
-          "Name": "IDLE",
+          "Name": "Idle",
           "MidiMessage": {
             "NoteOn": [],
             "ControlChange": [],
@@ -26414,7 +26414,7 @@
       "InstrumentName": "Ensemble Full Brass",
       "Articulations": [
         {
-          "Name": "IDLE",
+          "Name": "Idle",
           "MidiMessage": {
             "NoteOn": [],
             "ControlChange": [],
@@ -26496,7 +26496,7 @@
       "InstrumentName": "Ensemble Horns",
       "Articulations": [
         {
-          "Name": "IDLE",
+          "Name": "Idle",
           "MidiMessage": {
             "NoteOn": [],
             "ControlChange": [],
@@ -26683,7 +26683,7 @@
       "InstrumentName": "Ensemble Low Brass",
       "Articulations": [
         {
-          "Name": "IDLE",
+          "Name": "Idle",
           "MidiMessage": {
             "NoteOn": [],
             "ControlChange": [],
@@ -26810,7 +26810,7 @@
       "InstrumentName": "Ensemble Orchestrator",
       "Articulations": [
         {
-          "Name": "IDLE",
+          "Name": "Idle",
           "MidiMessage": {
             "NoteOn": [],
             "ControlChange": [],
@@ -26892,7 +26892,7 @@
       "InstrumentName": "Ensemble Trombones",
       "Articulations": [
         {
-          "Name": "IDLE",
+          "Name": "Idle",
           "MidiMessage": {
             "NoteOn": [],
             "ControlChange": [],
@@ -27004,7 +27004,7 @@
       "InstrumentName": "Ensemble Trumpets",
       "Articulations": [
         {
-          "Name": "IDLE",
+          "Name": "Idle",
           "MidiMessage": {
             "NoteOn": [],
             "ControlChange": [],
@@ -27176,7 +27176,7 @@
       "InstrumentName": "Sample",
       "Articulations": [
         {
-          "Name": "IDLE",
+          "Name": "Idle",
           "MidiMessage": {
             "NoteOn": [],
             "ControlChange": [],
@@ -27273,7 +27273,7 @@
       "InstrumentName": "Solo Chordmaker",
       "Articulations": [
         {
-          "Name": "IDLE",
+          "Name": "Idle",
           "MidiMessage": {
             "NoteOn": [],
             "ControlChange": [],
@@ -27355,7 +27355,7 @@
       "InstrumentName": "Solo Flugelhorn",
       "Articulations": [
         {
-          "Name": "IDLE",
+          "Name": "Idle",
           "MidiMessage": {
             "NoteOn": [],
             "ControlChange": [],
@@ -27482,7 +27482,7 @@
       "InstrumentName": "Solo Horn",
       "Articulations": [
         {
-          "Name": "IDLE",
+          "Name": "Idle",
           "MidiMessage": {
             "NoteOn": [],
             "ControlChange": [],
@@ -27609,7 +27609,7 @@
       "InstrumentName": "Solo Orchestrator",
       "Articulations": [
         {
-          "Name": "IDLE",
+          "Name": "Idle",
           "MidiMessage": {
             "NoteOn": [],
             "ControlChange": [],
@@ -27691,7 +27691,7 @@
       "InstrumentName": "Solo Piccolo Trumpet",
       "Articulations": [
         {
-          "Name": "IDLE",
+          "Name": "Idle",
           "MidiMessage": {
             "NoteOn": [],
             "ControlChange": [],
@@ -27818,7 +27818,7 @@
       "InstrumentName": "Solo Trumpet",
       "Articulations": [
         {
-          "Name": "IDLE",
+          "Name": "Idle",
           "MidiMessage": {
             "NoteOn": [],
             "ControlChange": [],
@@ -27945,7 +27945,7 @@
       "InstrumentName": "Solo Tuba",
       "Articulations": [
         {
-          "Name": "IDLE",
+          "Name": "Idle",
           "MidiMessage": {
             "NoteOn": [],
             "ControlChange": [],
@@ -28042,7 +28042,7 @@
       "InstrumentName": "Main",
       "Articulations": [
         {
-          "Name": "IDLE",
+          "Name": "Idle",
           "MidiMessage": {
             "NoteOn": [],
             "ControlChange": [],
@@ -28139,7 +28139,7 @@
       "InstrumentName": "2X (Legacy)",
       "Articulations": [
         {
-          "Name": "IDLE",
+          "Name": "Idle",
           "MidiMessage": {
             "NoteOn": [],
             "ControlChange": [],
@@ -28221,7 +28221,7 @@
       "InstrumentName": "V3 (Legacy)",
       "Articulations": [
         {
-          "Name": "IDLE",
+          "Name": "Idle",
           "MidiMessage": {
             "NoteOn": [],
             "ControlChange": [],
@@ -28318,7 +28318,7 @@
       "InstrumentName": "KeySwitches",
       "Articulations": [
         {
-          "Name": "IDLE",
+          "Name": "Idle",
           "MidiMessage": {
             "NoteOn": [],
             "ControlChange": [],
@@ -28499,7 +28499,7 @@
       "InstrumentName": "Main",
       "Articulations": [
         {
-          "Name": "IDLE",
+          "Name": "Idle",
           "MidiMessage": {
             "NoteOn": [],
             "ControlChange": [],
@@ -28566,7 +28566,7 @@
       "InstrumentName": "Sample",
       "Articulations": [
         {
-          "Name": "IDLE",
+          "Name": "Idle",
           "MidiMessage": {
             "NoteOn": [],
             "ControlChange": [],
@@ -28663,7 +28663,7 @@
       "InstrumentName": "Cellos",
       "Articulations": [
         {
-          "Name": "IDLE",
+          "Name": "Idle",
           "MidiMessage": {
             "NoteOn": [],
             "ControlChange": [],
@@ -28925,7 +28925,7 @@
       "InstrumentName": "Contrabasses",
       "Articulations": [
         {
-          "Name": "IDLE",
+          "Name": "Idle",
           "MidiMessage": {
             "NoteOn": [],
             "ControlChange": [],
@@ -29187,7 +29187,7 @@
       "InstrumentName": "Violas",
       "Articulations": [
         {
-          "Name": "IDLE",
+          "Name": "Idle",
           "MidiMessage": {
             "NoteOn": [],
             "ControlChange": [],
@@ -29449,7 +29449,7 @@
       "InstrumentName": "Violins",
       "Articulations": [
         {
-          "Name": "IDLE",
+          "Name": "Idle",
           "MidiMessage": {
             "NoteOn": [],
             "ControlChange": [],
@@ -29711,7 +29711,7 @@
       "InstrumentName": "Main",
       "Articulations": [
         {
-          "Name": "IDLE",
+          "Name": "Idle",
           "MidiMessage": {
             "NoteOn": [],
             "ControlChange": [],
@@ -29772,7 +29772,7 @@
       "InstrumentName": "Main",
       "Articulations": [
         {
-          "Name": "IDLE",
+          "Name": "Idle",
           "MidiMessage": {
             "NoteOn": [],
             "ControlChange": [],
@@ -29839,7 +29839,7 @@
       "InstrumentName": "Main",
       "Articulations": [
         {
-          "Name": "IDLE",
+          "Name": "Idle",
           "MidiMessage": {
             "NoteOn": [],
             "ControlChange": [],
@@ -30011,7 +30011,7 @@
       "InstrumentName": "Main",
       "Articulations": [
         {
-          "Name": "IDLE",
+          "Name": "Idle",
           "MidiMessage": {
             "NoteOn": [],
             "ControlChange": [],
@@ -30183,7 +30183,7 @@
       "InstrumentName": "Brass Ensemble",
       "Articulations": [
         {
-          "Name": "IDLE",
+          "Name": "Idle",
           "MidiMessage": {
             "NoteOn": [],
             "ControlChange": [],
@@ -30325,7 +30325,7 @@
       "InstrumentName": "Horns Legato",
       "Articulations": [
         {
-          "Name": "IDLE",
+          "Name": "Idle",
           "MidiMessage": {
             "NoteOn": [],
             "ControlChange": [],
@@ -30407,7 +30407,7 @@
       "InstrumentName": "Horns Staccato",
       "Articulations": [
         {
-          "Name": "IDLE",
+          "Name": "Idle",
           "MidiMessage": {
             "NoteOn": [],
             "ControlChange": [],
@@ -30504,7 +30504,7 @@
       "InstrumentName": "Horns Sustain",
       "Articulations": [
         {
-          "Name": "IDLE",
+          "Name": "Idle",
           "MidiMessage": {
             "NoteOn": [],
             "ControlChange": [],
@@ -30646,7 +30646,7 @@
       "InstrumentName": "Sample",
       "Articulations": [
         {
-          "Name": "IDLE",
+          "Name": "Idle",
           "MidiMessage": {
             "NoteOn": [],
             "ControlChange": [],
@@ -30728,7 +30728,7 @@
       "InstrumentName": "Trombones",
       "Articulations": [
         {
-          "Name": "IDLE",
+          "Name": "Idle",
           "MidiMessage": {
             "NoteOn": [],
             "ControlChange": [],
@@ -30870,7 +30870,7 @@
       "InstrumentName": "Trombones Effects",
       "Articulations": [
         {
-          "Name": "IDLE",
+          "Name": "Idle",
           "MidiMessage": {
             "NoteOn": [],
             "ControlChange": [],
@@ -31012,7 +31012,7 @@
       "InstrumentName": "Trombones Expression",
       "Articulations": [
         {
-          "Name": "IDLE",
+          "Name": "Idle",
           "MidiMessage": {
             "NoteOn": [],
             "ControlChange": [],
@@ -31154,7 +31154,7 @@
       "InstrumentName": "Trombones Legato",
       "Articulations": [
         {
-          "Name": "IDLE",
+          "Name": "Idle",
           "MidiMessage": {
             "NoteOn": [],
             "ControlChange": [],
@@ -31236,7 +31236,7 @@
       "InstrumentName": "Trombones Staccato",
       "Articulations": [
         {
-          "Name": "IDLE",
+          "Name": "Idle",
           "MidiMessage": {
             "NoteOn": [],
             "ControlChange": [],
@@ -31378,7 +31378,7 @@
       "InstrumentName": "Trombones Sustain",
       "Articulations": [
         {
-          "Name": "IDLE",
+          "Name": "Idle",
           "MidiMessage": {
             "NoteOn": [],
             "ControlChange": [],
@@ -31505,7 +31505,7 @@
       "InstrumentName": "Trumpets Staccato",
       "Articulations": [
         {
-          "Name": "IDLE",
+          "Name": "Idle",
           "MidiMessage": {
             "NoteOn": [],
             "ControlChange": [],
@@ -31647,7 +31647,7 @@
       "InstrumentName": "Trumpets Sustain",
       "Articulations": [
         {
-          "Name": "IDLE",
+          "Name": "Idle",
           "MidiMessage": {
             "NoteOn": [],
             "ControlChange": [],
@@ -31789,7 +31789,7 @@
       "InstrumentName": "Tubas Legato",
       "Articulations": [
         {
-          "Name": "IDLE",
+          "Name": "Idle",
           "MidiMessage": {
             "NoteOn": [],
             "ControlChange": [],
@@ -31871,7 +31871,7 @@
       "InstrumentName": "Tubas Staccato",
       "Articulations": [
         {
-          "Name": "IDLE",
+          "Name": "Idle",
           "MidiMessage": {
             "NoteOn": [],
             "ControlChange": [],
@@ -31953,7 +31953,7 @@
       "InstrumentName": "Tubas Sustain",
       "Articulations": [
         {
-          "Name": "IDLE",
+          "Name": "Idle",
           "MidiMessage": {
             "NoteOn": [],
             "ControlChange": [],
@@ -32065,7 +32065,7 @@
       "InstrumentName": "En",
       "Articulations": [
         {
-          "Name": "IDLE",
+          "Name": "Idle",
           "MidiMessage": {
             "NoteOn": [],
             "ControlChange": [],
@@ -32327,7 +32327,7 @@
       "InstrumentName": "Ja",
       "Articulations": [
         {
-          "Name": "IDLE",
+          "Name": "Idle",
           "MidiMessage": {
             "NoteOn": [],
             "ControlChange": [],
@@ -34410,7 +34410,7 @@
       "InstrumentName": "Main",
       "Articulations": [
         {
-          "Name": "IDLE",
+          "Name": "Idle",
           "MidiMessage": {
             "NoteOn": [],
             "ControlChange": [],
@@ -34492,7 +34492,7 @@
       "InstrumentName": "Lite",
       "Articulations": [
         {
-          "Name": "IDLE",
+          "Name": "Idle",
           "MidiMessage": {
             "NoteOn": [],
             "ControlChange": [],
@@ -35009,7 +35009,7 @@
       "InstrumentName": "Main",
       "Articulations": [
         {
-          "Name": "IDLE",
+          "Name": "Idle",
           "MidiMessage": {
             "NoteOn": [],
             "ControlChange": [],
@@ -35376,7 +35376,7 @@
       "InstrumentName": "Brass",
       "Articulations": [
         {
-          "Name": "IDLE",
+          "Name": "Idle",
           "MidiMessage": {
             "NoteOn": [],
             "ControlChange": [],
@@ -35503,7 +35503,7 @@
       "InstrumentName": "Brass (Chamber)",
       "Articulations": [
         {
-          "Name": "IDLE",
+          "Name": "Idle",
           "MidiMessage": {
             "NoteOn": [],
             "ControlChange": [],
@@ -35630,7 +35630,7 @@
       "InstrumentName": "Choir",
       "Articulations": [
         {
-          "Name": "IDLE",
+          "Name": "Idle",
           "MidiMessage": {
             "NoteOn": [],
             "ControlChange": [],
@@ -35742,7 +35742,7 @@
       "InstrumentName": "Strings",
       "Articulations": [
         {
-          "Name": "IDLE",
+          "Name": "Idle",
           "MidiMessage": {
             "NoteOn": [],
             "ControlChange": [],
@@ -36017,7 +36017,7 @@
       "InstrumentName": "Woodwinds",
       "Articulations": [
         {
-          "Name": "IDLE",
+          "Name": "Idle",
           "MidiMessage": {
             "NoteOn": [],
             "ControlChange": [],
@@ -36144,7 +36144,7 @@
       "InstrumentName": "Woodwinds (Chamber)",
       "Articulations": [
         {
-          "Name": "IDLE",
+          "Name": "Idle",
           "MidiMessage": {
             "NoteOn": [],
             "ControlChange": [],
@@ -36271,7 +36271,7 @@
       "InstrumentName": "Main",
       "Articulations": [
         {
-          "Name": "IDLE",
+          "Name": "Idle",
           "MidiMessage": {
             "NoteOn": [],
             "ControlChange": [],
@@ -36383,7 +36383,7 @@
       "InstrumentName": "All",
       "Articulations": [
         {
-          "Name": "IDLE",
+          "Name": "Idle",
           "MidiMessage": {
             "NoteOn": [],
             "ControlChange": [],
@@ -36540,7 +36540,7 @@
       "InstrumentName": "Main",
       "Articulations": [
         {
-          "Name": "IDLE",
+          "Name": "Idle",
           "MidiMessage": {
             "NoteOn": [],
             "ControlChange": [],
@@ -36652,7 +36652,7 @@
       "InstrumentName": "Picking",
       "Articulations": [
         {
-          "Name": "IDLE",
+          "Name": "Idle",
           "MidiMessage": {
             "NoteOn": [],
             "ControlChange": [],
@@ -36719,7 +36719,7 @@
       "InstrumentName": "Main",
       "Articulations": [
         {
-          "Name": "IDLE",
+          "Name": "Idle",
           "MidiMessage": {
             "NoteOn": [],
             "ControlChange": [],
@@ -36951,7 +36951,7 @@
       "InstrumentName": "Main",
       "Articulations": [
         {
-          "Name": "IDLE",
+          "Name": "Idle",
           "MidiMessage": {
             "NoteOn": [],
             "ControlChange": [],
@@ -37213,7 +37213,7 @@
       "InstrumentName": "Main",
       "Articulations": [
         {
-          "Name": "IDLE",
+          "Name": "Idle",
           "MidiMessage": {
             "NoteOn": [],
             "ControlChange": [],
@@ -37325,7 +37325,7 @@
       "InstrumentName": "Main",
       "Articulations": [
         {
-          "Name": "IDLE",
+          "Name": "Idle",
           "MidiMessage": {
             "NoteOn": [],
             "ControlChange": [],
@@ -37422,7 +37422,7 @@
       "InstrumentName": "Main",
       "Articulations": [
         {
-          "Name": "IDLE",
+          "Name": "Idle",
           "MidiMessage": {
             "NoteOn": [],
             "ControlChange": [],
@@ -37519,7 +37519,7 @@
       "InstrumentName": "Cello True Legato",
       "Articulations": [
         {
-          "Name": "IDLE",
+          "Name": "Idle",
           "MidiMessage": {
             "NoteOn": [],
             "ControlChange": [],
@@ -37601,7 +37601,7 @@
       "InstrumentName": "Contrabass True Legato",
       "Articulations": [
         {
-          "Name": "IDLE",
+          "Name": "Idle",
           "MidiMessage": {
             "NoteOn": [],
             "ControlChange": [],
@@ -37683,7 +37683,7 @@
       "InstrumentName": "Master",
       "Articulations": [
         {
-          "Name": "IDLE",
+          "Name": "Idle",
           "MidiMessage": {
             "NoteOn": [],
             "ControlChange": [],
@@ -37885,7 +37885,7 @@
       "InstrumentName": "Viola True Legato",
       "Articulations": [
         {
-          "Name": "IDLE",
+          "Name": "Idle",
           "MidiMessage": {
             "NoteOn": [],
             "ControlChange": [],
@@ -37967,7 +37967,7 @@
       "InstrumentName": "Violin True Legato",
       "Articulations": [
         {
-          "Name": "IDLE",
+          "Name": "Idle",
           "MidiMessage": {
             "NoteOn": [],
             "ControlChange": [],
@@ -38064,7 +38064,7 @@
       "InstrumentName": "Basoon",
       "Articulations": [
         {
-          "Name": "IDLE",
+          "Name": "Idle",
           "MidiMessage": {
             "NoteOn": [],
             "ControlChange": [],
@@ -38206,7 +38206,7 @@
       "InstrumentName": "Celeste",
       "Articulations": [
         {
-          "Name": "IDLE",
+          "Name": "Idle",
           "MidiMessage": {
             "NoteOn": [],
             "ControlChange": [],
@@ -38273,7 +38273,7 @@
       "InstrumentName": "Celli",
       "Articulations": [
         {
-          "Name": "IDLE",
+          "Name": "Idle",
           "MidiMessage": {
             "NoteOn": [],
             "ControlChange": [],
@@ -38595,7 +38595,7 @@
       "InstrumentName": "Clarinet",
       "Articulations": [
         {
-          "Name": "IDLE",
+          "Name": "Idle",
           "MidiMessage": {
             "NoteOn": [],
             "ControlChange": [],
@@ -38752,7 +38752,7 @@
       "InstrumentName": "Contrabasses",
       "Articulations": [
         {
-          "Name": "IDLE",
+          "Name": "Idle",
           "MidiMessage": {
             "NoteOn": [],
             "ControlChange": [],
@@ -39074,7 +39074,7 @@
       "InstrumentName": "Crotales",
       "Articulations": [
         {
-          "Name": "IDLE",
+          "Name": "Idle",
           "MidiMessage": {
             "NoteOn": [],
             "ControlChange": [],
@@ -39126,7 +39126,7 @@
       "InstrumentName": "Flute",
       "Articulations": [
         {
-          "Name": "IDLE",
+          "Name": "Idle",
           "MidiMessage": {
             "NoteOn": [],
             "ControlChange": [],
@@ -39283,7 +39283,7 @@
       "InstrumentName": "Glockenspiel",
       "Articulations": [
         {
-          "Name": "IDLE",
+          "Name": "Idle",
           "MidiMessage": {
             "NoteOn": [],
             "ControlChange": [],
@@ -39335,7 +39335,7 @@
       "InstrumentName": "Harp",
       "Articulations": [
         {
-          "Name": "IDLE",
+          "Name": "Idle",
           "MidiMessage": {
             "NoteOn": [],
             "ControlChange": [],
@@ -39432,7 +39432,7 @@
       "InstrumentName": "Horn",
       "Articulations": [
         {
-          "Name": "IDLE",
+          "Name": "Idle",
           "MidiMessage": {
             "NoteOn": [],
             "ControlChange": [],
@@ -39649,7 +39649,7 @@
       "InstrumentName": "Marimba",
       "Articulations": [
         {
-          "Name": "IDLE",
+          "Name": "Idle",
           "MidiMessage": {
             "NoteOn": [],
             "ControlChange": [],
@@ -39701,7 +39701,7 @@
       "InstrumentName": "Oboe",
       "Articulations": [
         {
-          "Name": "IDLE",
+          "Name": "Idle",
           "MidiMessage": {
             "NoteOn": [],
             "ControlChange": [],
@@ -39858,7 +39858,7 @@
       "InstrumentName": "Piccolo",
       "Articulations": [
         {
-          "Name": "IDLE",
+          "Name": "Idle",
           "MidiMessage": {
             "NoteOn": [],
             "ControlChange": [],
@@ -40045,7 +40045,7 @@
       "InstrumentName": "Timpani",
       "Articulations": [
         {
-          "Name": "IDLE",
+          "Name": "Idle",
           "MidiMessage": {
             "NoteOn": [],
             "ControlChange": [],
@@ -40217,7 +40217,7 @@
       "InstrumentName": "Trombone",
       "Articulations": [
         {
-          "Name": "IDLE",
+          "Name": "Idle",
           "MidiMessage": {
             "NoteOn": [],
             "ControlChange": [],
@@ -40404,7 +40404,7 @@
       "InstrumentName": "Trumpet",
       "Articulations": [
         {
-          "Name": "IDLE",
+          "Name": "Idle",
           "MidiMessage": {
             "NoteOn": [],
             "ControlChange": [],
@@ -40621,7 +40621,7 @@
       "InstrumentName": "Tuba",
       "Articulations": [
         {
-          "Name": "IDLE",
+          "Name": "Idle",
           "MidiMessage": {
             "NoteOn": [],
             "ControlChange": [],
@@ -40763,7 +40763,7 @@
       "InstrumentName": "Tubular Bells",
       "Articulations": [
         {
-          "Name": "IDLE",
+          "Name": "Idle",
           "MidiMessage": {
             "NoteOn": [],
             "ControlChange": [],
@@ -40830,7 +40830,7 @@
       "InstrumentName": "Untuned Percussion",
       "Articulations": [
         {
-          "Name": "IDLE",
+          "Name": "Idle",
           "MidiMessage": {
             "NoteOn": [],
             "ControlChange": [],
@@ -41047,7 +41047,7 @@
       "InstrumentName": "Violas",
       "Articulations": [
         {
-          "Name": "IDLE",
+          "Name": "Idle",
           "MidiMessage": {
             "NoteOn": [],
             "ControlChange": [],
@@ -41369,7 +41369,7 @@
       "InstrumentName": "Violins",
       "Articulations": [
         {
-          "Name": "IDLE",
+          "Name": "Idle",
           "MidiMessage": {
             "NoteOn": [],
             "ControlChange": [],
@@ -41691,7 +41691,7 @@
       "InstrumentName": "Xylophone",
       "Articulations": [
         {
-          "Name": "IDLE",
+          "Name": "Idle",
           "MidiMessage": {
             "NoteOn": [],
             "ControlChange": [],
@@ -41743,7 +41743,7 @@
       "InstrumentName": "Main",
       "Articulations": [
         {
-          "Name": "IDLE",
+          "Name": "Idle",
           "MidiMessage": {
             "NoteOn": [],
             "ControlChange": [],
@@ -41930,7 +41930,7 @@
       "InstrumentName": "String",
       "Articulations": [
         {
-          "Name": "IDLE",
+          "Name": "Idle",
           "MidiMessage": {
             "NoteOn": [],
             "ControlChange": [],
@@ -42072,7 +42072,7 @@
       "InstrumentName": "Auto String Noise",
       "Articulations": [
         {
-          "Name": "IDLE",
+          "Name": "Idle",
           "MidiMessage": {
             "NoteOn": [],
             "ControlChange": [],
@@ -42109,7 +42109,7 @@
       "InstrumentName": "Main",
       "Articulations": [
         {
-          "Name": "IDLE",
+          "Name": "Idle",
           "MidiMessage": {
             "NoteOn": [],
             "ControlChange": [],
@@ -42281,7 +42281,7 @@
       "InstrumentName": "Picking",
       "Articulations": [
         {
-          "Name": "IDLE",
+          "Name": "Idle",
           "MidiMessage": {
             "NoteOn": [],
             "ControlChange": [],
@@ -42318,7 +42318,7 @@
       "InstrumentName": "String",
       "Articulations": [
         {
-          "Name": "IDLE",
+          "Name": "Idle",
           "MidiMessage": {
             "NoteOn": [],
             "ControlChange": [],
@@ -42445,7 +42445,7 @@
       "InstrumentName": "String(Locked)",
       "Articulations": [
         {
-          "Name": "IDLE",
+          "Name": "Idle",
           "MidiMessage": {
             "NoteOn": [],
             "ControlChange": [],
@@ -42607,7 +42607,7 @@
       "InstrumentName": "Main",
       "Articulations": [
         {
-          "Name": "IDLE",
+          "Name": "Idle",
           "MidiMessage": {
             "NoteOn": [],
             "ControlChange": [],
@@ -42764,7 +42764,7 @@
       "InstrumentName": "Main",
       "Articulations": [
         {
-          "Name": "IDLE",
+          "Name": "Idle",
           "MidiMessage": {
             "NoteOn": [],
             "ControlChange": [],
@@ -42936,7 +42936,7 @@
       "InstrumentName": "FX",
       "Articulations": [
         {
-          "Name": "IDLE",
+          "Name": "Idle",
           "MidiMessage": {
             "NoteOn": [],
             "ControlChange": [],
@@ -43198,7 +43198,7 @@
       "InstrumentName": "Harmonic",
       "Articulations": [
         {
-          "Name": "IDLE",
+          "Name": "Idle",
           "MidiMessage": {
             "NoteOn": [],
             "ControlChange": [],
@@ -43535,7 +43535,7 @@
       "InstrumentName": "Main",
       "Articulations": [
         {
-          "Name": "IDLE",
+          "Name": "Idle",
           "MidiMessage": {
             "NoteOn": [],
             "ControlChange": [
@@ -43947,7 +43947,7 @@
       "InstrumentName": "Muting CC1",
       "Articulations": [
         {
-          "Name": "IDLE",
+          "Name": "Idle",
           "MidiMessage": {
             "NoteOn": [],
             "ControlChange": [],
@@ -44014,7 +44014,7 @@
       "InstrumentName": "Picking CC40",
       "Articulations": [
         {
-          "Name": "IDLE",
+          "Name": "Idle",
           "MidiMessage": {
             "NoteOn": [],
             "ControlChange": [],
@@ -44081,7 +44081,7 @@
       "InstrumentName": "Stop",
       "Articulations": [
         {
-          "Name": "IDLE",
+          "Name": "Idle",
           "MidiMessage": {
             "NoteOn": [],
             "ControlChange": [],
@@ -44148,7 +44148,7 @@
       "InstrumentName": "Main",
       "Articulations": [
         {
-          "Name": "IDLE",
+          "Name": "Idle",
           "MidiMessage": {
             "NoteOn": [],
             "ControlChange": [],
@@ -44350,7 +44350,7 @@
       "InstrumentName": "Full",
       "Articulations": [
         {
-          "Name": "IDLE",
+          "Name": "Idle",
           "MidiMessage": {
             "NoteOn": [],
             "ControlChange": [],
@@ -44942,7 +44942,7 @@
       "InstrumentName": "FX",
       "Articulations": [
         {
-          "Name": "IDLE",
+          "Name": "Idle",
           "MidiMessage": {
             "NoteOn": [],
             "ControlChange": [],
@@ -45487,7 +45487,7 @@
       "InstrumentName": "Chord",
       "Articulations": [
         {
-          "Name": "IDLE",
+          "Name": "Idle",
           "MidiMessage": {
             "NoteOn": [],
             "ControlChange": [],
@@ -45734,7 +45734,7 @@
       "InstrumentName": "Form",
       "Articulations": [
         {
-          "Name": "IDLE",
+          "Name": "Idle",
           "MidiMessage": {
             "NoteOn": [],
             "ControlChange": [],
@@ -45981,7 +45981,7 @@
       "InstrumentName": "Fret",
       "Articulations": [
         {
-          "Name": "IDLE",
+          "Name": "Idle",
           "MidiMessage": {
             "NoteOn": [],
             "ControlChange": [],
@@ -46138,7 +46138,7 @@
       "InstrumentName": "Main",
       "Articulations": [
         {
-          "Name": "IDLE",
+          "Name": "Idle",
           "MidiMessage": {
             "NoteOn": [],
             "ControlChange": [],
@@ -46370,7 +46370,7 @@
       "InstrumentName": "PU",
       "Articulations": [
         {
-          "Name": "IDLE",
+          "Name": "Idle",
           "MidiMessage": {
             "NoteOn": [],
             "ControlChange": [],
@@ -46437,7 +46437,7 @@
       "InstrumentName": "Stop",
       "Articulations": [
         {
-          "Name": "IDLE",
+          "Name": "Idle",
           "MidiMessage": {
             "NoteOn": [],
             "ControlChange": [],
@@ -46759,7 +46759,7 @@
       "InstrumentName": "Strings",
       "Articulations": [
         {
-          "Name": "IDLE",
+          "Name": "Idle",
           "MidiMessage": {
             "NoteOn": [],
             "ControlChange": [],
@@ -46901,7 +46901,7 @@
       "InstrumentName": "Switch",
       "Articulations": [
         {
-          "Name": "IDLE",
+          "Name": "Idle",
           "MidiMessage": {
             "NoteOn": [],
             "ControlChange": [],
@@ -46983,7 +46983,7 @@
       "InstrumentName": "Main",
       "Articulations": [
         {
-          "Name": "IDLE",
+          "Name": "Idle",
           "MidiMessage": {
             "NoteOn": [],
             "ControlChange": [],
@@ -47140,7 +47140,7 @@
       "InstrumentName": "Picking",
       "Articulations": [
         {
-          "Name": "IDLE",
+          "Name": "Idle",
           "MidiMessage": {
             "NoteOn": [],
             "ControlChange": [],
@@ -47222,7 +47222,7 @@
       "InstrumentName": "Fretting",
       "Articulations": [
         {
-          "Name": "IDLE",
+          "Name": "Idle",
           "MidiMessage": {
             "NoteOn": [],
             "ControlChange": [],
@@ -47304,7 +47304,7 @@
       "InstrumentName": "String",
       "Articulations": [
         {
-          "Name": "IDLE",
+          "Name": "Idle",
           "MidiMessage": {
             "NoteOn": [],
             "ControlChange": [],
@@ -47446,7 +47446,7 @@
       "InstrumentName": "Main",
       "Articulations": [
         {
-          "Name": "IDLE",
+          "Name": "Idle",
           "MidiMessage": {
             "NoteOn": [],
             "ControlChange": [],
@@ -47603,7 +47603,7 @@
       "InstrumentName": "Keyswitch Up Position",
       "Articulations": [
         {
-          "Name": "IDLE",
+          "Name": "Idle",
           "MidiMessage": {
             "NoteOn": [],
             "ControlChange": [],
@@ -47760,7 +47760,7 @@
       "InstrumentName": "Main",
       "Articulations": [
         {
-          "Name": "IDLE",
+          "Name": "Idle",
           "MidiMessage": {
             "NoteOn": [],
             "ControlChange": [],
@@ -47857,7 +47857,7 @@
       "InstrumentName": "Main",
       "Articulations": [
         {
-          "Name": "IDLE",
+          "Name": "Idle",
           "MidiMessage": {
             "NoteOn": [],
             "ControlChange": [],
@@ -47954,7 +47954,7 @@
       "InstrumentName": "Default",
       "Articulations": [
         {
-          "Name": "IDLE",
+          "Name": "Idle",
           "MidiMessage": {
             "NoteOn": [],
             "ControlChange": [],
@@ -48231,7 +48231,7 @@
       "InstrumentName": "Flet Position",
       "Articulations": [
         {
-          "Name": "IDLE",
+          "Name": "Idle",
           "MidiMessage": {
             "NoteOn": [],
             "ControlChange": [],
@@ -48613,7 +48613,7 @@
       "InstrumentName": "Main",
       "Articulations": [
         {
-          "Name": "IDLE",
+          "Name": "Idle",
           "MidiMessage": {
             "NoteOn": [],
             "ControlChange": [],
