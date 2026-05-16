@@ -4,7 +4,7 @@ using System.Threading.Tasks;
 using ArtiCluster.Commons;
 using ArtiCluster.Features.Logic.Articulations.Contracts;
 using ArtiCluster.Features.Logic.Articulations.Exports;
-using ArtiCluster.Shared.Domain.UniversalDefinitions;
+using ArtiCluster.Shared.Domain.UniversalDefinitions.Model;
 using ArtiCluster.Shared.IO.Abstractions;
 
 namespace ArtiCluster.Features.Logic.Articulations.Facades;
@@ -13,7 +13,7 @@ public sealed class LogicDefinitionFacade : ILogicDefinitionFacade
 {
     public async Task<Result<Unit, ExportFailureReason>> ExportAsync(
         ITextContentWriter writer,
-        SeparatedArticulationGroupSet source,
+        UniversalDefinition source,
         CancellationToken cancellationToken = default )
     {
         var exporter = new LogicExporter();

@@ -5,24 +5,24 @@ using System.Threading.Tasks;
 using ArtiCluster.Applications.Services.Abstractions;
 using ArtiCluster.Commons;
 using ArtiCluster.Features.Logic.Articulations.Facades;
-using ArtiCluster.Shared.Domain.UniversalDefinitions;
+using ArtiCluster.Shared.Domain.UniversalDefinitions.Model;
 using ArtiCluster.Shared.IO.Abstractions;
 
 using FacadeExportFailureReason = ArtiCluster.Features.Logic.Articulations.Contracts.ExportFailureReason;
 
 namespace ArtiCluster.Applications.Services.LocalFileConversions.Strategies;
 
-public sealed class LogicLocalFileExportStrategy : ILocalFileExportStrategy<SeparatedArticulationGroupSet>
+public sealed class LogicLocalFileExportStrategy : ILocalFileExportStrategy<UniversalDefinition>
 {
-    public string GetOutputDirectory( string baseDirectory, SeparatedArticulationGroupSet source )
+    public string GetOutputDirectory( string baseDirectory, UniversalDefinition source )
         => Path.Combine( baseDirectory, "Logic", source.ManufacturerName.Value, source.ProductName.Value );
 
-    public string GetExportFileName( SeparatedArticulationGroupSet source )
+    public string GetExportFileName( UniversalDefinition source )
         => source.PatchName.Value + ".plist";
 
     public async Task<Result<Unit, ExportFailureReason>> ExportAsync(
         ITextContentWriter writer,
-        SeparatedArticulationGroupSet source,
+        UniversalDefinition source,
         CancellationToken cancellationToken = default )
     {
         var facade = new LogicDefinitionFacade();
@@ -37,7 +37,8 @@ public sealed class LogicLocalFileExportStrategy : ILocalFileExportStrategy<Sepa
                     FacadeExportFailureReason.SerializationError => ExportFailureReason.SerializationError,
                     FacadeExportFailureReason.IoError            => ExportFailureReason.IoError,
                     _                                            => ExportFailureReason.OtherError
-                }
+                },
+                exportResult.UnwrapError().Error
             );
         }
 
