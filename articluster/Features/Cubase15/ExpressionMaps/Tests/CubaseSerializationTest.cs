@@ -10,7 +10,6 @@ using ArtiCluster.Commons.Text;
 using ArtiCluster.Features.Cubase15.ExpressionMaps.Exports;
 using ArtiCluster.Features.Cubase15.ExpressionMaps.Mappers;
 using ArtiCluster.Features.Cubase15.ExpressionMaps.Models;
-using ArtiCluster.Features.Cubase15.ExpressionMaps.Models.XMLElements;
 using ArtiCluster.Shared.IO.Local;
 using ArtiCluster.Shared.Mock;
 

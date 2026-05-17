@@ -1,6 +1,6 @@
 using System.Xml.Serialization;
 
-namespace ArtiCluster.Features.Cubase15.ExpressionMaps.Models.XMLElements;
+namespace ArtiCluster.Features.Cubase15.ExpressionMaps.Models;
 
 [XmlRoot( ElementName = "string" )]
 public class StringElement

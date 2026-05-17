@@ -11,7 +11,6 @@ using ArtiCluster.Commons.Text;
 using ArtiCluster.Features.Cubase15.ExpressionMaps.Contracts;
 using ArtiCluster.Features.Cubase15.ExpressionMaps.Mappers;
 using ArtiCluster.Features.Cubase15.ExpressionMaps.Models;
-using ArtiCluster.Features.Cubase15.ExpressionMaps.Models.XMLElements;
 using ArtiCluster.Shared.Domain.UniversalDefinitions.Model;
 using ArtiCluster.Shared.IO.Abstractions;
 

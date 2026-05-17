@@ -1,7 +1,7 @@
 using System.Diagnostics.CodeAnalysis;
 using System.Xml.Serialization;
 
-namespace ArtiCluster.Features.Cubase15.ExpressionMaps.Models.XMLElements;
+namespace ArtiCluster.Features.Cubase15.ExpressionMaps.Models;
 
 [XmlRoot( ElementName = "float" )]
 public class FloatElement

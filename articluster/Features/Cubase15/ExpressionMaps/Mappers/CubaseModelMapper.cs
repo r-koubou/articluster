@@ -5,7 +5,6 @@ using ArtiCluster.Commons;
 using ArtiCluster.Features.Cubase15.ExpressionMaps.Contracts;
 using ArtiCluster.Features.Cubase15.ExpressionMaps.Models;
 using ArtiCluster.Features.Cubase15.ExpressionMaps.Models.XmlClasses;
-using ArtiCluster.Features.Cubase15.ExpressionMaps.Models.XMLElements;
 using ArtiCluster.Shared.Domain.MidiMessages.Model.Values;
 using ArtiCluster.Shared.Domain.UniversalDefinitions.Model;
 
