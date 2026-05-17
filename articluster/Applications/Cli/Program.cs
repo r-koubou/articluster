@@ -38,6 +38,7 @@ services.AddTransient<ConvertingCommandExecutor>();
 // Converters
 services.AddSingleton<IUniversalDefinitionLocalFileService, UniversalDefinitionLocalFileService>();
 services.AddTransient<ILocalFileConversionService, CubaseLocalFileConversionService>();
+services.AddTransient<ILocalFileConversionService, Cubase15LocalFileConversionService>();
 services.AddTransient<ILocalFileConversionService, StudioOneLocalFileConversionService>();
 services.AddTransient<ILocalFileConversionService, CakewalkLocalFileConversionService>();
 services.AddTransient<ILocalFileConversionService, LogicLocalFileConversionService>();
