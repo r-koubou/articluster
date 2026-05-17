@@ -2,15 +2,14 @@ using System.Threading;
 using System.Threading.Tasks;
 
 using ArtiCluster.Commons;
-using ArtiCluster.Shared.Domain.UniversalDefinitions;
 using ArtiCluster.Shared.IO.Abstractions;
 
 namespace ArtiCluster.Features.Cubase.ExpressionMaps.Contracts;
 
-public interface ICubaseDefinitionFacade
+public interface ICubaseDefinitionFacade<in TSource>
 {
     public Task<Result<Unit, ExportFailureReason>> ExportAsync(
         ITextContentWriter writer,
-        SeparatedArticulationGroupSet source,
+        TSource source,
         CancellationToken cancellationToken = default );
 }
