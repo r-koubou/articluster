@@ -17,10 +17,11 @@ public sealed class CubaseModelMapper
     {
         try
         {
+            var articulationGroupIndexMap = CollectArticulationGroupIndexMap( source );
             var slotTable = CollectSlotTable( source );
 
-            var listOfUSlotVisuals = ConvertUSlotVisualsList( source );
-            var listOfPSoundSlot = ConvertPSoundSlotList( slotTable );
+            var listOfUSlotVisuals = ConvertUSlotVisualsList( source, articulationGroupIndexMap );
+            var listOfPSoundSlot = ConvertPSoundSlotList( slotTable, articulationGroupIndexMap );
             var listOfTechniqueGroups = ConvertTechniqueGroupsList( source );
 
             var rootElement = ConvertRootElement(
@@ -63,23 +64,22 @@ public sealed class CubaseModelMapper
     #endregion Convert RootElement
 
     #region Convert To USlotVisual List
-    private static ListElement ConvertUSlotVisualsList( UniversalDefinition source )
+    private static ListElement ConvertUSlotVisualsList(
+        UniversalDefinition source,
+        IReadOnlyDictionary<Articulation, int> articulationGroupIndexMap )
     {
         var listOfUSlotVisuals = new ListElement();
-
-        var groupIndex = 0;
 
         foreach( var articulationGroup in source.ArticulationGroups )
         {
             foreach( var articulation in articulationGroup.Articulations )
             {
                 var type = ConvertArticulationType( articulation.Extra.GetValueOrDefault( ExtraKeys.ArticulationType, string.Empty ) );
-                var slotVisual = USlotVisuals.New( articulation, 0, type, groupIndex );
+                var group = articulationGroupIndexMap.GetValueOrDefault( articulation, 0 );
+                var slotVisual = USlotVisuals.New( articulation, 0, type, group );
 
                 listOfUSlotVisuals.Obj.Add( slotVisual );
             }
-
-            groupIndex++;
         }
 
         return listOfUSlotVisuals;
@@ -87,7 +87,9 @@ public sealed class CubaseModelMapper
     #endregion ~Convert To USlotVisual List
 
     #region Convert To PSoundSlot List
-    private static ListElement ConvertPSoundSlotList( IReadOnlyDictionary<string, ICollection<Articulation>> slotTable )
+    private static ListElement ConvertPSoundSlotList(
+        IReadOnlyDictionary<string, ICollection<Articulation>> slotTable,
+        IReadOnlyDictionary<Articulation, int> articulationGroupIndexMap )
     {
         var listOfPSoundSlot = new ListElement();
 
@@ -106,7 +108,7 @@ public sealed class CubaseModelMapper
             pSoundSlot.Obj.Add( PSlotMidiAction.New( listOfPOutputEvent ) );
 
             // PSoundSlot.sv
-            var slotVisualList = ConvertSlotVisualList( pair.Value );
+            var slotVisualList = ConvertSlotVisualList( pair.Value, articulationGroupIndexMap );
             pSoundSlot.Member.Add( PSoundSlot.Sv( slotVisualList ) );
 
             // PSoundSlot.color
@@ -146,7 +148,9 @@ public sealed class CubaseModelMapper
         return listOfPOutputEvent;
     }
 
-    private static List<ObjectElement> ConvertSlotVisualList( IEnumerable<Articulation> articulations )
+    private static List<ObjectElement> ConvertSlotVisualList(
+        IEnumerable<Articulation> articulations,
+        IReadOnlyDictionary<Articulation, int> articulationGroupIndexMap )
     {
         // PSoundSlot.sv
         var slotVisualList = new List<ObjectElement>();
@@ -154,7 +158,7 @@ public sealed class CubaseModelMapper
         foreach( var articulation in articulations )
         {
             var type = ConvertArticulationType( articulation.Extra.GetValueOrDefault( ExtraKeys.ArticulationType, string.Empty ) );
-            var group = ConvertArticulationGroup( articulation.Extra.GetValueOrDefault( ExtraKeys.GroupIndex, string.Empty ) );
+            var group = articulationGroupIndexMap.GetValueOrDefault( articulation, 0 );
 
             slotVisualList.Add( USlotVisuals.New( articulation, 0, type, group ) );
         }
@@ -199,9 +203,9 @@ public sealed class CubaseModelMapper
 
         static void AddArticulation( IDictionary<string, ICollection<Articulation>> dictionary, string key, Articulation articulation )
         {
-            if( !dictionary.TryGetValue( key, out var value) )
+            if( !dictionary.TryGetValue( key, out var value ) )
             {
-                value = new List<Articulation>();
+                value             = new List<Articulation>();
                 dictionary[ key ] = value;
             }
 
@@ -241,11 +245,6 @@ public sealed class CubaseModelMapper
         };
     }
 
-    private static int ConvertArticulationGroup( string value )
-    {
-        return int.TryParse( value, out var result ) ? result : 0;
-    }
-
     // ReSharper disable once UnusedMember.Local
     private static int ConvertColorIndex( string value )
     {
@@ -266,6 +265,25 @@ public sealed class CubaseModelMapper
 
             listOfPOutputEvent.Obj.Add( POutputEvent.New( status | channel, data1, data2 ) );
         }
+    }
+
+    private static IReadOnlyDictionary<Articulation, int> CollectArticulationGroupIndexMap( UniversalDefinition source )
+    {
+        var result = new Dictionary<Articulation, int>();
+
+        var groupIndex = 0;
+
+        foreach( var articulationGroup in source.ArticulationGroups )
+        {
+            foreach( var articulation in articulationGroup.Articulations )
+            {
+                result[ articulation ] = groupIndex;
+            }
+
+            groupIndex++;
+        }
+
+        return result;
     }
     #endregion ~Sub Routines
 }

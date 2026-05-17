@@ -37,7 +37,7 @@ public static class ExpressionMapTechniqueGroup
             }
         );
 
-        obj.String.Add( new StringElement( "value", "" )
+        obj.String.Add( new StringElement( "id", "" )
             {
                 WideSpecified = false
             }
