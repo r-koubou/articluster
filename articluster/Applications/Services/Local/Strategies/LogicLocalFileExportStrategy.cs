@@ -1,26 +1,25 @@
-using System.IO;
 using System.Threading;
 using System.Threading.Tasks;
 
 using ArtiCluster.Applications.Services.Abstractions;
-using ArtiCluster.Applications.Services.Abstractions.Strategies;
+using ArtiCluster.Applications.Services.Abstractions.Local.Strategies;
 using ArtiCluster.Commons;
-using ArtiCluster.Features.StudioOne.KeySwitches.Facades;
+using ArtiCluster.Features.Logic.Articulations.Facades;
 using ArtiCluster.Shared.Domain.UniversalDefinitions.Model;
 using ArtiCluster.Shared.IO.Abstractions;
 
-using FacadeExportFailureReason = ArtiCluster.Features.StudioOne.KeySwitches.Contracts.ExportFailureReason;
+using FacadeExportFailureReason = ArtiCluster.Features.Logic.Articulations.Contracts.ExportFailureReason;
 
-namespace ArtiCluster.Applications.Services.LocalFileConversions.Strategies;
+namespace ArtiCluster.Applications.Services.Local.Strategies;
 
-public sealed class StudioOneLocalFileExportStrategy : ILocalFileExportStrategy<UniversalDefinition>
+public sealed class LogicLocalFileExportStrategy : ILocalFileExportStrategy<UniversalDefinition>
 {
     public async Task<Result<Unit, ExportFailureReason>> ExportAsync(
         ITextContentWriter writer,
         UniversalDefinition source,
         CancellationToken cancellationToken = default )
     {
-        var facade = new StudioOneDefinitionFacade();
+        var facade = new LogicDefinitionFacade();
 
         var exportResult = await facade.ExportAsync( writer, source, cancellationToken );
 

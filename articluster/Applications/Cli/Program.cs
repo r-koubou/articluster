@@ -1,9 +1,8 @@
 using System.CommandLine;
 
 using ArtiCluster.Applications.Cli;
-using ArtiCluster.Applications.Services;
-using ArtiCluster.Applications.Services.Abstractions;
-using ArtiCluster.Applications.Services.LocalFileConversions;
+using ArtiCluster.Applications.Services.Abstractions.Local;
+using ArtiCluster.Applications.Services.Local;
 
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;

@@ -2,12 +2,10 @@ using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
 
-using ArtiCluster.Applications.Services.Abstractions;
-using ArtiCluster.Applications.Services.Abstractions.Strategies;
-using ArtiCluster.Applications.Services.LocalFileConversions.Strategies;
+using ArtiCluster.Applications.Services.Abstractions.Local.Strategies;
 using ArtiCluster.Commons;
 
-namespace ArtiCluster.Applications.Services.LocalFileConversions.Runners;
+namespace ArtiCluster.Applications.Services.Abstractions.Local.Runners;
 
 public interface ILocalFileConversionRunner
 {

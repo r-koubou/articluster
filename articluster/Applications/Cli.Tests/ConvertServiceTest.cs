@@ -1,8 +1,7 @@
 using System.IO;
 using System.Threading.Tasks;
 
-using ArtiCluster.Applications.Services;
-using ArtiCluster.Applications.Services.LocalFileConversions;
+using ArtiCluster.Applications.Services.Local;
 using ArtiCluster.Tests.Helpers;
 
 using NUnit.Framework;

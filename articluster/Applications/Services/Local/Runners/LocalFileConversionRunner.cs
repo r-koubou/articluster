@@ -3,14 +3,15 @@ using System.Threading;
 using System.Threading.Tasks;
 
 using ArtiCluster.Applications.Services.Abstractions;
-using ArtiCluster.Applications.Services.Abstractions.Strategies;
-using ArtiCluster.Applications.Services.LocalFileConversions.Executors;
-using ArtiCluster.Applications.Services.LocalFileConversions.Strategies;
+using ArtiCluster.Applications.Services.Abstractions.Local;
+using ArtiCluster.Applications.Services.Abstractions.Local.Runners;
+using ArtiCluster.Applications.Services.Abstractions.Local.Strategies;
+using ArtiCluster.Applications.Services.Local.Executors;
 using ArtiCluster.Commons;
 
 using Microsoft.Extensions.Logging;
 
-namespace ArtiCluster.Applications.Services.LocalFileConversions.Runners;
+namespace ArtiCluster.Applications.Services.Local.Runners;
 
 public sealed class LocalFileConversionRunner : ILocalFileConversionRunner
 {

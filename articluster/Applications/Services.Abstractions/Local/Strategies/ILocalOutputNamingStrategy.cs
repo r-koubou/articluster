@@ -1,4 +1,4 @@
-namespace ArtiCluster.Applications.Services.Abstractions.Strategies;
+namespace ArtiCluster.Applications.Services.Abstractions.Local.Strategies;
 
 public interface ILocalOutputNamingStrategy<in TSource>
 {

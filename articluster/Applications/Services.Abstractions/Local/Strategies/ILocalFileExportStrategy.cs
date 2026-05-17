@@ -4,7 +4,7 @@ using System.Threading.Tasks;
 using ArtiCluster.Commons;
 using ArtiCluster.Shared.IO.Abstractions;
 
-namespace ArtiCluster.Applications.Services.Abstractions.Strategies;
+namespace ArtiCluster.Applications.Services.Abstractions.Local.Strategies;
 
 public interface ILocalFileExportStrategy<in TSource>
 {

@@ -1,26 +1,25 @@
-using System.IO;
 using System.Threading;
 using System.Threading.Tasks;
 
 using ArtiCluster.Applications.Services.Abstractions;
-using ArtiCluster.Applications.Services.Abstractions.Strategies;
+using ArtiCluster.Applications.Services.Abstractions.Local.Strategies;
 using ArtiCluster.Commons;
-using ArtiCluster.Features.Cubase.ExpressionMaps.Facades;
-using ArtiCluster.Shared.Domain.UniversalDefinitions;
+using ArtiCluster.Features.StudioOne.KeySwitches.Facades;
+using ArtiCluster.Shared.Domain.UniversalDefinitions.Model;
 using ArtiCluster.Shared.IO.Abstractions;
 
-using FacadeExportFailureReason = ArtiCluster.Features.Cubase.ExpressionMaps.Contracts.ExportFailureReason;
+using FacadeExportFailureReason = ArtiCluster.Features.StudioOne.KeySwitches.Contracts.ExportFailureReason;
 
-namespace ArtiCluster.Applications.Services.LocalFileConversions.Strategies;
+namespace ArtiCluster.Applications.Services.Local.Strategies;
 
-public sealed class CubaseLocalFileExportStrategy : ILocalFileExportStrategy<SeparatedArticulationGroupSet>
+public sealed class StudioOneLocalFileExportStrategy : ILocalFileExportStrategy<UniversalDefinition>
 {
     public async Task<Result<Unit, ExportFailureReason>> ExportAsync(
         ITextContentWriter writer,
-        SeparatedArticulationGroupSet source,
+        UniversalDefinition source,
         CancellationToken cancellationToken = default )
     {
-        var facade = new CubaseDefinitionFacade();
+        var facade = new StudioOneDefinitionFacade();
 
         var exportResult = await facade.ExportAsync( writer, source, cancellationToken );
 

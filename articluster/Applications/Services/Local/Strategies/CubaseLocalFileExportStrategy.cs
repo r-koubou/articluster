@@ -1,26 +1,25 @@
-using System.IO;
 using System.Threading;
 using System.Threading.Tasks;
 
 using ArtiCluster.Applications.Services.Abstractions;
-using ArtiCluster.Applications.Services.Abstractions.Strategies;
+using ArtiCluster.Applications.Services.Abstractions.Local.Strategies;
 using ArtiCluster.Commons;
-using ArtiCluster.Features.Cakewalk.ArticulationMaps.Facades;
+using ArtiCluster.Features.Cubase.ExpressionMaps.Facades;
 using ArtiCluster.Shared.Domain.UniversalDefinitions;
 using ArtiCluster.Shared.IO.Abstractions;
 
-using FacadeExportFailureReason = ArtiCluster.Features.Cakewalk.ArticulationMaps.Contracts.ExportFailureReason;
+using FacadeExportFailureReason = ArtiCluster.Features.Cubase.ExpressionMaps.Contracts.ExportFailureReason;
 
-namespace ArtiCluster.Applications.Services.LocalFileConversions.Strategies;
+namespace ArtiCluster.Applications.Services.Local.Strategies;
 
-public sealed class CakewalkLocalFileExportStrategy : ILocalFileExportStrategy<ProductSet>
+public sealed class CubaseLocalFileExportStrategy : ILocalFileExportStrategy<SeparatedArticulationGroupSet>
 {
     public async Task<Result<Unit, ExportFailureReason>> ExportAsync(
         ITextContentWriter writer,
-        ProductSet source,
+        SeparatedArticulationGroupSet source,
         CancellationToken cancellationToken = default )
     {
-        var facade = new CakewalkDefinitionFacade();
+        var facade = new CubaseDefinitionFacade();
 
         var exportResult = await facade.ExportAsync( writer, source, cancellationToken );
 

@@ -5,14 +5,14 @@ using System.Threading;
 using System.Threading.Tasks;
 
 using ArtiCluster.Applications.Services.Abstractions;
-using ArtiCluster.Applications.Services.Abstractions.Strategies;
-using ArtiCluster.Applications.Services.LocalFileConversions.Strategies;
+using ArtiCluster.Applications.Services.Abstractions.Local.Executors;
+using ArtiCluster.Applications.Services.Abstractions.Local.Strategies;
 using ArtiCluster.Commons;
 using ArtiCluster.Shared.IO.Local;
 
 using Microsoft.Extensions.Logging;
 
-namespace ArtiCluster.Applications.Services.LocalFileConversions.Executors;
+namespace ArtiCluster.Applications.Services.Local.Executors;
 
 public sealed partial class LocalFileExportExecutor<TSource> : ILocalFileExportExecutor<TSource>
 {

@@ -1,9 +1,9 @@
 using System.IO;
 
-using ArtiCluster.Applications.Services.Abstractions.Strategies;
+using ArtiCluster.Applications.Services.Abstractions.Local.Strategies;
 using ArtiCluster.Shared.Domain.UniversalDefinitions.Model;
 
-namespace ArtiCluster.Applications.Services.LocalFileConversions.Strategies;
+namespace ArtiCluster.Applications.Services.Local.Strategies;
 
 public sealed class StudioOneLocalOutputNamingStrategy
     : ILocalOutputNamingStrategy<UniversalDefinition>
