@@ -1,31 +1,25 @@
-using System.IO;
 using System.Threading;
 using System.Threading.Tasks;
 
 using ArtiCluster.Applications.Services.Abstractions;
+using ArtiCluster.Applications.Services.Abstractions.Local.Strategies;
 using ArtiCluster.Commons;
-using ArtiCluster.Features.Logic.Articulations.Facades;
-using ArtiCluster.Shared.Domain.UniversalDefinitions.Model;
+using ArtiCluster.Features.Cubase.ExpressionMaps.Facades;
+using ArtiCluster.Shared.Domain.UniversalDefinitions;
 using ArtiCluster.Shared.IO.Abstractions;
 
-using FacadeExportFailureReason = ArtiCluster.Features.Logic.Articulations.Contracts.ExportFailureReason;
+using FacadeExportFailureReason = ArtiCluster.Features.Cubase.ExpressionMaps.Contracts.ExportFailureReason;
 
-namespace ArtiCluster.Applications.Services.LocalFileConversions.Strategies;
+namespace ArtiCluster.Applications.Services.Local.Strategies;
 
-public sealed class LogicLocalFileExportStrategy : ILocalFileExportStrategy<UniversalDefinition>
+public sealed class CubaseLocalFileExportStrategy : ILocalFileExportStrategy<SeparatedArticulationGroupSet>
 {
-    public string GetOutputDirectory( string baseDirectory, UniversalDefinition source )
-        => Path.Combine( baseDirectory, "Logic", source.ManufacturerName.Value, source.ProductName.Value );
-
-    public string GetExportFileName( UniversalDefinition source )
-        => source.PatchName.Value + ".plist";
-
     public async Task<Result<Unit, ExportFailureReason>> ExportAsync(
         ITextContentWriter writer,
-        UniversalDefinition source,
+        SeparatedArticulationGroupSet source,
         CancellationToken cancellationToken = default )
     {
-        var facade = new LogicDefinitionFacade();
+        var facade = new CubaseDefinitionFacade();
 
         var exportResult = await facade.ExportAsync( writer, source, cancellationToken );
 

@@ -5,20 +5,19 @@ using System.Threading.Tasks;
 using ArtiCluster.Commons;
 using ArtiCluster.Shared.Domain.UniversalDefinitions.Model;
 
-namespace ArtiCluster.Applications.Services.Abstractions;
+namespace ArtiCluster.Applications.Services.Abstractions.Local;
 
-public enum ConvertFailureReason
+public enum GenerateFailureReason
 {
-    SerializationError,
     IoError,
     OtherError
 }
 
-public interface ILocalFileConversionService
+public interface ILocalFileMarkdownGenerationService
 {
     string TargetDawName { get; }
 
-    Task<Result<Unit, ConvertFailureReason>> ConvertAsync(
+    Task<Result<Unit, ConvertFailureReason>> GenerateAsync(
         string outputBaseDirectory,
         IReadOnlyCollection<UniversalDefinition> definitions,
         CancellationToken cancellationToken = default

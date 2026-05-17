@@ -5,6 +5,7 @@ using System.Threading;
 using System.Threading.Tasks;
 
 using ArtiCluster.Applications.Services.Abstractions;
+using ArtiCluster.Applications.Services.Abstractions.Local;
 using ArtiCluster.Commons;
 using ArtiCluster.Features.UniversalDefinitions.Facades;
 using ArtiCluster.Shared.Domain.UniversalDefinitions.Model;
@@ -15,7 +16,7 @@ using Microsoft.Extensions.Logging;
 using FacadeImportFailureReason = ArtiCluster.Features.UniversalDefinitions.Contracts.ImportFailureReason;
 using FacadeExportFailureReason = ArtiCluster.Features.UniversalDefinitions.Contracts.ExportFailureReason;
 
-namespace ArtiCluster.Applications.Services;
+namespace ArtiCluster.Applications.Services.Local;
 
 public sealed partial class UniversalDefinitionLocalFileService : IUniversalDefinitionLocalFileService
 {

@@ -1,31 +1,25 @@
-using System.IO;
 using System.Threading;
 using System.Threading.Tasks;
 
 using ArtiCluster.Applications.Services.Abstractions;
+using ArtiCluster.Applications.Services.Abstractions.Local.Strategies;
 using ArtiCluster.Commons;
-using ArtiCluster.Features.Cakewalk.ArticulationMaps.Facades;
-using ArtiCluster.Shared.Domain.UniversalDefinitions;
+using ArtiCluster.Features.Logic.Articulations.Facades;
+using ArtiCluster.Shared.Domain.UniversalDefinitions.Model;
 using ArtiCluster.Shared.IO.Abstractions;
 
-using FacadeExportFailureReason = ArtiCluster.Features.Cakewalk.ArticulationMaps.Contracts.ExportFailureReason;
+using FacadeExportFailureReason = ArtiCluster.Features.Logic.Articulations.Contracts.ExportFailureReason;
 
-namespace ArtiCluster.Applications.Services.LocalFileConversions.Strategies;
+namespace ArtiCluster.Applications.Services.Local.Strategies;
 
-public sealed class CakewalkLocalFileExportStrategy : ILocalFileExportStrategy<ProductSet>
+public sealed class LogicLocalFileExportStrategy : ILocalFileExportStrategy<UniversalDefinition>
 {
-    public string GetOutputDirectory( string baseDirectory, ProductSet source )
-        => Path.Combine( baseDirectory, "Cakewalk", source.ManufacturerName.Value );
-
-    public string GetExportFileName( ProductSet source )
-        => source.ProductName.Value + ".artmap";
-
     public async Task<Result<Unit, ExportFailureReason>> ExportAsync(
         ITextContentWriter writer,
-        ProductSet source,
+        UniversalDefinition source,
         CancellationToken cancellationToken = default )
     {
-        var facade = new CakewalkDefinitionFacade();
+        var facade = new LogicDefinitionFacade();
 
         var exportResult = await facade.ExportAsync( writer, source, cancellationToken );
 

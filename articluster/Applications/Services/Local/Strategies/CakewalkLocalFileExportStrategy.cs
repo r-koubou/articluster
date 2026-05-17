@@ -1,31 +1,25 @@
-using System.IO;
 using System.Threading;
 using System.Threading.Tasks;
 
 using ArtiCluster.Applications.Services.Abstractions;
+using ArtiCluster.Applications.Services.Abstractions.Local.Strategies;
 using ArtiCluster.Commons;
-using ArtiCluster.Features.StudioOne.KeySwitches.Facades;
-using ArtiCluster.Shared.Domain.UniversalDefinitions.Model;
+using ArtiCluster.Features.Cakewalk.ArticulationMaps.Facades;
+using ArtiCluster.Shared.Domain.UniversalDefinitions;
 using ArtiCluster.Shared.IO.Abstractions;
 
-using FacadeExportFailureReason = ArtiCluster.Features.StudioOne.KeySwitches.Contracts.ExportFailureReason;
+using FacadeExportFailureReason = ArtiCluster.Features.Cakewalk.ArticulationMaps.Contracts.ExportFailureReason;
 
-namespace ArtiCluster.Applications.Services.LocalFileConversions.Strategies;
+namespace ArtiCluster.Applications.Services.Local.Strategies;
 
-public sealed class StudioOneLocalFileExportStrategy : ILocalFileExportStrategy<UniversalDefinition>
+public sealed class CakewalkLocalFileExportStrategy : ILocalFileExportStrategy<ProductSet>
 {
-    public string GetOutputDirectory( string baseDirectory, UniversalDefinition source )
-        => Path.Combine( baseDirectory, "StudioOne", source.ManufacturerName.Value, source.ProductName.Value );
-
-    public string GetExportFileName( UniversalDefinition source )
-        => source.PatchName.Value + ".keyswitch";
-
     public async Task<Result<Unit, ExportFailureReason>> ExportAsync(
         ITextContentWriter writer,
-        UniversalDefinition source,
+        ProductSet source,
         CancellationToken cancellationToken = default )
     {
-        var facade = new StudioOneDefinitionFacade();
+        var facade = new CakewalkDefinitionFacade();
 
         var exportResult = await facade.ExportAsync( writer, source, cancellationToken );
 

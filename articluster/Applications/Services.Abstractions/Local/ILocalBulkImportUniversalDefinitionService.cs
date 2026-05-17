@@ -4,7 +4,7 @@ using System.Threading.Tasks;
 using ArtiCluster.Commons;
 using ArtiCluster.Shared.Domain.UniversalDefinitions;
 
-namespace ArtiCluster.Applications.Services.Abstractions;
+namespace ArtiCluster.Applications.Services.Abstractions.Local;
 
 public interface ILocalBulkImportUniversalDefinitionService
 {
