@@ -1,0 +1,22 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <LangVersion>default</LangVersion>
+        <TargetFramework>net10.0</TargetFramework>
+        <Nullable>enable</Nullable>
+        <Copyright>R-Koubou</Copyright>
+        <Company>R-Koubou</Company>
+        <Product>ArtiCluster.Features.Cubase.ExpressionMaps15.Facades</Product>
+        <AssemblyName>ArtiCluster.Features.Cubase.ExpressionMaps15.Facades</AssemblyName>
+        <RootNamespace>ArtiCluster.Features.Cubase.ExpressionMaps15.Facades</RootNamespace>
+    </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\..\Commons\Commons\Commons.csproj" />
+    <ProjectReference Include="..\..\..\..\Shared\Shared.IO.Abstractions\Shared.IO.Abstractions.csproj" />
+    <ProjectReference Include="..\..\..\..\Shared\Shared\Shared.csproj" />
+    <ProjectReference Include="..\Contracts\Cubase.ExpressionMaps15.Contracts.csproj" />
+    <ProjectReference Include="..\Exports\Cubase.ExpressionMaps15.Exports.csproj" />
+  </ItemGroup>
+
+</Project>

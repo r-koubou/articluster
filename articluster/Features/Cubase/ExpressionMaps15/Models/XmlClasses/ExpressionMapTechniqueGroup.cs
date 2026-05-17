@@ -1,6 +1,6 @@
 using ArtiCluster.Shared.Domain.UniversalDefinitions.Model;
 
-namespace ArtiCluster.Features.Cubase.ExpressionMaps.Models.XmlClasses
+namespace ArtiCluster.Features.Cubase.ExpressionMaps15.Models.XmlClasses
 {
     /// <summary>
     /// Grouping Articulation Data

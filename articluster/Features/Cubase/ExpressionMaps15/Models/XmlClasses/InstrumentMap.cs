@@ -1,4 +1,4 @@
-namespace ArtiCluster.Features.Cubase.ExpressionMaps.Models.XmlClasses
+namespace ArtiCluster.Features.Cubase.ExpressionMaps15.Models.XmlClasses
 {
     public static class InstrumentMap
     {
@@ -58,6 +58,20 @@ namespace ArtiCluster.Features.Cubase.ExpressionMaps.Models.XmlClasses
             listOfPSoundSlot.Name = "obj";
             listOfPSoundSlot.Type = "obj";
             member.List.Add( listOfPSoundSlot );
+
+            return member;
+        }
+
+        /// <remarks>
+        /// Added in Cubase 15
+        /// </remarks>
+        public static MemberElement TechniqueGroups( ListElement listOfTechniqueGroups )
+        {
+            var member = new MemberElement( "techniqueGroups" );
+
+            listOfTechniqueGroups.Name = "obj";
+            listOfTechniqueGroups.Type = "obj";
+            member.List.Add( listOfTechniqueGroups );
 
             return member;
         }

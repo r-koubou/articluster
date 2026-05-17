@@ -2,15 +2,15 @@ using System;
 using System.Collections.Generic;
 
 using ArtiCluster.Commons;
-using ArtiCluster.Features.Cubase.ExpressionMaps.Contracts;
-using ArtiCluster.Features.Cubase.ExpressionMaps.Models;
-using ArtiCluster.Features.Cubase.ExpressionMaps.Models.XmlClasses;
+using ArtiCluster.Features.Cubase.ExpressionMaps15.Contracts;
+using ArtiCluster.Features.Cubase.ExpressionMaps15.Models;
+using ArtiCluster.Features.Cubase.ExpressionMaps15.Models.XmlClasses;
 using ArtiCluster.Shared.Domain.MidiMessages.Model.Values;
 using ArtiCluster.Shared.Domain.UniversalDefinitions.Model;
 
-namespace ArtiCluster.Features.Cubase.ExpressionMaps.Mappers;
+namespace ArtiCluster.Features.Cubase.ExpressionMaps15.Mappers;
 
-public sealed class Cubase15ModelMapper
+public sealed class CubaseModelMapper
 {
     public Result<RootElement, ExportFailureReason> Map( UniversalDefinition source )
     {

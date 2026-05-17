@@ -4,11 +4,11 @@ using System.Threading.Tasks;
 
 using ArtiCluster.Applications.Services.Abstractions;
 using ArtiCluster.Commons;
-using ArtiCluster.Features.Cubase.ExpressionMaps.Facades;
+using ArtiCluster.Features.Cubase.ExpressionMaps15.Facades;
 using ArtiCluster.Shared.Domain.UniversalDefinitions.Model;
 using ArtiCluster.Shared.IO.Abstractions;
 
-using FacadeExportFailureReason = ArtiCluster.Features.Cubase.ExpressionMaps.Contracts.ExportFailureReason;
+using FacadeExportFailureReason = ArtiCluster.Features.Cubase.ExpressionMaps15.Contracts.ExportFailureReason;
 
 namespace ArtiCluster.Applications.Services.LocalFileConversions.Strategies;
 
@@ -25,7 +25,7 @@ public sealed class Cubase15LocalFileExportStrategy : ILocalFileExportStrategy<U
         UniversalDefinition source,
         CancellationToken cancellationToken = default )
     {
-        var facade = new Cubase15DefinitionFacade();
+        var facade = new CubaseDefinitionFacade();
 
         var exportResult = await facade.ExportAsync( writer, source, cancellationToken );
 

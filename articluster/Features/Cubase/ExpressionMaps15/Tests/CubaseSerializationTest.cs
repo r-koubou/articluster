@@ -7,21 +7,21 @@ using System.Xml.Serialization;
 
 using ArtiCluster.Commons.IO;
 using ArtiCluster.Commons.Text;
-using ArtiCluster.Features.Cubase.ExpressionMaps.Exports;
-using ArtiCluster.Features.Cubase.ExpressionMaps.Mappers;
-using ArtiCluster.Features.Cubase.ExpressionMaps.Models;
+using ArtiCluster.Features.Cubase.ExpressionMaps15.Exports;
+using ArtiCluster.Features.Cubase.ExpressionMaps15.Mappers;
+using ArtiCluster.Features.Cubase.ExpressionMaps15.Models;
 using ArtiCluster.Shared.IO.Local;
 using ArtiCluster.Shared.Mock;
 
 using NUnit.Framework;
 
-namespace ArtiCluster.Features.Cubase.ExpressionMaps.Tests;
+namespace ArtiCluster.Features.Cubase.ExpressionMaps15.Tests;
 
 /// <summary>
 /// Unit Test for Cubase 15 and later
 /// </summary>
 [TestFixture]
-public class Cubase15SerializationTest
+public class CubaseSerializationTest
 {
     [Test]
     public void SerializeTest()
@@ -29,7 +29,7 @@ public class Cubase15SerializationTest
         var id = Guid.NewGuid();
         var source = MockUniversalDefinition.CreateDefinition( id, patchName: "Epic Lead" );
 
-        var mapResult = new Cubase15ModelMapper().Map( source );
+        var mapResult = new CubaseModelMapper().Map( source );
 
         Assert.That( mapResult.IsSuccess, Is.True, "Mapping should succeed" );
 
@@ -59,7 +59,7 @@ public class Cubase15SerializationTest
         var id = Guid.NewGuid();
         var source = MockUniversalDefinition.CreateDefinition( id, patchName: "Epic Lead" );
 
-        var mapResult = new Cubase15ModelMapper().Map( source );
+        var mapResult = new CubaseModelMapper().Map( source );
 
         Assert.That( mapResult.IsSuccess, Is.True, "Mapping should succeed" );
 
@@ -70,7 +70,7 @@ public class Cubase15SerializationTest
         {
             await using( var fileWriter = new LocalTextContentWriter( dest ) )
             {
-                var exporter = new Cubase15Exporter();
+                var exporter = new CubaseExporter();
 
                 var result = await exporter.ExportAsync( fileWriter, source );
                 Assert.That( result.IsSuccess, Is.True, $"Export should succeed." );
@@ -90,7 +90,7 @@ public class Cubase15SerializationTest
         var id = Guid.NewGuid();
         var source = MockUniversalDefinition.CreateMultiArticulationGroupDefinition( id, patchName: "Epic Lead" );
 
-        var mapResult = new Cubase15ModelMapper().Map( source );
+        var mapResult = new CubaseModelMapper().Map( source );
 
         Assert.That( mapResult.IsSuccess, Is.True, "Mapping should succeed" );
 
@@ -109,7 +109,7 @@ public class Cubase15SerializationTest
         {
             await using( var fileWriter = new LocalTextContentWriter( dest ) )
             {
-                var exporter = new Cubase15Exporter();
+                var exporter = new CubaseExporter();
 
                 var result = await exporter.ExportAsync( fileWriter, source );
                 Assert.That( result.IsSuccess, Is.True, $"Export should succeed." );

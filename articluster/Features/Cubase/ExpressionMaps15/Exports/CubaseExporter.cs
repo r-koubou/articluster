@@ -8,13 +8,13 @@ using System.Xml.Serialization;
 using ArtiCluster.Commons;
 using ArtiCluster.Commons.IO;
 using ArtiCluster.Commons.Text;
-using ArtiCluster.Features.Cubase.ExpressionMaps.Contracts;
-using ArtiCluster.Features.Cubase.ExpressionMaps.Mappers;
-using ArtiCluster.Features.Cubase.ExpressionMaps.Models;
+using ArtiCluster.Features.Cubase.ExpressionMaps15.Contracts;
+using ArtiCluster.Features.Cubase.ExpressionMaps15.Mappers;
+using ArtiCluster.Features.Cubase.ExpressionMaps15.Models;
 using ArtiCluster.Shared.Domain.UniversalDefinitions.Model;
 using ArtiCluster.Shared.IO.Abstractions;
 
-namespace ArtiCluster.Features.Cubase.ExpressionMaps.Exports;
+namespace ArtiCluster.Features.Cubase.ExpressionMaps15.Exports;
 
 /// <summary>
 /// Exporter for Cubase 15 and later
@@ -22,13 +22,13 @@ namespace ArtiCluster.Features.Cubase.ExpressionMaps.Exports;
 /// <remarks>
 /// Supports techniqueGroups
 /// </remarks>
-public sealed class Cubase15Exporter
+public sealed class CubaseExporter
 {
     public async Task<Result<Unit, ExportFailureReason>> ExportAsync( ITextContentWriter writer, UniversalDefinition source, CancellationToken cancellationToken = default )
     {
         try
         {
-            var mapResult = new Cubase15ModelMapper().Map( source );
+            var mapResult = new CubaseModelMapper().Map( source );
 
             if( mapResult.IsFailure )
             {
