@@ -30,8 +30,17 @@ namespace ArtiCluster.Features.Cubase.ExpressionMaps.Models.XmlClasses
             </member>
             */
             var obj = new ObjectElement( "ExpressionMapTechniqueGroup" );
-            obj.String.Add( new StringElement( "name", groupName ) );
-            obj.String.Add( new StringElement( "value", "" ) );
+            obj.String.Add( new StringElement( "name", groupName )
+                {
+                    WideSpecified = false
+                }
+            );
+
+            obj.String.Add( new StringElement( "value", "" )
+                {
+                    WideSpecified = false
+                }
+            );
 
             return obj;
 

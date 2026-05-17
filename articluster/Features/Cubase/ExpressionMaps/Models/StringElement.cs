@@ -1,3 +1,4 @@
+using System;
 using System.Xml.Serialization;
 
 namespace ArtiCluster.Features.Cubase.ExpressionMaps.Models
@@ -13,6 +14,9 @@ namespace ArtiCluster.Features.Cubase.ExpressionMaps.Models
 
         [XmlAttribute( AttributeName = "wide" )]
         public bool Wide { get; set; } = true;
+
+        [XmlIgnore]
+        public bool WideSpecified { get; set; } = true;
 
         public StringElement() {}
 
