@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Xml.Serialization;
 
-namespace ArtiCluster.Features.Cubase15.ExpressionMaps.Models;
+namespace ArtiCluster.Features.Cubase15.ExpressionMaps.Models.XMLElements;
 
 [XmlRoot( ElementName = "obj" )]
 public class ObjectElement

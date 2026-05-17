@@ -1,8 +1,7 @@
 using System.Collections.Generic;
-using System.Diagnostics.CodeAnalysis;
 using System.Xml.Serialization;
 
-namespace ArtiCluster.Features.Cubase15.ExpressionMaps.Models;
+namespace ArtiCluster.Features.Cubase15.ExpressionMaps.Models.XMLElements;
 
 [XmlRoot( ElementName = "member" )]
 public class MemberElement
@@ -25,7 +24,6 @@ public class MemberElement
     [XmlElement( ElementName = "list" )]
     public List<ListElement> List { get; set; } = [ ];
 
-    [SuppressMessage( "ReSharper", "UnusedMember.Global" )]
     public MemberElement() {}
 
     public MemberElement( string name )

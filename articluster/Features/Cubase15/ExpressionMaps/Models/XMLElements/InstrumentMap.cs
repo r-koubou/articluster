@@ -1,4 +1,4 @@
-namespace ArtiCluster.Features.Cubase15.ExpressionMaps.Models.XmlClasses;
+namespace ArtiCluster.Features.Cubase15.ExpressionMaps.Models.XMLElements;
 
 public static class InstrumentMap
 {
@@ -9,7 +9,7 @@ public static class InstrumentMap
         var controller = new MemberElement( "controller" );
         controller.Int.Add( new IntElement( "ownership", 1 ) );
 
-        obj.Member.Add( controller );
+        obj.Members.Add( controller );
 
         return obj;
     }

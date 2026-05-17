@@ -1,5 +1,7 @@
 using System.Collections.Generic;
 
+using ArtiCluster.Features.Cubase15.ExpressionMaps.Models.XMLElements;
+
 namespace ArtiCluster.Features.Cubase15.ExpressionMaps.Models.XmlClasses;
 
 public static class PSoundSlot
