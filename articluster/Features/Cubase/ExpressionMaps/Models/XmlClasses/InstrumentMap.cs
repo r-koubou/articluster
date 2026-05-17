@@ -61,5 +61,19 @@ namespace ArtiCluster.Features.Cubase.ExpressionMaps.Models.XmlClasses
 
             return member;
         }
+
+        /// <remarks>
+        /// Added in Cubase 15
+        /// </remarks>
+        public static MemberElement TechniqueGroups( ListElement listOfTechniqueGroups )
+        {
+            var member = new MemberElement( "techniqueGroups" );
+
+            listOfTechniqueGroups.Name = "obj";
+            listOfTechniqueGroups.Type = "obj";
+            member.List.Add( listOfTechniqueGroups );
+
+            return member;
+        }
     }
 }
