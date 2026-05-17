@@ -4,11 +4,11 @@ using System.Threading.Tasks;
 
 using ArtiCluster.Applications.Services.Abstractions;
 using ArtiCluster.Commons;
-using ArtiCluster.Features.Cubase.ExpressionMaps15.Facades;
+using ArtiCluster.Features.Cubase15.ExpressionMaps.Facades;
 using ArtiCluster.Shared.Domain.UniversalDefinitions.Model;
 using ArtiCluster.Shared.IO.Abstractions;
 
-using FacadeExportFailureReason = ArtiCluster.Features.Cubase.ExpressionMaps15.Contracts.ExportFailureReason;
+using FacadeExportFailureReason = ArtiCluster.Features.Cubase15.ExpressionMaps.Contracts.ExportFailureReason;
 
 namespace ArtiCluster.Applications.Services.LocalFileConversions.Strategies;
 

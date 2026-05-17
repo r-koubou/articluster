@@ -28,13 +28,13 @@
     <Project Path="Features/Cubase/ExpressionMaps/Models/Cubase.ExpressionMaps.Models.csproj" />
     <Project Path="Features/Cubase/ExpressionMaps/Tests/Cubase.ExpressionMaps.Tests.csproj" />
   </Folder>
-  <Folder Name="/Features/Cubase15.ExpressionMaps/">
-    <Project Path="Features/Cubase/ExpressionMaps15/Contracts/Cubase.ExpressionMaps15.Contracts.csproj" />
-    <Project Path="Features/Cubase/ExpressionMaps15/Exports/Cubase.ExpressionMaps15.Exports.csproj" />
-    <Project Path="Features/Cubase/ExpressionMaps15/Facades/Cubase.ExpressionMaps15.Facades.csproj" />
-    <Project Path="Features/Cubase/ExpressionMaps15/Mappers/Cubase.ExpressionMaps15.Mappers.csproj" />
-    <Project Path="Features/Cubase/ExpressionMaps15/Models/Cubase.ExpressionMaps15.Models.csproj" />
-    <Project Path="Features/Cubase/ExpressionMaps15/Tests/Cubase.ExpressionMaps15.Tests.csproj" />
+  <Folder Name="/Features/Cubase15.ExpressionMaps_New/">
+    <Project Path="Features/Cubase15/ExpressionMaps/Contracts/Cubase15.ExpressionMaps.Contracts.csproj" />
+    <Project Path="Features/Cubase15/ExpressionMaps/Exports/Cubase15.ExpressionMaps.Exports.csproj" />
+    <Project Path="Features/Cubase15/ExpressionMaps/Facades/Cubase15.ExpressionMaps.Facades.csproj" />
+    <Project Path="Features/Cubase15/ExpressionMaps/Mappers/Cubase15.ExpressionMaps.Mappers.csproj" />
+    <Project Path="Features/Cubase15/ExpressionMaps/Models/Cubase15.ExpressionMaps.Models.csproj" />
+    <Project Path="Features/Cubase15/ExpressionMaps/Tests/Cubase15.ExpressionMaps.Tests.csproj" />
   </Folder>
   <Folder Name="/Features/Logic.Articulations/">
     <Project Path="Features/Logic/Articulations/Contracts/Logic.Articulations.Contracts.csproj" />

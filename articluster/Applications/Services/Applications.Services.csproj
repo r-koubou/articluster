@@ -15,7 +15,7 @@
     <ProjectReference Include="..\..\Commons\Commons\Commons.csproj"/>
     <ProjectReference Include="..\..\Features\Cakewalk\ArticulationMaps\Facades\Cakewalk.ArticulationMaps.Facades.csproj"/>
     <ProjectReference Include="..\..\Features\Cubase\ExpressionMaps\Facades\Cubase.ExpressionMaps.Facades.csproj" />
-    <ProjectReference Include="..\..\Features\Cubase\ExpressionMaps15\Facades\Cubase.ExpressionMaps15.Facades.csproj" />
+    <ProjectReference Include="..\..\Features\Cubase15\ExpressionMaps\Facades\Cubase15.ExpressionMaps.Facades.csproj" />
     <ProjectReference Include="..\..\Features\Logic\Articulations\Contracts\Logic.Articulations.Contracts.csproj" />
     <ProjectReference Include="..\..\Features\Logic\Articulations\Facades\Logic.Articulations.Facades.csproj" />
     <ProjectReference Include="..\..\Features\StudioOne\KeySwitches\Facades\StudioOne.KeySwitches.Facades.csproj" />
