@@ -3,6 +3,7 @@ using System.Threading;
 using System.Threading.Tasks;
 
 using ArtiCluster.Applications.Services.Abstractions;
+using ArtiCluster.Applications.Services.Abstractions.Strategies;
 using ArtiCluster.Commons;
 using ArtiCluster.Features.Cubase.ExpressionMaps.Facades;
 using ArtiCluster.Shared.Domain.UniversalDefinitions;
@@ -14,12 +15,6 @@ namespace ArtiCluster.Applications.Services.LocalFileConversions.Strategies;
 
 public sealed class CubaseLocalFileExportStrategy : ILocalFileExportStrategy<SeparatedArticulationGroupSet>
 {
-    public string GetOutputDirectory( string baseDirectory, SeparatedArticulationGroupSet source )
-        => Path.Combine( baseDirectory, "Cubase", source.ManufacturerName.Value, source.ProductName.Value, source.PatchName.Value );
-
-    public string GetExportFileName( SeparatedArticulationGroupSet source )
-        => $"{source.ArticulationGroupName.Value}.expressionmap";
-
     public async Task<Result<Unit, ExportFailureReason>> ExportAsync(
         ITextContentWriter writer,
         SeparatedArticulationGroupSet source,

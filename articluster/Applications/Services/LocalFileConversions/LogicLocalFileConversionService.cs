@@ -31,11 +31,13 @@ public sealed class LogicLocalFileConversionService : ILocalFileConversionServic
         CancellationToken cancellationToken = default )
     {
         var runner = new LocalFileConversionRunner( loggerFactory );
+        var namingStrategy = new LogicLocalOutputNamingStrategy();
         var strategy = new LogicLocalFileExportStrategy();
 
         return await runner.RunAsync(
             outputBaseDirectory,
             definitions,
+            namingStrategy,
             strategy,
             cancellationToken
         );

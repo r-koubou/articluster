@@ -3,6 +3,7 @@ using System.Threading;
 using System.Threading.Tasks;
 
 using ArtiCluster.Applications.Services.Abstractions;
+using ArtiCluster.Applications.Services.Abstractions.Strategies;
 using ArtiCluster.Applications.Services.LocalFileConversions.Executors;
 using ArtiCluster.Applications.Services.LocalFileConversions.Strategies;
 using ArtiCluster.Commons;
@@ -24,6 +25,7 @@ public sealed class LocalFileConversionRunner : ILocalFileConversionRunner
     public async Task<Result<Unit, ConvertFailureReason>> RunAsync<TSource>(
         string outputBaseDirectory,
         IEnumerable<TSource> sources,
+        ILocalOutputNamingStrategy<TSource> namingStrategy,
         ILocalFileExportStrategy<TSource> strategy,
         CancellationToken cancellationToken = default )
     {
@@ -31,7 +33,13 @@ public sealed class LocalFileConversionRunner : ILocalFileConversionRunner
 
         foreach( var x in sources )
         {
-            var result = await executor.ExecuteAsync( outputBaseDirectory, [ x ], strategy, cancellationToken );
+            var result = await executor.ExecuteAsync(
+                outputBaseDirectory,
+                [ x ],
+                namingStrategy,
+                strategy,
+                cancellationToken
+            );
 
             if( result.IsFailure )
             {

@@ -5,6 +5,7 @@ using System.Threading;
 using System.Threading.Tasks;
 
 using ArtiCluster.Applications.Services.Abstractions;
+using ArtiCluster.Applications.Services.Abstractions.Strategies;
 using ArtiCluster.Applications.Services.LocalFileConversions.Strategies;
 using ArtiCluster.Commons;
 using ArtiCluster.Shared.IO.Local;
@@ -26,13 +27,14 @@ public sealed partial class LocalFileExportExecutor<TSource> : ILocalFileExportE
     public async Task<Result<Unit, ExportFailureReason>> ExecuteAsync(
         string baseOutputDirectory,
         IEnumerable<TSource> sources,
+        ILocalOutputNamingStrategy<TSource> outputNamingStrategy,
         ILocalFileExportStrategy<TSource> exportStrategy,
         CancellationToken cancellationToken = default )
     {
         foreach( var x in sources )
         {
-            var outputDirectory = exportStrategy.GetOutputDirectory( baseOutputDirectory, x );
-            var outputPath = Path.Combine( outputDirectory, exportStrategy.GetExportFileName( x ) );
+            var outputDirectory = outputNamingStrategy.GetOutputDirectory( baseOutputDirectory, x );
+            var outputPath = Path.Combine( outputDirectory, outputNamingStrategy.GetOutputFileName( x ) );
 
             LogExportingToOutputPath( outputPath );
 

@@ -3,6 +3,7 @@ using System.Threading;
 using System.Threading.Tasks;
 
 using ArtiCluster.Applications.Services.Abstractions;
+using ArtiCluster.Applications.Services.Abstractions.Strategies;
 using ArtiCluster.Commons;
 using ArtiCluster.Features.Cakewalk.ArticulationMaps.Facades;
 using ArtiCluster.Shared.Domain.UniversalDefinitions;
@@ -14,12 +15,6 @@ namespace ArtiCluster.Applications.Services.LocalFileConversions.Strategies;
 
 public sealed class CakewalkLocalFileExportStrategy : ILocalFileExportStrategy<ProductSet>
 {
-    public string GetOutputDirectory( string baseDirectory, ProductSet source )
-        => Path.Combine( baseDirectory, "Cakewalk", source.ManufacturerName.Value );
-
-    public string GetExportFileName( ProductSet source )
-        => source.ProductName.Value + ".artmap";
-
     public async Task<Result<Unit, ExportFailureReason>> ExportAsync(
         ITextContentWriter writer,
         ProductSet source,

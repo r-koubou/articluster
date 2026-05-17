@@ -32,12 +32,14 @@ public sealed class CubaseLocalFileConversionService : ILocalFileConversionServi
         CancellationToken cancellationToken = default )
     {
         var runner = new LocalFileConversionRunner( loggerFactory );
+        var namingStrategy = new CubaseLocalOutputNamingStrategy();
         var strategy = new CubaseLocalFileExportStrategy();
         var collection = new SeparatedArticulationGroupCollection( definitions );
 
         return await runner.RunAsync(
             outputBaseDirectory,
             collection.Items,
+            namingStrategy,
             strategy,
             cancellationToken
         );

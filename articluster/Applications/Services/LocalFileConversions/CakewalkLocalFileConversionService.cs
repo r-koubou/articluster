@@ -32,12 +32,14 @@ public sealed class CakewalkLocalFileConversionService : ILocalFileConversionSer
         CancellationToken cancellationToken = default )
     {
         var runner = new LocalFileConversionRunner( loggerFactory );
+        var namingStrategy = new CakewalkLocalOutputNamingStrategy();
         var strategy = new CakewalkLocalFileExportStrategy();
         var collection = new ProductCollection( definitions );
 
         return await runner.RunAsync(
             outputBaseDirectory,
             collection.Items,
+            namingStrategy,
             strategy,
             cancellationToken
         );

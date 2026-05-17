@@ -3,6 +3,9 @@
     <Project Path="Applications/Services/Applications.Services.csproj" />
     <Project Path="Applications/Services.Abstractions/Applications.Services.Abstractions.csproj" />
   </Folder>
+  <Folder Name="/Applications/CLI.Markdown/">
+    <Project Path="Applications/Cli.Markdown/Applications.Cli.Markdown.csproj" />
+  </Folder>
   <Folder Name="/Applications/CLI/">
     <Project Path="Applications/Cli.Tests/Applications.Cli.Tests.csproj" />
     <Project Path="Applications/Cli/Applications.Cli.csproj" />

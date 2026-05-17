@@ -31,11 +31,13 @@ public sealed class StudioOneLocalFileConversionService : ILocalFileConversionSe
         CancellationToken cancellationToken = default )
     {
         var runner = new LocalFileConversionRunner( loggerFactory );
+        var namingStrategy = new StudioOneLocalOutputNamingStrategy();
         var strategy = new StudioOneLocalFileExportStrategy();
 
         return await runner.RunAsync(
             outputBaseDirectory,
             definitions,
+            namingStrategy,
             strategy,
             cancellationToken
         );
