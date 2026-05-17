@@ -96,11 +96,11 @@ public class CubaseSerializationTest
         Assert.That( mapResult.IsSuccess, Is.True, "Mapping should succeed" );
 
         var xmlModel = mapResult.Unwrap();
-        var hasTechniqueGroups = xmlModel.Members.Exists( m => m.Name == "techniqueGroups" );
+        var hasTechniqueGroups = xmlModel.Member.Exists( m => m.Name == "techniqueGroups" );
 
         Assert.That( hasTechniqueGroups, Is.True, "Model should contain techniqueGroups" );
 
-        var techniqueGroups = xmlModel.Members.Single( m => m.Name == "techniqueGroups" );
+        var techniqueGroups = xmlModel.Member.Single( m => m.Name == "techniqueGroups" );
         Assert.That( techniqueGroups.List.Count, Is.EqualTo( 1 ) );
         Assert.That( techniqueGroups.List.First().Obj.Count, Is.EqualTo( source.ArticulationGroups.Count ) );
 

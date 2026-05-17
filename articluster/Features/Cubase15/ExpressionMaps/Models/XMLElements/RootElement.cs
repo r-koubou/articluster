@@ -7,26 +7,23 @@ namespace ArtiCluster.Features.Cubase15.ExpressionMaps.Models.XMLElements;
 public class RootElement
 {
     [XmlElement( ElementName = "string" )]
-    public StringElement Name { get; set; }
-
-    [XmlElement( ElementName = "int" )]
-    public IntElement FileVersion { get; set; } = new( "fileVersion", 2 );
+    public StringElement StringElement { get; set; }
 
     [XmlElement( ElementName = "member" )]
-    public List<MemberElement> Members { get; set; } = [ ];
+    public List<MemberElement> Member { get; set; } = [ ];
 
     public RootElement()
     {
-        Name = new StringElement( "name", string.Empty );
+        StringElement = new StringElement( "name", string.Empty );
     }
 
     public RootElement( string name )
     {
-        Name = new StringElement( "name", name );
+        StringElement = new StringElement( "name", name );
     }
 
     public RootElement( string name, IEnumerable<MemberElement> members ) : this( name )
     {
-        Members.AddRange( members );
+        Member.AddRange( members );
     }
 }

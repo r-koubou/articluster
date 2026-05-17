@@ -9,7 +9,7 @@ public static class InstrumentMap
         var controller = new MemberElement( "controller" );
         controller.Int.Add( new IntElement( "ownership", 1 ) );
 
-        obj.Members.Add( controller );
+        obj.Member.Add( controller );
 
         return obj;
     }
