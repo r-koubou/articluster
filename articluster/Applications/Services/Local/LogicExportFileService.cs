@@ -3,6 +3,8 @@ using System.Threading;
 using System.Threading.Tasks;
 
 using ArtiCluster.Applications.Services.Abstractions;
+using ArtiCluster.Applications.Services.Abstractions.Collectors;
+using ArtiCluster.Applications.Services.Abstractions.Models;
 using ArtiCluster.Applications.Services.Abstractions.Services;
 using ArtiCluster.Applications.Services.Local.Runners;
 using ArtiCluster.Applications.Services.Local.Strategies;
@@ -26,21 +28,37 @@ public sealed class LogicExportFileService : IExportFileService
         this.loggerFactory = loggerFactory;
     }
 
-    public async Task<Result<Unit, ExportFailureReason>> ExportAsync(
-        string outputBaseDirectory,
+    public async Task<Result<IReadOnlyCollection<ExportedFileEntry>, ExportFailureReason>> ExportAsync(
+        string convertedOutputDirectory,
         IReadOnlyCollection<UniversalDefinition> definitions,
         CancellationToken cancellationToken = default )
     {
         var runner = new FileExportRunner( loggerFactory );
         var namingStrategy = new LogicExportNamingStrategy();
         var strategy = new LogicFileExportStrategy();
+        var factory = new LogicExportedFileEntryFactory();
+        var collector = new InMemoryExportedFileCollector();
 
-        return await runner.RunAsync(
-            outputBaseDirectory,
+        var result = await runner.RunAsync(
+            convertedOutputDirectory,
             definitions,
             namingStrategy,
             strategy,
+            factory,
+            collector,
             cancellationToken
         );
+
+        return result.IsFailure
+            ? Result<IReadOnlyCollection<ExportedFileEntry>, ExportFailureReason>.Failure( result.Reason )
+            : Result<IReadOnlyCollection<ExportedFileEntry>, ExportFailureReason>.Success( collector.Items );
+
+        // var markdownService = new MarkdownExportIndexFileService( new MarkdownExportIndexBuilder() );
+        //
+        // return await markdownService.ExportAsync(
+        //     markdownContentOutputDirectory,
+        //     collector.Items,
+        //     cancellationToken
+        // );
     }
 }

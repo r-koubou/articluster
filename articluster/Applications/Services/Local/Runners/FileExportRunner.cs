@@ -3,6 +3,7 @@ using System.Threading;
 using System.Threading.Tasks;
 
 using ArtiCluster.Applications.Services.Abstractions;
+using ArtiCluster.Applications.Services.Abstractions.Collectors;
 using ArtiCluster.Applications.Services.Abstractions.Runners;
 using ArtiCluster.Applications.Services.Abstractions.Strategies;
 using ArtiCluster.Applications.Services.Local.Executors;
@@ -27,6 +28,8 @@ public sealed class FileExportRunner : IExportRunner
         IEnumerable<TSource> sources,
         IExportNamingStrategy<TSource> namingStrategy,
         IExportStrategy<TSource> strategy,
+        IExportedFileEntryFactory<TSource>? entryFactory = null,
+        IExportedFileCollector? collector = null,
         CancellationToken cancellationToken = default )
     {
         var executor = new FileOutputExecutor<TSource>( loggerFactory );
@@ -38,6 +41,8 @@ public sealed class FileExportRunner : IExportRunner
                 [ x ],
                 namingStrategy,
                 strategy,
+                entryFactory,
+                collector,
                 cancellationToken
             );
 

@@ -62,6 +62,11 @@ public class ConvertServiceTest
             "converted"
         );
 
+        var outputMarkdownDir = Path.Combine(
+            TestUtility.TestDataDirectoryRoot,
+            "markdown"
+        );
+
         var convertService = new CakewalkExportFileService( new Microsoft.Extensions.Logging.Abstractions.NullLoggerFactory() );
         var convertResult = await convertService.ExportAsync( outputBaseDir, definitions );
 
@@ -87,6 +92,11 @@ public class ConvertServiceTest
         var outputBaseDir = Path.Combine(
             TestUtility.TestDataDirectoryRoot,
             "converted"
+        );
+
+        var outputMarkdownDir = Path.Combine(
+            TestUtility.TestDataDirectoryRoot,
+            "markdown"
         );
 
         var convertService = new CubaseExportFileService( new Microsoft.Extensions.Logging.Abstractions.NullLoggerFactory() );
@@ -116,6 +126,11 @@ public class ConvertServiceTest
             "converted"
         );
 
+        var outputMarkdownDir = Path.Combine(
+            TestUtility.TestDataDirectoryRoot,
+            "markdown"
+        );
+
         var convertService = new LogicExportFileService( new Microsoft.Extensions.Logging.Abstractions.NullLoggerFactory() );
         var convertResult = await convertService.ExportAsync( outputBaseDir, definitions );
 
@@ -141,6 +156,11 @@ public class ConvertServiceTest
         var outputBaseDir = Path.Combine(
             TestUtility.TestDataDirectoryRoot,
             "converted"
+        );
+
+        var outputMarkdownDir = Path.Combine(
+            TestUtility.TestDataDirectoryRoot,
+            "markdown"
         );
 
         var convertService = new StudioOneExportFileService( new Microsoft.Extensions.Logging.Abstractions.NullLoggerFactory() );

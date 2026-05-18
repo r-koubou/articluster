@@ -5,7 +5,11 @@ using System.IO;
 using System.Threading;
 using System.Threading.Tasks;
 
+using ArtiCluster.Applications.Services.Abstractions;
+using ArtiCluster.Applications.Services.Abstractions.Models;
 using ArtiCluster.Applications.Services.Abstractions.Services;
+using ArtiCluster.Applications.Services.Local;
+using ArtiCluster.Commons;
 
 using Microsoft.Extensions.Logging;
 
@@ -42,17 +46,24 @@ internal sealed class ConvertingCommandExecutor : ICommandExecutor
             Description = "Overwrite output directory if it already exists."
         };
 
+        var outputMarkdownDirectoryOption = new Option<DirectoryInfo>( "-m", "--output-markdown-list-dir" )
+        {
+            Description = "When specifying this option, please provide the directory path managed by the static site generator. The same applies to specifying the directory path for `output-dir`."
+        };
+
         var command = new Command( "convert", "Convert to DAW-specific format." )
         {
             inputDirectoryArgument,
             outputDirectoryArgument,
-            overwriteOption
+            overwriteOption,
+            outputMarkdownDirectoryOption,
         };
 
         command.SetAction( async parseResult =>
             {
                 var inputDirectory = parseResult.GetValue( inputDirectoryArgument );
                 var outputDirectory = parseResult.GetValue( outputDirectoryArgument );
+                var outputMarkdownDirectory = parseResult.GetValue( outputMarkdownDirectoryOption );
 
                 if( inputDirectory == null || outputDirectory == null )
                 {
@@ -78,7 +89,7 @@ internal sealed class ConvertingCommandExecutor : ICommandExecutor
                     return 1;
                 }
 
-                return await ExecuteAsync( inputDirectory, outputDirectory );
+                return await ExecuteAsync( inputDirectory, outputDirectory, outputMarkdownDirectory );
             }
         );
 
@@ -88,6 +99,7 @@ internal sealed class ConvertingCommandExecutor : ICommandExecutor
     private async Task<int> ExecuteAsync(
         string inputDirectory,
         string outputBaseDirectory,
+        DirectoryInfo? outputMarkdownDir,
         CancellationToken cancellationToken = default )
     {
         var importResult = await importService.ImportAsync( inputDirectory, cancellationToken );
@@ -101,21 +113,60 @@ internal sealed class ConvertingCommandExecutor : ICommandExecutor
 
         foreach( var service in services )
         {
-            logger.LogInformation( $"Convert to \"{service.TargetDawName}\" format..." );
+            var targetDawName = service.TargetDawName;
+
+            logger.LogInformation( $"{targetDawName}: Converting..." );
 
             var convertResult = await service.ExportAsync( outputBaseDirectory, importResult.Unwrap(), cancellationToken );
 
-            if( !convertResult.IsFailure )
+            if( convertResult.IsFailure )
             {
-                continue;
+                logger.LogCritical( $"Failed to convert (target:{service.TargetDawName}, reason:{convertResult.Reason})" );
+
+                return 1;
             }
 
-            logger.LogCritical( $"Failed to convert (target:{service.TargetDawName}, reason:{convertResult.Reason})" );
+            // ReSharper disable once InvertIf
+            if( outputMarkdownDir != null )
+            {
+                logger.LogInformation( $"{targetDawName}: Generate Markdown for Static Site Generator" );
+                logger.LogDebug( $"Output Markdown Directory: {outputMarkdownDir.FullName}" );
 
-            return 1;
+                var result = await OutputListMarkdown( outputMarkdownDir, cancellationToken, convertResult );
+
+                if( result != 0 )
+                {
+                    logger.LogCritical( $"{targetDawName}: Failed to generate Markdown Output Directory. (result={result})" );
+                    return result;
+                }
+            }
         }
 
         logger.LogInformation( "Successfully converted." );
+
+        return 0;
+    }
+
+    private async Task<int> OutputListMarkdown(
+        DirectoryInfo outputMarkdownDir,
+        CancellationToken cancellationToken,
+        Result<IReadOnlyCollection<ExportedFileEntry>, ExportFailureReason> convertResult )
+    {
+        var markdownExportService = new MarkdownExportIndexFileService( new MarkdownExportIndexBuilder() );
+
+        var markdownExportResult = await markdownExportService.ExportAsync(
+            outputMarkdownDir.FullName,
+            convertResult.Unwrap(),
+            cancellationToken
+        );
+
+        // ReSharper disable once InvertIf
+        if( markdownExportResult.IsFailure )
+        {
+            logger.LogCritical( $"Failed to export markdown index file (reason:{markdownExportResult.Reason})" );
+
+            return 1;
+        }
 
         return 0;
     }
