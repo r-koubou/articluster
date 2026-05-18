@@ -36,10 +36,10 @@ services.AddTransient<CreateDefinitionCommandExecutor>();
 services.AddTransient<ConvertingCommandExecutor>();
 // Converters
 services.AddSingleton<IUniversalDefinitionFileService, UniversalDefinitionFileService>();
-services.AddTransient<IExportFileService, CubaseOutputFileService>();
-services.AddTransient<IExportFileService, StudioOneOutputFileService>();
-services.AddTransient<IExportFileService, CakewalkOutputFileService>();
-services.AddTransient<IExportFileService, LogicOutputFileService>();
+services.AddTransient<IExportFileService, CubaseExportFileService>();
+services.AddTransient<IExportFileService, StudioOneExportFileService>();
+services.AddTransient<IExportFileService, CakewalkExportFileService>();
+services.AddTransient<IExportFileService, LogicExportFileService>();
 #endregion ~DI
 
 await using var serviceProvider = services.BuildServiceProvider();

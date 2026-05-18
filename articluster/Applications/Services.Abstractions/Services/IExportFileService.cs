@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
 
+using ArtiCluster.Applications.Services.Abstractions.Models;
 using ArtiCluster.Commons;
 using ArtiCluster.Shared.Domain.UniversalDefinitions.Model;
 
@@ -11,9 +12,8 @@ public interface IExportFileService
 {
     string TargetDawName { get; }
 
-    Task<Result<Unit, ExportFailureReason>> ExportAsync(
-        string outputBaseDirectory,
+    Task<Result<IReadOnlyCollection<ExportedFileEntry>, ExportFailureReason>> ExportAsync(
+        string convertedOutputDirectory,
         IReadOnlyCollection<UniversalDefinition> definitions,
-        CancellationToken cancellationToken = default
-    );
+        CancellationToken cancellationToken = default );
 }

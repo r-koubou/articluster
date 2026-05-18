@@ -5,6 +5,7 @@ using System.Threading;
 using System.Threading.Tasks;
 
 using ArtiCluster.Applications.Services.Abstractions;
+using ArtiCluster.Applications.Services.Abstractions.Collectors;
 using ArtiCluster.Applications.Services.Abstractions.Executors;
 using ArtiCluster.Applications.Services.Abstractions.Strategies;
 using ArtiCluster.Commons;
@@ -29,12 +30,15 @@ public sealed partial class FileOutputExecutor<TSource> : IExportExecutor<TSourc
         IEnumerable<TSource> sources,
         IExportNamingStrategy<TSource> exportNamingStrategy,
         IExportStrategy<TSource> exportStrategy,
+        IExportedFileEntryFactory<TSource>? entryFactory = null,
+        IExportedFileCollector? collector = null,
         CancellationToken cancellationToken = default )
     {
         foreach( var x in sources )
         {
             var outputDirectory = exportNamingStrategy.GetOutputDirectory( baseOutputDirectory, x );
-            var outputPath = Path.Combine( outputDirectory, exportNamingStrategy.GetOutputFileName( x ) );
+            var outputFileName = exportNamingStrategy.GetOutputFileName( x );
+            var outputPath = Path.Combine( outputDirectory, outputFileName );
 
             LogExportingToOutputPath( outputPath );
 
@@ -45,13 +49,19 @@ public sealed partial class FileOutputExecutor<TSource> : IExportExecutor<TSourc
                 await using var writer = new LocalTextContentWriter( outputPath );
                 var result = await exportStrategy.ExportAsync( writer, x, cancellationToken );
 
-                if( result.IsSuccess )
+                if( !result.IsSuccess )
                 {
-                    continue;
+                    LogFailedToExportToOutput( outputPath, result.Reason, result.UnwrapError().Error );
+                    return result;
                 }
 
-                LogFailedToExportToOutput( outputPath, result.Reason, result.UnwrapError().Error );
-                return result;
+                // ReSharper disable once InvertIf
+                if( entryFactory is not null && collector is not null )
+                {
+                    var entry = entryFactory.Create( outputDirectory, outputFileName, x );
+                    await collector.CollectAsync( entry, cancellationToken );
+                }
+
             }
             catch( IOException e )
             {
