@@ -5,7 +5,7 @@ using System.Threading;
 using System.Threading.Tasks;
 
 using ArtiCluster.Applications.Services.Abstractions;
-using ArtiCluster.Applications.Services.Abstractions.Local;
+using ArtiCluster.Applications.Services.Abstractions.Services;
 using ArtiCluster.Commons;
 using ArtiCluster.Features.UniversalDefinitions.Facades;
 using ArtiCluster.Shared.Domain.UniversalDefinitions.Model;
@@ -18,12 +18,12 @@ using FacadeExportFailureReason = ArtiCluster.Features.UniversalDefinitions.Cont
 
 namespace ArtiCluster.Applications.Services.Local;
 
-public sealed partial class UniversalDefinitionLocalFileService : IUniversalDefinitionLocalFileService
+public sealed partial class UniversalDefinitionFileService : IUniversalDefinitionFileService
 {
-    private readonly ILogger<UniversalDefinitionLocalFileService> logger;
+    private readonly ILogger<UniversalDefinitionFileService> logger;
 
     // ReSharper disable once ConvertToPrimaryConstructor
-    public UniversalDefinitionLocalFileService( ILogger<UniversalDefinitionLocalFileService> logger )
+    public UniversalDefinitionFileService( ILogger<UniversalDefinitionFileService> logger )
     {
         this.logger = logger;
     }

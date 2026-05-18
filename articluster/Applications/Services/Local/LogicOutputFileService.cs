@@ -2,43 +2,42 @@ using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
 
-using ArtiCluster.Applications.Services.Abstractions.Local;
+using ArtiCluster.Applications.Services.Abstractions;
+using ArtiCluster.Applications.Services.Abstractions.Services;
 using ArtiCluster.Applications.Services.Local.Runners;
 using ArtiCluster.Applications.Services.Local.Strategies;
 using ArtiCluster.Commons;
-using ArtiCluster.Shared.Domain.UniversalDefinitions;
 using ArtiCluster.Shared.Domain.UniversalDefinitions.Model;
 
 using Microsoft.Extensions.Logging;
 
 namespace ArtiCluster.Applications.Services.Local;
 
-public sealed class CubaseLocalFileConversionService : ILocalFileConversionService
+public sealed class LogicOutputFileService : IExportFileService
 {
     private readonly ILoggerFactory loggerFactory;
 
     public string TargetDawName
-        => "Cubase";
+        => "Logic";
 
     // ReSharper disable once ConvertToPrimaryConstructor
-    public CubaseLocalFileConversionService( ILoggerFactory loggerFactory )
+    public LogicOutputFileService( ILoggerFactory loggerFactory )
     {
         this.loggerFactory = loggerFactory;
     }
 
-    public async Task<Result<Unit, ConvertFailureReason>> ConvertAsync(
+    public async Task<Result<Unit, ExportFailureReason>> ExportAsync(
         string outputBaseDirectory,
         IReadOnlyCollection<UniversalDefinition> definitions,
         CancellationToken cancellationToken = default )
     {
-        var runner = new LocalFileConversionRunner( loggerFactory );
-        var namingStrategy = new CubaseLocalOutputNamingStrategy();
-        var strategy = new CubaseLocalFileExportStrategy();
-        var collection = new SeparatedArticulationGroupCollection( definitions );
+        var runner = new FileExportRunner( loggerFactory );
+        var namingStrategy = new LogicExportNamingStrategy();
+        var strategy = new LogicFileExportStrategy();
 
         return await runner.RunAsync(
             outputBaseDirectory,
-            collection.Items,
+            definitions,
             namingStrategy,
             strategy,
             cancellationToken

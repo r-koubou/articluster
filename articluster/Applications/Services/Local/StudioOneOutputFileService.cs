@@ -2,7 +2,8 @@ using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
 
-using ArtiCluster.Applications.Services.Abstractions.Local;
+using ArtiCluster.Applications.Services.Abstractions;
+using ArtiCluster.Applications.Services.Abstractions.Services;
 using ArtiCluster.Applications.Services.Local.Runners;
 using ArtiCluster.Applications.Services.Local.Strategies;
 using ArtiCluster.Commons;
@@ -12,7 +13,7 @@ using Microsoft.Extensions.Logging;
 
 namespace ArtiCluster.Applications.Services.Local;
 
-public sealed class StudioOneLocalFileConversionService : ILocalFileConversionService
+public sealed class StudioOneOutputFileService : IExportFileService
 {
     private readonly ILoggerFactory loggerFactory;
 
@@ -20,19 +21,19 @@ public sealed class StudioOneLocalFileConversionService : ILocalFileConversionSe
         => "Studio One";
 
     // ReSharper disable once ConvertToPrimaryConstructor
-    public StudioOneLocalFileConversionService( ILoggerFactory loggerFactory )
+    public StudioOneOutputFileService( ILoggerFactory loggerFactory )
     {
         this.loggerFactory = loggerFactory;
     }
 
-    public async Task<Result<Unit, ConvertFailureReason>> ConvertAsync(
+    public async Task<Result<Unit, ExportFailureReason>> ExportAsync(
         string outputBaseDirectory,
         IReadOnlyCollection<UniversalDefinition> definitions,
         CancellationToken cancellationToken = default )
     {
-        var runner = new LocalFileConversionRunner( loggerFactory );
-        var namingStrategy = new StudioOneLocalOutputNamingStrategy();
-        var strategy = new StudioOneLocalFileExportStrategy();
+        var runner = new FileExportRunner( loggerFactory );
+        var namingStrategy = new StudioOneExportNamingStrategy();
+        var strategy = new StudioOneFileExportStrategy();
 
         return await runner.RunAsync(
             outputBaseDirectory,

@@ -3,9 +3,8 @@ using System.Threading;
 using System.Threading.Tasks;
 
 using ArtiCluster.Applications.Services.Abstractions;
-using ArtiCluster.Applications.Services.Abstractions.Local;
-using ArtiCluster.Applications.Services.Abstractions.Local.Runners;
-using ArtiCluster.Applications.Services.Abstractions.Local.Strategies;
+using ArtiCluster.Applications.Services.Abstractions.Runners;
+using ArtiCluster.Applications.Services.Abstractions.Strategies;
 using ArtiCluster.Applications.Services.Local.Executors;
 using ArtiCluster.Commons;
 
@@ -13,24 +12,24 @@ using Microsoft.Extensions.Logging;
 
 namespace ArtiCluster.Applications.Services.Local.Runners;
 
-public sealed class LocalFileConversionRunner : ILocalFileConversionRunner
+public sealed class FileExportRunner : IExportRunner
 {
     private readonly ILoggerFactory loggerFactory;
 
     // ReSharper disable once ConvertToPrimaryConstructor
-    public LocalFileConversionRunner( ILoggerFactory loggerFactory )
+    public FileExportRunner( ILoggerFactory loggerFactory )
     {
         this.loggerFactory = loggerFactory;
     }
 
-    public async Task<Result<Unit, ConvertFailureReason>> RunAsync<TSource>(
+    public async Task<Result<Unit, ExportFailureReason>> RunAsync<TSource>(
         string outputBaseDirectory,
         IEnumerable<TSource> sources,
-        ILocalOutputNamingStrategy<TSource> namingStrategy,
-        ILocalFileExportStrategy<TSource> strategy,
+        IExportNamingStrategy<TSource> namingStrategy,
+        IExportStrategy<TSource> strategy,
         CancellationToken cancellationToken = default )
     {
-        var executor = new LocalFileExportExecutor<TSource>( loggerFactory );
+        var executor = new FileOutputExecutor<TSource>( loggerFactory );
 
         foreach( var x in sources )
         {
@@ -46,14 +45,14 @@ public sealed class LocalFileConversionRunner : ILocalFileConversionRunner
             {
                 return result.MapError( reason => reason switch
                     {
-                        ExportFailureReason.SerializationError => ConvertFailureReason.SerializationError,
-                        ExportFailureReason.IoError            => ConvertFailureReason.IoError,
-                        _                                      => ConvertFailureReason.OtherError
+                        ExportFailureReason.SerializationError => ExportFailureReason.SerializationError,
+                        ExportFailureReason.IoError            => ExportFailureReason.IoError,
+                        _                                          => ExportFailureReason.OtherError
                     }
                 );
             }
         }
 
-        return Result<Unit, ConvertFailureReason>.Success( Unit.Default );
+        return Result<Unit, ExportFailureReason>.Success( Unit.Default );
     }
 }

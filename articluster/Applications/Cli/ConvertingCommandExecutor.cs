@@ -5,7 +5,7 @@ using System.IO;
 using System.Threading;
 using System.Threading.Tasks;
 
-using ArtiCluster.Applications.Services.Abstractions.Local;
+using ArtiCluster.Applications.Services.Abstractions.Services;
 
 using Microsoft.Extensions.Logging;
 
@@ -16,15 +16,15 @@ namespace ArtiCluster.Applications.Cli;
 
 internal sealed class ConvertingCommandExecutor : ICommandExecutor
 {
-    private readonly IEnumerable<ILocalFileConversionService> services;
-    private readonly IUniversalDefinitionLocalFileService importService;
+    private readonly IEnumerable<IExportFileService> services;
+    private readonly IUniversalDefinitionFileService importService;
     private readonly ILogger<ConvertingCommandExecutor> logger;
 
 
     // ReSharper disable once ConvertToPrimaryConstructor
     public ConvertingCommandExecutor(
-        IEnumerable<ILocalFileConversionService> services,
-        IUniversalDefinitionLocalFileService importService,
+        IEnumerable<IExportFileService> services,
+        IUniversalDefinitionFileService importService,
         ILogger<ConvertingCommandExecutor> logger )
     {
         this.services      = services;
@@ -103,7 +103,7 @@ internal sealed class ConvertingCommandExecutor : ICommandExecutor
         {
             logger.LogInformation( $"Convert to \"{service.TargetDawName}\" format..." );
 
-            var convertResult = await service.ConvertAsync( outputBaseDirectory, importResult.Unwrap(), cancellationToken );
+            var convertResult = await service.ExportAsync( outputBaseDirectory, importResult.Unwrap(), cancellationToken );
 
             if( !convertResult.IsFailure )
             {

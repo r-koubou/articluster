@@ -5,19 +5,13 @@ using System.Threading.Tasks;
 using ArtiCluster.Commons;
 using ArtiCluster.Shared.Domain.UniversalDefinitions.Model;
 
-namespace ArtiCluster.Applications.Services.Abstractions.Local;
+namespace ArtiCluster.Applications.Services.Abstractions.Services;
 
-public enum GenerateFailureReason
-{
-    IoError,
-    OtherError
-}
-
-public interface ILocalFileMarkdownGenerationService
+public interface IExportFileService
 {
     string TargetDawName { get; }
 
-    Task<Result<Unit, ConvertFailureReason>> GenerateAsync(
+    Task<Result<Unit, ExportFailureReason>> ExportAsync(
         string outputBaseDirectory,
         IReadOnlyCollection<UniversalDefinition> definitions,
         CancellationToken cancellationToken = default
