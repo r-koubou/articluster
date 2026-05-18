@@ -15,7 +15,7 @@ public sealed record UniversalDefinition
     public PatchName PatchName { get; init; }
     public Description Description { get; init; }
 
-    public IReadOnlyCollection<Articulation> Articulations { get; init; }
+    public IReadOnlyCollection<ArticulationGroup> ArticulationGroups { get; init; }
     public IReadOnlyDictionary<string, string> Extra { get; init; }
 
     public UniversalDefinition(
@@ -25,17 +25,17 @@ public sealed record UniversalDefinition
         ProductName productName,
         PatchName patchName,
         Description? description,
-        IReadOnlyCollection<Articulation> articulations,
+        IReadOnlyCollection<ArticulationGroup> articulationGroups,
         IReadOnlyDictionary<string, string>? extra = null )
     {
-        Id               = id;
-        Author           = author;
-        ManufacturerName = manufacturerName;
-        ProductName      = productName;
-        PatchName        = patchName;
-        Description      = description ?? Description.Empty;
-        Articulations    = articulations;
-        Extra            = extra == null ? new Dictionary<string, string>() : new Dictionary<string, string>( extra );
+        Id                 = id;
+        Author             = author;
+        ManufacturerName   = manufacturerName;
+        ProductName        = productName;
+        PatchName          = patchName;
+        Description        = description ?? Description.Empty;
+        ArticulationGroups = articulationGroups;
+        Extra              = extra == null ? new Dictionary<string, string>() : new Dictionary<string, string>( extra );
     }
 
     public static UniversalDefinition Create(
@@ -45,7 +45,7 @@ public sealed record UniversalDefinition
         string productName,
         string patchName,
         string? description,
-        IReadOnlyCollection<Articulation> articulations,
+        IReadOnlyCollection<ArticulationGroup> articulationGroups,
         IReadOnlyDictionary<string, string>? extra = null )
     {
         return new UniversalDefinition(
@@ -55,7 +55,7 @@ public sealed record UniversalDefinition
             new ProductName( productName ),
             new PatchName( patchName ),
             description != null ? new Description( description ) : null,
-            articulations,
+            articulationGroups,
             extra
         );
     }
@@ -69,17 +69,32 @@ public sealed record UniversalDefinition
             productName: "Example Product",
             patchName: "Example Patch",
             description: "Example Description",
-            articulations:
+            articulationGroups:
             [
-                Articulation.Create(
-                    name: "Idle",
-                    midiMessages: []
-                ),
-                Articulation.Create(
-                    name: "Articulation Name",
-                    midiMessages:
+                ArticulationGroup.Create(
+                    name: "Main",
+                    articulations:
                     [
-                        MidiMessage.Create( 0x90, 60, 100 )
+                        Articulation.Create(
+                            name: "Articulation Name",
+                            midiMessages:
+                            [
+                                MidiMessage.Create( 0x90, 60, 100 )
+                            ]
+                        )
+                    ]
+                ),
+                ArticulationGroup.Create(
+                    name: "FX",
+                    articulations:
+                    [
+                        Articulation.Create(
+                            name: "Articulation Name",
+                            midiMessages:
+                            [
+                                MidiMessage.Create( 0x90, 61, 100 )
+                            ]
+                        )
                     ]
                 )
             ]

@@ -4,6 +4,7 @@ using System.Linq;
 using ArtiCluster.Shared.Domain.MidiMessages.Model;
 using ArtiCluster.Shared.Domain.MidiMessages.Model.Values;
 using ArtiCluster.Shared.Domain.UniversalDefinitions.Model;
+using ArtiCluster.Shared.Domain.UniversalDefinitions.Model.Values;
 
 using Claunia.PropertyList;
 
@@ -21,11 +22,14 @@ public sealed class LogicModelMapper
         {
             var articulations = new NSArray();
 
-            foreach( var articulation in source.Articulations )
+            foreach( var group in source.ArticulationGroups )
             {
-                articulations.Add( ConvertArticulation( articulation, id, articulationId ) );
-                id++;
-                articulationId++;
+                var items = ConvertArticulationGroup( group, ref id, ref articulationId );
+
+                foreach( var item in items )
+                {
+                    articulations.Add( item );
+                }
             }
 
             result.Add( "Articulations", articulations );
@@ -40,7 +44,7 @@ public sealed class LogicModelMapper
 
         #region MultipleOutputsActive
         {
-            var multipleOutputsActive = source.Articulations.Any( x => x.MidiMessages.Count >= 2 );
+            var multipleOutputsActive = source.ArticulationGroups.Any( g => g.Articulations.Any( a => a.MidiMessages.Count >= 2 ) );
             result.Add( "MultipleOutputsActive", multipleOutputsActive );
         }
         #endregion
@@ -51,7 +55,23 @@ public sealed class LogicModelMapper
         return result;
     }
 
-    private static NSDictionary ConvertArticulation( Articulation articulation, int id, int articulationId )
+    private static List<NSDictionary> ConvertArticulationGroup( ArticulationGroup group, ref int id, ref int articulationId )
+    {
+        var result = new List<NSDictionary>();
+        var groupName = group.Name;
+
+        foreach( var articulation in group.Articulations )
+        {
+            var item = ConvertArticulation( groupName, articulation, id, articulationId );
+            result.Add( item );
+            id++;
+            articulationId++;
+        }
+
+        return result;
+    }
+
+    private static NSDictionary ConvertArticulation( ArticulationGroupName groupName, Articulation articulation, int id, int articulationId )
     {
         var outputArray = new NSArray();
 
@@ -61,7 +81,7 @@ public sealed class LogicModelMapper
         {
             { "ArticulationID", articulationId },
             { "ID", id },
-            { "Name", articulation.Name.Value },
+            { "Name", $"{groupName.Value} - {articulation.Name.Value}" },
             { "Output", outputArray }
         };
 

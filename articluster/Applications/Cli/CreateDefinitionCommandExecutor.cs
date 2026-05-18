@@ -3,7 +3,7 @@ using System.CommandLine;
 using System.Threading;
 using System.Threading.Tasks;
 
-using ArtiCluster.Applications.Services.Abstractions;
+using ArtiCluster.Applications.Services.Abstractions.Services;
 
 using Microsoft.Extensions.Logging;
 
@@ -14,12 +14,12 @@ namespace ArtiCluster.Applications.Cli;
 
 internal sealed class CreateDefinitionCommandExecutor : ICommandExecutor
 {
-    private readonly IUniversalDefinitionLocalFileService service;
+    private readonly IUniversalDefinitionFileService service;
     private readonly ILogger<CreateDefinitionCommandExecutor> logger;
 
     // ReSharper disable once ConvertToPrimaryConstructor
     public CreateDefinitionCommandExecutor(
-        IUniversalDefinitionLocalFileService service,
+        IUniversalDefinitionFileService service,
         ILogger<CreateDefinitionCommandExecutor> logger )
     {
         this.service = service;

@@ -16,7 +16,7 @@ public sealed class CakewalkExporter
 {
     public async Task<Result<Unit, ExportFailureReason>> ExportAsync(
         ITextContentWriter writer,
-        UniversalDefinitionProductSet source,
+        ProductSet source,
         CancellationToken cancellationToken = default )
     {
         try

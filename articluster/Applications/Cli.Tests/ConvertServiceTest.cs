@@ -1,8 +1,7 @@
 using System.IO;
 using System.Threading.Tasks;
 
-using ArtiCluster.Applications.Services;
-using ArtiCluster.Applications.Services.LocalFileConversions;
+using ArtiCluster.Applications.Services.Local;
 using ArtiCluster.Tests.Helpers;
 
 using NUnit.Framework;
@@ -20,7 +19,7 @@ public class ConvertServiceTest
             "Acme Corp"
         );
 
-        var service = new UniversalDefinitionLocalFileService( new NullLogger<UniversalDefinitionLocalFileService>() );
+        var service = new UniversalDefinitionFileService( new NullLogger<UniversalDefinitionFileService>() );
         var result = await service.ImportAsync( dir );
 
         Assert.That( result.IsSuccess, Is.True );
@@ -37,7 +36,7 @@ public class ConvertServiceTest
             "testdata.yaml"
         );
 
-        var service = new UniversalDefinitionLocalFileService( new NullLogger<UniversalDefinitionLocalFileService>() );
+        var service = new UniversalDefinitionFileService( new NullLogger<UniversalDefinitionFileService>() );
         var result = await service.ExportTemplateAsync( filePath );
 
         Assert.That( result.IsSuccess, Is.True );
@@ -50,7 +49,7 @@ public class ConvertServiceTest
             "Acme Corp"
         );
 
-        var importService = new UniversalDefinitionLocalFileService( new NullLogger<UniversalDefinitionLocalFileService>() );
+        var importService = new UniversalDefinitionFileService( new NullLogger<UniversalDefinitionFileService>() );
         var importResult = await importService.ImportAsync( inputBaseDir );
 
         Assert.That( importResult.IsSuccess, Is.True );
@@ -63,8 +62,13 @@ public class ConvertServiceTest
             "converted"
         );
 
-        var convertService = new CakewalkLocalFileConversionService( new Microsoft.Extensions.Logging.Abstractions.NullLoggerFactory() );
-        var convertResult = await convertService.ConvertAsync( outputBaseDir, definitions );
+        var outputMarkdownDir = Path.Combine(
+            TestUtility.TestDataDirectoryRoot,
+            "markdown"
+        );
+
+        var convertService = new CakewalkExportFileService( new Microsoft.Extensions.Logging.Abstractions.NullLoggerFactory() );
+        var convertResult = await convertService.ExportAsync( outputBaseDir, definitions );
 
         Assert.That( convertResult.IsSuccess, Is.True );
     }
@@ -77,7 +81,7 @@ public class ConvertServiceTest
             "Acme Corp"
         );
 
-        var importService = new UniversalDefinitionLocalFileService( new NullLogger<UniversalDefinitionLocalFileService>() );
+        var importService = new UniversalDefinitionFileService( new NullLogger<UniversalDefinitionFileService>() );
         var importResult = await importService.ImportAsync( inputBaseDir );
 
         Assert.That( importResult.IsSuccess, Is.True );
@@ -90,8 +94,13 @@ public class ConvertServiceTest
             "converted"
         );
 
-        var convertService = new CubaseLocalFileConversionService( new Microsoft.Extensions.Logging.Abstractions.NullLoggerFactory() );
-        var convertResult = await convertService.ConvertAsync( outputBaseDir, definitions );
+        var outputMarkdownDir = Path.Combine(
+            TestUtility.TestDataDirectoryRoot,
+            "markdown"
+        );
+
+        var convertService = new CubaseExportFileService( new Microsoft.Extensions.Logging.Abstractions.NullLoggerFactory() );
+        var convertResult = await convertService.ExportAsync( outputBaseDir, definitions );
 
         Assert.That( convertResult.IsSuccess, Is.True );
     }
@@ -104,7 +113,7 @@ public class ConvertServiceTest
             "Acme Corp"
         );
 
-        var importService = new UniversalDefinitionLocalFileService( new NullLogger<UniversalDefinitionLocalFileService>() );
+        var importService = new UniversalDefinitionFileService( new NullLogger<UniversalDefinitionFileService>() );
         var importResult = await importService.ImportAsync( inputBaseDir );
 
         Assert.That( importResult.IsSuccess, Is.True );
@@ -117,8 +126,13 @@ public class ConvertServiceTest
             "converted"
         );
 
-        var convertService = new LogicLocalFileConversionService( new Microsoft.Extensions.Logging.Abstractions.NullLoggerFactory() );
-        var convertResult = await convertService.ConvertAsync( outputBaseDir, definitions );
+        var outputMarkdownDir = Path.Combine(
+            TestUtility.TestDataDirectoryRoot,
+            "markdown"
+        );
+
+        var convertService = new LogicExportFileService( new Microsoft.Extensions.Logging.Abstractions.NullLoggerFactory() );
+        var convertResult = await convertService.ExportAsync( outputBaseDir, definitions );
 
         Assert.That( convertResult.IsSuccess, Is.True );
     }
@@ -131,7 +145,7 @@ public class ConvertServiceTest
             "Acme Corp"
         );
 
-        var importService = new UniversalDefinitionLocalFileService( new NullLogger<UniversalDefinitionLocalFileService>() );
+        var importService = new UniversalDefinitionFileService( new NullLogger<UniversalDefinitionFileService>() );
         var importResult = await importService.ImportAsync( inputBaseDir );
 
         Assert.That( importResult.IsSuccess, Is.True );
@@ -144,8 +158,13 @@ public class ConvertServiceTest
             "converted"
         );
 
-        var convertService = new StudioOneLocalFileConversionService( new Microsoft.Extensions.Logging.Abstractions.NullLoggerFactory() );
-        var convertResult = await convertService.ConvertAsync( outputBaseDir, definitions );
+        var outputMarkdownDir = Path.Combine(
+            TestUtility.TestDataDirectoryRoot,
+            "markdown"
+        );
+
+        var convertService = new StudioOneExportFileService( new Microsoft.Extensions.Logging.Abstractions.NullLoggerFactory() );
+        var convertResult = await convertService.ExportAsync( outputBaseDir, definitions );
 
         Assert.That( convertResult.IsSuccess, Is.True );
     }

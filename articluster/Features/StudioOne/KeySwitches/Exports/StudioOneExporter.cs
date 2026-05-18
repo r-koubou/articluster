@@ -11,7 +11,7 @@ using ArtiCluster.Commons.Text;
 using ArtiCluster.Features.StudioOne.KeySwitches.Contracts;
 using ArtiCluster.Features.StudioOne.KeySwitches.Mappers;
 using ArtiCluster.Features.StudioOne.KeySwitches.Models;
-using ArtiCluster.Shared.Domain.UniversalDefinitions;
+using ArtiCluster.Shared.Domain.UniversalDefinitions.Model;
 using ArtiCluster.Shared.IO.Abstractions;
 
 namespace ArtiCluster.Features.StudioOne.KeySwitches.Exports;
@@ -20,7 +20,7 @@ public sealed class StudioOneExporter
 {
     public async Task<Result<Unit, ExportFailureReason>> ExportAsync(
         ITextContentWriter writer,
-        UniversalDefinitionProductSet source,
+        UniversalDefinition source,
         CancellationToken cancellationToken = default )
     {
         try

@@ -6,13 +6,14 @@ using ArtiCluster.Features.Cubase.ExpressionMaps.Contracts;
 using ArtiCluster.Features.Cubase.ExpressionMaps.Models;
 using ArtiCluster.Features.Cubase.ExpressionMaps.Models.XmlClasses;
 using ArtiCluster.Shared.Domain.MidiMessages.Model.Values;
+using ArtiCluster.Shared.Domain.UniversalDefinitions;
 using ArtiCluster.Shared.Domain.UniversalDefinitions.Model;
 
 namespace ArtiCluster.Features.Cubase.ExpressionMaps.Mappers;
 
 public sealed class CubaseModelMapper
 {
-    public Result<RootElement, ExportFailureReason> Map( UniversalDefinition source )
+    public Result<RootElement, ExportFailureReason> Map( SeparatedArticulationGroupSet source )
     {
         try
         {
@@ -36,7 +37,7 @@ public sealed class CubaseModelMapper
     }
 
     #region Convert RootElement
-    private static RootElement ConvertRootElement( UniversalDefinition source, ListElement listOfPSoundSlot, ListElement listOfUSlotVisuals )
+    private static RootElement ConvertRootElement( SeparatedArticulationGroupSet source, ListElement listOfPSoundSlot, ListElement listOfUSlotVisuals )
     {
         // Construction of InstrumentMap element
         var slots = InstrumentMap.Slots( listOfPSoundSlot );
@@ -53,11 +54,11 @@ public sealed class CubaseModelMapper
     #endregion Convert RootElement
 
     #region Convert To USlotVisual List
-    private static ListElement ConvertUSlotVisualsList( UniversalDefinition source )
+    private static ListElement ConvertUSlotVisualsList( SeparatedArticulationGroupSet source )
     {
         var listOfUSlotVisuals = new ListElement();
 
-        foreach( var articulation in source.Articulations )
+        foreach( var articulation in source.Items )
         {
             var type = ConvertArticulationType( articulation.Extra.GetValueOrDefault( ExtraKeys.ArticulationType, string.Empty ) );
             var group = ConvertArticulationGroup( articulation.Extra.GetValueOrDefault( ExtraKeys.GroupIndex, string.Empty ) );
@@ -146,7 +147,7 @@ public sealed class CubaseModelMapper
         return slotVisualList;
     }
 
-    private static IReadOnlyDictionary<string, ICollection<Articulation>> CollectSlotTable( UniversalDefinition source )
+    private static IReadOnlyDictionary<string, ICollection<Articulation>> CollectSlotTable( SeparatedArticulationGroupSet source )
     {
         static void AddArticulation( IDictionary<string, ICollection<Articulation>> dictionary, string key, Articulation articulation )
         {
@@ -160,7 +161,7 @@ public sealed class CubaseModelMapper
 
         var result = new Dictionary<string, ICollection<Articulation>>();
 
-        foreach( var articulation in source.Articulations )
+        foreach( var articulation in source.Items )
         {
             // use an articulation name as slot name if user does not define a slot name
             if( !articulation.Extra.TryGetValue( ExtraKeys.SlotName, out var extraValue ) )

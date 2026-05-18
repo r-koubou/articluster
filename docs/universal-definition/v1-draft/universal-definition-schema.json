@@ -1,0 +1,322 @@
+{
+  "$schema": "http://json-schema.org/draft-06/schema#",
+  "$ref": "#/definitions/UniversalDefinition",
+  "description": "Definition of the Universal Definition v1 file format (DRAFT)",
+  "definitions": {
+    "UniversalDefinition": {
+      "title": "UniversalDefinition",
+      "type": "object",
+      "description": "The root of articulation",
+      "additionalProperties": false,
+      "properties": {
+        "FormatVersion": {
+          "type": "integer",
+          "description": "Universal File Format Version",
+          "examples": [
+            0
+          ]
+        },
+        "Id": {
+          "type": "string",
+          "format": "uuid",
+          "description": "Unique identifier for this Universal Definition",
+          "examples": [
+            "259fda39-6197-49e8-aee1-ab1e568635ad"
+          ]
+        },
+        "Author": {
+          "type": "string",
+          "description": "Author name of this Universal Definition",
+          "examples": [
+            "Your Name"
+          ]
+        },
+        "ManufacturerName": {
+          "type": "string",
+          "description": "Name of the manufacturer"
+        },
+        "ProductName": {
+          "type": "string",
+          "description": "Name of the product"
+        },
+        "PatchName": {
+          "type": "string",
+          "description": "Name of the patch",
+          "examples": [
+            "Guitar",
+            "Bass",
+            "Violin"
+          ]
+        },
+        "Description": {
+          "type": "string",
+          "description": "Description of this Universal Definition file"
+        },
+        "ArticulationGroups": {
+          "type": "array",
+          "description": "List of articulation groups in this Universal Definition. In the case of DAWs that support grouping, this means exporting the articulations defined in this group into a single file. In the case of DAWs that do not support grouping, the groups are ignored, and a file is exported for each articulation within the group.",
+          "items": {
+            "$ref": "#/definitions/ArticulationGroup"
+          }
+        },
+        "Extra": {
+          "$ref": "#/definitions/Extra"
+        }
+      },
+      "required": [
+        "FormatVersion",
+        "Id",
+        "Author",
+        "ManufacturerName",
+        "ProductName",
+        "PatchName",
+        "ArticulationGroups"
+      ],
+      "examples": [
+        {
+          "FormatVersion": 0,
+          "Id": "34023d3f-30b0-4646-90e8-5d2978d09d43",
+          "Author": "R-Koubou",
+          "ManufacturerName": "Acme Corp",
+          "ProductName": "Super Guitar",
+          "PatchName": "Guitar 1",
+          "Description": "Guitar 1 articulation.",
+          "ArticulationGroups": [
+            {
+                "Name": "Main",
+                "Articulations": [
+                {
+                  "Name": "Idle",
+                  "MidiMessages": []
+                },
+                {
+                  "Name": "Sustain",
+                  "MidiMessages": [
+                    {
+                      "Status": 144,
+                      "Data1": 64,
+                      "Data2": 100
+                    }
+                  ],
+                  "Extra": {
+                    "Extra.Custom.Key": "Custom Value"
+                  }
+                },
+                {
+                  "Name": "Bridge Mute",
+                  "MidiMessages": [
+                    {
+                      "Status": 144,
+                      "Data1": 66,
+                      "Data2": 100
+                    }
+                  ],
+                  "Extra": {
+                    "Extra.Custom.Key": "Custom Value"
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "ArticulationGroup": {
+      "title": "ArticulationGroup",
+      "type": "object",
+      "description": "Defines an articulation group with its name and associated articulations",
+      "additionalProperties": false,
+      "properties": {
+        "Name": {
+          "type": "string",
+          "description": "A Group name",
+          "examples": [
+            "Main",
+            "FX"
+          ]
+        },
+        "Articulations": {
+          "type": "array",
+          "description": "List of articulations in this group",
+          "items": {
+            "$ref": "#/definitions/Articulation"
+          }
+        },
+        "Extra": {
+          "$ref": "#/definitions/Extra"
+        }
+      },
+      "required": [
+        "Name",
+        "Articulations"
+      ],
+      "examples": [
+        {
+          "Name": "Main",
+          "Articulations": [
+            {
+              "Name": "Idle",
+              "MidiMessages": []
+            },
+            {
+              "Name": "Sustain",
+              "MidiMessages": [
+                {
+                  "Status": 144,
+                  "Data1": 64,
+                  "Data2": 100
+                }
+              ],
+              "Extra": {
+                "Extra.Custom.Key": "Custom Value"
+              }
+            },
+            {
+              "Name": "Bridge Mute",
+              "MidiMessages": [
+                {
+                  "Status": 144,
+                  "Data1": 66,
+                  "Data2": 100
+                }
+              ],
+              "Extra": {
+                "Extra.Custom.Key": "Custom Value"
+              }
+            }
+          ]
+        },
+        {
+          "Name": "FX",
+          "Articulations": [
+            {
+              "Name": "Pick Scrape",
+              "MidiMessages": [
+                {
+                  "Status": 144,
+                  "Data1": 67,
+                  "Data2": 100
+                }
+              ],
+              "Extra": {
+                "Extra.Custom.Key": "Custom Value"
+              }
+            },
+            {
+              "Name": "Stop",
+              "MidiMessages": [
+                {
+                  "Status": 144,
+                  "Data1": 68,
+                  "Data2": 100
+                }
+              ],
+              "Extra": {
+                "Extra.Custom.Key": "Custom Value"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    "Articulation": {
+      "title": "Articulation",
+      "type": "object",
+      "description": "Defines an articulation with its name and associated MIDI messages",
+      "additionalProperties": false,
+      "properties": {
+        "Name": {
+          "type": "string",
+          "description": "Name of the articulation",
+          "examples": [
+            "Sustain",
+            "Bridge Mute"
+          ]
+        },
+        "MidiMessages": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/MidiMessage"
+          }
+        },
+        "Extra": {
+          "$ref": "#/definitions/Extra"
+        }
+      },
+      "required": [
+        "Name",
+        "MidiMessages"
+      ],
+      "examples": [
+        {
+          "Name": "Sustain",
+          "MidiMessages": [
+            {
+              "Status": 144,
+              "Data1": 64,
+              "Data2": 100
+            }
+          ],
+          "Extra": {
+            "Extra.Custom.Key": "Custom Value"
+          }
+        }
+      ]
+    },
+    "MidiMessage": {
+      "title": "MidiMessage",
+      "type": "object",
+      "description": "A MIDI message within the articulation, consisting of a status byte and two data bytes",
+      "additionalProperties": false,
+      "properties": {
+        "Status": {
+          "type": "integer",
+          "description": "MIDI Status Byte"
+        },
+        "Channel": {
+          "type": "integer",
+          "minimum": -1,
+          "maximum": 15,
+          "description": "MIDI Channel (0-15). If `-1` or `not defined`, it will be ignored in conversion"
+        },
+        "Data1": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 127,
+          "description": "MIDI Data Byte 1 (0-127). If `not defined`, it will be ignored in conversion"
+        },
+        "Data2": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 127,
+          "description": "MIDI Data Byte 2 (0-127). If `not defined`, it will be ignored in conversion"
+        }
+      },
+      "required": [
+        "Status"
+      ],
+      "examples": [
+        {
+          "Status": 144,
+          "Data1": 64,
+          "Data2": 100
+        },
+        {
+          "Status": 144,
+          "Channel": 0,
+          "Data1": 64,
+          "Data2": 100
+        }
+      ]
+    },
+    "Extra": {
+      "title": "Extra",
+      "type": "object",
+      "description": "Reserved for future use. Can be used to store additional metadata as key-value pairs.",
+      "additionalProperties": true,
+      "examples": [
+        { "Extra.Custom.Key": "Custom Value" }
+      ]
+    }
+  }
+}

@@ -1,17 +1,19 @@
-FormatVersion: 1.0.0
+FormatVersion: 0
 Id: ad30d422-9f9e-496f-8433-fa3d3b810c3c
 Author: R-Koubou
 ManufacturerName: Acme Corp
 ProductName: Super Synth
 PatchName: Epic Lead
 Description: Acme Corp Super Synth - Epic Lead
-Articulations:
-  -   Name: Sustain
-      MidiMessages:
-        -   Status: 144
-            Data1: 40
-            Data2: 100
-      Extra: {}
+ArticulationGroups:
+  - Name: Main
+    Articulations:
+      - Name: Sustain
+        MidiMessages:
+        - Status: 144
+          Data1: 40
+          Data2: 100
+        Extra: {}
 Extra:
   Global.Key1: Value1
   Global.Key2: Value2

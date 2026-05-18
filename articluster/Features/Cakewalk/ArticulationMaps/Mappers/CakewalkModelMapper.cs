@@ -7,6 +7,7 @@ using ArtiCluster.Shared.Domain.MidiMessages.Model;
 using ArtiCluster.Shared.Domain.MidiMessages.Model.Values;
 using ArtiCluster.Shared.Domain.UniversalDefinitions;
 using ArtiCluster.Shared.Domain.UniversalDefinitions.Model;
+using ArtiCluster.Shared.Domain.UniversalDefinitions.Model.Values;
 
 using Articulation = ArtiCluster.Features.Cakewalk.ArticulationMaps.Models.Articulation;
 
@@ -14,7 +15,7 @@ namespace ArtiCluster.Features.Cakewalk.ArticulationMaps.Mappers;
 
 public sealed class CakewalkModelMapper
 {
-    public Result<CakewalkRootObject, Unit> Map( UniversalDefinitionProductSet source )
+    public Result<CakewalkRootObject, Unit> Map( ProductSet source )
     {
         try
         {
@@ -34,7 +35,7 @@ public sealed class CakewalkModelMapper
     }
 
     private static ArticulationMap ConvertArticulationMap(
-        UniversalDefinitionProductSet source,
+        ProductSet source,
         IReadOnlyCollection<Group> groups )
     {
         var id = 1;
@@ -44,25 +45,30 @@ public sealed class CakewalkModelMapper
 
         foreach( var definition in source.Items )
         {
-            foreach( var x in definition.Articulations )
+            foreach( var group in definition.ArticulationGroups )
             {
-                var articulation = ConvertArticulation( definition, x, groups, id, index );
-                articulations.Add( articulation );
+                var groupName = group.Name;
 
-                id++;
-                index++;
+                foreach( var x in group.Articulations )
+                {
+                    var articulation = ConvertArticulation( groupName, definition, x, groups, id, index );
+                    articulations.Add( articulation );
+
+                    id++;
+                    index++;
+                }
             }
         }
 
         return new ArticulationMap
         {
             Name          = source.ProductName.Value,
-            Groups        = new List<Group>( groups ),
+            Groups        = [ ..groups ],
             Articulations = articulations
         };
     }
 
-    private static List<Group> ConvertArticulationGroup( UniversalDefinitionProductSet source )
+    private static List<Group> ConvertArticulationGroup( ProductSet source )
     {
         var result = new List<Group>();
         var id = 1;
@@ -83,6 +89,7 @@ public sealed class CakewalkModelMapper
     }
 
     private static Articulation ConvertArticulation(
+        ArticulationGroupName articulationGroupName,
         UniversalDefinition definition,
         Shared.Domain.UniversalDefinitions.Model.Articulation articulation,
         IReadOnlyCollection<Group> groups,
@@ -96,7 +103,7 @@ public sealed class CakewalkModelMapper
 
         return new Articulation(
             id,
-            articulation.Name.Value,
+            $"{articulationGroupName.Value} - {articulation.Name.Value}",
             index,
             groupId,
             "ff4da3b9",
@@ -131,7 +138,7 @@ public sealed class CakewalkModelMapper
         return [ ];
     }
 
-    private static IEnumerable<MidiEvent> ConvertArticulationEvents( Shared.Domain.UniversalDefinitions.Model.Articulation articulation )
+    private static List<MidiEvent> ConvertArticulationEvents( Shared.Domain.UniversalDefinitions.Model.Articulation articulation )
     {
         var result = new List<MidiEvent>();
 

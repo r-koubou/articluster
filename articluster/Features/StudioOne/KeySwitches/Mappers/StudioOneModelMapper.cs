@@ -6,29 +6,18 @@ using ArtiCluster.Commons;
 using ArtiCluster.Features.StudioOne.KeySwitches.Contracts;
 using ArtiCluster.Features.StudioOne.KeySwitches.Models;
 using ArtiCluster.Shared.Domain.MidiMessages.Model.Values;
-using ArtiCluster.Shared.Domain.UniversalDefinitions;
 using ArtiCluster.Shared.Domain.UniversalDefinitions.Model;
 
 namespace ArtiCluster.Features.StudioOne.KeySwitches.Mappers;
 
 public sealed class StudioOneModelMapper
 {
-    public Result<StudioOneRootElement, ExportFailureReason> Map( UniversalDefinitionProductSet source )
+    public Result<StudioOneRootElement, ExportFailureReason> Map( UniversalDefinition source )
     {
-        if( source.IsEmpty )
-        {
-            return Result<StudioOneRootElement, ExportFailureReason>.Success(
-                new StudioOneRootElement
-                {
-                    Name = $"{source.ProductName.Value}"
-                }
-            );
-        }
-
         var assignId = 0;
 
         // Create with folder element if several patches exist
-        if( source.Count >= 2 )
+        if( source.ArticulationGroups.Count >= 2 )
         {
             return MapWithFolders( source, assignId );
         }
@@ -40,19 +29,18 @@ public sealed class StudioOneModelMapper
          <Attributes name = "Sustain" id = "1" pitch = "40" momentary = "0" activation = "note40.100|off40.110|cc1.127|pc49" />
        </Music.KeySwitchList>
 #endif
-        var definition = source.Items.Single();
         var rootElement = new StudioOneRootElement
         {
-            Name = $"{source.ProductName.Value} {definition.PatchName.Value}"
+            Name = $"{source.PatchName.Value}"
         };
 
-        var attributeElements = MapElementAttributes( source.Items, ref assignId );
+        var attributeElements = MapElementAttributes( source, ref assignId );
         rootElement.AttributeElements.AddRange( attributeElements );
 
         return Result<StudioOneRootElement, ExportFailureReason>.Success( rootElement );
     }
 
-    private static Result<StudioOneRootElement, ExportFailureReason> MapWithFolders( UniversalDefinitionProductSet source, int assignId )
+    private static Result<StudioOneRootElement, ExportFailureReason> MapWithFolders( UniversalDefinition source, int assignId )
     {
 #if false
     <?xml version = "1.0" encoding = "utf-8"?>
@@ -67,12 +55,12 @@ public sealed class StudioOneModelMapper
 #endif
         var rootElement = new StudioOneRootElement
         {
-            Name = $"{source.ProductName.Value}"
+            Name = $"{source.PatchName.Value}"
         };
 
-        foreach( var definition in source.Items )
+        foreach( var group in source.ArticulationGroups )
         {
-            if( definition.Articulations.Count == 0 )
+            if( group.Articulations.Count == 0 )
             {
                 continue;
             }
@@ -80,11 +68,11 @@ public sealed class StudioOneModelMapper
             var folder = new ElementAttribute
             {
                 Folder = "1",
-                Name   = definition.PatchName.Value
+                Name   = group.Name.Value
             };
 
             // ReSharper disable once ForeachCanBePartlyConvertedToQueryUsingAnotherGetEnumerator
-            foreach( var articulation in definition.Articulations )
+            foreach( var articulation in group.Articulations )
             {
                 var attributeElement = MapElementAttribute( articulation, assignId );
                 folder.Children.Add( attributeElement );
@@ -97,13 +85,13 @@ public sealed class StudioOneModelMapper
         return Result<StudioOneRootElement, ExportFailureReason>.Success( rootElement );
     }
 
-    private static List<ElementAttribute> MapElementAttributes( IReadOnlyCollection<UniversalDefinition> sources, ref int assignId )
+    private static List<ElementAttribute> MapElementAttributes( UniversalDefinition source, ref int assignId )
     {
         var result = new List<ElementAttribute>();
 
-        foreach( var definition in sources )
+        foreach( var group in source.ArticulationGroups )
         {
-            foreach( var articulation in definition.Articulations )
+            foreach( var articulation in group.Articulations )
             {
                 var attr = MapElementAttribute( articulation, assignId );
                 assignId++;

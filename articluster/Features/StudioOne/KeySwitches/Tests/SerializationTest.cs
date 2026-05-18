@@ -9,7 +9,6 @@ using ArtiCluster.Commons.Text;
 using ArtiCluster.Features.StudioOne.KeySwitches.Exports;
 using ArtiCluster.Features.StudioOne.KeySwitches.Mappers;
 using ArtiCluster.Features.StudioOne.KeySwitches.Models;
-using ArtiCluster.Shared.Domain.UniversalDefinitions;
 using ArtiCluster.Shared.IO.Local;
 using ArtiCluster.Shared.Mock;
 
@@ -23,19 +22,10 @@ public class SerializationTest
     [Test]
     public void SerializeTest()
     {
-        var id1 = Guid.NewGuid();
-        var id2 = Guid.NewGuid();
+        var id = Guid.NewGuid();
+        var source = MockUniversalDefinition.CreateDefinition( id, patchName: "Epic Lead" );
 
-        var source1 = MockUniversalDefinition.CreateDefinition( id1, patchName: "Epic Lead" );
-        var source2 = MockUniversalDefinition.CreateDefinition( id2, patchName: "E.Bass" );
-
-        var productSet = new UniversalDefinitionProductSet(
-            manufacturerName: source1.ManufacturerName,
-            productName: source1.ProductName,
-            items: [ source1, source2 ]
-        );
-
-        var mapResult = new StudioOneModelMapper().Map( productSet );
+        var mapResult = new StudioOneModelMapper().Map( source );
 
         Assert.That( mapResult.IsSuccess, Is.True, "Mapping should succeed" );
 
@@ -66,18 +56,7 @@ public class SerializationTest
         var id = Guid.NewGuid();
         var source = MockUniversalDefinition.CreateDefinition( id, patchName: "Epic Lead" );
 
-        var productSet = new UniversalDefinitionProductSet(
-            manufacturerName: source.ManufacturerName,
-            productName: source.ProductName,
-            items: [ source ]
-        );
-
-        var mapResult = new StudioOneModelMapper().Map( productSet );
-
-        Assert.That( mapResult.IsSuccess, Is.True, "Mapping should succeed" );
-
         var dest = Path.GetTempFileName();
-
 
         try
         {
@@ -85,7 +64,33 @@ public class SerializationTest
             {
                 var exporter = new StudioOneExporter();
 
-                var result = await exporter.ExportAsync( fileWriter, productSet );
+                var result = await exporter.ExportAsync( fileWriter, source );
+                Assert.That( result.IsSuccess, Is.True, "Export should succeed" );
+            }
+
+            await TestContext.Out.WriteAsync( await File.ReadAllTextAsync( dest ) );
+        }
+        finally
+        {
+            File.Delete( dest );
+        }
+    }
+
+    [Test]
+    public async Task ExportMultiArticulationGroupTest()
+    {
+        var id = Guid.NewGuid();
+        var source = MockUniversalDefinition.CreateMultiArticulationGroupDefinition( id, patchName: "Epic Lead" );
+
+        var dest = Path.GetTempFileName();
+
+        try
+        {
+            await using( var fileWriter = new LocalTextContentWriter( dest ) )
+            {
+                var exporter = new StudioOneExporter();
+
+                var result = await exporter.ExportAsync( fileWriter, source );
                 Assert.That( result.IsSuccess, Is.True, "Export should succeed" );
             }
 

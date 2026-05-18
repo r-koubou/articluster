@@ -11,14 +11,14 @@ using ArtiCluster.Commons.Text;
 using ArtiCluster.Features.Cubase.ExpressionMaps.Contracts;
 using ArtiCluster.Features.Cubase.ExpressionMaps.Mappers;
 using ArtiCluster.Features.Cubase.ExpressionMaps.Models;
-using ArtiCluster.Shared.Domain.UniversalDefinitions.Model;
+using ArtiCluster.Shared.Domain.UniversalDefinitions;
 using ArtiCluster.Shared.IO.Abstractions;
 
 namespace ArtiCluster.Features.Cubase.ExpressionMaps.Exports;
 
 public sealed class CubaseExporter
 {
-    public async Task<Result<Unit, ExportFailureReason>> ExportAsync( ITextContentWriter writer, UniversalDefinition source, CancellationToken cancellationToken = default )
+    public async Task<Result<Unit, ExportFailureReason>> ExportAsync( ITextContentWriter writer, SeparatedArticulationGroupSet source, CancellationToken cancellationToken = default )
     {
         try
         {
