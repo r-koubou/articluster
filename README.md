@@ -61,8 +61,43 @@ Options:
   --version       Show version information
 
 Commands:
-  new <path/to/output>              Create a Universal Definition file
+  new <path/to/name>                Create a Universal Definition file
   convert <input-dir> <output-dir>  Convert to DAW-specific format.
+```
+
+### new command
+
+```sh
+Usage:
+  articluster new <path/to/name> [options]
+
+Arguments:
+  <path/to/name>
+
+Options:
+  -?, -h, --help  Show help and usage information
+
+```
+
+### convert command
+
+```sh
+Usage:
+  articluster convert <input-dir> <output-dir> [options]
+
+Arguments:
+  <input-dir>
+  <output-dir>
+
+Options:
+  -o, --overwrite                     Overwrite output directory if it already
+                                      exists.
+  -m, --output-markdown-list-dir <m>  When specifying this option, please
+                                      provide the directory path managed by the
+                                      static site generator. The same applies
+                                      to specifying the directory path for
+                                      `output-dir`.
+  -?, -h, --help                      Show help and usage information
 ```
 
 ## Getting Started

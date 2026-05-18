@@ -1,5 +1,11 @@
 # Changelog
 
+## Version 1.1.0
+
+- Added Generating markdown files feature for `Static Site Generator` from converted data.
+- Added `ArticulationGroups` field to Universal Definition specification.
+- Modified `FormatVersion` field in Universal Definition specification to simple integer.
+
 ## Version 1.0.4
 
 - Modified `FormatVersion` field in Universal Definition specification to Semantic Versioning.
