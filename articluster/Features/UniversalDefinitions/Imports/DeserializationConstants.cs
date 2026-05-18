@@ -1,6 +1,6 @@
 using YamlDotNet.Serialization;
 
-namespace ArtiCluster.Features.UniversalDefinitions.v1.Imports;
+namespace ArtiCluster.Features.UniversalDefinitions.Imports;
 
 internal static class DeserializationConstants
 {

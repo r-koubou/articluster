@@ -1,7 +1,7 @@
 {
   "$schema": "http://json-schema.org/draft-06/schema#",
   "$ref": "#/definitions/UniversalDefinition",
-  "description": "Definition of the Universal Definition v1.0.0 file format.",
+  "description": "Definition of the Universal Definition v1 file format (DRAFT)",
   "definitions": {
     "UniversalDefinition": {
       "title": "UniversalDefinition",
@@ -10,10 +10,10 @@
       "additionalProperties": false,
       "properties": {
         "FormatVersion": {
-          "type": "string",
-          "description": "Universal File Format Version (<major>.<minor>.<patch>)",
+          "type": "integer",
+          "description": "Universal File Format Version",
           "examples": [
-            "1.0.0"
+            0
           ]
         },
         "Id": {
@@ -74,7 +74,7 @@
       ],
       "examples": [
         {
-          "FormatVersion": "1.0.0",
+          "FormatVersion": 0,
           "Id": "34023d3f-30b0-4646-90e8-5d2978d09d43",
           "Author": "R-Koubou",
           "ManufacturerName": "Acme Corp",

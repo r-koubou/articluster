@@ -6,9 +6,9 @@
         <Nullable>enable</Nullable>
         <Copyright>R-Koubou</Copyright>
         <Company>R-Koubou</Company>
-        <Product>ArtiCluster.Features.UniversalDefinitions.v1.Exports</Product>
-        <AssemblyName>ArtiCluster.Features.UniversalDefinitions.v1.Exports</AssemblyName>
-        <RootNamespace>ArtiCluster.Features.UniversalDefinitions.v1.Exports</RootNamespace>
+        <Product>ArtiCluster.Features.UniversalDefinitions.Exports</Product>
+        <AssemblyName>ArtiCluster.Features.UniversalDefinitions.Exports</AssemblyName>
+        <RootNamespace>ArtiCluster.Features.UniversalDefinitions.Exports</RootNamespace>
     </PropertyGroup>
 
     <ItemGroup>
