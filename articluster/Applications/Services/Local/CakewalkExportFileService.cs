@@ -14,7 +14,7 @@ using Microsoft.Extensions.Logging;
 
 namespace ArtiCluster.Applications.Services.Local;
 
-public sealed class CakewalkOutputFileService : IExportFileService
+public sealed class CakewalkExportFileService : IExportFileService
 {
     private readonly ILoggerFactory loggerFactory;
 
@@ -22,7 +22,7 @@ public sealed class CakewalkOutputFileService : IExportFileService
         => "Cakewalk";
 
     // ReSharper disable once ConvertToPrimaryConstructor
-    public CakewalkOutputFileService( ILoggerFactory loggerFactory )
+    public CakewalkExportFileService( ILoggerFactory loggerFactory )
     {
         this.loggerFactory = loggerFactory;
     }

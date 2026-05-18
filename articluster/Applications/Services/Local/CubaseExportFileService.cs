@@ -7,21 +7,22 @@ using ArtiCluster.Applications.Services.Abstractions.Services;
 using ArtiCluster.Applications.Services.Local.Runners;
 using ArtiCluster.Applications.Services.Local.Strategies;
 using ArtiCluster.Commons;
+using ArtiCluster.Shared.Domain.UniversalDefinitions;
 using ArtiCluster.Shared.Domain.UniversalDefinitions.Model;
 
 using Microsoft.Extensions.Logging;
 
 namespace ArtiCluster.Applications.Services.Local;
 
-public sealed class LogicOutputFileService : IExportFileService
+public sealed class CubaseExportFileService : IExportFileService
 {
     private readonly ILoggerFactory loggerFactory;
 
     public string TargetDawName
-        => "Logic";
+        => "Cubase";
 
     // ReSharper disable once ConvertToPrimaryConstructor
-    public LogicOutputFileService( ILoggerFactory loggerFactory )
+    public CubaseExportFileService( ILoggerFactory loggerFactory )
     {
         this.loggerFactory = loggerFactory;
     }
@@ -32,12 +33,13 @@ public sealed class LogicOutputFileService : IExportFileService
         CancellationToken cancellationToken = default )
     {
         var runner = new FileExportRunner( loggerFactory );
-        var namingStrategy = new LogicExportNamingStrategy();
-        var strategy = new LogicFileExportStrategy();
+        var namingStrategy = new CubaseExportNamingStrategy();
+        var strategy = new CubaseFileExportStrategy();
+        var collection = new SeparatedArticulationGroupCollection( definitions );
 
         return await runner.RunAsync(
             outputBaseDirectory,
-            definitions,
+            collection.Items,
             namingStrategy,
             strategy,
             cancellationToken

@@ -62,7 +62,7 @@ public class ConvertServiceTest
             "converted"
         );
 
-        var convertService = new CakewalkOutputFileService( new Microsoft.Extensions.Logging.Abstractions.NullLoggerFactory() );
+        var convertService = new CakewalkExportFileService( new Microsoft.Extensions.Logging.Abstractions.NullLoggerFactory() );
         var convertResult = await convertService.ExportAsync( outputBaseDir, definitions );
 
         Assert.That( convertResult.IsSuccess, Is.True );
@@ -89,7 +89,7 @@ public class ConvertServiceTest
             "converted"
         );
 
-        var convertService = new CubaseOutputFileService( new Microsoft.Extensions.Logging.Abstractions.NullLoggerFactory() );
+        var convertService = new CubaseExportFileService( new Microsoft.Extensions.Logging.Abstractions.NullLoggerFactory() );
         var convertResult = await convertService.ExportAsync( outputBaseDir, definitions );
 
         Assert.That( convertResult.IsSuccess, Is.True );
@@ -116,7 +116,7 @@ public class ConvertServiceTest
             "converted"
         );
 
-        var convertService = new LogicOutputFileService( new Microsoft.Extensions.Logging.Abstractions.NullLoggerFactory() );
+        var convertService = new LogicExportFileService( new Microsoft.Extensions.Logging.Abstractions.NullLoggerFactory() );
         var convertResult = await convertService.ExportAsync( outputBaseDir, definitions );
 
         Assert.That( convertResult.IsSuccess, Is.True );
@@ -143,7 +143,7 @@ public class ConvertServiceTest
             "converted"
         );
 
-        var convertService = new StudioOneOutputFileService( new Microsoft.Extensions.Logging.Abstractions.NullLoggerFactory() );
+        var convertService = new StudioOneExportFileService( new Microsoft.Extensions.Logging.Abstractions.NullLoggerFactory() );
         var convertResult = await convertService.ExportAsync( outputBaseDir, definitions );
 
         Assert.That( convertResult.IsSuccess, Is.True );

@@ -13,7 +13,7 @@ using Microsoft.Extensions.Logging;
 
 namespace ArtiCluster.Applications.Services.Local;
 
-public sealed class StudioOneOutputFileService : IExportFileService
+public sealed class StudioOneExportFileService : IExportFileService
 {
     private readonly ILoggerFactory loggerFactory;
 
@@ -21,7 +21,7 @@ public sealed class StudioOneOutputFileService : IExportFileService
         => "Studio One";
 
     // ReSharper disable once ConvertToPrimaryConstructor
-    public StudioOneOutputFileService( ILoggerFactory loggerFactory )
+    public StudioOneExportFileService( ILoggerFactory loggerFactory )
     {
         this.loggerFactory = loggerFactory;
     }
