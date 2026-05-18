@@ -3,15 +3,13 @@ using System.Collections.Generic;
 
 using ArtiCluster.Features.UniversalDefinitions.Contracts;
 
-using Semver;
-
 using YamlDotNet.Serialization;
 
 // ReSharper disable UnusedAutoPropertyAccessor.Global
 // ReSharper disable AutoPropertyCanBeMadeGetOnly.Global
 // ReSharper disable CollectionNeverQueried.Global
 
-namespace ArtiCluster.Features.UniversalDefinitions.v1.Models;
+namespace ArtiCluster.Features.UniversalDefinitions.Models;
 
 /// <summary>
 /// The root of articulation definition data.
@@ -22,24 +20,24 @@ public class UniversalDefinitionModel : IUniversalDefinitionModel
     /// Current format version.
     /// </summary>
     /// <remarks>
-    /// Detecting format version is required to ensure compatibility when importing definition data.
+    /// The current value of version `0` indicates that it is not yet mature and frequently involves breaking changes. We plan to update it to version 1 in the future once it reaches a stable and mature state.
     /// </remarks>
-    public static readonly SemVersion CurrentFormatVersion = new( 1, 0, 0 );
+    public const int CurrentFormatVersion = 0;
 
     /// <summary>
     /// Format version of this definition data.
     /// </summary>
     /// <remarks>
-    /// Added Format Version: 1.0.0
+    /// Added Format Version: 0
     /// </remarks>
     [YamlMember( Alias = IUniversalDefinitionModel.FormatVersionFieldName )]
-    public string FormatVersion { get; set; } = CurrentFormatVersion.ToString();
+    public int FormatVersion { get; set; }
 
     /// <summary>
     /// Identifier
     /// </summary>
     /// <remarks>
-    /// Added Format Version: 1.0.0
+    /// Added Format Version: 0
     /// </remarks>
     public Guid Id { get; set; } = Guid.NewGuid();
 
@@ -55,7 +53,7 @@ public class UniversalDefinitionModel : IUniversalDefinitionModel
     /// Manufacturer name of the product
     /// </summary>
     /// <remarks>
-    /// Added Format Version: 1.0.0
+    /// Added Format Version: 0
     /// </remarks>
     public string ManufacturerName { get; set; } = string.Empty;
 
@@ -63,7 +61,7 @@ public class UniversalDefinitionModel : IUniversalDefinitionModel
     /// Product name
     /// </summary>
     /// <remarks>
-    /// Added Format Version: 1.0.0
+    /// Added Format Version: 0
     /// </remarks>
     public string ProductName { get; set; } = string.Empty;
 
@@ -71,7 +69,7 @@ public class UniversalDefinitionModel : IUniversalDefinitionModel
     /// Patch name (e.g.: Guitar, Bass, etc.)
     /// </summary>
     /// <remarks>
-    /// Added Format Version: 1.0.0
+    /// Added Format Version: 0
     /// </remarks>
     public string PatchName { get; set; } = string.Empty;
 
@@ -79,7 +77,7 @@ public class UniversalDefinitionModel : IUniversalDefinitionModel
     /// Description of this definition
     /// </summary>
     /// <remarks>
-    /// Added Format Version: 1.0.0
+    /// Added Format Version: 0
     /// </remarks>
     public string Description { get; set; } = string.Empty;
 
@@ -87,7 +85,7 @@ public class UniversalDefinitionModel : IUniversalDefinitionModel
     /// Articulation mappings
     /// </summary>
     /// <remarks>
-    /// Added Format Version: 1.0.0
+    /// Added Format Version: 0
     /// </remarks>
     public List<ArticulationGroupModel> ArticulationGroups { get; set; } = new();
 
@@ -95,7 +93,7 @@ public class UniversalDefinitionModel : IUniversalDefinitionModel
     /// Reserved for future use. Can be used to store additional metadata as key-value pairs.
     /// </summary>
     /// <remarks>
-    /// Added Format Version: 1.0.0
+    /// Added Format Version: 0
     /// </remarks>
     public Dictionary<string, string> Extra { get; set; } = new();
 }

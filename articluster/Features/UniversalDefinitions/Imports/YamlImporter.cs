@@ -5,14 +5,14 @@ using System.Threading.Tasks;
 
 using ArtiCluster.Commons;
 using ArtiCluster.Features.UniversalDefinitions.Contracts;
-using ArtiCluster.Features.UniversalDefinitions.v1.Mappers;
-using ArtiCluster.Features.UniversalDefinitions.v1.Models;
+using ArtiCluster.Features.UniversalDefinitions.Mappers;
+using ArtiCluster.Features.UniversalDefinitions.Models;
 using ArtiCluster.Shared.Domain.UniversalDefinitions.Model;
 using ArtiCluster.Shared.IO.Abstractions;
 
 using YamlDotNet.Core;
 
-namespace ArtiCluster.Features.UniversalDefinitions.v1.Imports;
+namespace ArtiCluster.Features.UniversalDefinitions.Imports;
 
 public sealed class YamlImporter : IUniversalDefinitionImporter
 {

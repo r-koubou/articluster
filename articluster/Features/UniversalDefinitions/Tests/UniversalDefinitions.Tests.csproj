@@ -4,7 +4,7 @@
         <LangVersion>default</LangVersion>
         <TargetFramework>net10.0</TargetFramework>
         <RootNamespace>ArtiCluster.Features.UniversalDefinitions.Tests</RootNamespace>
-        <AssemblyName>ArtiCluster.Features.UniversalDefinitions.v1.Tests</AssemblyName>
+        <AssemblyName>ArtiCluster.Features.UniversalDefinitions.Tests</AssemblyName>
         <Nullable>enable</Nullable>
         <IsPackable>false</IsPackable>
     </PropertyGroup>

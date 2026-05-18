@@ -3,7 +3,7 @@ using System.Threading;
 using System.Threading.Tasks;
 
 using ArtiCluster.Features.UniversalDefinitions.Contracts;
-using ArtiCluster.Features.UniversalDefinitions.v1.Imports;
+using ArtiCluster.Features.UniversalDefinitions.Imports;
 using ArtiCluster.Shared.IO.Streams;
 using ArtiCluster.Tests.Helpers;
 

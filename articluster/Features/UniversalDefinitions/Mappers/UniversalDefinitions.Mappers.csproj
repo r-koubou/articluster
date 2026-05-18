@@ -6,9 +6,9 @@
         <Nullable>enable</Nullable>
         <Copyright>R-Koubou</Copyright>
         <Company>R-Koubou</Company>
-        <Product>ArtiCluster.Features.UniversalDefinitions.v1.Mappers</Product>
-        <AssemblyName>ArtiCluster.Features.UniversalDefinitions.v1.Mappers</AssemblyName>
-        <RootNamespace>ArtiCluster.Features.UniversalDefinitions.v1.Mappers</RootNamespace>
+        <Product>ArtiCluster.Features.UniversalDefinitions.Mappers</Product>
+        <AssemblyName>ArtiCluster.Features.UniversalDefinitions.Mappers</AssemblyName>
+        <RootNamespace>ArtiCluster.Features.UniversalDefinitions.Mappers</RootNamespace>
     </PropertyGroup>
 
     <ItemGroup>

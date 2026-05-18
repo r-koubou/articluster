@@ -1,6 +1,6 @@
 using ArtiCluster.Shared.Domain.MidiMessages.Model.Values;
 
-namespace ArtiCluster.Features.UniversalDefinitions.v1.Models;
+namespace ArtiCluster.Features.UniversalDefinitions.Models;
 
 /// <summary>
 /// Represents a MIDI message, which can be used to define the MIDI message that triggers an articulation or a parameter change.

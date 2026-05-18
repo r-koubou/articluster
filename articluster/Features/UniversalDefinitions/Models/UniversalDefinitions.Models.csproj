@@ -6,9 +6,9 @@
         <Nullable>enable</Nullable>
         <Copyright>R-Koubou</Copyright>
         <Company>R-Koubou</Company>
-        <Product>ArtiCluster.Features.UniversalDefinitions.v1.Models</Product>
-        <AssemblyName>ArtiCluster.Features.UniversalDefinitions.v1.Models</AssemblyName>
-        <RootNamespace>ArtiCluster.Features.UniversalDefinitions.v1.Models</RootNamespace>
+        <Product>ArtiCluster.Features.UniversalDefinitions.Models</Product>
+        <AssemblyName>ArtiCluster.Features.UniversalDefinitions.Models</AssemblyName>
+        <RootNamespace>ArtiCluster.Features.UniversalDefinitions.Models</RootNamespace>
     </PropertyGroup>
 
     <ItemGroup>
@@ -17,7 +17,6 @@
     </ItemGroup>
 
     <ItemGroup>
-      <PackageReference Include="Semver" Version="3.0.0" />
       <PackageReference Include="YamlDotNet" Version="17.1.0" />
     </ItemGroup>
 

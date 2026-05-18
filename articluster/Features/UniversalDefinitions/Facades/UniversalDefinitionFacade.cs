@@ -1,19 +1,13 @@
-using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
 
 using ArtiCluster.Commons;
 using ArtiCluster.Features.UniversalDefinitions.Contracts;
-using ArtiCluster.Features.UniversalDefinitions.v1.Imports;
-using ArtiCluster.Features.UniversalDefinitions.v1.Models;
+using ArtiCluster.Features.UniversalDefinitions.Imports;
 using ArtiCluster.Shared.Domain.UniversalDefinitions.Model;
 using ArtiCluster.Shared.IO.Abstractions;
-using ArtiCluster.Shared.IO.Buffered;
-
-using Semver;
 
 using YamlDotNet.Core;
-using YamlDotNet.Serialization;
 
 namespace ArtiCluster.Features.UniversalDefinitions.Facades;
 
@@ -23,6 +17,11 @@ public sealed class UniversalDefinitionFacade : IUniversalDefinitionFacade
     {
         try
         {
+            // [NOTE]
+            // Now, only have one importer, so we ignore the formatVersion.
+            // In the future, if we have multiple importers, we'll need to determine the formatVersion first (probably by peeking at the content)
+            // and then resolve the appropriate importer.
+#if false
             var yamlText = await reader.ReadAllAsync( cancellationToken );
             var deserializer = new DeserializerBuilder().Build();
             var dictionary = deserializer.Deserialize<Dictionary<object, object>>( yamlText );
@@ -35,18 +34,10 @@ public sealed class UniversalDefinitionFacade : IUniversalDefinitionFacade
                 );
             }
 
-            var semVersion = SemVersion.Parse( formatVersion.ToString()! );
-
-            // For now, only have one importer, so we ignore the formatVersion.
-
-            if( semVersion.Major != UniversalDefinitionModel.CurrentFormatVersion.Major )
-            {
-                throw new UnsupportedFormatVersionException( semVersion.ToString() );
-            }
-
+            var importer = FormatVersionResolver.ResolveImporter( int.Parse( formatVersion ) );
+#endif
             var importer = new YamlImporter();
-
-            return await importer.ImportAsync( new TextContentReader( yamlText ), cancellationToken );
+            return await importer.ImportAsync( reader, cancellationToken );
         }
         catch( YamlException e )
         {

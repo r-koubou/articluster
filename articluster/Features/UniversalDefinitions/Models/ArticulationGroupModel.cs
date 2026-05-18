@@ -1,12 +1,12 @@
 using System.Collections.Generic;
 
-namespace ArtiCluster.Features.UniversalDefinitions.v1.Models;
+namespace ArtiCluster.Features.UniversalDefinitions.Models;
 
 /// <summary>
 /// Represents an articulation group.
 /// </summary>
 /// <remarks>
-/// Added Format Version: 1.0.0
+/// Added Format Version: 0
 /// </remarks>
 public class ArticulationGroupModel
 {
@@ -14,7 +14,7 @@ public class ArticulationGroupModel
     /// Name of the articulation group (e.g., "Main", "FX", etc.)
     /// </summary>
     /// <remarks>
-    /// Added Format Version: 1.0.0
+    /// Added Format Version: 0
     /// </remarks>
     public string Name { get; set; } = string.Empty;
 
@@ -22,7 +22,7 @@ public class ArticulationGroupModel
     /// MIDI messages that trigger this articulation.
     /// </summary>
     /// <remarks>
-    /// Added Format Version: 1.0.0
+    /// Added Format Version: 0
     /// </remarks>
     public List<ArticulationModel> Articulations { get; set; } = [ ];
 
@@ -30,7 +30,7 @@ public class ArticulationGroupModel
     /// Reserved for future use. Can be used to store additional metadata as key-value pairs.
     /// </summary>
     /// <remarks>
-    /// Added Format Version: 1.0.0
+    /// Added Format Version: 0
     /// </remarks>
     public Dictionary<string, string> Extra { get; set; } = new();
 }
