@@ -1,7 +1,7 @@
 using System.CommandLine;
 
 using ArtiCluster.Applications.Cli;
-using ArtiCluster.Applications.Services.Abstractions.Local;
+using ArtiCluster.Applications.Services.Abstractions.Services;
 using ArtiCluster.Applications.Services.Local;
 
 using Microsoft.Extensions.DependencyInjection;
@@ -35,11 +35,11 @@ services.AddLogging( builder =>
 services.AddTransient<CreateDefinitionCommandExecutor>();
 services.AddTransient<ConvertingCommandExecutor>();
 // Converters
-services.AddSingleton<IUniversalDefinitionLocalFileService, UniversalDefinitionLocalFileService>();
-services.AddTransient<ILocalFileConversionService, CubaseLocalFileConversionService>();
-services.AddTransient<ILocalFileConversionService, StudioOneLocalFileConversionService>();
-services.AddTransient<ILocalFileConversionService, CakewalkLocalFileConversionService>();
-services.AddTransient<ILocalFileConversionService, LogicLocalFileConversionService>();
+services.AddSingleton<IUniversalDefinitionFileService, UniversalDefinitionFileService>();
+services.AddTransient<IExportFileService, CubaseOutputFileService>();
+services.AddTransient<IExportFileService, StudioOneOutputFileService>();
+services.AddTransient<IExportFileService, CakewalkOutputFileService>();
+services.AddTransient<IExportFileService, LogicOutputFileService>();
 #endregion ~DI
 
 await using var serviceProvider = services.BuildServiceProvider();

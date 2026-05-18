@@ -5,8 +5,8 @@ using System.Threading;
 using System.Threading.Tasks;
 
 using ArtiCluster.Applications.Services.Abstractions;
-using ArtiCluster.Applications.Services.Abstractions.Local.Executors;
-using ArtiCluster.Applications.Services.Abstractions.Local.Strategies;
+using ArtiCluster.Applications.Services.Abstractions.Executors;
+using ArtiCluster.Applications.Services.Abstractions.Strategies;
 using ArtiCluster.Commons;
 using ArtiCluster.Shared.IO.Local;
 
@@ -14,27 +14,27 @@ using Microsoft.Extensions.Logging;
 
 namespace ArtiCluster.Applications.Services.Local.Executors;
 
-public sealed partial class LocalFileExportExecutor<TSource> : ILocalFileExportExecutor<TSource>
+public sealed partial class FileOutputExecutor<TSource> : IExportExecutor<TSource>
 {
-    private readonly ILogger<LocalFileExportExecutor<TSource>> logger;
+    private readonly ILogger<FileOutputExecutor<TSource>> logger;
 
     // ReSharper disable once ConvertToPrimaryConstructor
-    public LocalFileExportExecutor( ILoggerFactory loggerFactory )
+    public FileOutputExecutor( ILoggerFactory loggerFactory )
     {
-        logger = loggerFactory.CreateLogger<LocalFileExportExecutor<TSource>>();
+        logger = loggerFactory.CreateLogger<FileOutputExecutor<TSource>>();
     }
 
     public async Task<Result<Unit, ExportFailureReason>> ExecuteAsync(
         string baseOutputDirectory,
         IEnumerable<TSource> sources,
-        ILocalOutputNamingStrategy<TSource> outputNamingStrategy,
-        ILocalFileExportStrategy<TSource> exportStrategy,
+        IExportNamingStrategy<TSource> exportNamingStrategy,
+        IExportStrategy<TSource> exportStrategy,
         CancellationToken cancellationToken = default )
     {
         foreach( var x in sources )
         {
-            var outputDirectory = outputNamingStrategy.GetOutputDirectory( baseOutputDirectory, x );
-            var outputPath = Path.Combine( outputDirectory, outputNamingStrategy.GetOutputFileName( x ) );
+            var outputDirectory = exportNamingStrategy.GetOutputDirectory( baseOutputDirectory, x );
+            var outputPath = Path.Combine( outputDirectory, exportNamingStrategy.GetOutputFileName( x ) );
 
             LogExportingToOutputPath( outputPath );
 

@@ -5,9 +5,9 @@ using System.Threading.Tasks;
 using ArtiCluster.Commons;
 using ArtiCluster.Shared.Domain.UniversalDefinitions.Model;
 
-namespace ArtiCluster.Applications.Services.Abstractions.Local;
+namespace ArtiCluster.Applications.Services.Abstractions.Services;
 
-public interface IUniversalDefinitionLocalFileService
+public interface IUniversalDefinitionFileService
 {
     Task<Result<IReadOnlyCollection<UniversalDefinition>, ImportFailureReason>> ImportAsync(
         string definitionsDirectory,
