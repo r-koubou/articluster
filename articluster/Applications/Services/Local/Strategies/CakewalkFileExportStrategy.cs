@@ -2,7 +2,7 @@ using System.Threading;
 using System.Threading.Tasks;
 
 using ArtiCluster.Applications.Services.Abstractions;
-using ArtiCluster.Applications.Services.Abstractions.Local.Strategies;
+using ArtiCluster.Applications.Services.Abstractions.Strategies;
 using ArtiCluster.Commons;
 using ArtiCluster.Features.Cakewalk.ArticulationMaps.Facades;
 using ArtiCluster.Shared.Domain.UniversalDefinitions;
@@ -12,7 +12,7 @@ using FacadeExportFailureReason = ArtiCluster.Features.Cakewalk.ArticulationMaps
 
 namespace ArtiCluster.Applications.Services.Local.Strategies;
 
-public sealed class CakewalkLocalFileExportStrategy : ILocalFileExportStrategy<ProductSet>
+public sealed class CakewalkFileExportStrategy : IExportStrategy<ProductSet>
 {
     public async Task<Result<Unit, ExportFailureReason>> ExportAsync(
         ITextContentWriter writer,

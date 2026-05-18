@@ -2,41 +2,44 @@ using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
 
-using ArtiCluster.Applications.Services.Abstractions.Local;
+using ArtiCluster.Applications.Services.Abstractions;
+using ArtiCluster.Applications.Services.Abstractions.Services;
 using ArtiCluster.Applications.Services.Local.Runners;
 using ArtiCluster.Applications.Services.Local.Strategies;
 using ArtiCluster.Commons;
+using ArtiCluster.Shared.Domain.UniversalDefinitions;
 using ArtiCluster.Shared.Domain.UniversalDefinitions.Model;
 
 using Microsoft.Extensions.Logging;
 
 namespace ArtiCluster.Applications.Services.Local;
 
-public sealed class LogicLocalFileConversionService : ILocalFileConversionService
+public sealed class CakewalkOutputFileService : IExportFileService
 {
     private readonly ILoggerFactory loggerFactory;
 
     public string TargetDawName
-        => "Logic";
+        => "Cakewalk";
 
     // ReSharper disable once ConvertToPrimaryConstructor
-    public LogicLocalFileConversionService( ILoggerFactory loggerFactory )
+    public CakewalkOutputFileService( ILoggerFactory loggerFactory )
     {
         this.loggerFactory = loggerFactory;
     }
 
-    public async Task<Result<Unit, ConvertFailureReason>> ConvertAsync(
+    public async Task<Result<Unit, ExportFailureReason>> ExportAsync(
         string outputBaseDirectory,
         IReadOnlyCollection<UniversalDefinition> definitions,
         CancellationToken cancellationToken = default )
     {
-        var runner = new LocalFileConversionRunner( loggerFactory );
-        var namingStrategy = new LogicLocalOutputNamingStrategy();
-        var strategy = new LogicLocalFileExportStrategy();
+        var runner = new FileExportRunner( loggerFactory );
+        var namingStrategy = new CakewalkExportNamingStrategy();
+        var strategy = new CakewalkFileExportStrategy();
+        var collection = new ProductCollection( definitions );
 
         return await runner.RunAsync(
             outputBaseDirectory,
-            definitions,
+            collection.Items,
             namingStrategy,
             strategy,
             cancellationToken

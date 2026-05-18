@@ -1,12 +1,12 @@
 using System.IO;
 
-using ArtiCluster.Applications.Services.Abstractions.Local.Strategies;
+using ArtiCluster.Applications.Services.Abstractions.Strategies;
 using ArtiCluster.Shared.Domain.UniversalDefinitions.Model;
 
 namespace ArtiCluster.Applications.Services.Local.Strategies;
 
-public sealed class StudioOneLocalOutputNamingStrategy
-    : ILocalOutputNamingStrategy<UniversalDefinition>
+public sealed class StudioOneExportNamingStrategy
+    : IExportNamingStrategy<UniversalDefinition>
 {
     public string GetOutputDirectory( string baseDirectory, UniversalDefinition source )
         => Path.Combine( baseDirectory, "StudioOne", source.ManufacturerName.Value, source.ProductName.Value );
