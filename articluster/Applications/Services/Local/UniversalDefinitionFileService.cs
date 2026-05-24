@@ -27,9 +27,6 @@ public sealed class UniversalDefinitionFileService : IUniversalDefinitionFileSer
 
     public async Task<Result<IReadOnlyCollection<UniversalDefinition>, ImportFailureReason>> ImportAsync( string definitionsDirectory, CancellationToken cancellationToken = default )
     {
-        // var executor = new UniversalDefinitionImportExecutor( loggerFactory );
-        // return await executor.ExecuteAsync( definitionsDirectory, cancellationToken );
-
         var runner = new FileImportRunner( loggerFactory );
         var collector = new InMemoryImportedFileCollector();
         var result = await runner.RunAsync(

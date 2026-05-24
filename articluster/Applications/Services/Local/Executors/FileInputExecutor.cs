@@ -32,40 +32,53 @@ public partial class FileInputExecutor<TTarget> : IImportExecutor<TTarget>
         IImportedFileCollector? collector = null,
         CancellationToken cancellationToken = default )
     {
-        var searchPattern = namingStrategy.GetInputFilePattern();
-        var searchOption = namingStrategy.GetSearchOption();
-        var files = Directory.GetFiles( inputDirectory, searchPattern, searchOption );
-        var succeededImports = 0;
-
-        foreach( var x in files )
+        try
         {
-            LogImportingFileFile( x );
+            var searchPattern = namingStrategy.GetInputFilePattern();
+            var searchOption = namingStrategy.GetSearchOption();
+            var files = Directory.GetFiles( inputDirectory, searchPattern, searchOption );
+            var succeededImports = 0;
 
-            using var contentReader = new LocalTextContentReader( x );
-            var result = await strategy.ImportAsync( contentReader, cancellationToken );
-
-            if( result.IsFailure )
+            foreach( var x in files )
             {
-                var error = result.UnwrapError();
+                LogImportingFileFile( x );
 
-                LogFailedToImportDefinitionFromFileFile( x, error.Reason, error.Error );
+                using var contentReader = new LocalTextContentReader( x );
+                var result = await strategy.ImportAsync( contentReader, cancellationToken );
 
-                return Result<Unit, ImportFailureReason>.Failure( error.Reason, error.Error );
+                if( result.IsFailure )
+                {
+                    var error = result.UnwrapError();
+
+                    LogFailedToImportDefinitionFromFileFile( x, error.Reason, error.Error );
+
+                    return Result<Unit, ImportFailureReason>.Failure( error.Reason, error.Error );
+                }
+
+                // ReSharper disable once InvertIf
+                if( collector != null && entryFactory != null )
+                {
+                    var entry = entryFactory.Create( x, result.Unwrap() );
+                    await collector.CollectAsync( entry, cancellationToken );
+                }
+
+                succeededImports++;
             }
 
-            // ReSharper disable once InvertIf
-            if( collector != null && entryFactory != null )
-            {
-                var entry = entryFactory.Create( x, result.Unwrap() );
-                await collector.CollectAsync( entry, cancellationToken );
-            }
+            LogImportedSuccessfullyCount( succeededImports );
 
-            succeededImports++;
+            return Result<Unit, ImportFailureReason>.Success( Unit.Default );
         }
-
-        LogImportedSuccessfullyCount( succeededImports );
-
-        return Result<Unit, ImportFailureReason>.Success( Unit.Default );
+        catch( IOException e )
+        {
+            LogAnUnexpectedErrorOccurredWhileImportingDefinitionsFromDirectoryInputdirectory( inputDirectory, e );
+            return Result<Unit, ImportFailureReason>.Failure( ImportFailureReason.IoError, e );
+        }
+        catch( Exception e )
+        {
+            LogAnUnexpectedErrorOccurredWhileImportingDefinitionsFromDirectoryInputdirectory( inputDirectory, e );
+            return Result<Unit, ImportFailureReason>.Failure( ImportFailureReason.OtherError, e );
+        }
     }
 
     #region Logging
@@ -77,5 +90,8 @@ public partial class FileInputExecutor<TTarget> : IImportExecutor<TTarget>
 
     [LoggerMessage( LogLevel.Critical, "Failed to import definition from file {File}. Reason: {Reason}" )]
     partial void LogFailedToImportDefinitionFromFileFile( string file, ImportFailureReason reason, Exception? exception );
+
+    [LoggerMessage( LogLevel.Error, "An unexpected error occurred while importing definitions from directory {InputDirectory}" )]
+    partial void LogAnUnexpectedErrorOccurredWhileImportingDefinitionsFromDirectoryInputdirectory( string inputDirectory, Exception exception );
     #endregion
 }

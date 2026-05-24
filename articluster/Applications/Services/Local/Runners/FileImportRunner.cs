@@ -43,13 +43,7 @@ public sealed class FileImportRunner : IImportRunner
 
         if( result.IsFailure )
         {
-            return result.MapError( reason => reason switch
-                {
-                    ImportFailureReason.DeserializationError => ImportFailureReason.DeserializationError,
-                    ImportFailureReason.IoError              => ImportFailureReason.IoError,
-                    _                                        => ImportFailureReason.OtherError
-                }
-            );
+            return result;
         }
 
         return Result<Unit, ImportFailureReason>.Success( Unit.Default );
