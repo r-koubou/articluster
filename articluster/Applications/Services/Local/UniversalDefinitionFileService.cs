@@ -1,13 +1,13 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 
 using ArtiCluster.Applications.Services.Abstractions;
 using ArtiCluster.Applications.Services.Abstractions.Collectors;
 using ArtiCluster.Applications.Services.Abstractions.Services;
-using ArtiCluster.Applications.Services.Local.Executors;
 using ArtiCluster.Applications.Services.Local.Runners;
 using ArtiCluster.Applications.Services.Local.Strategies;
 using ArtiCluster.Commons;
@@ -29,8 +29,32 @@ public sealed class UniversalDefinitionFileService : IUniversalDefinitionFileSer
 
     public async Task<Result<IReadOnlyCollection<UniversalDefinition>, ImportFailureReason>> ImportAsync( string definitionsDirectory, CancellationToken cancellationToken = default )
     {
-        var executor = new UniversalDefinitionImportExecutor( loggerFactory );
-        return await executor.ExecuteAsync( definitionsDirectory, cancellationToken );
+        // var executor = new UniversalDefinitionImportExecutor( loggerFactory );
+        // return await executor.ExecuteAsync( definitionsDirectory, cancellationToken );
+
+        var runner = new FileImportRunner( loggerFactory );
+        var collector = new InMemoryImportedFileCollector();
+        var result = await runner.RunAsync(
+            definitionsDirectory,
+            new UniversalDefinitionFileImportStrategy(),
+            new UniversalDefinitionImportNamingStrategy(),
+            new UniversalDefinitionImportedFileEntryFactory(),
+            collector,
+            cancellationToken
+        );
+
+        if( result.IsFailure )
+        {
+            var error = result.UnwrapError();
+            return Result<IReadOnlyCollection<UniversalDefinition>, ImportFailureReason>.Failure( error.Reason, error.Error );
+        }
+
+        var definitions =
+            collector.Items
+                     .Select( x => x.Definition )
+                     .ToList();
+
+        return Result<IReadOnlyCollection<UniversalDefinition>, ImportFailureReason>.Success( definitions );
     }
 
     public async Task<Result<Unit, ExportFailureReason>> ExportAsync( string outputPath, UniversalDefinition definition, CancellationToken cancellationToken = default )
