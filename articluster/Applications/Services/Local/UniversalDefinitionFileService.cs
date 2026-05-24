@@ -1,150 +1,82 @@
-using System;
 using System.Collections.Generic;
-using System.IO;
+using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 
 using ArtiCluster.Applications.Services.Abstractions;
+using ArtiCluster.Applications.Services.Abstractions.Collectors;
 using ArtiCluster.Applications.Services.Abstractions.Services;
+using ArtiCluster.Applications.Services.Local.Runners;
+using ArtiCluster.Applications.Services.Local.Strategies;
 using ArtiCluster.Commons;
-using ArtiCluster.Features.UniversalDefinitions.Facades;
 using ArtiCluster.Shared.Domain.UniversalDefinitions.Model;
-using ArtiCluster.Shared.IO.Local;
 
 using Microsoft.Extensions.Logging;
 
-using FacadeImportFailureReason = ArtiCluster.Features.UniversalDefinitions.Contracts.ImportFailureReason;
-using FacadeExportFailureReason = ArtiCluster.Features.UniversalDefinitions.Contracts.ExportFailureReason;
-
 namespace ArtiCluster.Applications.Services.Local;
 
-public sealed partial class UniversalDefinitionFileService : IUniversalDefinitionFileService
+public sealed class UniversalDefinitionFileService : IUniversalDefinitionFileService
 {
-    private readonly ILogger<UniversalDefinitionFileService> logger;
+    private readonly ILoggerFactory loggerFactory;
 
     // ReSharper disable once ConvertToPrimaryConstructor
-    public UniversalDefinitionFileService( ILogger<UniversalDefinitionFileService> logger )
+    public UniversalDefinitionFileService( ILoggerFactory loggerFactory )
     {
-        this.logger = logger;
+        this.loggerFactory = loggerFactory;
     }
 
     public async Task<Result<IReadOnlyCollection<UniversalDefinition>, ImportFailureReason>> ImportAsync( string definitionsDirectory, CancellationToken cancellationToken = default )
     {
-        logger.LogInformation( "Import begin" );
+        var runner = new FileImportRunner( loggerFactory );
+        var collector = new InMemoryImportedFileCollector();
+        var result = await runner.RunAsync(
+            definitionsDirectory,
+            new UniversalDefinitionFileImportStrategy(),
+            new UniversalDefinitionImportNamingStrategy(),
+            new UniversalDefinitionImportedFileEntryFactory(),
+            collector,
+            cancellationToken
+        );
 
-        try
+        if( result.IsFailure )
         {
-            var facade = new UniversalDefinitionFacade();
-            var definitionFiles = Directory.GetFiles( definitionsDirectory, "*.yaml", SearchOption.AllDirectories );
-            var definitions = new List<UniversalDefinition>();
-
-            foreach( var file in definitionFiles )
-            {
-                LogImportingFileFile( file );
-
-                using var reader = new LocalTextContentReader( file );
-                var importResult = await facade.ImportAsync( reader, cancellationToken );
-
-                if( importResult.IsFailure )
-                {
-                    var reason = importResult.Reason switch
-                    {
-                        FacadeImportFailureReason.UnsupportedFormatVersion => ImportFailureReason.UnsupportedFormatVersion,
-                        FacadeImportFailureReason.DeserializationError     => ImportFailureReason.DeserializationError,
-                        FacadeImportFailureReason.IoError                  => ImportFailureReason.IoError,
-                        _                                                  => ImportFailureReason.OtherError
-                    };
-
-                    LogFailedToImportDefinitionFromFileFile( file, reason, importResult.UnwrapError().Error );
-
-                    return Result<IReadOnlyCollection<UniversalDefinition>, ImportFailureReason>.Failure( reason );
-                }
-
-                definitions.Add( importResult.Unwrap() );
-            }
-
-            LogImportedSuccessfullyCount( definitions.Count );
-
-            return Result<IReadOnlyCollection<UniversalDefinition>, ImportFailureReason>.Success( definitions );
+            var error = result.UnwrapError();
+            return Result<IReadOnlyCollection<UniversalDefinition>, ImportFailureReason>.Failure( error.Reason, error.Error );
         }
-        catch( IOException e )
-        {
-            return Result<IReadOnlyCollection<UniversalDefinition>, ImportFailureReason>.Failure(
-                ImportFailureReason.IoError,
-                e
-            );
-        }
-        catch( Exception e )
-        {
-            return Result<IReadOnlyCollection<UniversalDefinition>, ImportFailureReason>.Failure(
-                ImportFailureReason.OtherError,
-                e
-            );
-        }
+
+        var definitions =
+            collector.Items
+                     .Select( x => x.Definition )
+                     .ToList();
+
+        return Result<IReadOnlyCollection<UniversalDefinition>, ImportFailureReason>.Success( definitions );
     }
 
-    public async Task<Result<Unit, ExportFailureReason>> ExportAsync( string outputPath, UniversalDefinition definition, CancellationToken cancellationToken = default )
+    public async Task<Result<Unit, ExportFailureReason>> ExportAsync( string outputDirectory, UniversalDefinition definition, CancellationToken cancellationToken = default )
     {
-        logger.LogInformation( "Export begin" );
+        var runner = new FileExportRunner( loggerFactory );
+        var namingStrategy = new UniversalDefinitionTemplateExportNamingStrategy();
+        var strategy = new UniversalDefinitionFileExportStrategy();
+        var factory = new UniversalDefinitionExportedFileEntryFactory();
+        var collector = new InMemoryExportedFileCollector();
 
-        try
-        {
-            var outputDirectory = Path.GetDirectoryName( outputPath );
+        var result = await runner.RunAsync(
+            outputDirectory,
+            [ definition ],
+            namingStrategy,
+            strategy,
+            factory,
+            collector,
+            cancellationToken
+        );
 
-            if( outputDirectory == null )
-            {
-                throw new ArgumentException( $"Cannot determine output directory from the provided path : {outputPath} )", paramName: nameof( outputPath ) );
-            }
-
-            // outputPath has parent directory, create it if it doesn't exist
-            if( outputDirectory.Length > 0 )
-            {
-                Directory.CreateDirectory( outputDirectory );
-            }
-
-            var facade = new UniversalDefinitionFacade();
-            await using var writer = new LocalTextContentWriter( outputPath );
-
-            var result = await facade.ExportAsync( writer, definition, cancellationToken );
-
-            if( result.IsFailure )
-            {
-                return result.MapError( reason => reason switch
-                    {
-                        FacadeExportFailureReason.SerializationError => ExportFailureReason.SerializationError,
-                        FacadeExportFailureReason.IoError            => ExportFailureReason.IoError,
-                        _                                            => ExportFailureReason.OtherError
-                    }
-                );
-            }
-
-            return Result<Unit, ExportFailureReason>.Success( Unit.Default );
-        }
-        catch( IOException )
-        {
-            return Result<Unit, ExportFailureReason>.Failure( ExportFailureReason.IoError );
-        }
-        catch( Exception )
-        {
-            return Result<Unit, ExportFailureReason>.Failure( ExportFailureReason.OtherError );
-        }
+        return result;
     }
 
-    public async Task<Result<Unit, ExportFailureReason>> ExportTemplateAsync( string outputPath, CancellationToken cancellationToken = default )
+    public async Task<Result<Unit, ExportFailureReason>> ExportTemplateAsync( string outputDirectory, string patchName, CancellationToken cancellationToken = default )
     {
-        var definition = UniversalDefinition.CreateTemplate();
+        var definition = UniversalDefinition.CreateTemplate( patchName: patchName );
 
-        return await ExportAsync( outputPath, definition, cancellationToken );
+        return await ExportAsync( outputDirectory, definition, cancellationToken );
     }
-
-    #region Logging
-    [LoggerMessage( LogLevel.Debug, "Importing file: {File}" )]
-    partial void LogImportingFileFile( string file );
-
-    [LoggerMessage( LogLevel.Information, "Imported successfully {Count} definitions" )]
-    partial void LogImportedSuccessfullyCount( int count );
-
-    [LoggerMessage( LogLevel.Critical, "Failed to import definition from file {File}. Reason: {Reason}" )]
-    partial void LogFailedToImportDefinitionFromFileFile( string file, ImportFailureReason reason, Exception? exception );
-    #endregion
 }
