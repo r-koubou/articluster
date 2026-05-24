@@ -1,9 +1,7 @@
 using System.IO;
 using System.Threading.Tasks;
 
-using ArtiCluster.Applications.Services.Abstractions.Executors;
 using ArtiCluster.Applications.Services.Local;
-using ArtiCluster.Applications.Services.Local.Executors;
 using ArtiCluster.Tests.Helpers;
 
 using NUnit.Framework;
@@ -21,13 +19,7 @@ public class ConvertServiceTest
             "Acme Corp"
         );
 
-        var executor = new UniversalDefinitionImportExecutor( new NullLogger<IUniversalDefinitionImportExecutor>() );
-
-        var service = new UniversalDefinitionFileService(
-            new NullLogger<UniversalDefinitionFileService>(),
-            executor
-        );
-
+        var service = new UniversalDefinitionFileService( new NullLoggerFactory() );;
         var result = await service.ImportAsync( dir );
 
         Assert.That( result.IsSuccess, Is.True );
@@ -44,13 +36,7 @@ public class ConvertServiceTest
             "testdata.yaml"
         );
 
-        var importExecutor = new UniversalDefinitionImportExecutor( new NullLogger<IUniversalDefinitionImportExecutor>() );
-
-        var service = new UniversalDefinitionFileService(
-            new NullLogger<UniversalDefinitionFileService>(),
-            importExecutor
-        );
-
+        var service = new UniversalDefinitionFileService( new NullLoggerFactory() );
         var result = await service.ExportTemplateAsync( filePath );
 
         Assert.That( result.IsSuccess, Is.True );
@@ -63,13 +49,7 @@ public class ConvertServiceTest
             "Acme Corp"
         );
 
-        var importExecutor = new UniversalDefinitionImportExecutor( new NullLogger<IUniversalDefinitionImportExecutor>() );
-
-        var importService = new UniversalDefinitionFileService(
-            new NullLogger<UniversalDefinitionFileService>(),
-            importExecutor
-        );
-
+        var importService = new UniversalDefinitionFileService( new NullLoggerFactory() );
         var importResult = await importService.ImportAsync( inputBaseDir );
 
         Assert.That( importResult.IsSuccess, Is.True );
@@ -101,13 +81,7 @@ public class ConvertServiceTest
             "Acme Corp"
         );
 
-        var importExecutor = new UniversalDefinitionImportExecutor( new NullLogger<IUniversalDefinitionImportExecutor>() );
-
-        var importService = new UniversalDefinitionFileService(
-            new NullLogger<UniversalDefinitionFileService>(),
-            importExecutor
-        );
-
+        var importService = new UniversalDefinitionFileService( new NullLoggerFactory() );;
         var importResult = await importService.ImportAsync( inputBaseDir );
 
         Assert.That( importResult.IsSuccess, Is.True );
@@ -139,12 +113,7 @@ public class ConvertServiceTest
             "Acme Corp"
         );
 
-        var importExecutor = new UniversalDefinitionImportExecutor( new NullLogger<IUniversalDefinitionImportExecutor>() );
-
-        var importService = new UniversalDefinitionFileService(
-            new NullLogger<UniversalDefinitionFileService>(),
-            importExecutor
-        );
+        var importService = new UniversalDefinitionFileService( new NullLoggerFactory() );
 
         var importResult = await importService.ImportAsync( inputBaseDir );
 
@@ -177,13 +146,7 @@ public class ConvertServiceTest
             "Acme Corp"
         );
 
-        var importExecutor = new UniversalDefinitionImportExecutor( new NullLogger<IUniversalDefinitionImportExecutor>() );
-
-        var importService = new UniversalDefinitionFileService(
-            new NullLogger<UniversalDefinitionFileService>(),
-            importExecutor
-        );
-
+        var importService = new UniversalDefinitionFileService( new NullLoggerFactory() );
         var importResult = await importService.ImportAsync( inputBaseDir );
 
         Assert.That( importResult.IsSuccess, Is.True );

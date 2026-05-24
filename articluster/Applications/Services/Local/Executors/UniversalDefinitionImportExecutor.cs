@@ -17,14 +17,15 @@ using FacadeImportFailureReason = ArtiCluster.Features.UniversalDefinitions.Cont
 
 namespace ArtiCluster.Applications.Services.Local.Executors;
 
-public partial class UniversalDefinitionImportExecutor : IUniversalDefinitionImportExecutor
+public partial class UniversalDefinitionImportExecutor
+    : IImportExecutor<IReadOnlyCollection<UniversalDefinition>>
 {
-    private readonly ILogger<IUniversalDefinitionImportExecutor> logger;
+    private readonly ILogger<UniversalDefinitionImportExecutor> logger;
 
     // ReSharper disable once ConvertToPrimaryConstructor
-    public UniversalDefinitionImportExecutor( ILogger<IUniversalDefinitionImportExecutor> logger )
+    public UniversalDefinitionImportExecutor( ILoggerFactory loggerFactory )
     {
-        this.logger = logger;
+        logger = loggerFactory.CreateLogger<UniversalDefinitionImportExecutor>();
     }
 
     public async Task<Result<IReadOnlyCollection<UniversalDefinition>, ImportFailureReason>> ExecuteAsync(

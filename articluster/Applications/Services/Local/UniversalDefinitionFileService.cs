@@ -5,91 +5,64 @@ using System.Threading;
 using System.Threading.Tasks;
 
 using ArtiCluster.Applications.Services.Abstractions;
-using ArtiCluster.Applications.Services.Abstractions.Executors;
+using ArtiCluster.Applications.Services.Abstractions.Collectors;
 using ArtiCluster.Applications.Services.Abstractions.Services;
 using ArtiCluster.Applications.Services.Local.Executors;
+using ArtiCluster.Applications.Services.Local.Runners;
+using ArtiCluster.Applications.Services.Local.Strategies;
 using ArtiCluster.Commons;
-using ArtiCluster.Features.UniversalDefinitions.Facades;
 using ArtiCluster.Shared.Domain.UniversalDefinitions.Model;
-using ArtiCluster.Shared.IO.Local;
 
 using Microsoft.Extensions.Logging;
-
-using FacadeExportFailureReason = ArtiCluster.Features.UniversalDefinitions.Contracts.ExportFailureReason;
 
 namespace ArtiCluster.Applications.Services.Local;
 
 public sealed class UniversalDefinitionFileService : IUniversalDefinitionFileService
 {
-    private readonly ILogger<UniversalDefinitionFileService> logger;
-
-    private readonly IUniversalDefinitionImportExecutor importExecutor;
+    private readonly ILoggerFactory loggerFactory;
 
     // ReSharper disable once ConvertToPrimaryConstructor
-    public UniversalDefinitionFileService(
-        ILogger<UniversalDefinitionFileService> logger,
-        IUniversalDefinitionImportExecutor importExecutor )
+    public UniversalDefinitionFileService( ILoggerFactory loggerFactory )
     {
-        this.logger         = logger;
-        this.importExecutor = importExecutor;
+        this.loggerFactory = loggerFactory;
     }
 
     public async Task<Result<IReadOnlyCollection<UniversalDefinition>, ImportFailureReason>> ImportAsync( string definitionsDirectory, CancellationToken cancellationToken = default )
     {
-        logger.LogInformation( "Import begin" );
-        return await importExecutor.ExecuteAsync( definitionsDirectory, cancellationToken );
+        var executor = new UniversalDefinitionImportExecutor( loggerFactory );
+        return await executor.ExecuteAsync( definitionsDirectory, cancellationToken );
     }
 
     public async Task<Result<Unit, ExportFailureReason>> ExportAsync( string outputPath, UniversalDefinition definition, CancellationToken cancellationToken = default )
     {
-        logger.LogInformation( "Export begin" );
+        var fullpath = Path.GetFullPath( outputPath );
+        var outputDirectory = Path.GetDirectoryName( fullpath );
 
-        try
-        {
-            var outputDirectory = Path.GetDirectoryName( outputPath );
+        ArgumentNullException.ThrowIfNull( outputDirectory, nameof( outputPath ) );
 
-            if( outputDirectory == null )
-            {
-                throw new ArgumentException( $"Cannot determine output directory from the provided path : {outputPath} )", paramName: nameof( outputPath ) );
-            }
+        var runner = new FileExportRunner( loggerFactory );
+        var namingStrategy = new UniversalDefinitionTemplateExportNamingStrategy();
+        var strategy = new UniversalDefinitionFileExportStrategy();
+        var factory = new UniversalDefinitionExportedFileEntryFactory();
+        var collector = new InMemoryExportedFileCollector();
 
-            // outputPath has parent directory, create it if it doesn't exist
-            if( outputDirectory.Length > 0 )
-            {
-                Directory.CreateDirectory( outputDirectory );
-            }
+        var result = await runner.RunAsync(
+            outputDirectory,
+            [ definition ],
+            namingStrategy,
+            strategy,
+            factory,
+            collector,
+            cancellationToken
+        );
 
-            var facade = new UniversalDefinitionFacade();
-            await using var writer = new LocalTextContentWriter( outputPath );
-
-            var result = await facade.ExportAsync( writer, definition, cancellationToken );
-
-            if( result.IsFailure )
-            {
-                return result.MapError( reason => reason switch
-                    {
-                        FacadeExportFailureReason.SerializationError => ExportFailureReason.SerializationError,
-                        FacadeExportFailureReason.IoError            => ExportFailureReason.IoError,
-                        _                                            => ExportFailureReason.OtherError
-                    }
-                );
-            }
-
-            return Result<Unit, ExportFailureReason>.Success( Unit.Default );
-        }
-        catch( IOException )
-        {
-            return Result<Unit, ExportFailureReason>.Failure( ExportFailureReason.IoError );
-        }
-        catch( Exception )
-        {
-            return Result<Unit, ExportFailureReason>.Failure( ExportFailureReason.OtherError );
-        }
+        return result;
     }
 
     public async Task<Result<Unit, ExportFailureReason>> ExportTemplateAsync( string outputPath, CancellationToken cancellationToken = default )
     {
-        var definition = UniversalDefinition.CreateTemplate();
+        var patchName = Path.GetFileNameWithoutExtension( outputPath );
+        var definition = UniversalDefinition.CreateTemplate( patchName: patchName );
 
         return await ExportAsync( outputPath, definition, cancellationToken );
     }
