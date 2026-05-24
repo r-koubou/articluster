@@ -31,13 +31,8 @@ public class ConvertServiceTest
     [Test]
     public async Task ExportTemplateTest()
     {
-        var filePath = Path.Combine(
-            TestUtility.TestDataDirectoryRoot,
-            "testdata.yaml"
-        );
-
         var service = new UniversalDefinitionFileService( new NullLoggerFactory() );
-        var result = await service.ExportTemplateAsync( filePath );
+        var result = await service.ExportTemplateAsync( TestUtility.TestDataDirectoryRoot, "Example Patch" );
 
         Assert.That( result.IsSuccess, Is.True );
     }

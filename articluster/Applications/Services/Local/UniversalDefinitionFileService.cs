@@ -1,6 +1,4 @@
-using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
@@ -57,13 +55,8 @@ public sealed class UniversalDefinitionFileService : IUniversalDefinitionFileSer
         return Result<IReadOnlyCollection<UniversalDefinition>, ImportFailureReason>.Success( definitions );
     }
 
-    public async Task<Result<Unit, ExportFailureReason>> ExportAsync( string outputPath, UniversalDefinition definition, CancellationToken cancellationToken = default )
+    public async Task<Result<Unit, ExportFailureReason>> ExportAsync( string outputDirectory, UniversalDefinition definition, CancellationToken cancellationToken = default )
     {
-        var fullpath = Path.GetFullPath( outputPath );
-        var outputDirectory = Path.GetDirectoryName( fullpath );
-
-        ArgumentNullException.ThrowIfNull( outputDirectory, nameof( outputPath ) );
-
         var runner = new FileExportRunner( loggerFactory );
         var namingStrategy = new UniversalDefinitionTemplateExportNamingStrategy();
         var strategy = new UniversalDefinitionFileExportStrategy();
@@ -83,11 +76,10 @@ public sealed class UniversalDefinitionFileService : IUniversalDefinitionFileSer
         return result;
     }
 
-    public async Task<Result<Unit, ExportFailureReason>> ExportTemplateAsync( string outputPath, CancellationToken cancellationToken = default )
+    public async Task<Result<Unit, ExportFailureReason>> ExportTemplateAsync( string outputDirectory, string patchName, CancellationToken cancellationToken = default )
     {
-        var patchName = Path.GetFileNameWithoutExtension( outputPath );
         var definition = UniversalDefinition.CreateTemplate( patchName: patchName );
 
-        return await ExportAsync( outputPath, definition, cancellationToken );
+        return await ExportAsync( outputDirectory, definition, cancellationToken );
     }
 }

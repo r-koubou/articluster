@@ -1,5 +1,6 @@
 using System;
 using System.CommandLine;
+using System.IO;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -56,7 +57,17 @@ internal sealed class CreateDefinitionCommandExecutor : ICommandExecutor
 
     private async Task<int> ExecuteAsync( string outputPath, CancellationToken cancellationToken = default )
     {
-        var result = await service.ExportTemplateAsync( outputPath, cancellationToken );
+        var fullPath = Path.GetFullPath( outputPath );
+        var outputDirectory = Path.GetDirectoryName( fullPath );
+        var patchName = Path.GetFileNameWithoutExtension( outputPath );
+
+        if( outputDirectory == null )
+        {
+            logger.LogError( $"Invalid output path: {outputPath}" );
+            return 1;
+        }
+
+        var result = await service.ExportTemplateAsync( outputDirectory, patchName, cancellationToken );
 
         if( result.IsFailure )
         {
@@ -72,7 +83,7 @@ internal sealed class CreateDefinitionCommandExecutor : ICommandExecutor
             return 1;
         }
 
-        logger.LogInformation( $"Created Universal Definition file at: {outputPath}" );
+        logger.LogInformation( $"Created Universal Definition file for patch '{patchName}' in: {outputDirectory}" );
 
         return 0;
     }

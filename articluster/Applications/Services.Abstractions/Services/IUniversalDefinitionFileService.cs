@@ -14,11 +14,12 @@ public interface IUniversalDefinitionFileService
         CancellationToken cancellationToken = default );
 
     Task<Result<Unit, ExportFailureReason>> ExportAsync(
-        string outputPath,
+        string outputDirectory,
         UniversalDefinition definition,
         CancellationToken cancellationToken = default );
 
     Task<Result<Unit, ExportFailureReason>> ExportTemplateAsync(
-        string outputPath,
+        string outputDirectory,
+        string patchName,
         CancellationToken cancellationToken = default );
 }
