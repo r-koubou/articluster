@@ -10,17 +10,19 @@ namespace ArtiCluster.Applications.Services.Local;
 
 public sealed class MarkdownExportIndexBuilder : IMarkdownExportIndexBuilder
 {
-    public string Build( IReadOnlyCollection<ExportedFileEntry> entries, string markdownOutputDirectory )
+    public string Build(
+        string title,
+        IReadOnlyCollection<ExportedFileEntry> entries,
+        string markdownOutputDirectory )
     {
         if( entries.Count == 0 )
         {
             return string.Empty;
         }
 
-        var first = entries.First();
         var builder = new StringBuilder();
 
-        builder.AppendLine( $"# {first.ManufacturerName}" );
+        builder.AppendLine( $"# {title}" );
         builder.AppendLine();
 
         var groupedEntries =
