@@ -6,5 +6,5 @@ namespace ArtiCluster.Applications.Services.Abstractions.Strategies;
 
 public interface IMarkdownExportIndexBuilder
 {
-    string Build( IReadOnlyCollection<ExportedFileEntry> entries, string markdownOutputDirectory );
+    string Build( string title, IReadOnlyCollection<ExportedFileEntry> entries, string markdownOutputDirectory );
 }
