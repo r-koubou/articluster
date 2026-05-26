@@ -2,6 +2,7 @@ using System.IO;
 using System.Threading.Tasks;
 
 using ArtiCluster.Applications.Services.Local;
+using ArtiCluster.Applications.Services.Local.Exports.Services;
 using ArtiCluster.Tests.Helpers;
 
 using NUnit.Framework;

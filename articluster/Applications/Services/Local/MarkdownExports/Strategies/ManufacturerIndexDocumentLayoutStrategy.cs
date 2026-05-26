@@ -4,10 +4,10 @@ using System.IO;
 using System.Threading;
 using System.Threading.Tasks;
 
-using ArtiCluster.Applications.Services.Abstractions;
+using ArtiCluster.Applications.Services.Abstractions.Exports;
 using ArtiCluster.Applications.Services.Abstractions.MarkdownExports.Builders;
+using ArtiCluster.Applications.Services.Abstractions.MarkdownExports.Models;
 using ArtiCluster.Applications.Services.Abstractions.MarkdownExports.Strategies;
-using ArtiCluster.Applications.Services.Abstractions.Models;
 using ArtiCluster.Commons;
 using ArtiCluster.Shared.IO.Local;
 

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 
 using ArtiCluster.Applications.Services.Abstractions.MarkdownExports.Builders;
-using ArtiCluster.Applications.Services.Abstractions.Models;
+using ArtiCluster.Applications.Services.Abstractions.MarkdownExports.Models;
 
 namespace ArtiCluster.Applications.Services.Local.MarkdownExports.Builders;
 

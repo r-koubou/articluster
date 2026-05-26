@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 
-using ArtiCluster.Applications.Services.Abstractions.Models;
+using ArtiCluster.Applications.Services.Abstractions.MarkdownExports.Models;
 
 namespace ArtiCluster.Applications.Services.Abstractions.MarkdownExports.Builders;
 
