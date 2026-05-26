@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
@@ -50,7 +51,7 @@ public sealed class MarkdownExportIndexFileService : IMarkdownExportIndexFileSer
             {
                 return Result<Unit, ExportFailureReason>.Failure(
                     ExportFailureReason.OtherError,
-                    new KeyNotFoundException( $"Multiple markdown layout strategies found for DAW: {group.Key.DawName}" )
+                    new InvalidOperationException( $"Multiple markdown layout strategies found for DAW: {group.Key.DawName}" )
                 );
             }
 
