@@ -3,10 +3,10 @@ using System.IO;
 using System.Linq;
 using System.Text;
 
+using ArtiCluster.Applications.Services.Abstractions.MarkdownExports.Builders;
 using ArtiCluster.Applications.Services.Abstractions.Models;
-using ArtiCluster.Applications.Services.Abstractions.Strategies;
 
-namespace ArtiCluster.Applications.Services.Local;
+namespace ArtiCluster.Applications.Services.Local.MarkdownExports.Builders;
 
 public sealed class MarkdownExportIndexBuilder : IMarkdownExportIndexBuilder
 {

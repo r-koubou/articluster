@@ -2,7 +2,7 @@ using System.Collections.Generic;
 
 using ArtiCluster.Applications.Services.Abstractions.Models;
 
-namespace ArtiCluster.Applications.Services.Abstractions.Strategies;
+namespace ArtiCluster.Applications.Services.Abstractions.MarkdownExports.Builders;
 
 public interface IMarkdownExportIndexBuilder
 {

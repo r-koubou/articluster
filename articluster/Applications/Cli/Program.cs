@@ -1,8 +1,14 @@
 using System.CommandLine;
 
 using ArtiCluster.Applications.Cli;
+using ArtiCluster.Applications.Services.Abstractions.MarkdownExports.Builders;
+using ArtiCluster.Applications.Services.Abstractions.MarkdownExports.Services;
+using ArtiCluster.Applications.Services.Abstractions.MarkdownExports.Strategies;
 using ArtiCluster.Applications.Services.Abstractions.Services;
 using ArtiCluster.Applications.Services.Local;
+using ArtiCluster.Applications.Services.Local.MarkdownExports.Builders;
+using ArtiCluster.Applications.Services.Local.MarkdownExports.Services;
+using ArtiCluster.Applications.Services.Local.MarkdownExports.Strategies;
 
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
@@ -40,6 +46,12 @@ services.AddTransient<IExportFileService, CubaseExportFileService>();
 services.AddTransient<IExportFileService, StudioOneExportFileService>();
 services.AddTransient<IExportFileService, CakewalkExportFileService>();
 services.AddTransient<IExportFileService, LogicExportFileService>();
+// Markdown
+services.AddTransient<IMarkdownExportIndexBuilder, MarkdownExportIndexBuilder>();
+services.AddTransient<IMarkdownProductIndexBuilder, DefaultMarkdownProductIndexBuilder>();
+services.AddTransient<IMarkdownDocumentLayoutStrategy, ProductsListDocumentLayoutStrategy>();
+services.AddTransient<IMarkdownDocumentLayoutStrategy, ManufacturerIndexDocumentLayoutStrategy>();
+services.AddTransient<IMarkdownExportIndexFileService, MarkdownExportIndexFileService>();
 #endregion ~DI
 
 await using var serviceProvider = services.BuildServiceProvider();

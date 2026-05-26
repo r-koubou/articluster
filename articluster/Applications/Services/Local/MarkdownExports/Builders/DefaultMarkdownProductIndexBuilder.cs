@@ -2,9 +2,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-using ArtiCluster.Applications.Services.Abstractions.Strategies;
+using ArtiCluster.Applications.Services.Abstractions.MarkdownExports.Builders;
 
-namespace ArtiCluster.Applications.Services.Local;
+namespace ArtiCluster.Applications.Services.Local.MarkdownExports.Builders;
 
 public sealed class DefaultMarkdownProductIndexBuilder : IMarkdownProductIndexBuilder
 {
