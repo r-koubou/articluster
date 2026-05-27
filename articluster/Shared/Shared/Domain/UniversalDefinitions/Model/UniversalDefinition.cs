@@ -60,15 +60,20 @@ public sealed record UniversalDefinition
         );
     }
 
-    public static UniversalDefinition CreateTemplate()
+    public static UniversalDefinition CreateTemplate(
+        string author = "Example Author",
+        string manufacturerName = "Example Manufacturer",
+        string productName = "Example Product",
+        string patchName = "Example Patch",
+        string? description = "Example Description" )
     {
         return Create(
             id: Guid.NewGuid(),
-            author: "Example Author",
-            manufacturerName: "Example Manufacturer",
-            productName: "Example Product",
-            patchName: "Example Patch",
-            description: "Example Description",
+            author: author,
+            manufacturerName: manufacturerName,
+            productName: productName,
+            patchName: patchName,
+            description: description,
             articulationGroups:
             [
                 ArticulationGroup.Create(

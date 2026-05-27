@@ -25,7 +25,7 @@ jobs:
     secrets: inherit
     with:
       configuration: Debug
-      prefix: articluster-cli
+      prefix: articluster-cli-nuget
       base_dir: "articluster/Applications/Cli"
       csproject_filename: "Applications.Cli.csproj"
       version: ${{ inputs.version }}

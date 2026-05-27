@@ -2,6 +2,8 @@ using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
 
+using ArtiCluster.Applications.Services.Abstractions.Exports;
+using ArtiCluster.Applications.Services.Abstractions.Imports;
 using ArtiCluster.Commons;
 using ArtiCluster.Shared.Domain.UniversalDefinitions.Model;
 
@@ -14,11 +16,12 @@ public interface IUniversalDefinitionFileService
         CancellationToken cancellationToken = default );
 
     Task<Result<Unit, ExportFailureReason>> ExportAsync(
-        string outputPath,
+        string outputDirectory,
         UniversalDefinition definition,
         CancellationToken cancellationToken = default );
 
     Task<Result<Unit, ExportFailureReason>> ExportTemplateAsync(
-        string outputPath,
+        string outputDirectory,
+        string patchName,
         CancellationToken cancellationToken = default );
 }

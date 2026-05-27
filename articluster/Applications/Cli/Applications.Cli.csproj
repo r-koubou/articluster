@@ -22,9 +22,8 @@
         <PackageProjectUrl>https://github.com/r-koubou/articluster</PackageProjectUrl>
         <RepositoryUrl>https://github.com/r-koubou/articluster</RepositoryUrl>
         <PackageReleaseNotes>
-          - Added Generating markdown files feature for `Static Site Generator` from converted data.
-          - Added `ArticulationGroups` field to Universal Definition specification.
-          - Modified `FormatVersion` field in Universal Definition specification to simple integer.
+          - Improve Markdown generation for `Static Site Generator`.
+          - Updated dependencies libraries.
         </PackageReleaseNotes>
     </PropertyGroup>
 

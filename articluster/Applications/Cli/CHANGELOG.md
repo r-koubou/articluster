@@ -1,5 +1,10 @@
 # Changelog
 
+## Version 1.1.1
+
+- Improve Markdown generation for `Static Site Generator`.
+- Updated dependencies libraries.
+
 ## Version 1.1.0
 
 - Added Generating markdown files feature for `Static Site Generator` from converted data.

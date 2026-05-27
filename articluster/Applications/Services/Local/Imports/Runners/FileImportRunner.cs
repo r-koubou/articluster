@@ -1,0 +1,51 @@
+using System.Threading;
+using System.Threading.Tasks;
+
+using ArtiCluster.Applications.Services.Abstractions.Imports;
+using ArtiCluster.Applications.Services.Abstractions.Imports.Collectors;
+using ArtiCluster.Applications.Services.Abstractions.Imports.Runners;
+using ArtiCluster.Applications.Services.Abstractions.Imports.Strategies;
+using ArtiCluster.Applications.Services.Local.Imports.Executors;
+using ArtiCluster.Commons;
+
+using Microsoft.Extensions.Logging;
+
+namespace ArtiCluster.Applications.Services.Local.Imports.Runners;
+
+public sealed class FileImportRunner : IImportRunner
+{
+    private readonly ILoggerFactory loggerFactory;
+
+    // ReSharper disable once ConvertToPrimaryConstructor
+    public FileImportRunner( ILoggerFactory loggerFactory )
+    {
+        this.loggerFactory = loggerFactory;
+    }
+
+    public async Task<Result<Unit, ImportFailureReason>> RunAsync<TTarget>(
+        string inputDirectory,
+        IImportStrategy<TTarget> strategy,
+        IImportNamingStrategy namingStrategy,
+        IImportedFileEntryFactory<TTarget>? entryFactory = null,
+        IImportedFileCollector? collector = null,
+        CancellationToken cancellationToken = default )
+    {
+        var executor = new FileInputExecutor<TTarget>( loggerFactory );
+
+        var result = await executor.ExecuteAsync(
+            inputDirectory,
+            strategy,
+            namingStrategy,
+            entryFactory,
+            collector,
+            cancellationToken
+        );
+
+        if( result.IsFailure )
+        {
+            return result;
+        }
+
+        return Result<Unit, ImportFailureReason>.Success( Unit.Default );
+    }
+}

@@ -1,6 +1,11 @@
 ArtiCluster
 ===========
 
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT) [![NuGet Version](https://img.shields.io/nuget/v/ArtiCluster)](https://www.nuget.org/packages/ArtiCluster)
+[![Unit Test - .NET projects](https://github.com/r-koubou/articluster/actions/workflows/run-dotnet-unit-test.yml/badge.svg)](https://github.com/r-koubou/articluster/actions/workflows/run-dotnet-unit-test.yml)
+
+[![Ask DeepWiki](https://deepwiki.com/badge.svg)](https://github.com/r-koubou/articluster)
+
 ArtiCluster is conversion and management tool that supports articulation mapping files across DAWs.
 
 ## Overview
