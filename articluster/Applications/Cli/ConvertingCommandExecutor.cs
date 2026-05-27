@@ -5,10 +5,10 @@ using System.IO;
 using System.Threading;
 using System.Threading.Tasks;
 
-using ArtiCluster.Applications.Services.Abstractions;
-using ArtiCluster.Applications.Services.Abstractions.Models;
+using ArtiCluster.Applications.Services.Abstractions.Exports;
+using ArtiCluster.Applications.Services.Abstractions.Exports.MarkdownExports.Services;
+using ArtiCluster.Applications.Services.Abstractions.Exports.Models;
 using ArtiCluster.Applications.Services.Abstractions.Services;
-using ArtiCluster.Applications.Services.Local;
 using ArtiCluster.Commons;
 
 using Microsoft.Extensions.Logging;
@@ -22,6 +22,7 @@ internal sealed class ConvertingCommandExecutor : ICommandExecutor
 {
     private readonly IEnumerable<IExportFileService> services;
     private readonly IUniversalDefinitionFileService importService;
+    private readonly IMarkdownExportIndexFileService markdownExportIndexFileService;
     private readonly ILogger<ConvertingCommandExecutor> logger;
 
 
@@ -29,11 +30,13 @@ internal sealed class ConvertingCommandExecutor : ICommandExecutor
     public ConvertingCommandExecutor(
         IEnumerable<IExportFileService> services,
         IUniversalDefinitionFileService importService,
+        IMarkdownExportIndexFileService markdownExportIndexFileService,
         ILogger<ConvertingCommandExecutor> logger )
     {
-        this.services      = services;
-        this.importService = importService;
-        this.logger        = logger;
+        this.services                             = services;
+        this.importService                        = importService;
+        this.markdownExportIndexFileService       = markdownExportIndexFileService;
+        this.logger                               = logger;
     }
 
     public Command CreateCommand()
@@ -152,9 +155,7 @@ internal sealed class ConvertingCommandExecutor : ICommandExecutor
         CancellationToken cancellationToken,
         Result<IReadOnlyCollection<ExportedFileEntry>, ExportFailureReason> convertResult )
     {
-        var markdownExportService = new MarkdownExportIndexFileService( new MarkdownExportIndexBuilder() );
-
-        var markdownExportResult = await markdownExportService.ExportAsync(
+        var markdownExportResult = await markdownExportIndexFileService.ExportAsync(
             outputMarkdownDir.FullName,
             convertResult.Unwrap(),
             cancellationToken

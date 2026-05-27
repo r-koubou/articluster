@@ -2,7 +2,8 @@ using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
 
-using ArtiCluster.Applications.Services.Abstractions.Models;
+using ArtiCluster.Applications.Services.Abstractions.Exports;
+using ArtiCluster.Applications.Services.Abstractions.Exports.Models;
 using ArtiCluster.Commons;
 using ArtiCluster.Shared.Domain.UniversalDefinitions.Model;
 
