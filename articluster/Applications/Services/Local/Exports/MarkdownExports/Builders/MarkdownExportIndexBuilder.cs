@@ -3,8 +3,8 @@ using System.IO;
 using System.Linq;
 using System.Text;
 
-using ArtiCluster.Applications.Services.Abstractions.MarkdownExports.Builders;
-using ArtiCluster.Applications.Services.Abstractions.MarkdownExports.Models;
+using ArtiCluster.Applications.Services.Abstractions.Exports.MarkdownExports.Builders;
+using ArtiCluster.Applications.Services.Abstractions.Exports.Models;
 
 namespace ArtiCluster.Applications.Services.Local.MarkdownExports.Builders;
 

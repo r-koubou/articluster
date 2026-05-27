@@ -4,7 +4,7 @@ using System.Threading.Tasks;
 
 using ArtiCluster.Applications.Services.Abstractions.Exports;
 using ArtiCluster.Applications.Services.Abstractions.Exports.Collectors;
-using ArtiCluster.Applications.Services.Abstractions.MarkdownExports.Models;
+using ArtiCluster.Applications.Services.Abstractions.Exports.Models;
 using ArtiCluster.Applications.Services.Abstractions.Services;
 using ArtiCluster.Applications.Services.Local.Exports.Runners;
 using ArtiCluster.Applications.Services.Local.Exports.Strategies;

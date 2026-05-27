@@ -1,5 +1,5 @@
+using ArtiCluster.Applications.Services.Abstractions.Exports.Models;
 using ArtiCluster.Applications.Services.Abstractions.Exports.Strategies;
-using ArtiCluster.Applications.Services.Abstractions.MarkdownExports.Models;
 using ArtiCluster.Shared.Domain.UniversalDefinitions.Model;
 
 namespace ArtiCluster.Applications.Services.Local.Exports.Strategies;

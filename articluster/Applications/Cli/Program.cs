@@ -1,9 +1,9 @@
 using System.CommandLine;
 
 using ArtiCluster.Applications.Cli;
-using ArtiCluster.Applications.Services.Abstractions.MarkdownExports.Builders;
-using ArtiCluster.Applications.Services.Abstractions.MarkdownExports.Services;
-using ArtiCluster.Applications.Services.Abstractions.MarkdownExports.Strategies;
+using ArtiCluster.Applications.Services.Abstractions.Exports.MarkdownExports.Builders;
+using ArtiCluster.Applications.Services.Abstractions.Exports.MarkdownExports.Services;
+using ArtiCluster.Applications.Services.Abstractions.Exports.MarkdownExports.Strategies;
 using ArtiCluster.Applications.Services.Abstractions.Services;
 using ArtiCluster.Applications.Services.Local;
 using ArtiCluster.Applications.Services.Local.Exports.Services;

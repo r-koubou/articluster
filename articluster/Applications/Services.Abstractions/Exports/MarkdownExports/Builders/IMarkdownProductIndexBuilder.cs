@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 
-namespace ArtiCluster.Applications.Services.Abstractions.MarkdownExports.Builders;
+namespace ArtiCluster.Applications.Services.Abstractions.Exports.MarkdownExports.Builders;
 
 public interface IMarkdownProductIndexBuilder
 {

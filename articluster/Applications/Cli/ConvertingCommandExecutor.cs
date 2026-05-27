@@ -6,8 +6,8 @@ using System.Threading;
 using System.Threading.Tasks;
 
 using ArtiCluster.Applications.Services.Abstractions.Exports;
-using ArtiCluster.Applications.Services.Abstractions.MarkdownExports.Models;
-using ArtiCluster.Applications.Services.Abstractions.MarkdownExports.Services;
+using ArtiCluster.Applications.Services.Abstractions.Exports.MarkdownExports.Services;
+using ArtiCluster.Applications.Services.Abstractions.Exports.Models;
 using ArtiCluster.Applications.Services.Abstractions.Services;
 using ArtiCluster.Commons;
 

@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-using ArtiCluster.Applications.Services.Abstractions.MarkdownExports.Builders;
+using ArtiCluster.Applications.Services.Abstractions.Exports.MarkdownExports.Builders;
 
 namespace ArtiCluster.Applications.Services.Local.MarkdownExports.Builders;
 

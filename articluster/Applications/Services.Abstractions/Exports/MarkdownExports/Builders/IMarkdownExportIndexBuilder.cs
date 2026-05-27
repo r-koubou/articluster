@@ -1,8 +1,8 @@
 using System.Collections.Generic;
 
-using ArtiCluster.Applications.Services.Abstractions.MarkdownExports.Models;
+using ArtiCluster.Applications.Services.Abstractions.Exports.Models;
 
-namespace ArtiCluster.Applications.Services.Abstractions.MarkdownExports.Builders;
+namespace ArtiCluster.Applications.Services.Abstractions.Exports.MarkdownExports.Builders;
 
 public interface IMarkdownExportIndexBuilder
 {

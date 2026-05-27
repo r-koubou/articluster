@@ -1,6 +1,6 @@
 using System.IO;
 
-namespace ArtiCluster.Applications.Services.Abstractions.MarkdownExports.Models;
+namespace ArtiCluster.Applications.Services.Abstractions.Exports.Models;
 
 public sealed record ExportedFileEntry(
     string DawName,

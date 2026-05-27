@@ -1,4 +1,4 @@
-using ArtiCluster.Applications.Services.Abstractions.MarkdownExports.Models;
+using ArtiCluster.Applications.Services.Abstractions.Exports.Models;
 
 namespace ArtiCluster.Applications.Services.Abstractions.Exports.Strategies;
 
