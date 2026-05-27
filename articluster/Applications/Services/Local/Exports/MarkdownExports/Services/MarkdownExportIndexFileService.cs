@@ -10,7 +10,7 @@ using ArtiCluster.Applications.Services.Abstractions.Exports.MarkdownExports.Str
 using ArtiCluster.Applications.Services.Abstractions.Exports.Models;
 using ArtiCluster.Commons;
 
-namespace ArtiCluster.Applications.Services.Local.MarkdownExports.Services;
+namespace ArtiCluster.Applications.Services.Local.Exports.MarkdownExports.Services;
 
 public sealed class MarkdownExportIndexFileService : IMarkdownExportIndexFileService
 {

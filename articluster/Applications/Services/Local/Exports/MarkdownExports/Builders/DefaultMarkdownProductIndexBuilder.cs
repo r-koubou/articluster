@@ -4,7 +4,7 @@ using System.Text;
 
 using ArtiCluster.Applications.Services.Abstractions.Exports.MarkdownExports.Builders;
 
-namespace ArtiCluster.Applications.Services.Local.MarkdownExports.Builders;
+namespace ArtiCluster.Applications.Services.Local.Exports.MarkdownExports.Builders;
 
 public sealed class DefaultMarkdownProductIndexBuilder : IMarkdownProductIndexBuilder
 {

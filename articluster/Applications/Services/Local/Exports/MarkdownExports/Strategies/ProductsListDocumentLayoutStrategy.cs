@@ -12,7 +12,7 @@ using ArtiCluster.Applications.Services.Abstractions.Exports.Models;
 using ArtiCluster.Commons;
 using ArtiCluster.Shared.IO.Local;
 
-namespace ArtiCluster.Applications.Services.Local.MarkdownExports.Strategies;
+namespace ArtiCluster.Applications.Services.Local.Exports.MarkdownExports.Strategies;
 
 public sealed class ProductsListDocumentLayoutStrategy : IMarkdownDocumentLayoutStrategy
 {

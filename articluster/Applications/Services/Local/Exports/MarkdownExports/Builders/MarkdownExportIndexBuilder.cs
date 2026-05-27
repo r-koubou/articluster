@@ -6,7 +6,7 @@ using System.Text;
 using ArtiCluster.Applications.Services.Abstractions.Exports.MarkdownExports.Builders;
 using ArtiCluster.Applications.Services.Abstractions.Exports.Models;
 
-namespace ArtiCluster.Applications.Services.Local.MarkdownExports.Builders;
+namespace ArtiCluster.Applications.Services.Local.Exports.MarkdownExports.Builders;
 
 public sealed class MarkdownExportIndexBuilder : IMarkdownExportIndexBuilder
 {
