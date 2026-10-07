@@ -1,5 +1,10 @@
 # Changelog
 
+## Version 1.1.2
+
+- Updated dependencies libraries.
+- Minor bug fixes
+
 ## Version 1.1.1
 
 - Improve Markdown generation for `Static Site Generator`.

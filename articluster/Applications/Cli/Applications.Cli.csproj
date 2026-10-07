@@ -22,8 +22,8 @@
         <PackageProjectUrl>https://github.com/r-koubou/articluster</PackageProjectUrl>
         <RepositoryUrl>https://github.com/r-koubou/articluster</RepositoryUrl>
         <PackageReleaseNotes>
-          - Improve Markdown generation for `Static Site Generator`.
           - Updated dependencies libraries.
+          - Minor bug fixes.
         </PackageReleaseNotes>
     </PropertyGroup>
 
