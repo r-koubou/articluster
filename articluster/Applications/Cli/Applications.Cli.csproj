@@ -23,6 +23,7 @@
         <RepositoryUrl>https://github.com/r-koubou/articluster</RepositoryUrl>
         <PackageReleaseNotes>
           - Updated dependencies libraries.
+          - Minor bug fixes.
         </PackageReleaseNotes>
     </PropertyGroup>
 
